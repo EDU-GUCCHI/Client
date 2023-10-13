@@ -6,7 +6,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { useNotification } from './src/hooks/useNotification';
+import { useNotification } from './hooks/useNotification';
 
 const App = () => {
   const {

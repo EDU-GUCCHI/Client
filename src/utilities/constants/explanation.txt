@@ -1,0 +1,3 @@
+
+Plats för konstanta värden; API-nycklar och liknande
+

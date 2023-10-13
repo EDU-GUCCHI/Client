@@ -1,0 +1,1 @@
+Plats för logik som styr applikationen

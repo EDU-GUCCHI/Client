@@ -1,0 +1,2 @@
+
+Plats för statiska bilder, ikoner och dylikt som används genom appen
