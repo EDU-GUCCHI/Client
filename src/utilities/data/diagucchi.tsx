@@ -1,13 +1,11 @@
-import { Float } from "react-native/Libraries/Types/CodegenTypes";
-
 class diagucchi
 {
     //Person attributes
     private name: string;
-    private bloodValue: Float;
+    private bloodValue: number;
     private trait: string;
     
-    public constructor(name: string, bloodValue: Float, trait: string)
+    public constructor(name: string, bloodValue: number, trait: string)
     {
         this.name = name;
         this.bloodValue = bloodValue;
@@ -18,7 +16,7 @@ class diagucchi
     {
         return this.name;
     }
-    public getbloodValue(): Float
+    public getbloodValue(): number
     {
         return this.bloodValue;
     }
@@ -26,7 +24,7 @@ class diagucchi
     {
         this.name = name;
     }
-    public setBloodValue(bloodValue: Float)
+    public setBloodValue(bloodValue: number)
     {
         this.bloodValue = bloodValue;
     }
