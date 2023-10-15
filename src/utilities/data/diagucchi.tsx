@@ -5,11 +5,13 @@ class diagucchi
     //Person attributes
     private name: string;
     private bloodValue: Float;
+    private trait: string;
     
-    public constructor(name: string, bloodValue: Float)
+    public constructor(name: string, bloodValue: Float, trait: string)
     {
         this.name = name;
         this.bloodValue = bloodValue;
+        this.trait = trait;
     }
     //getters-setters
     public getName(): string
