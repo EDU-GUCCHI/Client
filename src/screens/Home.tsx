@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   Home: undefined;
-  Details: undefined;
+  Login: undefined;
   Notifee: undefined;
 };
 
@@ -21,9 +21,9 @@ function HomeScreen({ navigation }: Props) {
     <View style={styles.container}>
       <Text style={styles.welcome}>Welcome to EDU-GOTCHI</Text>
       <Button
-        title="send money home"
+        title="Login"
         onPress={() => {
-          navigation.navigate('Details');
+          navigation.navigate('Login');
         }}
       />
       <Button title="notifee" onPress={() => navigation.navigate('Notifee')} />

@@ -21,7 +21,7 @@ export default class App extends Component<Props> {
             component={HomeScreen}
           />
           <Stack.Screen
-            name="Details"
+            name="Login"
             options={{title: 'Login'}}
             component={LoginScreen}
           />
