@@ -1,6 +1,13 @@
 import {useState} from 'react';
-import {Platform, Button, Text, View, TextInput, TouchableOpacity} from 'react-native';
-import styles from "../styles/style.js";
+import {
+  Platform,
+  Button,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import styles from '../styles/style.js';
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -26,11 +33,14 @@ function LoginScreen() {
         />
       </View>
       <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
+        <Text style={styles.forgot_button}>Sign up</Text>
       </TouchableOpacity>
-      
+
       <TouchableOpacity style={styles.loginBtn}>
         <Text>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
     </View>
   );
