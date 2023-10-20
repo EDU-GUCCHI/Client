@@ -1,45 +1,45 @@
 import * as EnumAttribute from './EnumAttributes';
 
-class diagucchi
+class Gotchi
 {
     //Person attributes
-    private name: string;
-    private bloodValue: number;
-    private insulinPump: boolean;
-    private lchf: boolean;
+    private name:           string;
+    private bloodSugar:     number;
+    private insulinPump:    boolean;
+    private lchf:           boolean;
     
     //Enum-attributes
-    private eatHabbit: EnumAttribute.EatingHabit;
-    private exercise: EnumAttribute.Exercise;
-    private weight: EnumAttribute.Weight;
-    private alcoholHabbit: EnumAttribute.AlcoholHabit;
-    private smokeHabbit: EnumAttribute.SmokingHabits;
-    private illnesses: EnumAttribute.Illness[];
+    private eatingHabit:    EnumAttribute.EatingHabit;
+    private exercise:       EnumAttribute.Exercise;
+    private weight:         EnumAttribute.Weight;
+    private alcoholHabit:   EnumAttribute.AlcoholHabit;
+    private smokingHabit:   EnumAttribute.SmokingHabit;
+    private illnesses:      EnumAttribute.Illness[];
 
     public constructor
     (
-        name: string, 
-        bloodValue: number, 
-        insulinPump: boolean,
-        lchf: boolean,
-        illnesses: EnumAttribute.Illness[], 
-        smokeHabbit: EnumAttribute.SmokingHabits, 
-        alcoholHabbit: EnumAttribute.AlcoholHabit, 
-        weight: EnumAttribute.Weight, 
-        exercise: EnumAttribute.Exercise, 
-        eatHabbit: EnumAttribute.EatingHabit
+        name:           string, 
+        bloodSugar:     number, 
+        insulinPump:    boolean,
+        lchf:           boolean,
+        illnesses:      EnumAttribute.Illness[], 
+        smokingHabit:   EnumAttribute.SmokingHabit, 
+        alcoholHabit:   EnumAttribute.AlcoholHabit, 
+        weight:         EnumAttribute.Weight, 
+        exercise:       EnumAttribute.Exercise, 
+        eatingHabit:    EnumAttribute.EatingHabit
         )
     {
-        this.name = name;
-        this.bloodValue = bloodValue;
-        this.insulinPump = insulinPump;
-        this.lchf = lchf;
-        this.illnesses = illnesses;
-        this.smokeHabbit = smokeHabbit;
-        this.alcoholHabbit = alcoholHabbit;
-        this.weight = weight;
-        this.exercise = exercise;
-        this.eatHabbit = eatHabbit;
+        this.name =         name;
+        this.bloodSugar =   bloodSugar;
+        this.insulinPump =  insulinPump;
+        this.lchf =         lchf;
+        this.illnesses =    illnesses;
+        this.smokingHabit = smokingHabit;
+        this.alcoholHabit = alcoholHabit;
+        this.weight =       weight;
+        this.exercise =     exercise;
+        this.eatingHabit =  eatingHabit;
     }
     //getters-setters
     getName(): string 
@@ -49,7 +49,7 @@ class diagucchi
     
     getBloodValue(): number 
     {
-        return this.bloodValue;
+        return this.bloodSugar;
     }
     
     getInsulinPump(): boolean
@@ -64,7 +64,7 @@ class diagucchi
     
     getEatHabbit(): EnumAttribute.EatingHabit 
     {
-        return this.eatHabbit;
+        return this.eatingHabit;
     }
     
     getExercise(): EnumAttribute.Exercise 
@@ -80,12 +80,12 @@ class diagucchi
       
     getAlcoholHabbit(): EnumAttribute.AlcoholHabit
     {
-        return this.alcoholHabbit;
+        return this.alcoholHabit;
     }
     
     getSmokeHabbit(): EnumAttribute.SmokingHabits 
     {
-        return this.smokeHabbit;
+        return this.smokingHabit;
     }
     
     getIllnesses(): EnumAttribute.Illness[] 
@@ -100,7 +100,7 @@ class diagucchi
     
     setBloodValue(bloodValue: number): void 
     {
-        this.bloodValue = bloodValue;
+        this.bloodSugar = bloodValue;
     }
     
     setInsulinPump(insulinPump: boolean): void 
@@ -115,7 +115,7 @@ class diagucchi
     
     setEatHabbit(eatHabbit: EnumAttribute.EatingHabit): void 
     {
-        this.eatHabbit = eatHabbit;
+        this.eatingHabit = eatHabbit;
     }
     
     setExercise(exercise: EnumAttribute.Exercise): void 
@@ -130,12 +130,12 @@ class diagucchi
     
     setAlcoholHabbit(alcoholHabbit: EnumAttribute.AlcoholHabit): void 
     {
-        this.alcoholHabbit = alcoholHabbit;
+        this.alcoholHabit = alcoholHabbit;
     }
     
     setSmokeHabbit(smokeHabbit: EnumAttribute.SmokingHabits): void 
     {
-        this.smokeHabbit = smokeHabbit;
+        this.smokingHabit = smokeHabbit;
     }
     
     setIllnesses(illnesses: EnumAttribute.Illness[]): void 
