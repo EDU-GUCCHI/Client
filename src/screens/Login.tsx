@@ -1,6 +1,13 @@
 import {useState} from 'react';
-import {Platform, Button, Text, View, TextInput, TouchableOpacity} from 'react-native';
-import styles from "../styles/style.js";
+import {
+  Platform,
+  Button,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import styles from '../styles/style.js';
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -25,12 +32,18 @@ function LoginScreen() {
           onChangeText={password => setPassword(password)}
         />
       </View>
+
+      {/* TODO: Add sign up link styling and change the style from forgot_button to sign_up_link */}
       <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
+        <Text style={styles.forgot_button}>Not a member? Sign up!</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.login_button}>
+        <Text>LOGIN</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text>LOGIN</Text>
+      <TouchableOpacity>
+        <Text style={styles.forgot_button}>Forgot Password?</Text>
       </TouchableOpacity>
     </View>
   );

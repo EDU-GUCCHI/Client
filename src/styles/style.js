@@ -35,9 +35,10 @@ const styles = StyleSheet.create({
   forgot_button: {
     height: 30,
     marginBottom: 30,
+    marginTop: 10,
   },
 
-  loginBtn: {
+  login_button: {
     width: '70%',
     borderRadius: 25,
     height: 50,
