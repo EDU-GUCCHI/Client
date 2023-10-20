@@ -1,6 +1,6 @@
-import * as EnumAttribute from './EnumAttributes';
+import {EatingHabit,Exercise,Weight,AlcoholHabit,SmokingHabit,Illness} from './EnumAttributes';
 
-class Gotchi
+export class Gotchi
 {
     //Person attributes
     private name:           string;
@@ -8,12 +8,12 @@ class Gotchi
     private insulinPump:    boolean;
     private lchf:           boolean;
     //Enum-attributes
-    private eatingHabit:    EnumAttribute.EatingHabit;
-    private exercise:       EnumAttribute.Exercise;
-    private weight:         EnumAttribute.Weight;
-    private alcoholHabit:   EnumAttribute.AlcoholHabit;
-    private smokingHabit:   EnumAttribute.SmokingHabit;
-    private illnesses:      EnumAttribute.Illness[];
+    private eatingHabit:    EatingHabit;
+    private exercise:       Exercise;
+    private weight:         Weight;
+    private alcoholHabit:   AlcoholHabit;
+    private smokingHabit:   SmokingHabit;
+    private illnesses:      Illness[];
 
     public constructor
     (
@@ -21,12 +21,12 @@ class Gotchi
         bloodSugar:     number, 
         insulinPump:    boolean,
         lchf:           boolean,
-        illnesses:      EnumAttribute.Illness[], 
-        smokingHabit:   EnumAttribute.SmokingHabit, 
-        alcoholHabit:   EnumAttribute.AlcoholHabit, 
-        weight:         EnumAttribute.Weight, 
-        exercise:       EnumAttribute.Exercise, 
-        eatingHabit:    EnumAttribute.EatingHabit
+        illnesses:      Illness[], 
+        smokingHabit:   SmokingHabit, 
+        alcoholHabit:   AlcoholHabit, 
+        weight:         Weight, 
+        exercise:       Exercise, 
+        eatingHabit:    EatingHabit
         )
     {
         this.name =         name;
@@ -57,27 +57,27 @@ class Gotchi
     {
         return this.lchf;
     }
-    getEatHabbit(): EnumAttribute.EatingHabit 
+    getEatHabbit(): EatingHabit 
     {
         return this.eatingHabit;
     }
-    getExercise(): EnumAttribute.Exercise 
+    getExercise(): Exercise 
     {
         return this.exercise;
     }
-    getWeight(): EnumAttribute.Weight
+    getWeight(): Weight
     {
         return this.weight;
     } 
-    getAlcoholHabbit(): EnumAttribute.AlcoholHabit
+    getAlcoholHabbit(): AlcoholHabit
     {
         return this.alcoholHabit;
     }
-    getSmokeHabbit(): EnumAttribute.SmokingHabit 
+    getSmokeHabbit(): SmokingHabit 
     {
         return this.smokingHabit;
     }
-    getIllnesses(): EnumAttribute.Illness[] 
+    getIllnesses(): Illness[] 
     {
         return this.illnesses;
     }
@@ -98,27 +98,27 @@ class Gotchi
     {
         this.lchf = lchf;
     }
-    setEatHabbit(eatHabbit: EnumAttribute.EatingHabit): void 
+    setEatHabbit(eatHabbit: EatingHabit): void 
     {
         this.eatingHabit = eatHabbit;
     }
-    setExercise(exercise: EnumAttribute.Exercise): void 
+    setExercise(exercise: Exercise): void 
     {
         this.exercise = exercise;
     }
-    setWeight(weight: EnumAttribute.Weight): void 
+    setWeight(weight: Weight): void 
     {
         this.weight = weight;
     }
-    setAlcoholHabbit(alcoholHabbit: EnumAttribute.AlcoholHabit): void 
+    setAlcoholHabbit(alcoholHabbit: AlcoholHabit): void 
     {
         this.alcoholHabit = alcoholHabbit;
     }
-    setSmokeHabbit(smokeHabbit: EnumAttribute.SmokingHabit): void 
+    setSmokeHabbit(smokeHabbit: SmokingHabit): void 
     {
         this.smokingHabit = smokeHabbit;
     }
-    setIllnesses(illnesses: EnumAttribute.Illness[]): void 
+    setIllnesses(illnesses: Illness[]): void 
     {
         this.illnesses = illnesses;
     }
