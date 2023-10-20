@@ -41,84 +41,104 @@ class diagucchi
         this.eatHabbit = eatHabbit;
     }
     //getters-setters
-    getName(): string {
+    getName(): string 
+    {
         return this.name;
-      }
+    }
     
-      getBloodValue(): number {
+    getBloodValue(): number 
+    {
         return this.bloodValue;
-      }
+    }
     
-      getInsulinPump(): boolean {
+    getInsulinPump(): boolean
+    {
         return this.insulinPump;
-      }
+    }
     
-      getLchf(): boolean {
+    getLchf(): boolean 
+    {
         return this.lchf;
-      }
+    }
     
-      getEatHabbit(): EnumAttribute {
+    getEatHabbit(): EnumAttribute 
+    {
         return this.eatHabbit;
-      }
+    }
     
-      getExercise(): EnumAttribute {
+    getExercise(): EnumAttribute 
+    {
         return this.exercise;
-      }
+    }
     
-      getWeight(): EnumAttribute {
+    getWeight(): EnumAttribute 
+    {
         return this.weight;
-      }
+    }
     
-      getAlcoholHabbit(): EnumAttribute {
+      
+    getAlcoholHabbit(): EnumAttribute 
+    {
         return this.alcoholHabbit;
-      }
+    }
     
-      getSmokeHabbit(): EnumAttribute {
+    getSmokeHabbit(): EnumAttribute 
+    {
         return this.smokeHabbit;
-      }
+    }
     
-      getIllnesses(): EnumAttribute[] {
+    getIllnesses(): EnumAttribute[] 
+    {
         return this.illnesses;
-      }
-    
-      // Setters for private attributes
-      setName(name: string): void {
+    }
+    // Setters for private attributes
+    setName(name: string): void 
+    {
         this.name = name;
-      }
+    }
     
-      setBloodValue(bloodValue: number): void {
+    setBloodValue(bloodValue: number): void 
+    {
         this.bloodValue = bloodValue;
-      }
+    }
     
-      setInsulinPump(insulinPump: boolean): void {
+    setInsulinPump(insulinPump: boolean): void 
+    {
         this.insulinPump = insulinPump;
-      }
+    }
     
-      setLchf(lchf: boolean): void {
+    setLchf(lchf: boolean): void 
+    {
         this.lchf = lchf;
-      }
+    }
     
-      setEatHabbit(eatHabbit: EnumAttribute): void {
+    setEatHabbit(eatHabbit: EnumAttribute): void 
+    {
         this.eatHabbit = eatHabbit;
-      }
+    }
     
-      setExercise(exercise: EnumAttribute): void {
+    setExercise(exercise: EnumAttribute): void 
+    {
         this.exercise = exercise;
-      }
+    }
     
-      setWeight(weight: EnumAttribute): void {
+    setWeight(weight: EnumAttribute): void 
+    {
         this.weight = weight;
-      }
+    }
     
-      setAlcoholHabbit(alcoholHabbit: EnumAttribute): void {
+    setAlcoholHabbit(alcoholHabbit: EnumAttribute): void 
+    {
         this.alcoholHabbit = alcoholHabbit;
-      }
+    }
     
-      setSmokeHabbit(smokeHabbit: EnumAttribute): void {
+    setSmokeHabbit(smokeHabbit: EnumAttribute): void 
+    {
         this.smokeHabbit = smokeHabbit;
-      }
+    }
     
-      setIllnesses(illnesses: EnumAttribute[]): void {
+    setIllnesses(illnesses: EnumAttribute[]): void 
+    {
         this.illnesses = illnesses;
-      }
+    }
 }
