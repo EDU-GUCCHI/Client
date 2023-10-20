@@ -9,12 +9,12 @@ class diagucchi
     private lchf: boolean;
     
     //Enum-attributes
-    private eatHabbit: EnumAttribute;
-    private exercise: EnumAttribute;
-    private weight: EnumAttribute;
-    private alcoholHabbit: EnumAttribute;
-    private smokeHabbit: EnumAttribute;
-    private illnesses: EnumAttribute[];
+    private eatHabbit: EnumAttribute.EatingHabit;
+    private exercise: EnumAttribute.Exercise;
+    private weight: EnumAttribute.Weight;
+    private alcoholHabbit: EnumAttribute.AlcoholHabit;
+    private smokeHabbit: EnumAttribute.SmokingHabits;
+    private illnesses: EnumAttribute.Illness[];
 
     public constructor
     (
@@ -22,12 +22,12 @@ class diagucchi
         bloodValue: number, 
         insulinPump: boolean,
         lchf: boolean,
-        illnesses: EnumAttribute[], 
-        smokeHabbit: EnumAttribute, 
-        alcoholHabbit: EnumAttribute, 
-        weight: EnumAttribute, 
-        exercise: EnumAttribute, 
-        eatHabbit: EnumAttribute
+        illnesses: EnumAttribute.Illness[], 
+        smokeHabbit: EnumAttribute.SmokingHabits, 
+        alcoholHabbit: EnumAttribute.AlcoholHabit, 
+        weight: EnumAttribute.Weight, 
+        exercise: EnumAttribute.Exercise, 
+        eatHabbit: EnumAttribute.EatingHabit
         )
     {
         this.name = name;
@@ -62,33 +62,33 @@ class diagucchi
         return this.lchf;
     }
     
-    getEatHabbit(): EnumAttribute 
+    getEatHabbit(): EnumAttribute.EatingHabit 
     {
         return this.eatHabbit;
     }
     
-    getExercise(): EnumAttribute 
+    getExercise(): EnumAttribute.Exercise 
     {
         return this.exercise;
     }
     
-    getWeight(): EnumAttribute 
+    getWeight(): EnumAttribute.Weight
     {
         return this.weight;
     }
     
       
-    getAlcoholHabbit(): EnumAttribute 
+    getAlcoholHabbit(): EnumAttribute.AlcoholHabit
     {
         return this.alcoholHabbit;
     }
     
-    getSmokeHabbit(): EnumAttribute 
+    getSmokeHabbit(): EnumAttribute.SmokingHabits 
     {
         return this.smokeHabbit;
     }
     
-    getIllnesses(): EnumAttribute[] 
+    getIllnesses(): EnumAttribute.Illness[] 
     {
         return this.illnesses;
     }
@@ -113,32 +113,32 @@ class diagucchi
         this.lchf = lchf;
     }
     
-    setEatHabbit(eatHabbit: EnumAttribute): void 
+    setEatHabbit(eatHabbit: EnumAttribute.EatingHabit): void 
     {
         this.eatHabbit = eatHabbit;
     }
     
-    setExercise(exercise: EnumAttribute): void 
+    setExercise(exercise: EnumAttribute.Exercise): void 
     {
         this.exercise = exercise;
     }
     
-    setWeight(weight: EnumAttribute): void 
+    setWeight(weight: EnumAttribute.Weight): void 
     {
         this.weight = weight;
     }
     
-    setAlcoholHabbit(alcoholHabbit: EnumAttribute): void 
+    setAlcoholHabbit(alcoholHabbit: EnumAttribute.AlcoholHabit): void 
     {
         this.alcoholHabbit = alcoholHabbit;
     }
     
-    setSmokeHabbit(smokeHabbit: EnumAttribute): void 
+    setSmokeHabbit(smokeHabbit: EnumAttribute.SmokingHabits): void 
     {
         this.smokeHabbit = smokeHabbit;
     }
     
-    setIllnesses(illnesses: EnumAttribute[]): void 
+    setIllnesses(illnesses: EnumAttribute.Illness[]): void 
     {
         this.illnesses = illnesses;
     }
