@@ -1,9 +1,12 @@
+import * as EnumAttribute from './EnumAttributes';
+
 class diagucchi
 {
     //Person attributes
     private name: string;
     private bloodValue: number;
     private trait: string;
+    private eatHabbit = EatingHabit.CONSISTENT;
     
     public constructor(name: string, bloodValue: number, trait: string)
     {
