@@ -1,12 +1,5 @@
 import {useState} from 'react';
-import {
-  Platform,
-  Button,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import styles from '../styles/style.js';
 
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -46,8 +39,8 @@ function LoginScreen({navigation}: Props) {
 
   return (
     <>
+      <Text style={styles.header_text}>Create a new EDU-GOTCHI</Text>
       <View style={styles.container}>
-        <Text style={styles.welcome}>Create a new EDUGOTCHI</Text>
         <View style={styles.input_view}>
           <TextInput
             style={styles.text_input}
@@ -70,7 +63,7 @@ function LoginScreen({navigation}: Props) {
           onPress={() => {
             navigation.navigate('Home');
           }}>
-          <Text style={styles.white_text}>Continue</Text>
+          <Text style={styles.button_text}>Continue</Text>
         </TouchableOpacity>
       </View>
     </>

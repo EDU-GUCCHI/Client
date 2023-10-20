@@ -20,22 +20,31 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 
+  header_text: {
+    fontSize: 42,
+    textAlign: 'center',
+    paddingTop: 30,
+    color: darkRed,
+    backgroundColor: 'white',
+    fontWeight: 'bold',
+  },
+
   input_container: {},
 
   input_view: {
     backgroundColor: lightBeige,
-    borderRadius: 30,
+    borderRadius: 5,
     width: '70%',
     height: 45,
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: 'start',
   },
 
   text_input: {
     height: 50,
     flex: 1,
     padding: 10,
-    marginLeft: 20,
+    marginLeft: 15,
   },
 
   forgot_button: {
@@ -52,17 +61,32 @@ const styles = StyleSheet.create({
 
   continue_button: {
     width: '70%',
-    borderRadius: 25,
+    borderRadius: 5,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 40,
     backgroundColor: lightBlue,
-    color: lightBeige,
   },
 
-  white_text: {
+  color_white: {
     color: 'white',
+  },
+
+  button_text: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+  menu_button: {
+    width: '70%',
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 15,
+    backgroundColor: lightBlue,
   },
 });
 

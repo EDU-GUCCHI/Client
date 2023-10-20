@@ -2,10 +2,14 @@ import React from 'react';
 import {Component} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import HomeScreen from './src/screens/Home';
 import CreateGotchiScreen from './src/screens/CreateGotchi';
 import NotifeeScreen from './src/screens/Notifee';
 import TutorialScreen from './src/screens/Tutorial';
+import MyDayScreen from './src/screens/MyDay';
+import InstructionsScreen from './src/screens/Instructions';
+import MyGotchiScreen from './src/screens/MyGotchi';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,12 +22,12 @@ export default class App extends Component<Props> {
         <Stack.Navigator initialRouteName="TutorialScreen">
           <Stack.Screen
             name="Tutorial"
-            options={{title: 'Welcome to EDUGOTCHI'}}
+            options={{title: 'Tutorial'}}
             component={TutorialScreen}
           />
           <Stack.Screen
             name="CreateGotchi"
-            options={{title: 'Welcome to EDUGOTCHI'}}
+            options={{title: 'Create'}}
             component={CreateGotchiScreen}
           />
           <Stack.Screen
@@ -35,6 +39,21 @@ export default class App extends Component<Props> {
             name="Notifee"
             options={{title: 'Notifee'}}
             component={NotifeeScreen}
+          />
+          <Stack.Screen
+            name="MyDay"
+            options={{title: 'My Day'}}
+            component={MyDayScreen}
+          />
+          <Stack.Screen
+            name="Instructions"
+            options={{title: 'Instructions'}}
+            component={InstructionsScreen}
+          />
+          <Stack.Screen
+            name="MyGotchi"
+            options={{title: 'My Gotchi'}}
+            component={MyGotchiScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
