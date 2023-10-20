@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
 
+const darkBlue = '#153243';
+const lightBlue = '#284B63';
+const lightBeige = '#E0DDD5';
+const darkRed = '#800E13';
+const lightRed = '#AD2831';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -14,10 +20,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 
-  inputContainer: {},
+  input_container: {},
 
-  inputView: {
-    backgroundColor: '#FFC0CB',
+  input_view: {
+    backgroundColor: lightBeige,
     borderRadius: 30,
     width: '70%',
     height: 45,
@@ -25,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  textInput: {
+  text_input: {
     height: 50,
     flex: 1,
     padding: 10,
@@ -34,18 +40,29 @@ const styles = StyleSheet.create({
 
   forgot_button: {
     height: 30,
+    marginBottom: 10,
+    marginTop: 20,
+  },
+
+  sign_up_link: {
+    height: 30,
     marginBottom: 30,
     marginTop: 10,
   },
 
-  login_button: {
+  continue_button: {
     width: '70%',
     borderRadius: 25,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 40,
-    backgroundColor: '#FF1493',
+    backgroundColor: lightBlue,
+    color: lightBeige,
+  },
+
+  white_text: {
+    color: 'white',
   },
 });
 

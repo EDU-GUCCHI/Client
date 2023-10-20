@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Text, View, PermissionsAndroid } from 'react-native';
+import {Button, Text, View, BackHandler} from 'react-native';
 import styles from '../styles/style.js';
-import PushNotificationButton from '../components/PushNotificationButton';
-import { StackNavigationProp } from '@react-navigation/stack';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {useFocusEffect} from '@react-navigation/native';
 
 type RootStackParamList = {
   Home: undefined;
@@ -16,18 +16,34 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-function HomeScreen({ navigation }: Props) {
+function HomeScreen({navigation}: Props) {
+/*   useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        // Do nothing or exit the app if you want to
+        // return true if the event has been handled, false otherwise
+        return true;
+      };
+
+      // Add event listener for hardware back button
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      // Cleanup the event listener
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, []),
+  ); */
+  
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Welcome to EDU-GOTCHI</Text>
       <Button
-        title="Login"
+        title=""
         onPress={() => {
           navigation.navigate('Login');
         }}
       />
       <Button title="notifee" onPress={() => navigation.navigate('Notifee')} />
-      <PushNotificationButton />
     </View>
   );
 }
