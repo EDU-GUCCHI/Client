@@ -27,7 +27,7 @@ export class Gotchi
         weight:         Weight, 
         exercise:       Exercise, 
         eatingHabit:    EatingHabit
-        )
+    )
     {
         this.name =         name;
         this.bloodSugar =   bloodSugar;

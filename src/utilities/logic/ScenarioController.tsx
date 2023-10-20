@@ -1,8 +1,7 @@
 import {Gotchi} from '../data/Gotchi';
 
-class ScenarioController
+export class ScenarioController
 {
-
     private gotchi: Gotchi;
     
     constructor(gotchi: Gotchi)

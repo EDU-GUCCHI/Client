@@ -6,11 +6,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/Home';
 import LoginScreen from './src/screens/Login';
 import NotifeeScreen from './src/screens/Notifee';
+import {ScenarioController} from './src/utilities/logic/ScenarioController'; // Where to initialize this???
 
 const Stack = createNativeStackNavigator();
 
 type Props = {};
 export default class App extends Component<Props> {
+
   render() {
     return (
       <NavigationContainer>
