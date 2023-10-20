@@ -22,7 +22,6 @@ export enum AlcoholHabit
 	SOCIAL_DRINKER,
 	SOBER
 }
-
 export enum SmokingHabit
 {
     HEAVY_SMOKER,
