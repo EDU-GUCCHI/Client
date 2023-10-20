@@ -83,7 +83,7 @@ class Gotchi
         return this.alcoholHabit;
     }
     
-    getSmokeHabbit(): EnumAttribute.SmokingHabits 
+    getSmokeHabbit(): EnumAttribute.SmokingHabit 
     {
         return this.smokingHabit;
     }
@@ -133,7 +133,7 @@ class Gotchi
         this.alcoholHabit = alcoholHabbit;
     }
     
-    setSmokeHabbit(smokeHabbit: EnumAttribute.SmokingHabits): void 
+    setSmokeHabbit(smokeHabbit: EnumAttribute.SmokingHabit): void 
     {
         this.smokingHabit = smokeHabbit;
     }
