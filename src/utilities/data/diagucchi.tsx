@@ -41,20 +41,84 @@ class diagucchi
         this.eatHabbit = eatHabbit;
     }
     //getters-setters
-    public getName(): string
-    {
+    getName(): string {
         return this.name;
-    }
-    public getbloodValue(): number
-    {
+      }
+    
+      getBloodValue(): number {
         return this.bloodValue;
-    }
-    public setName(name: string)
-    {
+      }
+    
+      getInsulinPump(): boolean {
+        return this.insulinPump;
+      }
+    
+      getLchf(): boolean {
+        return this.lchf;
+      }
+    
+      getEatHabbit(): EnumAttribute {
+        return this.eatHabbit;
+      }
+    
+      getExercise(): EnumAttribute {
+        return this.exercise;
+      }
+    
+      getWeight(): EnumAttribute {
+        return this.weight;
+      }
+    
+      getAlcoholHabbit(): EnumAttribute {
+        return this.alcoholHabbit;
+      }
+    
+      getSmokeHabbit(): EnumAttribute {
+        return this.smokeHabbit;
+      }
+    
+      getIllnesses(): EnumAttribute[] {
+        return this.illnesses;
+      }
+    
+      // Setters for private attributes
+      setName(name: string): void {
         this.name = name;
-    }
-    public setBloodValue(bloodValue: number)
-    {
+      }
+    
+      setBloodValue(bloodValue: number): void {
         this.bloodValue = bloodValue;
-    }
+      }
+    
+      setInsulinPump(insulinPump: boolean): void {
+        this.insulinPump = insulinPump;
+      }
+    
+      setLchf(lchf: boolean): void {
+        this.lchf = lchf;
+      }
+    
+      setEatHabbit(eatHabbit: EnumAttribute): void {
+        this.eatHabbit = eatHabbit;
+      }
+    
+      setExercise(exercise: EnumAttribute): void {
+        this.exercise = exercise;
+      }
+    
+      setWeight(weight: EnumAttribute): void {
+        this.weight = weight;
+      }
+    
+      setAlcoholHabbit(alcoholHabbit: EnumAttribute): void {
+        this.alcoholHabbit = alcoholHabbit;
+      }
+    
+      setSmokeHabbit(smokeHabbit: EnumAttribute): void {
+        this.smokeHabbit = smokeHabbit;
+      }
+    
+      setIllnesses(illnesses: EnumAttribute[]): void {
+        this.illnesses = illnesses;
+      }
 }
