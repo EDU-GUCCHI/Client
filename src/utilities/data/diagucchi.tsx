@@ -16,7 +16,8 @@ class diagucchi
     private smokeHabbit: EnumAttribute;
     private illnesses: EnumAttribute[];
 
-    public constructor(
+    public constructor
+    (
         name: string, 
         bloodValue: number, 
         insulinPump: boolean,
