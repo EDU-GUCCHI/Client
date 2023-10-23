@@ -1,4 +1,8 @@
 {
     "typescript.tsdk": "node_modules\\typescript\\lib",
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "workbench.activityBar.visible": true,
+    "workbench.preferredDarkColorTheme": "Visual Studio 2017 Dark - C++",
+    "workbench.tree.indent": 20,
+    "workbench.iconTheme": "vs-seti"
 }

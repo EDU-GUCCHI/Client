@@ -21,12 +21,12 @@ export class Gotchi
         bloodSugar:     number, 
         insulinPump:    boolean,
         lchf:           boolean,
-        illnesses:      Illness[], 
-        smokingHabit:   SmokingHabit, 
-        alcoholHabit:   AlcoholHabit, 
+        eatingHabit:    EatingHabit,
+        exercise:       Exercise,
         weight:         Weight, 
-        exercise:       Exercise, 
-        eatingHabit:    EatingHabit
+        alcoholHabit:   AlcoholHabit, 
+        smokingHabit:   SmokingHabit, 
+        illnesses:      Illness[]
         )
     {
         this.name =         name;
@@ -40,6 +40,9 @@ export class Gotchi
         this.exercise =     exercise;
         this.eatingHabit =  eatingHabit;
     }
+    
+
+    
     //getters-setters
     getName(): string 
     {

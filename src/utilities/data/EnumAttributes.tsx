@@ -1,35 +1,39 @@
-export enum EatingHabit
+enum EatingHabit
 {
     CONSISTENT,
     VOLATILE,
 	BAD
 }
-export enum Exercise 
+
+enum Exercise 
 {
     VERY_ACTIVE,
 	ACTIVE,
 	INACTIVE
 }
-export enum Weight
+
+enum Weight
 {
     OVERWEIGHT,
 	NORMAL_WEIGHT,
 	UNDERWEIGHT
 }
-export enum AlcoholHabit
+
+enum AlcoholHabit
 {
     HEAVY_DRINKER,
 	SOCIAL_DRINKER,
 	SOBER
 }
 
-export enum SmokingHabit
+enum SmokingHabits
 {
     HEAVY_SMOKER,
 	SOCIAL_SMOKER,
 	NON_SMOKER
 }
-export enum Illness
+
+enum Illness
 {
     FEVER,
     PAIN,
