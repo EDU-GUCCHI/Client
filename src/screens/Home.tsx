@@ -3,6 +3,7 @@ import { Button, Text, View, PermissionsAndroid } from 'react-native';
 import styles from '../styles/style.js';
 import PushNotificationButton from '../components/PushNotificationButton';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { ScenarioController } from '../utilities/logic/ScenarioController'
 
 type RootStackParamList = {
   Home: undefined;
@@ -24,6 +25,7 @@ function HomeScreen({ navigation }: Props) {
         title="Login"
         onPress={() => {
           navigation.navigate('Login');
+          new ScenarioController(); // start main controller here
         }}
       />
       <Button title="notifee" onPress={() => navigation.navigate('Notifee')} />

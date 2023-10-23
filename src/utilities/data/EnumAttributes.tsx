@@ -1,41 +1,43 @@
+//assigned values are the factor for the given enum. Used to generate formula 
+
 export enum EatingHabit
 {
-    CONSISTENT,
-    VOLATILE,
-	BAD
+    CONSISTENT = 2,
+    VOLATILE = 1,
+	BAD = 0.1
 }
 export enum Exercise 
 {
-    VERY_ACTIVE,
-	ACTIVE,
-	INACTIVE
+    VERY_ACTIVE = 2,
+	ACTIVE = 1,
+	INACTIVE = -1
 }
 export enum Weight
 {
-    OVERWEIGHT,
-	NORMAL_WEIGHT,
-	UNDERWEIGHT
+    OVERWEIGHT = -1,
+	NORMAL_WEIGHT = 1,
+	UNDERWEIGHT = -2
 }
 export enum AlcoholHabit
 {
-    HEAVY_DRINKER,
-	SOCIAL_DRINKER,
-	SOBER
+    HEAVY_DRINKER = -1,
+	SOCIAL_DRINKER = -0.5,
+	SOBER = 0
 }
 
 export enum SmokingHabit
 {
-    HEAVY_SMOKER,
-	SOCIAL_SMOKER,
-	NON_SMOKER
+    HEAVY_SMOKER = -3,
+	SOCIAL_SMOKER = -1,
+	NON_SMOKER = 0
 }
 export enum Illness
 {
-    FEVER,
-    PAIN,
-    ACUTE_Disease,
-    GLUKAGON,
-	KORTISONBEHANDLING,
-	ÖVERPROD_SKÖLDKÖRTELHORMON,
-	ÖVERPROD_KORTISOL
+    FEVER = 2,
+    PAIN = -1,
+    ACUTE_Disease = 1,
+    GLUKAGON = -3,
+	KORTISONBEHANDLING = 0,
+	ÖVERPROD_SKÖLDKÖRTELHORMON = 1,
+	ÖVERPROD_KORTISOL = 2
 }
