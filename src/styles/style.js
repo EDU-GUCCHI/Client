@@ -6,7 +6,24 @@ const lightBeige = '#E0DDD5';
 const darkRed = '#800E13';
 const lightRed = '#AD2831';
 
+const neonRed = '#FF2C55';
+const neonBlue = '#0AD4FA';
+const neonGreen = '#02E67E';
+const neonPink = '#FF66D9';
+const neonLight = '#E9F1F7';
+const neonDark = '#1E2532';
+
 const styles = StyleSheet.create({
+  neonDark: {
+    backgroundColor: neonDark,
+  },
+
+  mainContainer: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: neonDark,
+  },
+  
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -74,7 +91,7 @@ const styles = StyleSheet.create({
   },
 
   button_text: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
