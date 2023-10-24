@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Text, Touchable, TouchableOpacity, View} from 'react-native';
 import styles from '../styles/style.js';
-import PushNotificationButton from '../components/PushNotificationButton';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 type RootStackParamList = {
@@ -51,17 +50,17 @@ function HomeScreen({navigation}: Props) {
         <TouchableOpacity
           style={styles.menu_button}
           onPress={() => {
-            navigation.navigate('Instructions');
+            navigation.navigate('MyGotchi');
           }}>
-          <Text style={styles.button_text}>Instructions</Text>
+          <Text style={styles.button_text}>My EDU-GOTCHI</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.menu_button}
           onPress={() => {
-            navigation.navigate('MyGotchi');
+            navigation.navigate('Instructions');
           }}>
-          <Text style={styles.button_text}>My EDU-GOTCHI</Text>
+          <Text style={styles.button_text}>Instructions</Text>
         </TouchableOpacity>
 
         <Button
