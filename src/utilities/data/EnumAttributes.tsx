@@ -25,6 +25,10 @@ export enum AlcoholHabit
 	SOBER = 0
 }
 
+<<<<<<< HEAD
+=======
+enum SmokingHabits
+>>>>>>> parent of 2d46e04 (Revert "Merge branch 'dev' of https://github.com/EDU-GUCCHI/Client into dev")
 export enum SmokingHabit
 {
     HEAVY_SMOKER = -3,

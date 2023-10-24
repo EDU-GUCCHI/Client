@@ -10,7 +10,7 @@ export class ScenarioController
     /*
     public constructor(gotchi: Gotchi)
     {
-        this.gotchi = gotchi;
+        this.gotchi = new Gotchi(); // use randomGenerator returnObject here!
     }
     */
     //controlls entire flow of app logic (has access to all data modules)
