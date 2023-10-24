@@ -11,8 +11,6 @@ import MyDayScreen from './src/screens/MyDay';
 import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
 
-import {ScenarioController} from './src/utilities/logic/ScenarioController'; // Where to initialize this???
-
 const Stack = createNativeStackNavigator();
 
 type Props = {};

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import styles from '../styles/style.js';
-
+import {ScenarioController} from '../utilities/logic/ScenarioController';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 type RootStackParamList = {
@@ -62,6 +62,7 @@ function LoginScreen({navigation}: Props) {
           style={styles.continue_button}
           onPress={() => {
             navigation.navigate('Home');
+            new ScenarioController();
           }}>
           <Text style={styles.button_text}>Continue</Text>
         </TouchableOpacity>

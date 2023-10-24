@@ -1,6 +1,5 @@
-import { AlcoholHabit, EatingHabit, Exercise, Illness, SmokingHabit, Weight } from '../data/EnumAttributes';
-import {Gotchi} from '../data/Gotchi';
-import {FormulaGenerator} from './FormulaGenerator';
+import { Storage } from '../data/Storage';
+import { FormulaGenerator } from './FormulaGenerator';
 
 export class ScenarioController
 {
@@ -18,23 +17,18 @@ export class ScenarioController
 
     //this section for testing code, Comment out when not testing!
 
+    // has logic classes and accessed to stored data
     private formulaGenerator: FormulaGenerator;
-    private person: Gotchi;
+    private storage: Storage;
     
-    //flow of program here:
+    // flow of program here:
     public constructor()
     {
         console.log("Controller: Runs")
 
-        this.formulaGenerator = new FormulaGenerator(); // create generator
-        this.person = new Gotchi("subject",5,true,true, // create testsubject
-            EatingHabit.CONSISTENT,
-            Exercise.INACTIVE,
-            Weight.NORMAL_WEIGHT,
-            AlcoholHabit.SOCIAL_DRINKER,
-            SmokingHabit.NON_SMOKER,
-            [Illness.FEVER,Illness.PAIN]);
+        this.storage = new Storage();
+        this.formulaGenerator = new FormulaGenerator();
 
-        this.formulaGenerator.generateFormula(this.person);
+        this.formulaGenerator.generateFormula(this.storage.getPerson());
     }
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import {Button, Text, Touchable, TouchableOpacity, View} from 'react-native';
 import styles from '../styles/style.js';
 import PushNotificationButton from '../components/PushNotificationButton';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { ScenarioController } from '../utilities/logic/ScenarioController'
 import {StackNavigationProp} from '@react-navigation/stack';
 
 type RootStackParamList = {
