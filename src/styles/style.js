@@ -1,5 +1,11 @@
 import {StyleSheet} from 'react-native';
 
+const darkBlue = '#153243';
+const lightBlue = '#284B63';
+const lightBeige = '#E0DDD5';
+const darkRed = '#800E13';
+const lightRed = '#AD2831';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -14,38 +20,73 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 
-  inputContainer: {},
+  header_text: {
+    fontSize: 42,
+    textAlign: 'center',
+    paddingTop: 30,
+    color: darkRed,
+    backgroundColor: 'white',
+    fontWeight: 'bold',
+  },
 
-  inputView: {
-    backgroundColor: '#FFC0CB',
-    borderRadius: 30,
+  input_container: {},
+
+  input_view: {
+    backgroundColor: lightBeige,
+    borderRadius: 5,
     width: '70%',
     height: 45,
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: 'start',
   },
 
-  textInput: {
+  text_input: {
     height: 50,
     flex: 1,
     padding: 10,
-    marginLeft: 20,
+    marginLeft: 15,
   },
 
   forgot_button: {
+    height: 30,
+    marginBottom: 10,
+    marginTop: 20,
+  },
+
+  sign_up_link: {
     height: 30,
     marginBottom: 30,
     marginTop: 10,
   },
 
-  login_button: {
+  continue_button: {
     width: '70%',
-    borderRadius: 25,
+    borderRadius: 5,
     height: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 40,
-    backgroundColor: '#FF1493',
+    backgroundColor: lightBlue,
+  },
+
+  color_white: {
+    color: 'white',
+  },
+
+  button_text: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+
+  menu_button: {
+    width: '70%',
+    borderRadius: 5,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 15,
+    backgroundColor: lightBlue,
   },
 });
 
