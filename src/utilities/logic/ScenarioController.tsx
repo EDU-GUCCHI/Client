@@ -3,7 +3,7 @@ import { FormulaGenerator } from './FormulaGenerator';
 
 export class ScenarioController
 {
-    // has logic classes and accessed to stored data
+    // has logic classes and access to stored data
     private formulaGenerator: FormulaGenerator;
     private storage: Storage;
     
