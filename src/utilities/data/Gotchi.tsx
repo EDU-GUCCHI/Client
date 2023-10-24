@@ -1,9 +1,10 @@
-import {EatingHabit,Exercise,Weight,AlcoholHabit,SmokingHabit,Illness} from './EnumAttributes';
+import {EatingHabit,Exercise,Weight,AlcoholHabit,SmokingHabit,Illness, Gender} from './EnumAttributes';
 
 export class Gotchi
 {
     //Person attributes
     private name:           string;
+    private age:            number;
     private bloodSugar:     number;
     private insulinPump:    boolean;
     private lchf:           boolean;
@@ -14,6 +15,7 @@ export class Gotchi
     private alcoholHabit:   AlcoholHabit;
     private smokingHabit:   SmokingHabit;
     private illnesses:      Illness[];
+    private gender;         Gender;
 
     public constructor
     (

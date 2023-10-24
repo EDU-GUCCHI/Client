@@ -40,3 +40,9 @@ export enum Illness
 	ÖVERPROD_SKÖLDKÖRTELHORMON = 1,
 	ÖVERPROD_KORTISOL = 2
 }
+//Values here?
+export enum Gender
+{
+    MALE,
+    FEMALE
+}
