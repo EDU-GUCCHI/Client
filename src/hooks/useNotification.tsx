@@ -19,7 +19,11 @@ export const useNotification = () => {
       body: body,
       android: {
         channelId,
-        /* smallIcon: "smallIcon" | defaults to 'ic_launcher', respectively your app icon. */
+        // Reference the name created (Optional, defaults to 'ic_launcher')
+        smallIcon: 'ic_small_icon',
+
+        // Set color of icon (Optional, defaults to white)
+        color: '#9c27b0',
       },
     });
     return notificationId;
