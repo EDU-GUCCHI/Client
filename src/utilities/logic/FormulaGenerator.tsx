@@ -5,12 +5,28 @@ export class FormulaGenerator
     public constructor()
     {
     }
-
     public generateFormula(person: Gotchi): number
     {
-        let factor = person.getAlcoholHabbit();
-        console.log("generated factor: " + factor);
-        // const colorValueArray = Object.values(Colors);
-        return factor;
+        let sum = 0;
+        sum += person.getAlcoholHabbit();
+        sum += person.getEatHabbit();
+        sum += person.getExercise();
+        sum += person.getSmokeHabbit();
+        sum += person.getWeight();
+        let illnesses = person.getIllnesses();
+        for(let sickness in illnesses)
+        {
+            sum += illnesses[sickness];
+        }
+        console.log("generated factor: " + sum);
+        return sum;
+    }
+    public generateIncreaseFactor(): number
+    {
+        return 0;
+    }
+    public generateDecreaseFactor(): number
+    {
+        return 0;
     }
 }

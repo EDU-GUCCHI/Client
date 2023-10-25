@@ -15,6 +15,6 @@ export class ScenarioController
         this.storage = new Storage();
         this.formulaGenerator = new FormulaGenerator();
 
-        this.formulaGenerator.generateFormula(this.storage.getPerson());
+        this.storage.setBloodSugarFactor(this.formulaGenerator.generateFormula(this.storage.getPerson()));
     }
 }
