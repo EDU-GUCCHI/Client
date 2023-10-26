@@ -14,7 +14,7 @@ export class IntervallHandler
     {
         this.incrementFormula();
     }
-    public incrementFormula(): void
+    public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example icrement for now!
         console.log("BloodSugar: " + this.result);
