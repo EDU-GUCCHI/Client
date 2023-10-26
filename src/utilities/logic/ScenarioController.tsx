@@ -10,20 +10,17 @@ export class ScenarioController
     private storage: Storage;
     private clock: Clock;
     private intervalHandler: IntervallHandler;
-    
     // flow of program here:
     public constructor()
     {
         console.log("Controller: Runs")
-
         this.storage = new Storage();
         this.formulaGenerator = new FormulaGenerator();
-        this.intervalHandler = new IntervallHandler();
+        this.intervalHandler = new IntervallHandler(this.storage.getPerson());
         this.clock = new Clock();
         this.clock.addObserver(this.intervalHandler);
         this.storage.setBloodSugarFactor(this.formulaGenerator.generateFormula(this.storage.getPerson()));
         this.intervalHandler.setFactor(this.storage.getBloodSugarFactor());
-        // start clock pulse
-        this.clock.startClock();
+        this.clock.startClock(); // start clock pulse
     }
 }
