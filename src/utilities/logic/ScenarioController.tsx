@@ -1,6 +1,7 @@
 import { Storage } from '../data/Storage';
 import { Clock } from './Clock';
 import { FormulaGenerator } from './FormulaGenerator';
+import { IntervallHandler } from './IntervalHandler';
 
 export class ScenarioController
 {
@@ -8,6 +9,7 @@ export class ScenarioController
     private formulaGenerator: FormulaGenerator;
     private storage: Storage;
     private clock: Clock;
+    private intervalHandler: IntervallHandler;
     
     // flow of program here:
     public constructor()
@@ -16,10 +18,12 @@ export class ScenarioController
 
         this.storage = new Storage();
         this.formulaGenerator = new FormulaGenerator();
+        this.intervalHandler = new IntervallHandler();
         this.clock = new Clock();
-
+        this.clock.addObserver(this.intervalHandler);
         this.storage.setBloodSugarFactor(this.formulaGenerator.generateFormula(this.storage.getPerson()));
-        // start clock
+        this.intervalHandler.setFactor(this.storage.getBloodSugarFactor());
+        // start clock pulse
         this.clock.startClock();
     }
 }
