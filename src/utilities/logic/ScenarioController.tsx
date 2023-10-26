@@ -14,10 +14,12 @@ export class ScenarioController
     public constructor()
     {
         console.log("Controller: Runs")
+        // instantiate classes
         this.storage = new Storage();
         this.formulaGenerator = new FormulaGenerator();
         this.intervalHandler = new IntervallHandler(this.storage.getPerson());
         this.clock = new Clock();
+        // app flow
         this.clock.addObserver(this.intervalHandler);
         this.storage.setBloodSugarFactor(this.formulaGenerator.generateFormula(this.storage.getPerson()));
         this.intervalHandler.setFactor(this.storage.getBloodSugarFactor());

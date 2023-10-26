@@ -12,7 +12,7 @@ export class Clock
     public startClock(): void
     {
         this.sec++;
-        console.log(`Clock Pulse value: ${this.sec}`);
+        console.log(`Clock Pulse second: ${this.sec}`);
         this.notifyObservers(); //push update event to update bloodvalue
     }
     public stopClock(): void

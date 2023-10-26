@@ -1,6 +1,5 @@
 import { Gotchi } from "../data/Gotchi";
 
-//Observer:
 export class IntervallHandler
 {
     private bloodValue: number;
@@ -23,7 +22,7 @@ export class IntervallHandler
     }
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
-        //just example icrement for now!
+        //just example increment for now!
         console.log("BloodSugar: " + this.result);
         this.result = this.bloodValue += this.factor / 2;
         this.person.setBloodValue(this.result);
