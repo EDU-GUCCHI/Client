@@ -11,11 +11,11 @@ export class ScenarioController
     private clock: Clock;
     private intervalHandler: IntervallHandler;
     // flow of program here:
-    public constructor()
+    public constructor(gotchiName: string)
     {
         console.log("Controller: Runs")
         // instantiate classes
-        this.storage = new Storage();
+        this.storage = new Storage(gotchiName);
         this.formulaGenerator = new FormulaGenerator();
         this.intervalHandler = new IntervallHandler(this.storage.getPerson());
         this.clock = new Clock();

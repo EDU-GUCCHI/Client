@@ -1,4 +1,13 @@
 import { Gotchi } from "../data/Gotchi";
+import {
+    Gender,
+    EatingHabit,
+    Exercise,
+    Weight,
+    AlcoholHabit,
+    SmokingHabit,
+    Illness,
+  } from '../data/EnumAttributes';
 
 export class FormulaGenerator
 {
@@ -8,10 +17,10 @@ export class FormulaGenerator
     public generateFormula(person: Gotchi): number
     {
         let sum = 0;
-        sum += person.getAlcoholHabbit();
+        sum += person.getAlcoholHabit();
         sum += person.getEatHabbit();
         sum += person.getExercise();
-        sum += person.getSmokeHabbit();
+        sum += person.getSmokingHabit();
         sum += person.getWeight();
         let illnesses = person.getIllnesses();
         for(let sickness in illnesses)

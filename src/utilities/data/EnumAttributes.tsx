@@ -43,6 +43,6 @@ export enum Illness
 //Values here?
 export enum Gender
 {
-    MALE,
-    FEMALE
+    MALE = "Male",
+    FEMALE = "Female"
 }

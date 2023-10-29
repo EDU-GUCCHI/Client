@@ -62,7 +62,7 @@ function LoginScreen({navigation}: Props) {
           style={styles.continue_button}
           onPress={() => {
             navigation.navigate('Home');
-            new ScenarioController();
+            new ScenarioController(gotchiName, classCode);
           }}>
           <Text style={styles.button_text}>Continue</Text>
         </TouchableOpacity>

@@ -1,21 +1,17 @@
 import { AlcoholHabit, EatingHabit, Exercise, Illness, SmokingHabit, Weight } from '../data/EnumAttributes';
 import { Gotchi } from "./Gotchi";
+import { newGotchi } from './GotchiRandomizer';
 
 export class Storage
 {
     // store/initialize all data storage classes here, ex: Gotchi
     private person: Gotchi;
     private bloodSugarFactor: number;
-    public constructor()
+    public constructor(gotchiName: string)
     {
-        this.person = new Gotchi("subject",5,true,true, // create testsubject
-            EatingHabit.CONSISTENT,
-            Exercise.INACTIVE,
-            Weight.NORMAL_WEIGHT,
-            AlcoholHabit.SOCIAL_DRINKER,
-            SmokingHabit.NON_SMOKER,
-            [Illness.FEVER,Illness.PAIN]);
-        
+        this.person = newGotchi(gotchiName);
+
+        console.log("> Gotchi Created" + this.person.stringRepresentation());
         this.bloodSugarFactor = 0.0;
     }
     // getters-setters here
