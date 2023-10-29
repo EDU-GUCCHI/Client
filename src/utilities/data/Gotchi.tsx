@@ -17,9 +17,11 @@ export class Gotchi
     private illnesses:      Illness[];
     private gender;         Gender;
 
+    //add age and gender to constructor and getters/setters
     public constructor
     (
-        name:           string, 
+        name:           string,
+        age:            number,
         bloodSugar:     number, 
         insulinPump:    boolean,
         lchf:           boolean,
@@ -28,10 +30,12 @@ export class Gotchi
         weight:         Weight,
         alcoholHabit:   AlcoholHabit,
         smokingHabit:   SmokingHabit,
-        illnesses:      Illness[]
+        illnesses:      Illness[],
+        gender:         Gender;
         )
     {
         this.name =         name;
+        this.age =          age;
         this.bloodSugar =   bloodSugar;
         this.insulinPump =  insulinPump;
         this.lchf =         lchf;
@@ -41,11 +45,16 @@ export class Gotchi
         this.weight =       weight;
         this.exercise =     exercise;
         this.eatingHabit =  eatingHabit;
+        this.gender =       gender;
     }
     //getters-setters
     getName(): string 
     {
         return this.name;
+    }
+    getAge(): number
+    {
+        return this.age;
     }
     getBloodValue(): number 
     {
@@ -82,6 +91,10 @@ export class Gotchi
     getIllnesses(): Illness[] 
     {
         return this.illnesses;
+    }
+    getGender(): Gender
+    {
+        return this.gender;
     }
     // Setters for private attributes
     setName(name: string): void 

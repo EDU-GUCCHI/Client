@@ -44,5 +44,6 @@ export enum Illness
 export enum Gender
 {
     MALE,
-    FEMALE
+    FEMALE,
+    OTHER
 }
