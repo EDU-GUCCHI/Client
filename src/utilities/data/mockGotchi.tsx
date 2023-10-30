@@ -32,7 +32,7 @@ const mockGotchiData: GotchiData = {
 };
 
 const {
-  name,
+  name : gotchiName,
   age,
   bloodSugar,
   insulinPump,
@@ -47,7 +47,7 @@ const {
 } = mockGotchiData;
 
 export const mockGotchi = new Gotchi(
-  name,
+  gotchiName,
   age,
   bloodSugar,
   insulinPump,
