@@ -7,11 +7,13 @@ export class Storage
     // store/initialize all data storage classes here, ex: Gotchi
     private person: Gotchi;
     private bloodSugarFactor: number;
-    public constructor(gotchiName: string)
-    {
-        this.person = newGotchi(gotchiName);
 
-        console.log("> Gotchi Created" + this.person.stringRepresentation());
+    public constructor()
+    {
+        this.person = newGotchi("subject");
+
+        //console.log("> Gotchi Created" + this.person.stringRepresentation());
+        //this.person = gotchi;
         this.bloodSugarFactor = 0.0;
     }
     // getters-setters here
