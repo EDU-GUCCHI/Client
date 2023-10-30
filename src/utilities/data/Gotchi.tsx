@@ -22,8 +22,7 @@ export class Gotchi {
   private alcoholHabit: AlcoholHabit;
   private smokingHabit: SmokingHabit;
   private illnesses: Illness[];
-  private gender;
-  Gender: any;
+  private gender: any;
 
   //add age and gender to constructor and getters/setters
   public constructor(
