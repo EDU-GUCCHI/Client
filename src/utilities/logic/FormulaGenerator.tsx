@@ -18,7 +18,7 @@ export class FormulaGenerator
         {
             sum += illnesses[sickness];
         }
-        console.log("generated factor: " + sum);
+        console.log("Generated factor: " + sum);
         return sum;
     }
     public generateIncreaseFactor(): number

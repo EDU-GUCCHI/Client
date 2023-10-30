@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import styles from '../styles/style.js';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet} from 'react-native';
+//import { GUIController } from '../utilities/logic/GUIController';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -15,6 +16,9 @@ type Props = {
 };
 
 function MyDayScreen({navigation}: Props) {
+
+  const [bpmText, setBpmText] = useState('0');
+
   return (
     <View style={styles.mainContainer}>
       {/* Profile Info */}
@@ -27,11 +31,10 @@ function MyDayScreen({navigation}: Props) {
           Young adult • Height 184 cm • Weight 65 kg
         </Text>
       </View>
-
       {/* Stats */}
       <View style={myGotchiStyles.statsRow}>
         <View style={myGotchiStyles.statContainerGreen}>
-          <Text style={myGotchiStyles.statText}>85 bpm</Text>
+          <Text style={myGotchiStyles.statText}>{bpmText}</Text>
           <Text style={myGotchiStyles.emojiStat}>❤️</Text>
         </View>
         <View style={myGotchiStyles.statContainerBlue}>
