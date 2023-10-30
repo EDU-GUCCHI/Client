@@ -17,7 +17,7 @@ type GotchiData = {
 };
 
 const mockGotchiData: GotchiData = {
-  name: 'Mocki Gotchi',
+  name: 'Mocki',
   age: 25, // assuming age as 25 for example
   bloodSugar: 120,
   insulinPump: true,
