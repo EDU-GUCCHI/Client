@@ -1,52 +1,51 @@
-import { EatingHabit, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness} from './EnumAttributes';
+import { Gender, EatingHabit, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness } from './EnumAttributes';
 import { Gotchi } from './Gotchi';
 
-export function newGotchi(name : string) {
-    const random = Math.random();
+export function newGotchi(name: string): Gotchi {
+  const random = Math.random();
 
-    var insulinPump = false;
-    var lchf = false;
-    var flip = Math.round(Math.random()) + 1;
-    if(flip == 1) {
-        insulinPump = true;
-    }
-    flip = Math.round(Math.random()) + 1;
-    if(flip == 1) {
-        lchf = true;
-    }
+  var gender = Gender.FEMALE;
+  var flip = coinFlip();
+  if (flip === 1) {
+    gender = Gender.MALE;
+  }
 
-    const eatingHabits      = Object.values(EatingHabit);
-    const exerciseHabits    = Object.values(Exercise);
-    const weights           = Object.values(Weight);
-    const alcoholHabits     = Object.values(AlcoholHabit);
-    const smokingHabits     = Object.values(SmokingHabit);
-    const illnesses         = Object.values(Illness);
+  let count = Math.floor(random * Object.keys(Illness).length);
+  let illnesses = new Set();
+  while(illnesses.size != count) {
+    illnesses.add(getRandomEnum(Illness));
+  }
+  const chosenIllnesses : Illness[] = Array.from(illnesses);
+  
+  return new Gotchi(
+    name,
+    getRandomNumber(20, 80),
+    gender,
+    8,
+    coinFlip() == 1,
+    coinFlip() == 1,
+    getRandomEnum(EatingHabit),
+    getRandomEnum(Exercise),
+    getRandomEnum(Weight),
+    getRandomEnum(AlcoholHabit),
+    getRandomEnum(SmokingHabit),
+    chosenIllnesses,
+  );
+}
 
-    const chosenEatingHabit     = eatingHabits[Math.floor(random * eatingHabits.length)];
-    const chosenExerciseHabit   = exerciseHabits[Math.floor(random * exerciseHabits.length)];
-    const chosenWeight          = weights[Math.floor(random * weights.length)];
-    const chosenAlcoholHabit    = alcoholHabits[Math.floor(random * alcoholHabits.length)];
-    const chosenSmokingHabit    = smokingHabits[Math.floor(random * smokingHabits.length)];
+function getRandomEnum<T>(anEnum: T): T[keyof T] {
+  const enumValues = Object.keys(anEnum)
+    .map(n => Number.parseInt(n))
+    .filter(n => !Number.isNaN(n)) as unknown as T[keyof T][];
+  const randomIndex = Math.floor(Math.random() * enumValues.length);
+  const randomEnumValue = enumValues[randomIndex];
+  return randomEnumValue;
+}
 
-    let count = Math.floor(random * illnesses.length);
-    let chosenIllnesses = [];
-    const shuffle = (illnesses: string[]) => { 
-        return illnesses.sort(() => Math.random() - 0.5); 
-    }; 
-    for(let i = 0; i < count; i++) {
-        chosenIllnesses.push(illnesses.pop);
-    }
-    return new Gotchi
-    (
-        name,
-        8,
-        insulinPump,
-        lchf,
-        chosenEatingHabit,
-        chosenExerciseHabit,
-        chosenWeight,
-        chosenAlcoholHabit,
-        chosenSmokingHabit,
-        chosenIllnesses
-    );
+function getRandomNumber(min: number, max: number): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function coinFlip(): number {
+  return Math.round(Math.random()) + 1;
 }

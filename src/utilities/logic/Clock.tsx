@@ -2,6 +2,8 @@
 export class Clock
 {
     private sec: number
+    interval: NodeJS.Timeout;
+    observers: never[];
     public constructor()
     {
         this.sec = 0;
