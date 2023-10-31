@@ -43,7 +43,7 @@ function HomeScreen({navigation}: Props) {
           Welcome to EDU-GOTCHI
         </Text>
         <TouchableOpacity
-          style={s`w-72 h-12 mt-16 rounded items-center justify-center bg-blue-900`}
+          style={s`w-72 h-12 mt-16 rounded items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('MyDay');
           }}>
@@ -51,7 +51,7 @@ function HomeScreen({navigation}: Props) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={s`w-72 h-12 mt-3 rounded items-center justify-center bg-blue-900`}
+          style={s`w-72 h-12 mt-3 rounded items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('MyGotchi');
           }}>
@@ -59,7 +59,7 @@ function HomeScreen({navigation}: Props) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={s`w-72 h-12 mt-3 rounded items-center justify-center bg-blue-900`}
+          style={s`w-72 h-12 mt-3 rounded items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('Instructions');
           }}>
@@ -67,7 +67,7 @@ function HomeScreen({navigation}: Props) {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={s`w-72 h-12 mt-10 rounded items-center justify-center bg-blue-900`}
+          style={s`w-72 h-12 mt-10 rounded items-center justify-center bg-violet-900`}
           onPress={() => navigation.navigate('Notifee')}>
           <Text style={s`text-white text-lg font-bold`}>Notifee</Text>
         </TouchableOpacity>
