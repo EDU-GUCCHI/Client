@@ -47,7 +47,7 @@ function LoginScreen({navigation}: Props) {
           style={s`bg-warmGray-300 border-2 border-warmGray-400 w-72 rounded-md mb-5 mt-24`}>
           <TextInput
             style={s`flex px-4`}
-            placeholder="Name you gotchi..."
+            placeholder="Name your gotchi..."
             placeholderTextColor="#003f5c"
             onChangeText={gotchiName => setGotchiName(gotchiName)}
           />
