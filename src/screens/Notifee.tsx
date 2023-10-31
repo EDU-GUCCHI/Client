@@ -28,7 +28,7 @@ function NotifeeScreen() {
       body: 'Take action immediately',
       android: {
         channelId,
-        //smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
+        smallIcon: 'ic_small_icon', // optional, defaults to 'ic_launcher'.
         // pressAction is needed if you want the notification to open the app when pressed
         pressAction: {
           id: 'default',
