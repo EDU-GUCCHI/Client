@@ -1,6 +1,5 @@
 import React from 'react';
-import {Button, Text, Touchable, TouchableOpacity, View} from 'react-native';
-import styles from '../styles/style.js';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
 
@@ -43,33 +42,33 @@ function HomeScreen({navigation}: Props) {
           Welcome to EDU-GOTCHI
         </Text>
         <TouchableOpacity
-          style={s`w-72 h-12 mt-16 rounded items-center justify-center bg-violet-900`}
+          style={s`w-72 h-12 mt-16 rounded-md items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('MyDay');
           }}>
-          <Text style={s`text-white text-lg font-bold`}>My day</Text>
+          <Text style={s`text-white text-md font-bold`}>My day</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={s`w-72 h-12 mt-3 rounded items-center justify-center bg-violet-900`}
+          style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('MyGotchi');
           }}>
-          <Text style={s`text-white text-lg font-bold`}>My EDU-GOTCHI</Text>
+          <Text style={s`text-white text-md font-bold`}>My EDU-GOTCHI</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={s`w-72 h-12 mt-3 rounded items-center justify-center bg-violet-900`}
+          style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('Instructions');
           }}>
-          <Text style={s`text-white text-lg font-bold`}>Instructions</Text>
+          <Text style={s`text-white text-md font-bold`}>Instructions</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={s`w-72 h-12 mt-10 rounded items-center justify-center bg-violet-900`}
+          style={s`w-72 h-12 mt-10 rounded-md items-center justify-center bg-violet-900`}
           onPress={() => navigation.navigate('Notifee')}>
-          <Text style={s`text-white text-lg font-bold`}>Notifee</Text>
+          <Text style={s`text-white text-md font-bold`}>Notifee</Text>
         </TouchableOpacity>
       </View>
     </>

@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from '../styles/style.js';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {StyleSheet} from 'react-native';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {s} from 'react-native-wind';
+
+import MyDayEvent from '../components/MyDayEvent';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -18,34 +18,49 @@ type Props = {
 function MyDayScreen({navigation}: Props) {
   return (
     <View style={s`flex bg-coolGray-100 h-full`}>
-      <View style={s`flex p-5 m-3 mt-5 rounded-lg bg-warmGray-200 shadow-lg`}>
+      <Text
+        style={s`text-4xl text-center m-4 mb-1 text-warmGray-600 font-semibold`}>
+        Tuesday
+      </Text>
+      <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
+        {' '}
+        31/10/2023
+      </Text>
+
+      <MyDayEvent />
+
+      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200 shadow-lg`}>
         <Text style={s`text-2xl font-bold text-center text-warmGray-700 `}>
-          🕑 13:22
+          🕑 13:53 {/* GET TIME */}
         </Text>
         <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
-          Increasingly rapid heartbeat while in the store
+          Low blood sugar while working out{/* GET EVENT INFO OR TITLE*/}
         </Text>
         <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
           Symptoms:{' '}
           <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
-            Sweating
+            Feeling dizzy {/* GET SYMPTOMS CHOICES */}
           </Text>
         </Text>
         <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
           Treatment:{' '}
           <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
-            Eat a candy
+            Insulin shot {/* GET TREATMENT CHOICES */}
           </Text>
         </Text>
         <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
           Caused by:{' '}
           <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
-            Missing a meal (lunch)
+            Working out too hard {/* GET CAUSED BY CHOICES */}
           </Text>
         </Text>
+        <TouchableOpacity
+          style={s`p-3 bg-red-400 rounded-lg w-32 justify-center items-center self-end`}>
+          <Text>Answer event</Text>
+        </TouchableOpacity>
       </View>
 
-      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
+      {/*       <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
         <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
           🕑 18:43
         </Text>
@@ -70,85 +85,9 @@ function MyDayScreen({navigation}: Props) {
             Working out too hard
           </Text>
         </Text>
-      </View>
-
-      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
-        <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
-          🕑{' '}
-        </Text>
-        <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
-          Title
-        </Text>
-        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
-          Symptoms:{' '}
-          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
-        </Text>
-        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
-          Treatment:{' '}
-          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
-        </Text>
-        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
-          Caused by:{' '}
-          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
-        </Text>
-      </View>
-
-      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
-        <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
-          🕑{' '}
-        </Text>
-        <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
-          Title
-        </Text>
-        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
-          Symptoms:{' '}
-          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
-        </Text>
-        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
-          Treatment:{' '}
-          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
-        </Text>
-        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
-          Caused by:{' '}
-          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
-        </Text>
-      </View>
+      </View> */}
     </View>
   );
 }
 
 export default MyDayScreen;
-
-const neonRed = '#FF2C55';
-const neonBlue = '#0AD4FA';
-const neonGreen = '#02E67E';
-const neonPink = '#FF66D9';
-const neonLight = '#E9F1F7';
-const neonDark = '#1E2532';
-
-const MyDayScreenStyles = StyleSheet.create({
-  statContainerLight: {
-    flex: 1,
-    backgroundColor: neonLight,
-    padding: 20,
-    margin: 15,
-    borderRadius: 20,
-  },
-  eventText: {
-    padding: 10,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  eventInformation: {
-    padding: 5,
-  },
-  eventSymptoms: {
-    padding: 5,
-  },
-  eventTreatment: {
-    padding: 5,
-  },
-  eventCause: {
-    padding: 5,
-  },
-});

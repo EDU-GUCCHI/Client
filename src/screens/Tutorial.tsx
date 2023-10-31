@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styles from '../styles/style.js';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
+import {s} from 'react-native-wind';
+
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -21,14 +23,14 @@ type Props = {
 
 function TutorialScreen({navigation}: Props) {
   return (
-    <View style={styles.container}>
+    <View style={s`flex h-full items-center justify-center bg-coolGray-100`}>
       <Text> Tutorial </Text>
       <TouchableOpacity
-        style={styles.continue_button}
+        style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
         onPress={() => {
           navigation.navigate('CreateGotchi');
         }}>
-        <Text style={styles.button_text}>Next</Text>
+        <Text style={s`text-white text-md font-bold`}>Next</Text>
       </TouchableOpacity>
     </View>
   );

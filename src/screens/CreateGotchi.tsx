@@ -1,8 +1,8 @@
 import {useState} from 'react';
 import {Text, View, TextInput, TouchableOpacity} from 'react-native';
-import styles from '../styles/style.js';
 import {ScenarioController} from '../utilities/logic/ScenarioController';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {s} from 'react-native-wind';
 
 type RootStackParamList = {
   Home: undefined;
@@ -39,19 +39,23 @@ function LoginScreen({navigation}: Props) {
 
   return (
     <>
-      <Text style={styles.header_text}>Create a new EDU-GOTCHI</Text>
-      <View style={styles.container}>
-        <View style={styles.input_view}>
+      <View style={s`flex h-full items-center justify-center bg-coolGray-100`}>
+        <Text style={s`text-5xl font-extrabold text-blue-900`}>
+          Create a new EDU-GOTCHI
+        </Text>
+        <View
+          style={s`bg-warmGray-300 border-2 border-warmGray-400 w-72 rounded-md mb-5 mt-24`}>
           <TextInput
-            style={styles.text_input}
+            style={s`flex px-4`}
             placeholder="Name you gotchi..."
             placeholderTextColor="#003f5c"
             onChangeText={gotchiName => setGotchiName(gotchiName)}
           />
         </View>
-        <View style={styles.input_view}>
+        <View
+          style={s`bg-warmGray-300 border-2 border-warmGray-400 w-72 rounded-md mb-5`}>
           <TextInput
-            style={styles.text_input}
+            style={s`flex px-4`}
             placeholder="Class code..."
             placeholderTextColor="#003f5c"
             onChangeText={classCode => setClassCode(classCode)}
@@ -59,12 +63,12 @@ function LoginScreen({navigation}: Props) {
         </View>
 
         <TouchableOpacity
-          style={styles.continue_button}
+          style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
           onPress={() => {
             navigation.navigate('Home');
             new ScenarioController();
           }}>
-          <Text style={styles.button_text}>Continue</Text>
+          <Text style={s`text-white text-md font-bold`}>Continue</Text>
         </TouchableOpacity>
       </View>
     </>
