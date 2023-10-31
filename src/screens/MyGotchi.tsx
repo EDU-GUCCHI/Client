@@ -17,132 +17,56 @@ type Props = {
 
 function MyDayScreen({navigation}: Props) {
   return (
-    <View style={s`flex p-14 bg-emerald-600`}>
+    <View style={s`flex p-10 bg-coolGray-100 h-full`}>
       {/* Profile Info */}
-      <View style={myGotchiStyles.profileInfoContainer}>
-        <View style={myGotchiStyles.profileImageContainer}>
-          <Text>🙂</Text>
+      <View style={s`items-center my-5`}>
+        <View style={s`bg-cyan-300 p-5 rounded-full`}>
+          <Text style={s`text-6xl text-black`}>😉</Text>
         </View>
-        <Text style={myGotchiStyles.profileName}>Alex-GOTCHI</Text>
-        <Text style={myGotchiStyles.profileDetails}>
+        <Text style={s`text-black font-semibold text-4xl mt-4`}>
+          Alex-GOTCHI
+        </Text>
+        <Text style={s`text-black my-2.5`}>
           Young adult • Height 184 cm • Weight 65 kg
         </Text>
       </View>
 
       {/* Stats */}
-      <View style={myGotchiStyles.statsRow}>
-        <View style={myGotchiStyles.statContainerGreen}>
-          <Text style={myGotchiStyles.statText}>85 bpm</Text>
-          <Text style={myGotchiStyles.emojiStat}>❤️</Text>
+      <View style={s`flex-row justify-between`}>
+        <View style={s`flex-1 bg-emerald-300 p-5 m-2.5 rounded-lg`}>
+          <Text style={s`text-black text-3xl`}>85 bpm</Text>
+          <Text style={s`text-black pt-4 text-4xl text-center`}>❤️</Text>
         </View>
-        <View style={myGotchiStyles.statContainerBlue}>
-          <Text style={myGotchiStyles.statText}>480 kcal</Text>
-          <Text style={myGotchiStyles.emojiStat}>🏃‍♂️</Text>
+        <View style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}>
+          <Text style={s`text-black text-3xl`}>480 kcal</Text>
+          <Text style={s`text-black pt-4 text-4xl text-center`}>🏃‍♂️</Text>
         </View>
       </View>
-      <View style={myGotchiStyles.statsRow}>
-        <View style={myGotchiStyles.statContainerPink}>
-          <Text style={myGotchiStyles.statText}>1,7 L</Text>
-          <Text style={myGotchiStyles.emojiStat}>💧</Text>
+      <View style={s`flex-row justify-between`}>
+        <View style={s`flex-1 bg-pink-300 p-5 m-2.5 rounded-lg`}>
+          <Text style={s`text-black text-3xl`}>1,7 L</Text>
+          <Text style={s`text-black pt-4 text-4xl text-center`}>💧</Text>
         </View>
-        <View style={myGotchiStyles.statContainerLight}>
-          <Text style={myGotchiStyles.statText}>8h 24m</Text>
-          <Text style={myGotchiStyles.emojiStat}>🛌</Text>
+        <View style={s`flex-1 bg-gray-300 p-5 m-2.5 rounded-lg`}>
+          <Text style={s`text-black text-3xl`}>8h 24m</Text>
+          <Text style={s`text-black pt-4 text-4xl text-center`}>🛌</Text>
         </View>
       </View>
 
       {/* Footer */}
-      <View style={myGotchiStyles.footerMenu}>
+      {/*       <View style={s`flex-row justify-around mt-auto`}>
         <TouchableOpacity>
-          <Text style={styles.color_white}>Summary</Text>
+          <Text style={s`text-white`}>Summary</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.color_white}>Stats</Text>
+          <Text style={s`text-white`}>Stats</Text>
         </TouchableOpacity>
         <TouchableOpacity>
-          <Text style={styles.color_white}>Profile</Text>
+          <Text style={s`text-white`}>Profile</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
 
 export default MyDayScreen;
-
-const neonRed = '#FF2C55';
-const neonBlue = '#0AD4FA';
-const neonGreen = '#02E67E';
-const neonPink = '#FF66D9';
-const neonLight = '#E9F1F7';
-const neonDark = '#1E2532';
-
-const myGotchiStyles = StyleSheet.create({
-  profileInfoContainer: {
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  profileImageContainer: {
-    backgroundColor: neonPink,
-    padding: 20,
-    borderRadius: 50,
-  },
-  profileName: {
-    color: 'white',
-    fontSize: 24,
-    marginTop: 10,
-  },
-  profileSubtitle: {
-    color: 'white',
-    fontSize: 16,
-  },
-  profileDetails: {
-    color: 'white',
-    marginTop: 10,
-  },
-  statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  statContainerGreen: {
-    flex: 1,
-    backgroundColor: neonGreen,
-    padding: 20,
-    margin: 10,
-    borderRadius: 20,
-  },
-  statContainerBlue: {
-    flex: 1,
-    backgroundColor: neonBlue,
-    padding: 20,
-    margin: 10,
-    borderRadius: 20,
-  },
-  statContainerPink: {
-    flex: 1,
-    backgroundColor: neonPink,
-    padding: 20,
-    margin: 10,
-    borderRadius: 20,
-  },
-  statContainerLight: {
-    flex: 1,
-    backgroundColor: neonLight,
-    padding: 20,
-    margin: 10,
-    borderRadius: 20,
-  },
-  statText: {
-    color: 'black',
-    fontSize: 24,
-  },
-  emojiStat: {
-    color: 'black',
-    paddingTop: 15,
-    fontSize: 28,
-  },
-  footerMenu: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 'auto',
-  },
-});

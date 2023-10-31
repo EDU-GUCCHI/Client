@@ -3,6 +3,7 @@ import styles from '../styles/style.js';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {StyleSheet} from 'react-native';
 import {Text, View, TouchableOpacity} from 'react-native';
+import {s} from 'react-native-wind';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -16,40 +17,107 @@ type Props = {
 
 function MyDayScreen({navigation}: Props) {
   return (
-    <View style={styles.mainContainer}>
-      {/* TutorialScreen */}
-
-      <View style={MyDayScreenStyles.statContainerLight}>
-        <Text style={MyDayScreenStyles.eventText}>Event</Text>
-        <Text style={MyDayScreenStyles.eventInformation}>13.22 - Increasingly rapid heartbeat while in the store:</Text>
-        <Text style={MyDayScreenStyles.eventSymptoms}>Symptoms: Sweating</Text>
-        <Text style={MyDayScreenStyles.eventTreatment}>Treatment: Eat a candy</Text>
-        <Text style={MyDayScreenStyles.eventCause}>Caused by: Missing a meal (lunch)</Text>
+    <View style={s`flex bg-coolGray-100 h-full`}>
+      <View style={s`flex p-5 m-3 mt-5 rounded-lg bg-warmGray-200 shadow-lg`}>
+        <Text style={s`text-2xl font-bold text-center text-warmGray-700 `}>
+          🕑 13:22
+        </Text>
+        <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
+          Increasingly rapid heartbeat while in the store
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Symptoms:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
+            Sweating
+          </Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Treatment:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
+            Eat a candy
+          </Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Caused by:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
+            Missing a meal (lunch)
+          </Text>
+        </Text>
       </View>
 
-      <View style={MyDayScreenStyles.statContainerLight}>
-        <Text style={MyDayScreenStyles.eventText}>Event</Text>
-        <Text style={MyDayScreenStyles.eventInformation}>18.43 - Low blood sugar while working out:</Text>
-        <Text style={MyDayScreenStyles.eventSymptoms}>Symptoms: Feeling dizzy</Text>
-        <Text style={MyDayScreenStyles.eventTreatment}>Treatment: Insulin shot</Text>
-        <Text style={MyDayScreenStyles.eventCause}>Caused by: Working out too hard</Text>
+      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
+        <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
+          🕑 18:43
+        </Text>
+        <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
+          Low blood sugar while working out
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Symptoms:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
+            Feeling dizzy
+          </Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Treatment:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
+            Insulin shot
+          </Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Caused by:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}>
+            Working out too hard
+          </Text>
+        </Text>
       </View>
 
-      <View style={MyDayScreenStyles.statContainerLight}>
-        <Text style={MyDayScreenStyles.eventText}>Event</Text>
-        <Text style={MyDayScreenStyles.eventInformation}></Text>
-        <Text style={MyDayScreenStyles.eventSymptoms}></Text>
-        <Text style={MyDayScreenStyles.eventTreatment}></Text>
-        <Text style={MyDayScreenStyles.eventCause}></Text>
+      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
+        <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
+          🕑{' '}
+        </Text>
+        <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
+          Title
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Symptoms:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Treatment:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Caused by:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
+        </Text>
       </View>
 
+      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
+        <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
+          🕑{' '}
+        </Text>
+        <Text style={s`text-lg text-center font-bold text-warmGray-800 my-4`}>
+          Title
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Symptoms:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Treatment:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
+        </Text>
+        <Text style={s`text-md font-bold text-warmGray-800 my-1`}>
+          Caused by:{' '}
+          <Text style={s`text-md font-normal text-warmGray-800 my-1`}></Text>
+        </Text>
+      </View>
     </View>
   );
 }
 
 export default MyDayScreen;
-
-
 
 const neonRed = '#FF2C55';
 const neonBlue = '#0AD4FA';
@@ -68,19 +136,19 @@ const MyDayScreenStyles = StyleSheet.create({
   },
   eventText: {
     padding: 10,
-    textAlign: "center",
-    fontWeight: "bold"
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   eventInformation: {
-    padding: 5
+    padding: 5,
   },
   eventSymptoms: {
-    padding: 5
+    padding: 5,
   },
   eventTreatment: {
-    padding: 5
+    padding: 5,
   },
   eventCause: {
-    padding: 5
-  }
-})
+    padding: 5,
+  },
+});

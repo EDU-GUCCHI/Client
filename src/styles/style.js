@@ -14,6 +14,8 @@ const neonLight = '#E9F1F7';
 const neonDark = '#1E2532';
 
 const styles = StyleSheet.create({
+
+
   neonDark: {
     backgroundColor: neonDark,
   },
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: neonDark,
   },
-  
+
   container: {
     flex: 1,
     backgroundColor: '#fff',
