@@ -1,13 +1,15 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Text, ScrollView} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView} from 'react-native';
 import {s} from 'react-native-wind';
 
 import MyDayEvent from '../components/MyDayComponents/MyDayEvent';
 import ViewContainer from '../components/ViewContainer'
 
+
 type RootStackParamList = {
   CreateGotchi: undefined;
+  AnswerEvent : undefined;
 };
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'CreateGotchi'>;
@@ -37,6 +39,7 @@ function MyDayScreen({navigation}: Props) {
         </Text>
 
         <MyDayEvent
+          navigation={navigation}
           eventTime={events.time}
           eventTitle={events.title}
           eventSymptom={events.symptoms}
@@ -44,6 +47,7 @@ function MyDayScreen({navigation}: Props) {
           eventCause={events.cause}
         />
         <MyDayEvent
+          navigation={navigation}
           eventTime={events.time}
           eventTitle={events.title}
           eventSymptom={events.symptoms}
@@ -51,6 +55,7 @@ function MyDayScreen({navigation}: Props) {
           eventCause={events.cause}
         />
         <MyDayEvent
+          navigation={navigation}
           eventTime={events.time}
           eventTitle={events.title}
           eventSymptom={events.symptoms}

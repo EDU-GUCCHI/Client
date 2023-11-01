@@ -3,6 +3,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import {s} from 'react-native-wind';
 
 type MyDayEventProps = {
+  navigation: any;
   eventTime: string;
   eventTitle: string;
   eventTreatment: string;
@@ -11,12 +12,18 @@ type MyDayEventProps = {
 };
 
 function MyDayEvent({
+  navigation,
   eventTime,
   eventTitle,
   eventTreatment,
   eventSymptom,
   eventCause,
 }: MyDayEventProps) {
+
+  const handleNavigate = () => {
+    navigation.navigate('AnswerEvent'); // Navigate to the 'AnswerEvent' screen
+  };
+  
   return (
     <>
       <View style={s`flex p-8 m-3 rounded-lg bg-warmGray-200`}>
@@ -49,7 +56,9 @@ function MyDayEvent({
           </Text>
         </Text>
         <TouchableOpacity
-          style={s`p-3 bg-red-400 rounded-lg w-32 justify-center items-center self-end`}>
+          style={s`p-3 bg-red-400 rounded-lg w-32 justify-center items-center self-end`}
+          onPress={handleNavigate} // onPress event 
+          >
           <Text>Answer event</Text>
         </TouchableOpacity>
       </View>
@@ -58,3 +67,4 @@ function MyDayEvent({
 }
 
 export default MyDayEvent;
+

@@ -10,6 +10,7 @@ import TutorialScreen from './src/screens/Tutorial';
 import MyDayScreen from './src/screens/MyDay';
 import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
+import AnswerEventScreen from './src/screens/AnswerEvent';
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +55,11 @@ export default class App extends Component<Props> {
             name="MyGotchi"
             options={{title: 'My Gotchi'}}
             component={MyGotchiScreen}
+          />
+          <Stack.Screen
+            name="AnswerEvent"
+            options={{title: 'Answer Event'}}
+            component={AnswerEventScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
