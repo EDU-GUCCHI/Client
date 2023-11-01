@@ -1,2 +1,0 @@
-
-Plats för komponenter som används igenom GUI:t enligt React-standard
