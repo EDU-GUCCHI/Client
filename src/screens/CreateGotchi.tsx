@@ -7,7 +7,8 @@ import {StackNavigationProp} from '@react-navigation/stack';
 
 import Title from '../components/Title';
 import InputField from '../components/InputField';
-import Button from '../components/Button';
+import LgButton from '../components/LgButton';
+import ViewContainer from '../components/ViewContainer';
 
 type RootStackParamList = {
   Home: undefined;
@@ -44,7 +45,7 @@ function CreateGotchiScreen({navigation}: Props) {
 
   return (
     <>
-      <View style={s`flex items-center justify-center bg-coolGray-100`}>
+      <ViewContainer>
         <Title text="Create new EDU-GOTCHI" />
         <InputField
           placeholder="Name your gotchi..."
@@ -56,14 +57,14 @@ function CreateGotchiScreen({navigation}: Props) {
           value={classCode}
           onChangeText={setClassCode}
         />
-        <Button
+        <LgButton
           text="Continue"
           onPress={() => {
             navigation.navigate('Home');
             new ScenarioController();
           }}
         />
-      </View>
+      </ViewContainer>
     </>
   );
 }

@@ -1,8 +1,6 @@
 import React from 'react';
-import styles from '../styles/style.js';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {StyleSheet} from 'react-native';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View } from 'react-native';
 import {s} from 'react-native-wind';
 
 

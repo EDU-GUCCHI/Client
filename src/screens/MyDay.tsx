@@ -4,6 +4,7 @@ import {Text, ScrollView} from 'react-native';
 import {s} from 'react-native-wind';
 
 import MyDayEvent from '../components/MyDayComponents/MyDayEvent';
+import ViewContainer from '../components/ViewContainer'
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -25,37 +26,38 @@ const events = {
 
 function MyDayScreen({navigation}: Props) {
   return (
-    <ScrollView style={s`flex bg-coolGray-100 h-full`}>
-      <Text
-        style={s`text-4xl text-center m-4 mb-1 text-warmGray-600 font-semibold`}>
-        Tuesday
-      </Text>
-      <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
-        31/10/2023
-      </Text>
+    <ScrollView>
+      <ViewContainer>
+        <Text
+          style={s`text-4xl text-center m-4 mb-1 text-warmGray-600 font-semibold`}>
+          Tuesday
+        </Text>
+        <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
+          31/10/2023
+        </Text>
 
-      <MyDayEvent
-        eventTime={events.time}
-        eventTitle={events.title}
-        eventSymptom={events.symptoms}
-        eventTreatment={events.treatment}
-        eventCause={events.cause}
-      />
-      <MyDayEvent
-        eventTime={events.time}
-        eventTitle={events.title}
-        eventSymptom={events.symptoms}
-        eventTreatment={events.treatment}
-        eventCause={events.cause}
-      />
-      <MyDayEvent
-        eventTime={events.time}
-        eventTitle={events.title}
-        eventSymptom={events.symptoms}
-        eventTreatment={events.treatment}
-        eventCause={events.cause}
-      />
-
+        <MyDayEvent
+          eventTime={events.time}
+          eventTitle={events.title}
+          eventSymptom={events.symptoms}
+          eventTreatment={events.treatment}
+          eventCause={events.cause}
+        />
+        <MyDayEvent
+          eventTime={events.time}
+          eventTitle={events.title}
+          eventSymptom={events.symptoms}
+          eventTreatment={events.treatment}
+          eventCause={events.cause}
+        />
+        <MyDayEvent
+          eventTime={events.time}
+          eventTitle={events.title}
+          eventSymptom={events.symptoms}
+          eventTreatment={events.treatment}
+          eventCause={events.cause}
+        />
+      </ViewContainer>
     </ScrollView>
   );
 }

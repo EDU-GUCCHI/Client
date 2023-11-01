@@ -19,7 +19,7 @@ function MyDayEvent({
 }: MyDayEventProps) {
   return (
     <>
-      <View style={s`flex p-5 m-3 rounded-lg bg-warmGray-200`}>
+      <View style={s`flex p-8 m-3 rounded-lg bg-warmGray-200`}>
         <Text style={s`text-2xl font-bold text-center text-warmGray-700`}>
           {'🕑 '}
           {eventTime} {/* GET TIME */}

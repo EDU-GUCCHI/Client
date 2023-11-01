@@ -3,8 +3,9 @@ import {View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
 
-import Button from '../components/Button';
+import LgButton from '../components/LgButton';
 import Title from '../components/Title';
+import ViewContainer from '../components/ViewContainer'
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -18,15 +19,15 @@ type Props = {
 
 function TutorialScreen({navigation}: Props) {
   return (
-    <View style={s`flex items-center justify-center bg-coolGray-100`}>
+    <ViewContainer>
       <Title text="Tutorial" />
-      <Button
+      <LgButton
         text="Next"
         onPress={() => {
           navigation.navigate('CreateGotchi');
         }}
       />
-    </View>
+    </ViewContainer>
   );
 }
 

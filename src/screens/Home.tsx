@@ -1,10 +1,11 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import { s } from 'react-native-wind';
+import {s} from 'react-native-wind';
 
-import Button from '../components/Button';
-import Title from '../components/Title'
+import LgButton from '../components/LgButton';
+import Title from '../components/Title';
+import ViewContainer from '../components/ViewContainer';
 
 type RootStackParamList = {
   Home: undefined;
@@ -40,25 +41,22 @@ function HomeScreen({navigation}: Props) {
 
   return (
     <>
-      <View style={s`flex items-center justify-center bg-coolGray-100`}>
-      <Title text="Welcome to EDU-GOTCHI" />
-        <Button
-          text="My day"
-          onPress={() => navigation.navigate('MyDay')}
-        />
-        <Button
+      <ViewContainer>
+        <Title text="Welcome to EDU-GOTCHI" />
+        <LgButton text="My day" onPress={() => navigation.navigate('MyDay')} />
+        <LgButton
           text="My EDU-GOTCHI"
           onPress={() => navigation.navigate('MyGotchi')}
         />
-        <Button
+        <LgButton
           text="Instructions"
           onPress={() => navigation.navigate('Instructions')}
         />
-        <Button
+        <LgButton
           text="Notifee"
           onPress={() => navigation.navigate('Notifee')}
         />
-      </View>
+      </ViewContainer>
     </>
   );
 }

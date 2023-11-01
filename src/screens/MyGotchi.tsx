@@ -15,7 +15,7 @@ type Props = {
 
 function MyDayScreen({navigation}: Props) {
   return (
-    <View style={s`flex p-10 bg-coolGray-100 h-full`}>
+    <View style={s`flex p-7 bg-coolGray-100 h-full`}>
       {/* Profile Info */}
       <View style={s`items-center my-5`}>
         <View style={s`bg-cyan-300 p-5 rounded-full`}>

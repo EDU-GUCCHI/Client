@@ -2,12 +2,12 @@ import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {s} from 'react-native-wind';
 
-type ButtonProps = {
+type LgButtonProps = {
   text: string;
   onPress: () => void;
 };
 
-const Button = ({onPress, text}: ButtonProps) => (
+const LgButton = ({onPress, text}: LgButtonProps) => (
   <TouchableOpacity
     style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
     onPress={onPress}>
@@ -15,4 +15,4 @@ const Button = ({onPress, text}: ButtonProps) => (
   </TouchableOpacity>
 );
 
-export default Button;
+export default LgButton;
