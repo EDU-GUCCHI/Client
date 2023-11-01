@@ -1,8 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
-import styles from '../styles/style.js';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {StyleSheet} from 'react-native';
 import {s} from 'react-native-wind';
 
 type RootStackParamList = {

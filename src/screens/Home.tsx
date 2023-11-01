@@ -1,7 +1,10 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import { s } from 'react-native-wind';
+
+import Button from '../components/Button';
+import Title from '../components/Title'
 
 type RootStackParamList = {
   Home: undefined;
@@ -37,39 +40,24 @@ function HomeScreen({navigation}: Props) {
 
   return (
     <>
-      <View style={s`flex h-full items-center justify-center bg-coolGray-100`}>
-        <Text style={s`text-5xl font-extrabold text-blue-900`}>
-          Welcome to EDU-GOTCHI
-        </Text>
-        <TouchableOpacity
-          style={s`w-72 h-12 mt-16 rounded-md items-center justify-center bg-violet-900`}
-          onPress={() => {
-            navigation.navigate('MyDay');
-          }}>
-          <Text style={s`text-white text-md font-bold`}>My day</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
-          onPress={() => {
-            navigation.navigate('MyGotchi');
-          }}>
-          <Text style={s`text-white text-md font-bold`}>My EDU-GOTCHI</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={s`w-72 h-12 mt-3 rounded-md items-center justify-center bg-violet-900`}
-          onPress={() => {
-            navigation.navigate('Instructions');
-          }}>
-          <Text style={s`text-white text-md font-bold`}>Instructions</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={s`w-72 h-12 mt-10 rounded-md items-center justify-center bg-violet-900`}
-          onPress={() => navigation.navigate('Notifee')}>
-          <Text style={s`text-white text-md font-bold`}>Notifee</Text>
-        </TouchableOpacity>
+      <View style={s`flex items-center justify-center bg-coolGray-100`}>
+      <Title text="Welcome to EDU-GOTCHI" />
+        <Button
+          text="My day"
+          onPress={() => navigation.navigate('MyDay')}
+        />
+        <Button
+          text="My EDU-GOTCHI"
+          onPress={() => navigation.navigate('MyGotchi')}
+        />
+        <Button
+          text="Instructions"
+          onPress={() => navigation.navigate('Instructions')}
+        />
+        <Button
+          text="Notifee"
+          onPress={() => navigation.navigate('Notifee')}
+        />
       </View>
     </>
   );
