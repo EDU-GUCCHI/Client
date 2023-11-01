@@ -1,12 +1,8 @@
-import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
-import styles from '../styles/style.js';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {s} from 'react-native-wind';
+
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -18,12 +14,14 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function AnswerEventScreen({navigation}: Props) {
+function AnswerEventScreen() {
   return (
     <View style={s`flex h-full items-center justify-center bg-coolGray-100`}>
-      <Text> Answer Event, Lägg till dropdowns för alterntiv till symptom, behandling och orsak </Text>
+      <Text>AnswerEventScreen</Text>
+      <Text>Dropdowns...</Text>
     </View>
-  );
-}
-
+  )
+};
 export default AnswerEventScreen;
+
+
