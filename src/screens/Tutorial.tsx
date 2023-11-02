@@ -23,11 +23,6 @@ function TutorialScreen({navigation}: Props) {
       <Title text="Tutorial" />
       <LgButton
         text="Next"
-        colors={['#70e0e1', '#6ca7e8']}
-        locations={[0, 0.7]}
-        useAngle={true}
-        angle={25}
-        angleCenter={{x: 0.5, y: 0.5}}
         onPress={() => {
           navigation.navigate('CreateGotchi');
         }}
