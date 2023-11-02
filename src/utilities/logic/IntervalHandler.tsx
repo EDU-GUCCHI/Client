@@ -9,7 +9,7 @@ export class IntervallHandler
     public constructor(person: Gotchi)
     {
         this.person = person;
-        this.bloodValue = person.getBloodValue();
+        this.bloodValue = person.bloodValue;
         this.factor = 0;
         this.result = this.bloodValue;
     }
@@ -25,7 +25,7 @@ export class IntervallHandler
         //just example increment for now!
         console.log("BloodSugar: " + this.result);
         this.result = this.bloodValue += this.factor / 2;
-        this.person.setBloodValue(this.result);
+        this.person.bloodValue = this.result;
     }
     getBloodValueTest(): number 
     {

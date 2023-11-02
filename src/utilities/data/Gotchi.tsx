@@ -10,19 +10,19 @@ import {
 
 export class Gotchi {
   //Person attributes
-  private name: string;
-  private age: number;
-  private bloodSugar: number;
-  private insulinPump: boolean;
-  private lchf: boolean;
+  private _name: string;
+  private _age: number;
+  private _bloodSugar: number;
+  private _insulinPump: boolean;
+  private _lchf: boolean;
   //Enum-attributes
-  private eatingHabit: EatingHabit;
-  private exercise: Exercise;
-  private weight: Weight;
-  private alcoholHabit: AlcoholHabit;
-  private smokingHabit: SmokingHabit;
-  private illnesses: Illness[];
-  private gender: Gender;
+  private _eatingHabit: EatingHabit;
+  private _exercise: Exercise;
+  private _weight: Weight;
+  private _alcoholHabit: AlcoholHabit;
+  private _smokingHabit: SmokingHabit;
+  private _illnesses: Illness[];
+  private _gender: Gender;
 
   //add age and gender to constructor and getters/setters
   public constructor(
@@ -39,85 +39,85 @@ export class Gotchi {
     illnesses: Illness[],
     gender: Gender,
   ) {
-    this.name = name;
-    this.age = age;
-    this.bloodSugar = bloodSugar;
-    this.insulinPump = insulinPump;
-    this.lchf = lchf;
-    this.illnesses = illnesses;
-    this.smokingHabit = smokingHabit;
-    this.alcoholHabit = alcoholHabit;
-    this.weight = weight;
-    this.exercise = exercise;
-    this.eatingHabit = eatingHabit;
-    this.gender = gender;
+    this._name = name;
+    this._age = age;
+    this._bloodSugar = bloodSugar;
+    this._insulinPump = insulinPump;
+    this._lchf = lchf;
+    this._illnesses = illnesses;
+    this._smokingHabit = smokingHabit;
+    this._alcoholHabit = alcoholHabit;
+    this._weight = weight;
+    this._exercise = exercise;
+    this._eatingHabit = eatingHabit;
+    this._gender = gender;
   }
   //getters-setters
-  getName(): string {
-    return this.name;
+  get name(): string {
+    return this._name;
   }
-  getAge(): number {
-    return this.age;
+  get age(): number {
+    return this._age;
   }
-  getBloodValue(): number {
-    return this.bloodSugar;
+  get bloodValue(): number {
+    return this._bloodSugar;
   }
-  getInsulinPump(): boolean {
-    return this.insulinPump;
+  get insulinPump(): boolean {
+    return this._insulinPump;
   }
-  getLchf(): boolean {
-    return this.lchf;
+  get lchf(): boolean {
+    return this._lchf;
   }
-  getEatHabbit(): EatingHabit {
-    return this.eatingHabit;
+  get eatHabit(): EatingHabit {
+    return this._eatingHabit;
   }
-  getExercise(): Exercise {
-    return this.exercise;
+  get exercise(): Exercise {
+    return this._exercise;
   }
-  getWeight(): Weight {
-    return this.weight;
+  get weight(): Weight {
+    return this._weight;
   }
-  getAlcoholHabbit(): AlcoholHabit {
-    return this.alcoholHabit;
+  get alcoholHabit(): AlcoholHabit {
+    return this._alcoholHabit;
   }
-  getSmokeHabbit(): SmokingHabit {
-    return this.smokingHabit;
+  get smokeHabit(): SmokingHabit {
+    return this._smokingHabit;
   }
-  getIllnesses(): Illness[] {
-    return this.illnesses;
+  get illnesses(): Illness[] {
+    return this._illnesses;
   }
-  getGender(): Gender {
-    return this.gender;
+  get gender(): Gender {
+    return this._gender;
   }
   // Setters for private attributes
-  setName(name: string): void {
-    this.name = name;
+  set name(name: string) {
+    this._name = name;
   }
-  setBloodValue(bloodValue: number): void {
-    this.bloodSugar = bloodValue;
+  set bloodValue(bloodValue: number) {
+    this._bloodSugar = bloodValue;
   }
-  setInsulinPump(insulinPump: boolean): void {
-    this.insulinPump = insulinPump;
+  set insulinPump(insulinPump: boolean) {
+    this._insulinPump = insulinPump;
   }
-  setLchf(lchf: boolean): void {
-    this.lchf = lchf;
+  set lchf(lchf: boolean) {
+    this._lchf = lchf;
   }
-  setEatHabbit(eatHabbit: EatingHabit): void {
-    this.eatingHabit = eatHabbit;
+  set eatHabit(eatHabbit: EatingHabit) {
+    this._eatingHabit = eatHabbit;
   }
-  setExercise(exercise: Exercise): void {
-    this.exercise = exercise;
+  set exercise(exercise: Exercise) {
+    this._exercise = exercise;
   }
-  setWeight(weight: Weight): void {
-    this.weight = weight;
+  set weight(weight: Weight) {
+    this._weight = weight;
   }
-  setAlcoholHabbit(alcoholHabbit: AlcoholHabit): void {
-    this.alcoholHabit = alcoholHabbit;
+  set alcoholHabit(alcoholHabbit: AlcoholHabit) {
+    this._alcoholHabit = alcoholHabbit;
   }
-  setSmokeHabbit(smokeHabbit: SmokingHabit): void {
-    this.smokingHabit = smokeHabbit;
+  set smokeHabit(smokeHabbit: SmokingHabit) {
+    this._smokingHabit = smokeHabbit;
   }
-  setIllnesses(illnesses: Illness[]): void {
-    this.illnesses = illnesses;
+  set illnesses(illnesses: Illness[]) {
+    this._illnesses = illnesses;
   }
 }

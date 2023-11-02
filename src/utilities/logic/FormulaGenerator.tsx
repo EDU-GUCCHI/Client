@@ -8,12 +8,12 @@ export class FormulaGenerator
     public generateFormula(person: Gotchi): number
     {
         let sum = 0;
-        sum += person.getAlcoholHabbit();
-        sum += person.getEatHabbit();
-        sum += person.getExercise();
-        sum += person.getSmokeHabbit();
-        sum += person.getWeight();
-        let illnesses = person.getIllnesses();
+        sum += person.alcoholHabit;
+        sum += person.eatHabit;
+        sum += person.exercise;
+        sum += person.smokeHabit;
+        sum += person.weight;
+        let illnesses = person.illnesses;
         for(let sickness in illnesses)
         {
             sum += illnesses[sickness];

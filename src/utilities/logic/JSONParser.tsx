@@ -27,18 +27,18 @@ class JSONParser {
     static toJSON(gotchi: Gotchi): any {
         const jsonData = {
             mockGotchi: {
-                name: gotchi.getName(),
-                age: gotchi.getAge(),
-                bloodSugar: gotchi.getBloodValue(),
-                insulinPump: gotchi.getInsulinPump(),
-                lchf: gotchi.getLchf(),
-                eatingHabit: gotchi.getEatHabbit(),
-                exercise: gotchi.getExercise(),
-                weight: gotchi.getWeight(),
-                alcoholHabit: gotchi.getAlcoholHabbit(),
-                smokingHabit: gotchi.getSmokeHabbit(),
-                illnesses: gotchi.getIllnesses(),
-                gender: gotchi.getGender(),
+                name: gotchi.name,
+                age: gotchi.age,
+                bloodSugar: gotchi.bloodValue,
+                insulinPump: gotchi.insulinPump,
+                lchf: gotchi.lchf,
+                eatingHabit: gotchi.eatHabit,
+                exercise: gotchi.exercise,
+                weight: gotchi.weight,
+                alcoholHabit: gotchi.alcoholHabit,
+                smokingHabit: gotchi.smokeHabit,
+                illnesses: gotchi.illnesses,
+                gender: gotchi.gender,
             },
         };
         return JSON.stringify(jsonData);
