@@ -51,14 +51,29 @@ function CreateGotchiScreen({navigation}: Props) {
           placeholder="Name your gotchi..."
           value={gotchiName}
           onChangeText={setGotchiName}
+          colors={['#E9F1F7', '#E0DDD5']}
+          locations={[0, 1]}
+          useAngle={true}
+          angle={25}
+          angleCenter={{x: 0.5, y: 0}}
         />
         <InputField
           placeholder="Class code..."
           value={classCode}
           onChangeText={setClassCode}
+          colors={['#E9F1F7', '#E0DDD5']}
+          locations={[0, 1]}
+          useAngle={true}
+          angle={25}
+          angleCenter={{x: 0.5, y: 0}}
         />
         <LgButton
           text="Continue"
+          colors={['#6ca7e8', '#70e0e1']}
+          locations={[0, 0.7]}
+          useAngle={true}
+          angle={25}
+          angleCenter={{x: 0.5, y: 0.3}}
           onPress={() => {
             navigation.navigate('Home');
             new ScenarioController();
