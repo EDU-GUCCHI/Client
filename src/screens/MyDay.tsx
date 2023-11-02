@@ -18,6 +18,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
+// Här ska vi hämta event och uppdatera elementen med dess innehåll
 const events = {
   time: '13:23',
   title: 'Low blood sugar while working out',
