@@ -3,7 +3,7 @@ import {Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {s} from 'react-native-wind';
 
-type LgButtonProps = {
+type MdButtonProps = {
   text: string;
   onPress: () => void;
   colors: string[]; // Array of colors for the gradient
@@ -13,7 +13,7 @@ type LgButtonProps = {
   angleCenter?: {x: number; y: number}; // Optional center for the gradient angle
 };
 
-const LgButton = ({
+const MdButton = ({
   onPress,
   text,
   colors,
@@ -21,10 +21,10 @@ const LgButton = ({
   useAngle,
   angle,
   angleCenter,
-}: LgButtonProps) => (
+}: MdButtonProps) => (
   <TouchableOpacity
     onPress={onPress}
-    style={s`w-72 h-12 mt-3 rounded-md items-center justify-center`}>
+    style={s`w-32 h-12 mt-3 rounded-md items-center justify-center`}>
     <LinearGradient
       colors={colors}
       locations={locations}
@@ -37,4 +37,4 @@ const LgButton = ({
   </TouchableOpacity>
 );
 
-export default LgButton;
+export default MdButton;
