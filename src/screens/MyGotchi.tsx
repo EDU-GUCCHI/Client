@@ -5,6 +5,8 @@ import {s} from 'react-native-wind';
 import {StyleSheet} from 'react-native';
 //import { GUIController } from '../utilities/logic/GUIController';
 
+import HeartRate from '../components/MyGotchiComponents/HeartRate'
+
 type RootStackParamList = {
   MyGotchi: undefined;
 };
@@ -14,6 +16,8 @@ type NavigationProp = StackNavigationProp<RootStackParamList, 'MyGotchi'>;
 type Props = {
   navigation: NavigationProp;
 };
+
+const bpm = '130' // get bpm
 
 function MyDayScreen({navigation}: Props) {
 
@@ -35,10 +39,9 @@ function MyDayScreen({navigation}: Props) {
       </View>
       {/* Stats */}
       <View style={s`flex-row justify-between`}>
-        <View style={s`flex-1 bg-emerald-300 p-5 m-2.5 rounded-lg`}>
-          <Text style={s`text-black text-3xl`}>{bpmText}</Text>
-          <Text style={s`text-black pt-4 text-4xl text-center`}>❤️</Text>
-        </View>
+
+        <HeartRate bpmText={bpm} />
+        
         <View style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}>
           <Text style={s`text-black text-3xl`}>480 kcal</Text>
           <Text style={s`text-black pt-4 text-4xl text-center`}>🏃‍♂️</Text>
