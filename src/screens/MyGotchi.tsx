@@ -32,7 +32,10 @@ function MyGotchiScreen({ navigation }: Props) {
   const [bpmText, setBpmText] = useState('0');
 
   const [bloodSugar, setBloodSugar] = useState('0'); // Default value
+  
+  const route = useRoute();
   const controller = route.params.controller;
+
   useEffect(() => {
 
     // Pass the storage instance to the GUIController

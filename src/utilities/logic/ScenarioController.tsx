@@ -15,6 +15,7 @@ export class ScenarioController
     // flow of program here:
     public constructor()
     {
+        console.log("Controller: Created")
         // instantiate classes
         this.storage = new Storage();
         this.GUIController = new GUIController(this.storage);
