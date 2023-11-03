@@ -1,11 +1,11 @@
 import {
+  Gender,
   EatingHabit,
   Exercise,
   Weight,
   AlcoholHabit,
   SmokingHabit,
   Illness,
-  Gender,
 } from './EnumAttributes';
 
 export class Gotchi {

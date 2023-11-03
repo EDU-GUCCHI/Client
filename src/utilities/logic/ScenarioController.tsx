@@ -1,6 +1,7 @@
 import { Storage } from '../data/Storage';
 import { Clock } from './Clock';
 import { FormulaGenerator } from './FormulaGenerator';
+import { GUIController } from './GUIController';
 import { IntervallHandler } from './IntervalHandler';
 
 export class ScenarioController
@@ -10,12 +11,14 @@ export class ScenarioController
     private storage: Storage;
     private clock: Clock;
     private intervalHandler: IntervallHandler;
+    private GUIController: GUIController;
     // flow of program here:
     public constructor()
     {
         console.log("Controller: Runs")
         // instantiate classes
         this.storage = new Storage();
+        this.GUIController = new GUIController(this.storage);
         this.formulaGenerator = new FormulaGenerator();
         this.intervalHandler = new IntervallHandler(this.storage.getPerson());
         this.clock = new Clock();

@@ -16,9 +16,7 @@ export class IntervallHandler
     public update(): void // updates done every pulse
     {
         this.incrementFormula();
-
         // check if any thresholds are crossed
-
     }
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {

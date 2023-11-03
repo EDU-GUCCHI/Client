@@ -1,4 +1,13 @@
 import { Gotchi } from "../data/Gotchi";
+import {
+    Gender,
+    EatingHabit,
+    Exercise,
+    Weight,
+    AlcoholHabit,
+    SmokingHabit,
+    Illness,
+  } from '../data/EnumAttributes';
 
 export class FormulaGenerator
 {
@@ -18,7 +27,7 @@ export class FormulaGenerator
         {
             sum += illnesses[sickness];
         }
-        console.log("generated factor: " + sum);
+        console.log("Generated factor: " + sum);
         return sum;
     }
     public generateIncreaseFactor(): number
