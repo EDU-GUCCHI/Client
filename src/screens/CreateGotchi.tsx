@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 import {s} from 'react-native-wind';
+import { useRoute } from '@react-navigation/native';
 
 import {ScenarioController} from '../utilities/logic/ScenarioController';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -43,6 +44,9 @@ function CreateGotchiScreen({navigation}: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
 
+  const route = useRoute();
+  const controller = route.params.controller;
+
   return (
     <>
       <ViewContainer>
@@ -76,7 +80,8 @@ function CreateGotchiScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0.3}}
           onPress={() => {
             navigation.navigate('Home');
-            new ScenarioController(gotchiName, classCode); // change this. get with GUIController instead
+          //new ScenarioController(gotchiName, classCode); // change this. get with GUIController instead
+          controller.initialize();
           }}
         />
       </ViewContainer>

@@ -3,16 +3,13 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
 import {StyleSheet} from 'react-native';
-//import { GUIController } from '../utilities/logic/GUIController';
+import { useRoute } from '@react-navigation/native';
 
 import HeartRate from '../components/MyGotchiComponents/HeartRate';
 import {GUIController} from '../utilities/logic/GUIController';
 import { ScenarioController } from '../utilities/logic/ScenarioController';
 
 import {Storage} from '../utilities/data/Storage';
-
-
-
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -35,13 +32,11 @@ function MyGotchiScreen({ navigation }: Props) {
   const [bpmText, setBpmText] = useState('0');
 
   const [bloodSugar, setBloodSugar] = useState('0'); // Default value
-
+  const controller = route.params.controller;
   useEffect(() => {
-    // Create an instance of Storage
-    const storage = new Storage();
 
     // Pass the storage instance to the GUIController
-    const guiController = new GUIController(storage);
+    const guiController = controller.getGUIController();
 
     const updateBloodSugarCallback = (newBloodSugar: string) => {
       setBloodSugar(newBloodSugar);
@@ -55,6 +50,7 @@ function MyGotchiScreen({ navigation }: Props) {
       // Perform cleanup if necessary
     };
   }, []);
+  
 
   return (
     <View style={s`flex p-7 bg-coolGray-100 h-full`}>
