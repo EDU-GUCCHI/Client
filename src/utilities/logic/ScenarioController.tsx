@@ -28,4 +28,9 @@ export class ScenarioController
         this.intervalHandler.setFactor(this.storage.getBloodSugarFactor());
         this.clock.startClock(); // start clock pulse
     }
+
+    public getGUIController()
+    {
+        return this.GUIController;
+    }
 }
