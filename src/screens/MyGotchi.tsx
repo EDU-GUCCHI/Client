@@ -36,7 +36,7 @@ function MyDayScreen({navigation}: Props) {
       {/* Stats */}
       <View style={s`flex-row justify-between`}>
         <View style={s`flex-1 bg-emerald-300 p-5 m-2.5 rounded-lg`}>
-          <Text style={s`text-black text-3xl`}>85 bpm</Text>
+          <Text style={s`text-black text-3xl`}>{bpmText}</Text>
           <Text style={s`text-black pt-4 text-4xl text-center`}>❤️</Text>
         </View>
         <View style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}>
