@@ -1,5 +1,6 @@
 // sends out Events.
 import {Event} from '../data/Event';
+import { AutoType, EventType } from '../data/EventTypes';
 import { Gotchi } from '../data/Gotchi';
 
 export class eventDispatcher {
@@ -16,19 +17,17 @@ export class eventDispatcher {
     //Functions to create and dispatch events?
 
     //param: information needed for event construction
-    public createEvent() {
-        //const event = new Event(...);
+    public createEvent(autoType: AutoType, eventType: EventType, bloodGlucoseChange: number): Event {
+        const id = Math.floor(Math.random() * 1000); //Change if we should use IDs to something that will be unique
+        const timeStamp = new Date(); //Current date and time
+        const event = new Event(id, autoType, eventType, timeStamp, bloodGlucoseChange);
+
+        this.dispatchEvent(event);
+        return event;
     }
 
     public dispatchEvent(event : Event) {
-        //switch case based on event type?
-        //call the appropriate event method in the cases
-    }
-
-    public eatingEvent() {
-
-    }
-    public trainingEvent() {
-
+        //how do we want to dispatch the event?
+        console.log(event);
     }
 }
