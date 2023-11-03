@@ -17,6 +17,7 @@ export class IntervallHandler
     {
         this.incrementFormula();
         // check if any thresholds are crossed
+        // call GUI controller and update Relevant GUI Values
     }
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
