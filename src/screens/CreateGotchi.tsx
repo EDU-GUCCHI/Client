@@ -77,10 +77,9 @@ function CreateGotchiScreen({navigation}: Props) {
           onPress={() => {
             navigation.navigate('Home');
             new ScenarioController(gotchiName, classCode); // change this. get with GUIController instead
-          }}>
-          <Text style={styles.button_text}>Continue</Text>
-        </TouchableOpacity>
-      </View>
+          }}
+        />
+      </ViewContainer>
     </>
   );
 }

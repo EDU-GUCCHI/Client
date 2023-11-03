@@ -34,10 +34,10 @@ function MyDayScreen({navigation}: Props) {
         </Text>
       </View>
       {/* Stats */}
-      <View style={myGotchiStyles.statsRow}>
-        <View style={myGotchiStyles.statContainerGreen}>
-          <Text style={myGotchiStyles.statText}>{bpmText}</Text>
-          <Text style={myGotchiStyles.emojiStat}>❤️</Text>
+      <View style={s`flex-row justify-between`}>
+        <View style={s`flex-1 bg-emerald-300 p-5 m-2.5 rounded-lg`}>
+          <Text style={s`text-black text-3xl`}>85 bpm</Text>
+          <Text style={s`text-black pt-4 text-4xl text-center`}>❤️</Text>
         </View>
         <View style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}>
           <Text style={s`text-black text-3xl`}>480 kcal</Text>
