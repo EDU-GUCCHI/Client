@@ -29,42 +29,46 @@ const events = {
 
 function MyDayScreen({navigation}: Props) {
   return (
-    <ScrollView>
-      <ViewContainer>
-        <Text
-          style={s`text-4xl text-center m-4 mb-1 text-warmGray-600 font-semibold`}>
-          Tuesday
-        </Text>
-        <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
-          31/10/2023
-        </Text>
+    <ViewContainer>
+      <Text
+        style={s`text-4xl text-center mb-1 text-warmGray-600 font-semibold`}>
+        Tuesday
+      </Text>
+      <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
+        31/10/2023
+      </Text>
 
-        <MyDayEvent
-          navigation={navigation}
-          eventTime={events.time}
-          eventTitle={events.title}
-          eventSymptom={events.symptoms}
-          eventTreatment={events.treatment}
-          eventCause={events.cause}
-        />
-        <MyDayEvent
-          navigation={navigation}
-          eventTime={events.time}
-          eventTitle={events.title}
-          eventSymptom={events.symptoms}
-          eventTreatment={events.treatment}
-          eventCause={events.cause}
-        />
-        <MyDayEvent
-          navigation={navigation}
-          eventTime={events.time}
-          eventTitle={events.title}
-          eventSymptom={events.symptoms}
-          eventTreatment={events.treatment}
-          eventCause={events.cause}
-        />
-      </ViewContainer>
-    </ScrollView>
+      <MyDayEvent
+        navigation={navigation}
+        eventTime={events.time}
+        eventTitle={events.title}
+        colors={['#6ca7e8', '#70e0e1']}
+        locations={[0, 0.7]}
+        useAngle={true}
+        angle={25}
+        angleCenter={{x: 0.5, y: 1}}
+      />
+      <MyDayEvent
+        navigation={navigation}
+        eventTime={events.time}
+        eventTitle={events.title}
+        colors={['#6ca7e8', '#70e0e1']}
+        locations={[0, 0.7]}
+        useAngle={true}
+        angle={25}
+        angleCenter={{x: 0.5, y: 1}}
+      />
+      <MyDayEvent
+        navigation={navigation}
+        eventTime={events.time}
+        eventTitle={events.title}
+        colors={['#6ca7e8', '#70e0e1']}
+        locations={[0, 0.7]}
+        useAngle={true}
+        angle={25}
+        angleCenter={{x: 0.5, y: 1}}
+      />
+    </ViewContainer>
   );
 }
 
