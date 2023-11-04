@@ -10,13 +10,8 @@ export class GUIController {
     this.storage = storage;
     this.person = this.storage.getPerson();
   }
-
   public UpdateBloodSugar(updateBloodSugarCallback: (value: string) => void) {
-    // Simulation of fetching the new blood sugar value.
-    // You would replace this with your actual logic to get the new value.
-    const newBloodSugarValue = '223'; // Example new value
-
-    // Call the passed callback function with the new value
+    const newBloodSugarValue = this.person.bloodValue.toString();
     updateBloodSugarCallback(newBloodSugarValue);
   }
 }

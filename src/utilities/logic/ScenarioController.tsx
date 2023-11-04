@@ -20,7 +20,7 @@ export class ScenarioController
         this.storage = new Storage();
         this.GUIController = new GUIController(this.storage);
         this.formulaGenerator = new FormulaGenerator();
-        this.intervalHandler = new IntervallHandler(this.storage.getPerson());
+        this.intervalHandler = new IntervallHandler(this.storage.getPerson(), this.GUIController);
         this.clock = new Clock();
     }
     public initialize()

@@ -8,7 +8,6 @@ import { useRoute } from '@react-navigation/native';
 import HeartRate from '../components/MyGotchiComponents/HeartRate';
 import {GUIController} from '../utilities/logic/GUIController';
 import { ScenarioController } from '../utilities/logic/ScenarioController';
-
 import {Storage} from '../utilities/data/Storage';
 
 type RootStackParamList = {
@@ -21,40 +20,23 @@ type Props = {
   navigation: NavigationProp;
 };
 
-const heartRate = {
-  bpm: '130', // get bpm
-  icon: '❤️',
-};
-
 const water = '2 L';
 
 function MyGotchiScreen({ navigation }: Props) {
-  const [bpmText, setBpmText] = useState('0');
-
   const [bloodSugar, setBloodSugar] = useState('0'); // Default value
-  
   const route = useRoute();
   const controller = route.params.controller;
+  const guiController = controller.getGUIController();
 
-  useEffect(() => {
-
-    // Pass the storage instance to the GUIController
-    const guiController = controller.getGUIController();
-
+  useEffect(() => { // callback function to update bloodvalue through gui controller  
     const updateBloodSugarCallback = (newBloodSugar: string) => {
       setBloodSugar(newBloodSugar);
     };
-
-    // Call the UpdateBloodSugar method with the callback function
     guiController.UpdateBloodSugar(updateBloodSugarCallback);
-
-    // Add cleanup logic if needed
     return () => {
-      // Perform cleanup if necessary
     };
   }, []);
   
-
   return (
     <View style={s`flex p-7 bg-coolGray-100 h-full`}>
       {/* Profile Info */}
@@ -101,5 +83,4 @@ function MyGotchiScreen({ navigation }: Props) {
     </View>
   );
 }
-
 export default MyGotchiScreen;

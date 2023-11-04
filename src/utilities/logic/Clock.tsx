@@ -9,19 +9,13 @@ export class Clock
         this.sec = 0;
         this.observers = [];
         this.interval = null;
-        /*
-        this.startClock = this.startClock.bind(this); // Bind the method to the current instance
-        this.interval = setInterval(this.startClock, 1000);
-        */
     }
-
     public tickClock(): void 
     {
         this.sec++;
         console.log(`Clock Pulse second: ${this.sec}`);
         this.notifyObservers(); //push update event to update bloodvalue
     }
-
     public startClock(): void
     {
         if(this.interval === null)
