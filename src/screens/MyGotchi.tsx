@@ -9,6 +9,7 @@ import HeartRate from '../components/MyGotchiComponents/HeartRate';
 import {GUIController} from '../utilities/logic/GUIController';
 import { ScenarioController } from '../utilities/logic/ScenarioController';
 import {Storage} from '../utilities/data/Storage';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -25,7 +26,8 @@ const water = '2 L';
 function MyGotchiScreen({ navigation }: Props) {
   const [bloodSugar, setBloodSugar] = useState(''); // Default value
   const route = useRoute();
-  const controller = route.params.controller;
+  const controller = useScenarioController();
+  //const guiController = controller.getGUIController();
   const guiController = controller.getGUIController();
 
     const updateBloodSugar = (newBloodSugar: string) => {

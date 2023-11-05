@@ -36,4 +36,8 @@ export class ScenarioController
     {
         return this.GUIController;
     }
+    public getStorage()
+    {
+        return this.storage;
+    }
 }

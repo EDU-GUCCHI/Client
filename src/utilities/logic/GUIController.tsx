@@ -24,8 +24,7 @@ export class GUIController {
       }
     };
   }
-  // Notify subscribers about changes in bloodSugar
-  private notifySubscribers(newBloodSugar: string) {
+  private notifySubscribers(newBloodSugar: string) { // Notify subscribers about changes in bloodSugar
     this.bloodSugarSubscribers.forEach((callback) => {
       callback(newBloodSugar);
     });

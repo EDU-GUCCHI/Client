@@ -10,6 +10,7 @@ import Title from '../components/Title';
 import InputField from '../components/InputField';
 import LgButton from '../components/LgButton';
 import ViewContainer from '../components/ViewContainer';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 
 type RootStackParamList = {
   Home: undefined;
@@ -44,8 +45,7 @@ function CreateGotchiScreen({navigation}: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
 
-  const route = useRoute();
-  const controller = route.params.controller;
+  const controller = useScenarioController();
 
   return (
     <>
