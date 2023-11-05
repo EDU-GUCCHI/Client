@@ -20,16 +20,14 @@ export class IntervallHandler
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example increment for now!
-        console.log("BloodSugar: " + this.result);
+        //console.log("BloodSugar: " + this.result); // for debugging
         this.result = this.bloodValue += this.factor / 2;
         this.person.bloodValue = this.result;
     }
     public update(): void // updates done every pulse
     {
         this.incrementFormula();
-        // check if any thresholds are crossed
-        // call GUI controller and update Relevant GUI Values
-        this.GUIController.UpdateBloodSugar;
+        this.GUIController.setBloodSugar(this.bloodValue);
     }
     getBloodValueTest(): number 
     {

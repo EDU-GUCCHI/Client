@@ -5,13 +5,29 @@ import { Storage } from "../data/Storage";
 export class GUIController {
   private storage: Storage;
   private person: Gotchi;
-
+  private bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
+  
   public constructor(storage: Storage) {
     this.storage = storage;
     this.person = this.storage.getPerson();
   }
-  public UpdateBloodSugar(updateBloodSugarCallback: (value: string) => void) {
-    const newBloodSugarValue = this.person.bloodValue.toString();
-    updateBloodSugarCallback(newBloodSugarValue);
+  setBloodSugar(newBloodSugar: number) {
+    this.person.bloodValue = newBloodSugar;
+    this.notifySubscribers(newBloodSugar.toString());
+  }
+  subscribeToBloodSugar(callback: (newBloodSugar: string) => void) {
+    this.bloodSugarSubscribers.push(callback);
+    return () => {
+      const index = this.bloodSugarSubscribers.indexOf(callback);
+      if (index !== -1) {
+        this.bloodSugarSubscribers.splice(index, 1);
+      }
+    };
+  }
+  // Notify subscribers about changes in bloodSugar
+  private notifySubscribers(newBloodSugar: string) {
+    this.bloodSugarSubscribers.forEach((callback) => {
+      callback(newBloodSugar);
+    });
   }
 }

@@ -23,19 +23,20 @@ type Props = {
 const water = '2 L';
 
 function MyGotchiScreen({ navigation }: Props) {
-  const [bloodSugar, setBloodSugar] = useState('0'); // Default value
+  const [bloodSugar, setBloodSugar] = useState(''); // Default value
   const route = useRoute();
   const controller = route.params.controller;
   const guiController = controller.getGUIController();
 
-  useEffect(() => { // callback function to update bloodvalue through gui controller  
-    const updateBloodSugarCallback = (newBloodSugar: string) => {
+    const updateBloodSugar = (newBloodSugar: string) => {
       setBloodSugar(newBloodSugar);
     };
-    guiController.UpdateBloodSugar(updateBloodSugarCallback);
-    return () => {
-    };
-  }, []);
+    useEffect(() => {
+      const unsubscribe = guiController.subscribeToBloodSugar(updateBloodSugar);
+      return () => {
+        unsubscribe();
+      };
+    }, []);
   
   return (
     <View style={s`flex p-7 bg-coolGray-100 h-full`}>

@@ -15,7 +15,7 @@ export class ScenarioController
     // flow of program here:
     public constructor()
     {
-        console.log("Controller: Created")
+        console.log("Controller: Created");
         // instantiate classes
         this.storage = new Storage();
         this.GUIController = new GUIController(this.storage);
@@ -25,7 +25,7 @@ export class ScenarioController
     }
     public initialize()
     {
-        console.log("Controller: Runs")
+        console.log("Controller: Runs");
         // app flow
         this.clock.addObserver(this.intervalHandler);
         this.storage.setBloodSugarFactor(this.formulaGenerator.generateFormula(this.storage.getPerson()));

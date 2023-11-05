@@ -1,19 +1,19 @@
 //subject
 export class Clock
 {
-    private sec: number
+    //private sec: number
     interval: NodeJS.Timeout | null;
     observers: never[];
     public constructor()
     {
-        this.sec = 0;
+        //this.sec = 0;
         this.observers = [];
         this.interval = null;
     }
     public tickClock(): void 
     {
-        this.sec++;
-        console.log(`Clock Pulse second: ${this.sec}`);
+        //this.sec++;
+        //console.log(`Clock Pulse second: ${this.sec}`); // for debugging
         this.notifyObservers(); //push update event to update bloodvalue
     }
     public startClock(): void
