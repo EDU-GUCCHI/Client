@@ -11,6 +11,7 @@ import MyDayScreen from './src/screens/MyDay';
 import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
 import AnswerEventScreen from './src/screens/AnswerEvent';
+import { ScenarioControllerProvider } from './src/components/ScenarioControllerContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
+      <ScenarioControllerProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="TutorialScreen">
           <Stack.Screen
@@ -63,6 +65,7 @@ export default class App extends Component<Props> {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </ScenarioControllerProvider>
     );
   }
 }

@@ -1,4 +1,5 @@
 import { Gotchi } from "../data/Gotchi";
+import { GUIController } from "./GUIController";
 
 export class IntervallHandler
 {
@@ -6,25 +7,27 @@ export class IntervallHandler
     private factor: number;
     private result: number;
     private person: Gotchi;
-    public constructor(person: Gotchi)
+    private GUIController: GUIController;
+
+    public constructor(person: Gotchi, GUIController: GUIController)
     {
         this.person = person;
         this.bloodValue = person.bloodValue;
+        this.GUIController = GUIController;
         this.factor = 0;
         this.result = this.bloodValue;
-    }
-    public update(): void // updates done every pulse
-    {
-        this.incrementFormula();
-        // check if any thresholds are crossed
-        // call GUI controller and update Relevant GUI Values
     }
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example increment for now!
-        console.log("BloodSugar: " + this.result);
+        //console.log("BloodSugar: " + this.result); // for debugging
         this.result = this.bloodValue += this.factor / 2;
         this.person.bloodValue = this.result;
+    }
+    public update(): void // updates done every pulse
+    {
+        this.incrementFormula();
+        this.GUIController.setBloodSugar(this.bloodValue);
     }
     getBloodValueTest(): number 
     {

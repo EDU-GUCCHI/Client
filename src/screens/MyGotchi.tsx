@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
 import {StyleSheet} from 'react-native';
-//import { GUIController } from '../utilities/logic/GUIController';
+import { useRoute } from '@react-navigation/native';
 
-import HeartRate from '../components/MyGotchiComponents/HeartRate'
+import HeartRate from '../components/MyGotchiComponents/HeartRate';
+import {GUIController} from '../utilities/logic/GUIController';
+import { ScenarioController } from '../utilities/logic/ScenarioController';
+import {Storage} from '../utilities/data/Storage';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -17,12 +21,25 @@ type Props = {
   navigation: NavigationProp;
 };
 
-const bpm = '130' // get bpm
+const water = '2 L';
 
-function MyDayScreen({navigation}: Props) {
+function MyGotchiScreen({ navigation }: Props) {
+  const [bloodSugar, setBloodSugar] = useState(''); // Default value
+  const route = useRoute();
+  const controller = useScenarioController();
+  //const guiController = controller.getGUIController();
+  const guiController = controller.getGUIController();
 
-  const [bpmText, setBpmText] = useState('0');
-
+    const updateBloodSugar = (newBloodSugar: string) => {
+      setBloodSugar(newBloodSugar);
+    };
+    useEffect(() => {
+      const unsubscribe = guiController.subscribeToBloodSugar(updateBloodSugar);
+      return () => {
+        unsubscribe();
+      };
+    }, []);
+  
   return (
     <View style={s`flex p-7 bg-coolGray-100 h-full`}>
       {/* Profile Info */}
@@ -39,13 +56,9 @@ function MyDayScreen({navigation}: Props) {
       </View>
       {/* Stats */}
       <View style={s`flex-row justify-between`}>
+        <HeartRate bpmText={bloodSugar} icon="🩸" />
 
-        <HeartRate bpmText={bpm} />
-        
-        <View style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}>
-          <Text style={s`text-black text-3xl`}>480 kcal</Text>
-          <Text style={s`text-black pt-4 text-4xl text-center`}>🏃‍♂️</Text>
-        </View>
+        <HeartRate bpmText={water} icon="🕑" />
       </View>
       <View style={s`flex-row justify-between`}>
         <View style={s`flex-1 bg-pink-300 p-5 m-2.5 rounded-lg`}>
@@ -73,5 +86,4 @@ function MyDayScreen({navigation}: Props) {
     </View>
   );
 }
-
-export default MyDayScreen;
+export default MyGotchiScreen;

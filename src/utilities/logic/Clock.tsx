@@ -1,27 +1,37 @@
 //subject
 export class Clock
 {
-    private sec: number
-    interval: NodeJS.Timeout;
+    //private sec: number
+    interval: NodeJS.Timeout | null;
     observers: never[];
     public constructor()
     {
-        this.sec = 0;
-        this.startClock = this.startClock.bind(this); // Bind the method to the current instance
-        this.interval = setInterval(this.startClock, 1000);
+        //this.sec = 0;
         this.observers = [];
+        this.interval = null;
+    }
+    public tickClock(): void 
+    {
+        //this.sec++;
+        //console.log(`Clock Pulse second: ${this.sec}`); // for debugging
+        this.notifyObservers(); //push update event to update bloodvalue
     }
     public startClock(): void
     {
-        this.sec++;
-        console.log(`Clock Pulse second: ${this.sec}`);
-        this.notifyObservers(); //push update event to update bloodvalue
+        if(this.interval === null)
+        {
+            this.interval = setInterval(this.tickClock.bind(this), 1000);
+        }
     }
     public stopClock(): void
     {
-        console.log("pulse stopped!");
-        clearInterval(this.interval)
-        this.removeAllObservers();
+        if(this.interval !== null)
+        {
+            console.log("pulse stopped!");
+            clearInterval(this.interval)
+            this.interval = null;
+            this.removeAllObservers();
+        }
     }
     public addObserver(observer): void 
     {
