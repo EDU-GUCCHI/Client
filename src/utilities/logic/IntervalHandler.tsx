@@ -5,7 +5,6 @@ export class IntervallHandler
 {
     private bloodValue: number;
     private factor: number;
-    private result: number;
     private person: Gotchi;
     private GUIController: GUIController;
 
@@ -15,14 +14,13 @@ export class IntervallHandler
         this.bloodValue = person.bloodValue;
         this.GUIController = GUIController;
         this.factor = 0;
-        this.result = this.bloodValue;
     }
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example increment for now!
         //console.log("BloodSugar: " + this.result); // for debugging
-        this.result = this.bloodValue += this.factor / 2;
-        this.person.bloodValue = this.result;
+        this.bloodValue += this.factor / 2;
+        this.person.bloodValue = this.bloodValue;
     }
     public update(): void // updates done every pulse
     {
