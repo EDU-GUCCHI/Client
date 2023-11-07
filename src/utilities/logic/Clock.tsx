@@ -1,13 +1,10 @@
-//subject
 export class Clock
 {
-    //private sec: number
     interval: NodeJS.Timeout | null;
     private _observers: any[] = [];
     
     public constructor()
     {
-        //this.sec = 0;
         this._observers = [];
         this.interval = null;
     }

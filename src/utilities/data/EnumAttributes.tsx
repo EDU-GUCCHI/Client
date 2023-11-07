@@ -1,5 +1,4 @@
 //assigned values are the factor for the given enum. Used to generate formula 
-
 export enum EatingHabit
 {
     CONSISTENT = 2,

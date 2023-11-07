@@ -1,8 +1,8 @@
-import {Storage} from '../data/Storage';
-import {Clock} from './Clock';
-import {FormulaGenerator} from './FormulaGenerator';
-import {GUIController} from './GUIController';
-import {IntervallHandler} from './IntervalHandler';
+import { Storage } from '../data/Storage';
+import { Clock } from './Clock';
+import { FormulaGenerator } from './FormulaGenerator';
+import { GUIController } from './GUIController';
+import { IntervallHandler } from './IntervalHandler';
 
 export class ScenarioController
 {
@@ -23,6 +23,7 @@ export class ScenarioController
         this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController);
         this._clock = new Clock();
     }
+
     public initialize()
     {
         console.log("Controller: Runs");
@@ -32,6 +33,12 @@ export class ScenarioController
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
         this._clock.startClock(); // start clock pulse
     }
+    public terminate()
+    {
+        console.log("Controller: Terminates");
+        this._clock.stopClock();
+    }
+
     get GUIController(): GUIController 
     {
         return this._GUIController;

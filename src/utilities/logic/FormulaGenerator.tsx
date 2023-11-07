@@ -1,19 +1,9 @@
 import { Gotchi } from "../data/Gotchi";
-import {
-    Gender,
-    EatingHabit,
-    Exercise,
-    Weight,
-    AlcoholHabit,
-    SmokingHabit,
-    Illness,
-  } from '../data/EnumAttributes';
 
 export class FormulaGenerator
 {
-    public constructor()
-    {
-    }
+    public constructor(){}
+
     public generateFormula(person: Gotchi): number
     {
         let sum = 0;

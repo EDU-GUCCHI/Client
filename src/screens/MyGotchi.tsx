@@ -18,8 +18,8 @@ type Props = {
 const water = '2 L';
 
 function MyGotchiScreen({ navigation }: Props) {
-  const controller = useScenarioController();
-  const [bloodSugar, setBloodSugar] = useState(controller.storage.person.bloodValue); // Default value
+  const controller = useScenarioController(); // retreive Controller instance
+  const [bloodSugar, setBloodSugar] = useState(controller.storage.person.bloodValue.toString()); // Default value
   const guiController = controller.GUIController;
 
     const updateBloodSugar = (newBloodSugar: string) => {

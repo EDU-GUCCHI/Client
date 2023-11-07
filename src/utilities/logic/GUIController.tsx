@@ -1,8 +1,7 @@
-// responsibility of fetching/storing and displaying data in GUI
 import { Gotchi } from "../data/Gotchi";
 import { Storage } from "../data/Storage";
 
-export class GUIController {
+export class GUIController { // responsibility of fetching/storing and displaying data in GUI
   private _storage: Storage;
     private _person: Gotchi;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
