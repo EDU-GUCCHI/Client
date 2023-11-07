@@ -17,19 +17,20 @@ export class Storage
         //this.person = gotchi;
     }
     // getters-setters here
-    get person(): Gotchi {
+    get person(): Gotchi 
+    {
         return this._person;
     }
-
-    set person(newPerson: Gotchi) {
+    set person(newPerson: Gotchi) 
+    {
         this._person = newPerson;
     }
-
-    get bloodSugarFactor(): number {
+    get bloodSugarFactor(): number 
+    {
         return this._bloodSugarFactor;
     }
-
-    set bloodSugarFactor(factor: number) {
+    set bloodSugarFactor(factor: number) 
+    {
         this._bloodSugarFactor = factor;
     }
 }

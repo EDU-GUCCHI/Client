@@ -27,16 +27,20 @@ export class IntervallHandler
         this.incrementFormula();
         this._GUIController.setBloodSugar(this._bloodValue);
     }
-    get bloodValue(): number {
+    get bloodValue(): number 
+    {
         return this._bloodValue;
     }
-    set bloodValue(value: number) {
+    set bloodValue(value: number) 
+    {
         this._bloodValue = value;
     }
-    get factor(): number {
+    get factor(): number 
+    {
         return this._factor;
     }
-    set factor(value: number) {
+    set factor(value: number) 
+    {
         this._factor = value;
     }
 }

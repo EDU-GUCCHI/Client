@@ -32,11 +32,12 @@ export class ScenarioController
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
         this._clock.startClock(); // start clock pulse
     }
-    get GUIController(): GUIController {
+    get GUIController(): GUIController 
+    {
         return this._GUIController;
     }
-
-    get storage(): Storage {
+    get storage(): Storage 
+    {
         return this._storage;
     }
 }

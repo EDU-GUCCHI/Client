@@ -31,13 +31,16 @@ export class GUIController {
         });
     }
 
-    get storage(): Storage {
+    get storage(): Storage 
+    {
         return this._storage;
     }
-    get person(): Gotchi {
+    get person(): Gotchi 
+    {
         return this._person;
     }
-    get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] {
+    get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] 
+    {
         return this._bloodSugarSubscribers;
     }
 }
