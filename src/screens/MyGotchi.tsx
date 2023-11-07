@@ -2,13 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
-import {StyleSheet} from 'react-native';
-import { useRoute } from '@react-navigation/native';
-
 import HeartRate from '../components/MyGotchiComponents/HeartRate';
-import {GUIController} from '../utilities/logic/GUIController';
-import { ScenarioController } from '../utilities/logic/ScenarioController';
-import {Storage} from '../utilities/data/Storage';
 import { useScenarioController } from '../components/ScenarioControllerContext';
 
 type RootStackParamList = {
@@ -25,8 +19,8 @@ const water = '2 L';
 
 function MyGotchiScreen({ navigation }: Props) {
   const controller = useScenarioController();
-  const [bloodSugar, setBloodSugar] = useState(controller.getStorage().getPerson().bloodValue); // Default value
-  const guiController = controller.getGUIController();
+  const [bloodSugar, setBloodSugar] = useState(controller.storage.person.bloodValue); // Default value
+  const guiController = controller.GUIController;
 
     const updateBloodSugar = (newBloodSugar: string) => {
       setBloodSugar(newBloodSugar);

@@ -3,30 +3,41 @@ import { Gotchi } from "../data/Gotchi";
 import { Storage } from "../data/Storage";
 
 export class GUIController {
-  private storage: Storage;
-  private person: Gotchi;
-  private bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
-  
-  public constructor(storage: Storage) {
-    this.storage = storage;
-    this.person = this.storage.getPerson();
-  }
-  setBloodSugar(newBloodSugar: number) {
-    this.person.bloodValue = newBloodSugar;
-    this.notifySubscribers(newBloodSugar.toString());
-  }
-  subscribeToBloodSugar(callback: (newBloodSugar: string) => void) {
-    this.bloodSugarSubscribers.push(callback);
-    return () => {
-      const index = this.bloodSugarSubscribers.indexOf(callback);
-      if (index !== -1) {
-        this.bloodSugarSubscribers.splice(index, 1);
-      }
-    };
-  }
-  private notifySubscribers(newBloodSugar: string) { // Notify subscribers about changes in bloodSugar
-    this.bloodSugarSubscribers.forEach((callback) => {
-      callback(newBloodSugar);
-    });
-  }
+  private _storage: Storage;
+    private _person: Gotchi;
+    private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
+
+    constructor(storage: Storage) {
+        this._storage = storage;
+        this._person = this._storage.person;
+    }
+
+    setBloodSugar(newBloodSugar: number) {
+        this._person.bloodValue = newBloodSugar;
+        this.notifySubscribers(newBloodSugar.toString());
+    }
+    subscribeToBloodSugar(callback: (newBloodSugar: string) => void) {
+        this._bloodSugarSubscribers.push(callback);
+        return () => {
+            const index = this._bloodSugarSubscribers.indexOf(callback);
+            if (index !== -1) {
+                this._bloodSugarSubscribers.splice(index, 1);
+            }
+        };
+    }
+    private notifySubscribers(newBloodSugar: string) {
+        this._bloodSugarSubscribers.forEach((callback) => {
+            callback(newBloodSugar);
+        });
+    }
+
+    get storage(): Storage {
+        return this._storage;
+    }
+    get person(): Gotchi {
+        return this._person;
+    }
+    get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] {
+        return this._bloodSugarSubscribers;
+    }
 }

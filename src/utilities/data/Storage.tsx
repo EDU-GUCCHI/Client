@@ -5,32 +5,31 @@ import { newGotchi } from './GotchiRandomizer';
 export class Storage
 {
     // store/initialize all data storage classes here, ex: Gotchi
-    private person: Gotchi;
-    private bloodSugarFactor: number;
+    private _person: Gotchi;
+    private _bloodSugarFactor: number;
 
     public constructor()
     {
-        this.person = newGotchi("subject");
+        this._person = newGotchi("subject");
+        this._bloodSugarFactor = 0.0;
 
         //console.log("> Gotchi Created" + this.person.stringRepresentation());
         //this.person = gotchi;
-        this.bloodSugarFactor = 0.0;
     }
     // getters-setters here
-    getPerson(): Gotchi 
-    {
-        return this.person;
+    get person(): Gotchi {
+        return this._person;
     }
-    setPerson(newPerson: Gotchi) 
-    {
-        this.person = newPerson;
+
+    set person(newPerson: Gotchi) {
+        this._person = newPerson;
     }
-    getBloodSugarFactor(): number
-    {
-        return this.bloodSugarFactor;
+
+    get bloodSugarFactor(): number {
+        return this._bloodSugarFactor;
     }
-    setBloodSugarFactor(factor: number)
-    {
-        this.bloodSugarFactor = factor;
+
+    set bloodSugarFactor(factor: number) {
+        this._bloodSugarFactor = factor;
     }
 }

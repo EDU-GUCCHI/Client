@@ -3,50 +3,54 @@ export class Clock
 {
     //private sec: number
     interval: NodeJS.Timeout | null;
-    observers: never[];
+    private _observers: any[] = [];
     public constructor()
     {
         //this.sec = 0;
-        this.observers = [];
+        this._observers = [];
         this.interval = null;
     }
+    
     public tickClock(): void 
     {
-        //this.sec++;
-        //console.log(`Clock Pulse second: ${this.sec}`); // for debugging
         this.notifyObservers(); //push update event to update bloodvalue
     }
     public startClock(): void
     {
-        if(this.interval === null)
+        if (this.interval === null) 
         {
             this.interval = setInterval(this.tickClock.bind(this), 1000);
         }
     }
     public stopClock(): void
     {
-        if(this.interval !== null)
+        if (this.interval !== null) 
         {
             console.log("pulse stopped!");
-            clearInterval(this.interval)
+            clearInterval(this.interval);
             this.interval = null;
             this.removeAllObservers();
         }
     }
-    public addObserver(observer): void 
+    addObserver(observer: any): void 
     {
-        this.observers.push(observer);
+        this._observers.push(observer);
     }
-    public removeObserver(observer): void
+    removeObserver(observer: any): void 
     {
-        this.observers = this.observers.filter(obs => obs !== observer);
+        this._observers = this._observers.filter((obs) => obs !== observer);
     }
     removeAllObservers() 
     {
-        this.observers = [];
+        this._observers = [];
     }
-    public notifyObservers(): void
+    private notifyObservers(): void 
     {
-        this.observers.forEach(observer => observer.update());
+        this._observers.forEach((observer) => observer.update());
+    }
+
+    get observers(): any[] 
+    {
+        return this._observers;
     }
 }

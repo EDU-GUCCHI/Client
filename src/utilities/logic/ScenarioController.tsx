@@ -7,37 +7,36 @@ import {IntervallHandler} from './IntervalHandler';
 export class ScenarioController
 {
     // has logic classes and access to stored data
-    private formulaGenerator: FormulaGenerator;
-    private storage: Storage;
-    private clock: Clock;
-    private intervalHandler: IntervallHandler;
-    private GUIController: GUIController;
+    private _formulaGenerator: FormulaGenerator;
+    private _storage: Storage;
+    private _clock: Clock;
+    private _intervalHandler: IntervallHandler;
+    private _GUIController: GUIController;
     // flow of program here:
     public constructor()
     {
         console.log("Controller: Created");
         // instantiate classes
-        this.storage = new Storage();
-        this.GUIController = new GUIController(this.storage);
-        this.formulaGenerator = new FormulaGenerator();
-        this.intervalHandler = new IntervallHandler(this.storage.getPerson(), this.GUIController);
-        this.clock = new Clock();
+        this._storage = new Storage();
+        this._GUIController = new GUIController(this._storage);
+        this._formulaGenerator = new FormulaGenerator();
+        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController);
+        this._clock = new Clock();
     }
     public initialize()
     {
         console.log("Controller: Runs");
         // app flow
-        this.clock.addObserver(this.intervalHandler);
-        this.storage.setBloodSugarFactor(this.formulaGenerator.generateFormula(this.storage.getPerson()));
-        this.intervalHandler.setFactor(this.storage.getBloodSugarFactor());
-        this.clock.startClock(); // start clock pulse
+        this._clock.addObserver(this._intervalHandler);
+        this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
+        this._intervalHandler.factor = this._storage.bloodSugarFactor;
+        this._clock.startClock(); // start clock pulse
     }
-    public getGUIController()
-    {
-        return this.GUIController;
+    get GUIController(): GUIController {
+        return this._GUIController;
     }
-    public getStorage()
-    {
-        return this.storage;
+
+    get storage(): Storage {
+        return this._storage;
     }
 }

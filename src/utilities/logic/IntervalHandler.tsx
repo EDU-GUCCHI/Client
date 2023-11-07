@@ -3,44 +3,40 @@ import { GUIController } from "./GUIController";
 
 export class IntervallHandler
 {
-    private bloodValue: number;
-    private factor: number;
-    private person: Gotchi;
-    private GUIController: GUIController;
+    private _bloodValue: number;
+    private _factor: number;
+    private _person: Gotchi;
+    private _GUIController: GUIController;
 
     public constructor(person: Gotchi, GUIController: GUIController)
     {
-        this.person = person;
-        this.bloodValue = person.bloodValue;
-        this.GUIController = GUIController;
-        this.factor = 0;
+        this._person = person;
+        this._bloodValue = person.bloodValue;
+        this._GUIController = GUIController;
+        this._factor = 0;
     }
     public incrementFormula(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example increment for now!
         //console.log("BloodSugar: " + this.result); // for debugging
-        this.bloodValue += this.factor / 2;
-        this.person.bloodValue = this.bloodValue;
+        this._bloodValue += this._factor / 2;
+        this._person.bloodValue = this._bloodValue;
     }
     public update(): void // updates done every pulse
     {
         this.incrementFormula();
-        this.GUIController.setBloodSugar(this.bloodValue);
+        this._GUIController.setBloodSugar(this._bloodValue);
     }
-    getBloodValueTest(): number 
-    {
-        return this.bloodValue;
+    get bloodValue(): number {
+        return this._bloodValue;
     }
-    setBloodValueTest(value: number) 
-    {
-        this.bloodValue = value;
+    set bloodValue(value: number) {
+        this._bloodValue = value;
     }
-    getFactor(): number 
-    {
-        return this.factor;
+    get factor(): number {
+        return this._factor;
     }
-    setFactor(value: number) 
-    {
-        this.factor = value;
+    set factor(value: number) {
+        this._factor = value;
     }
 }
