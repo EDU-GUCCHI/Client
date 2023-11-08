@@ -43,34 +43,23 @@ function MyDayScreen({navigation}: Props) {
           navigation={navigation}
           eventTime={events.time}
           eventTitle={events.title}
-          colors={['#F6F1E8', '#66CEFF']}
-          locations={[0.8, 0.2]}
+          colors={['#85b0f1', '#F6F1E8', '#F6F1E8']}
+          locations={[0, 0.3, 0.45]}
           useAngle={true}
-          angle={25}
-          angleCenter={{x: 0.5, y: 1}}
+          angle={35}
+          angleCenter={{x: 1, y: 1}}
         />
 
-  <MyDayEvent
+        <MyDayEvent
           navigation={navigation}
           eventTime={events.time}
           eventTitle={events.title}
-          colors={['#F6F1E8', '#66CEFF']}
-          locations={[0.8, 0.2]}
+          colors={['#85b0f1', '#F6F1E8', '#F6F1E8']}
+          locations={[0, 0.3, 0.45]}
           useAngle={true}
-          angle={25}
-          angleCenter={{x: 0.5, y: 1}}
-        />
-
-  <MyDayEvent
-          navigation={navigation}
-          eventTime={events.time}
-          eventTitle={events.title}
-          colors={['#F6F1E8', '#66CEFF']}
-          locations={[0.8, 0.2]}
-          useAngle={true}
-          angle={25}
-          angleCenter={{x: 0.5, y: 1}}
-        />
+          angle={35}
+          angleCenter={{x: 1, y: 1}}
+        />  
       </ScrollView>
     </ViewContainer>
   );
