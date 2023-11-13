@@ -6,6 +6,7 @@ export class Storage
     // store/initialize all data storage classes here, ex: Gotchi
     private _person: Gotchi;
     private _bloodSugarFactor: number;
+    //add attr. for storing Events. Array/map?. Store pre-defined events or store triggered events or both?
 
     public constructor()
     {
