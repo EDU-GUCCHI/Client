@@ -49,7 +49,7 @@ function CreateGotchiScreen({navigation}: Props) {
 
   return (
     <>
-      <ViewContainer>
+      <ViewContainer style={s`items-center justify-center h-full`}>
         <Title text="Create new EDU-GOTCHI" />
         <InputField
           placeholder="Name your gotchi..."
@@ -80,7 +80,7 @@ function CreateGotchiScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0.3}}
           onPress={() => {
             navigation.navigate('Home');
-          controller.run(); // start controller flow
+            controller.run(); // start controller flow
           }}
         />
       </ViewContainer>

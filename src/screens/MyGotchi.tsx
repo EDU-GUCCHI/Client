@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
-import HeartRate from '../components/MyGotchiComponents/HeartRate';
-import { useScenarioController } from '../components/ScenarioControllerContext';
+import MyGotchiStatus from '../components/MyGotchiComponents/MyGotchiStatus';
+import {useScenarioController} from '../components/ScenarioControllerContext';
+import ViewContainer from '../components/ViewContainer';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -16,24 +17,29 @@ type Props = {
 };
 
 const water = '2 L';
+const heartRate = '80 bpm';
+const sleep = '8h 24m';
 
-function MyGotchiScreen({ navigation }: Props) {
+function MyGotchiScreen({navigation}: Props) {
   const controller = useScenarioController(); // retreive Controller instance
-  const [bloodSugar, setBloodSugar] = useState(controller.storage.person.bloodValue.toString()); // Default value
+  const [bloodSugar, setBloodSugar] = useState(
+    controller.storage.person.bloodValue.toString(),
+  ); // Default value
   const guiController = controller.GUIController;
 
-    const updateBloodSugar = (newBloodSugar: string) => {
-      setBloodSugar(newBloodSugar);
+  const updateBloodSugar = (newBloodSugar: string) => {
+    setBloodSugar(newBloodSugar);
+  };
+
+  useEffect(() => {
+    const unsubscribe = guiController.subscribeToBloodSugar(updateBloodSugar);
+    return () => {
+      unsubscribe();
     };
-    useEffect(() => {
-      const unsubscribe = guiController.subscribeToBloodSugar(updateBloodSugar);
-      return () => {
-        unsubscribe();
-      };
-    }, []);
-  
+  }, []);
+
   return (
-    <View style={s`flex p-7 bg-coolGray-100 h-full`}>
+    <ViewContainer style={s`items-center justify-start h-full px-5 py-2`}>
       {/* Profile Info */}
       <View style={s`items-center my-5`}>
         <View style={s`bg-cyan-300 p-5 rounded-full`}>
@@ -47,20 +53,30 @@ function MyGotchiScreen({ navigation }: Props) {
         </Text>
       </View>
       {/* Stats */}
-      <View style={s`flex-row justify-between`}>
-        <HeartRate bpmText={bloodSugar} icon="🩸" />
 
-        <HeartRate bpmText={water} icon="🕑" />
+      <View style={s`flex-row justify-between`}>
+        <MyGotchiStatus
+          style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}
+          statusText={bloodSugar}
+          statusIcon="🩸"
+        />
+        <MyGotchiStatus
+          style={s`flex-1 bg-emerald-300 p-5 m-2.5 rounded-lg`}
+          statusText={heartRate}
+          statusIcon="💓"
+        />
       </View>
       <View style={s`flex-row justify-between`}>
-        <View style={s`flex-1 bg-pink-300 p-5 m-2.5 rounded-lg`}>
-          <Text style={s`text-black text-3xl`}>1,7 L</Text>
-          <Text style={s`text-black pt-4 text-4xl text-center`}>💧</Text>
-        </View>
-        <View style={s`flex-1 bg-gray-300 p-5 m-2.5 rounded-lg`}>
-          <Text style={s`text-black text-3xl`}>8h 24m</Text>
-          <Text style={s`text-black pt-4 text-4xl text-center`}>🛌</Text>
-        </View>
+        <MyGotchiStatus
+          style={s`flex-1 bg-pink-300 p-5 m-2.5 rounded-lg`}
+          statusText={water}
+          statusIcon="💧"
+        />
+        <MyGotchiStatus
+          style={s`flex-1 bg-gray-300 p-5 m-2.5 rounded-lg`}
+          statusText={sleep}
+          statusIcon="🛌"
+        />
       </View>
 
       {/* Footer */}
@@ -75,7 +91,7 @@ function MyGotchiScreen({ navigation }: Props) {
           <Text style={s`text-white`}>Profile</Text>
         </TouchableOpacity>
       </View> */}
-    </View>
+    </ViewContainer>
   );
 }
 export default MyGotchiScreen;
