@@ -3,6 +3,7 @@ import { Clock } from './Clock';
 import { FormulaGenerator } from './FormulaGenerator';
 import { GUIController } from './GUIController';
 import { IntervallHandler } from './IntervalHandler';
+import { NotificationDispatcher } from './NotificationDispatcher';
 
 export class ScenarioController
 {
@@ -12,6 +13,7 @@ export class ScenarioController
     private _clock: Clock;
     private _intervalHandler: IntervallHandler;
     private _GUIController: GUIController;
+    private _notificationDispatcher: NotificationDispatcher
     // flow of program here:
     public constructor()
     {
@@ -20,11 +22,12 @@ export class ScenarioController
         this._storage = new Storage();
         this._GUIController = new GUIController(this._storage);
         this._formulaGenerator = new FormulaGenerator();
-        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController);
+        this._notificationDispatcher = new NotificationDispatcher();
+        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher);
         this._clock = new Clock();
     }
 
-    public initialize()
+    public run()
     {
         console.log("Controller: Runs");
         // app flow
