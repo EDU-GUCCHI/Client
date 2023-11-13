@@ -14,9 +14,7 @@ export class eventDispatcher {
         return this._gotchi;
     }
 
-    //Functions to create and dispatch events?
-
-    //param: information needed for event construction
+    //What do we use the AutoType for?
     public createEvent(autoType: AutoType, eventType: EventType, bloodGlucoseChange: number): Event {
         const id = Math.floor(Math.random() * 1000); //Change if we should use IDs to something that will be unique
         const timeStamp = new Date(); //Current date and time
@@ -28,6 +26,8 @@ export class eventDispatcher {
 
     public dispatchEvent(event : Event) {
         //how do we want to dispatch the event?
+        //Send notifications directly from this class OR pass this class and the notifications hook to a screen (or something else) to handle it from there (seperation of concerns)
+
         console.log(event);
     }
 }
