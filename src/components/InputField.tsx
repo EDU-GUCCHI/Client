@@ -25,20 +25,14 @@ const InputField = ({
   angle,
   angleCenter,
 }: InputFieldProps) => (
-  <LinearGradient
-    style={s`w-72 px-3 rounded-md mb-5`}
-    colors={colors}
-    locations={locations}
-    useAngle={useAngle}
-    angle={angle}
-    angleCenter={angleCenter}>
+
     <TextInput
+      style={s`w-72 px-3 rounded-md mb-5 bg-gray-100`}
       placeholderTextColor="#003f5c"
       placeholder={placeholder}
       onChangeText={onChangeText}
       value={value}
     />
-  </LinearGradient>
 );
 
 export default InputField;

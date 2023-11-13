@@ -19,7 +19,7 @@ type Props = {
 
 function TutorialScreen({navigation}: Props) {
   return (
-    <ViewContainer>
+    <ViewContainer style={s`items-center justify-center h-full`}>
       <Title text="Tutorial" />
       <LgButton
         text="Next"

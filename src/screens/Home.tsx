@@ -43,7 +43,7 @@ function HomeScreen({navigation}: Props) {
 
   return (
     <>
-      <ViewContainer>
+      <ViewContainer style={s`items-center justify-center h-full`}>
         <Title text="Welcome to EDU-GOTCHI" />
         <LgButton
           text="My day"
