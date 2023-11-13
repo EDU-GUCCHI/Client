@@ -58,12 +58,16 @@ export class eventDispatcher {
     //Add hardcoded events to use based on int or enum?
     chooseEventSwitch(eventNumber: number) {
         switch(eventNumber){
-            case 1: 
+            case EventType.FOOD_INTAKE: 
                 this.EatingEvent();
                 break;
-            case 2: 
+            case EventType.EXERCISE: 
                 break;
-            case 3: 
+            case EventType.BLOOD_GLUCOSE_WARNING: 
+                break;
+            case EventType.INSULIN_INJECTION:
+                break;
+            case EventType.SLEEP:
                 break;
             default:
                 console.log("Default case");
