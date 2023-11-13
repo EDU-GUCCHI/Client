@@ -1,4 +1,5 @@
 import { Gotchi } from "../data/Gotchi";
+import { Clock } from "./Clock";
 import { GUIController } from "./GUIController";
 import { NotificationDispatcher } from "./NotificationDispatcher";
 
@@ -8,19 +9,21 @@ export class IntervallHandler
     private _factor: number;
     private _person: Gotchi;
     private _GUIController: GUIController;
-    private _notificationDispatcher: NotificationDispatcher
+    private _notificationDispatcher: NotificationDispatcher;
+    private _clock: Clock;
 
     private _warningNotificationSent: Boolean;
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
 
-    public constructor(person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher)
+    public constructor(person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, clock: Clock)
     {
         this._person = person;
         this._bloodValue = person.bloodValue;
         this._GUIController = GUIController;
         this._factor = 0;
         this._notificationDispatcher = notificationDispatcher;
+        this._clock = clock;
 
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
@@ -39,7 +42,6 @@ export class IntervallHandler
         this.resetNotificationFlags();
         this.checkLowerThreshold();
     }
-
     public resetNotificationFlags()
     {
         if(this._bloodValue >= -10)
@@ -55,7 +57,6 @@ export class IntervallHandler
             this._deathNotificationSent = false;
         }
     }
-
     public checkLowerThreshold()
     {
         if(this._bloodValue < -10 && !this._warningNotificationSent) // check if to send notificationwarning
@@ -72,7 +73,8 @@ export class IntervallHandler
         {
             this._notificationDispatcher.SendBloodSugarWarning("blud yor gotchi done died! T_T ");
             this._deathNotificationSent = true;
-            // End scenario when this is triggered
+            console.log("Gotchi: Died :(");
+            this._clock.stopClock(); // End scenario when this is triggered
         }
     }
     
