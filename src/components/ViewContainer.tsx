@@ -1,14 +1,14 @@
 import React, {ReactNode} from 'react';
-import {View} from 'react-native';
-import {s} from 'react-native-wind';
+import { s } from 'react-native-wind';
+import {ViewStyle} from 'react-native';
 import {LinearGradient} from 'react-native-linear-gradient';
-import style from '../styles/style';
 
 type ViewContainerProps = {
   children: ReactNode; // This allows the component to accept children
+  style: ViewStyle;
 };
 
-const ViewContainer = ({children}: ViewContainerProps) => {
+const ViewContainer = ({children, style}: ViewContainerProps) => {
   return (
     <>
       <LinearGradient
@@ -19,7 +19,7 @@ const ViewContainer = ({children}: ViewContainerProps) => {
         useAngle={true}
         angle={35}
         angleCenter={{x: 1, y: 0.5}}
-        style={s`items-center justify-center h-full`}>
+        style={[style as ViewStyle]}>
         {children}
       </LinearGradient>
     </>

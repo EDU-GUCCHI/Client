@@ -13,7 +13,7 @@ export class GUIController { // responsibility of fetching/storing and displayin
 
     setBloodSugar(newBloodSugar: number) {
         this._person.bloodValue = newBloodSugar;
-        this.notifySubscribers(newBloodSugar.toString());
+        this.notifySubscribers(newBloodSugar.toFixed(1).toString());
     }
     subscribeToBloodSugar(callback: (newBloodSugar: string) => void) {
         this._bloodSugarSubscribers.push(callback);
