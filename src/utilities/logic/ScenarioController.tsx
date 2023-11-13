@@ -1,5 +1,6 @@
 import { Storage } from '../data/Storage';
 import { Clock } from './Clock';
+import { EventDispatcher } from './EventDispatcher';
 import { FormulaGenerator } from './FormulaGenerator';
 import { GUIController } from './GUIController';
 import { IntervallHandler } from './IntervalHandler';
@@ -13,7 +14,8 @@ export class ScenarioController
     private _clock: Clock;
     private _intervalHandler: IntervallHandler;
     private _GUIController: GUIController;
-    private _notificationDispatcher: NotificationDispatcher
+    private _notificationDispatcher: NotificationDispatcher;
+    private _eventDispatcher: EventDispatcher;
     // flow of program here:
     public constructor()
     {
@@ -23,8 +25,10 @@ export class ScenarioController
         this._GUIController = new GUIController(this._storage);
         this._formulaGenerator = new FormulaGenerator();
         this._notificationDispatcher = new NotificationDispatcher();
-        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher);
+        this._eventDispatcher = new EventDispatcher(this._storage);
+        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher, this._eventDispatcher);
         this._clock = new Clock();
+        
     }
 
     public run()
@@ -49,5 +53,8 @@ export class ScenarioController
     get storage(): Storage 
     {
         return this._storage;
+    }
+    get eventDispatcher() {
+        return this._eventDispatcher;
     }
 }

@@ -1,21 +1,20 @@
 // sends out Events.
 import {Event} from '../data/Event';
 import { AutoType, EventType } from '../data/EventTypes';
-import { Gotchi } from '../data/Gotchi';
+import { Storage } from '../data/Storage';
 import { UserInteractableEvent } from '../data/UserInteractableEvent';
 
-export class eventDispatcher {
-    //Should it have an instance of gotchi or should that be handled somewehere else?
-    private _gotchi : Gotchi;
+export class EventDispatcher {
+    private _storage : Storage;
     //How do we want to handle ids?
     private _idCounter : number;
 
-    public constructor(gotchi : Gotchi, idCounter : number){
-        this._gotchi = gotchi;
+    public constructor(storage : Storage){
+        this._storage = storage;
         this._idCounter = 0;
     }
-    get gotchi() : Gotchi{
-        return this._gotchi;
+    get storage() {
+        return this._storage;
     }
     get idCounter(){
         return this._idCounter;
@@ -52,6 +51,7 @@ export class eventDispatcher {
         //how do we want to dispatch the event?
 
         //add event to storage
+        this._storage.addTriggeredEvent(event);
         //Send notifications from notificationDispatcher, this class knows nothing
 
         console.log(event);

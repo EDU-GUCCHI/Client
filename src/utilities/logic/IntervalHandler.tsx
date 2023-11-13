@@ -1,4 +1,5 @@
 import { Gotchi } from "../data/Gotchi";
+import { EventDispatcher } from "./EventDispatcher";
 import { GUIController } from "./GUIController";
 import { NotificationDispatcher } from "./NotificationDispatcher";
 
@@ -9,9 +10,10 @@ export class IntervallHandler
     private _person: Gotchi;
     private _GUIController: GUIController;
     private _notificationSent: Boolean;
-    private _notificationDispatcher: NotificationDispatcher
+    private _notificationDispatcher: NotificationDispatcher;
+    private _eventDispatcher: EventDispatcher;
 
-    public constructor(person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher)
+    public constructor(person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher)
     {
         this._person = person;
         this._bloodValue = person.bloodValue;
@@ -19,6 +21,7 @@ export class IntervallHandler
         this._factor = 0;
         this._notificationSent = false;
         this._notificationDispatcher = notificationDispatcher;
+        this._eventDispatcher = eventDispatcher;
     }
     public decreaseBloodSugar(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
