@@ -64,17 +64,17 @@ export class IntervallHandler
     {
         if(this._bloodValue < -10 && !this._warningNotificationSent) // check if to send notificationwarning
         {
-            this._notificationDispatcher.SendBloodSugarWarning("blud yo sugar is: low");
+            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: low");
             this._warningNotificationSent = true;
         }
         else if(this._bloodValue < -20 && !this._criticalWarningSent) 
         {
-            this._notificationDispatcher.SendBloodSugarWarning("blud yo sugar is: Critical!");
+            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: Critical!");
             this._criticalWarningSent = true;
         }
         else if(this._bloodValue < -28 && !this._deathNotificationSent)
         {
-            this._notificationDispatcher.SendBloodSugarWarning("blud yor gotchi done died! T_T ");
+            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar reached a lethal low! your gotchi died! T_T ");
             this._deathNotificationSent = true;
             console.log("Gotchi: Died :(");
             this._clock.stopClock(); // End scenario when this is triggered
