@@ -7,7 +7,7 @@ export class NotificationDispatcher
 {
     public constructor(){}
 
-    public async SendBloodSugarWarning(level: String)
+    public async SendBloodSugarWarning(text: string)
     {
         await notifee.requestPermission();
         // Create a channel (required for Android)
@@ -18,7 +18,7 @@ export class NotificationDispatcher
     });
         // Display a notification
         await notifee.displayNotification({
-        title: 'blud yo sugar is: ' + level,
+        title: text,
         body: 'Take action immediately',
         android: {
           channelId,

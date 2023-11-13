@@ -26,9 +26,8 @@ export class ScenarioController
         this._formulaGenerator = new FormulaGenerator();
         this._notificationDispatcher = new NotificationDispatcher();
         this._eventDispatcher = new EventDispatcher(this._storage);
-        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher, this._eventDispatcher);
         this._clock = new Clock();
-        
+        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher, this._eventDispatcher, this._clock);
     }
 
     public run()
@@ -39,11 +38,6 @@ export class ScenarioController
         this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
         this._clock.startClock(); // start clock pulse
-    }
-    public terminate()
-    {
-        console.log("Controller: Terminates");
-        this._clock.stopClock();
     }
 
     get GUIController(): GUIController 

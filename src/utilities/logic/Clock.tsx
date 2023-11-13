@@ -24,7 +24,7 @@ export class Clock
     {
         if (this.interval !== null) 
         {
-            console.log("pulse stopped!");
+            console.log("interval pulse stopped!");
             clearInterval(this.interval);
             this.interval = null;
             this.removeAllObservers();
