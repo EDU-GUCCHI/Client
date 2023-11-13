@@ -7,6 +7,7 @@ import { UserInteractableEvent } from '../data/UserInteractableEvent';
 export class eventDispatcher {
     //Should it have an instance of gotchi or should that be handled somewehere else?
     private _gotchi : Gotchi;
+    //How do we want to handle ids?
     private _idCounter : number;
 
     public constructor(gotchi : Gotchi, idCounter : number){
@@ -20,7 +21,7 @@ export class eventDispatcher {
         return this._idCounter;
     }
 
-    //What do we use the AutoType for?
+    //Create event with param values, answer values are optional
     public createEvent(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, answerOptions?: [], correctAnswers?: []) {
         const event: Event =
     autoType === AutoType.USER_EVENT
@@ -43,14 +44,15 @@ export class eventDispatcher {
           description
         );
 
-        //Add event to storage if we want to store triggered events
         this.dispatchEvent(event);
         return event;
     }
 
     public dispatchEvent(event : Event) {
         //how do we want to dispatch the event?
-        //Send notifications directly from this class OR pass this class and the notifications hook to a screen (or something else) to handle it from there (seperation of concerns)
+
+        //add event to storage
+        //Send notifications from notificationDispatcher, this class knows nothing
 
         console.log(event);
     }
