@@ -35,7 +35,7 @@ export class IntervallHandler
     public decreaseBloodSugar(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example increment for now!
-        this._bloodValue -= this._factor / 3;
+        this._bloodValue -= (this._factor / 3);
         this._person.bloodValue = this._bloodValue;
     }
     public update(): void // updates done every pulse
@@ -47,32 +47,32 @@ export class IntervallHandler
     }
     public resetNotificationFlags()
     {
-        if(this._bloodValue >= -10)
+        if(this._bloodValue >= 4)
         {
             this._warningNotificationSent = false;
         }
-        if(this._bloodValue >= -20)
+        if(this._bloodValue >= 2)
         {
             this._criticalWarningSent = false;
         }
-        if(this._bloodValue >= -28)
+        if(this._bloodValue >= 1)
         {
             this._deathNotificationSent = false;
         }
     }
     public checkLowerThreshold()
     {
-        if(this._bloodValue < -10 && !this._warningNotificationSent) // check if to send notificationwarning
+        if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
             this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: low");
             this._warningNotificationSent = true;
         }
-        else if(this._bloodValue < -20 && !this._criticalWarningSent) 
+        else if(this._bloodValue < 2 && !this._criticalWarningSent) 
         {
             this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: Critical!");
             this._criticalWarningSent = true;
         }
-        else if(this._bloodValue < -28 && !this._deathNotificationSent)
+        else if(this._bloodValue < 1 && !this._deathNotificationSent)
         {
             this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: lethal \n your gotchi died! T_T ");
             this._deathNotificationSent = true;

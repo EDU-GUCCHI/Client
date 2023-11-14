@@ -39,6 +39,20 @@ export class ScenarioController
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
         this._clock.startClock(); // start clock pulse
     }
+    public terminate()
+    {
+        // end scenario
+        console.log("Controller: Terminated");
+        this._clock.stopClock();
+        //refresh classes for possible new scenario
+        this._storage = new Storage();
+        this._GUIController = new GUIController(this._storage);
+        this._formulaGenerator = new FormulaGenerator();
+        this._notificationDispatcher = new NotificationDispatcher();
+        this._eventDispatcher = new EventDispatcher(this._storage);
+        this._clock = new Clock();
+        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher, this._eventDispatcher, this._clock);
+    }
 
     get GUIController(): GUIController 
     {
