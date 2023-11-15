@@ -16,9 +16,25 @@ export class EventDispatcher {
             this.idCounter,
             AutoType.AUTO_EVENT,
             EventType.NOTHING,
-            new Date(),
+            new Date('2023-11-14T08:00:00.000Z'),
             storage.person.bloodValue,
-            "You started your week!");
+            "BLUDSUGAR LOW");
+        this.createEvent(
+          this.idCounter,
+          AutoType.AUTO_EVENT,
+          EventType.NOTHING,
+          new Date(),
+          storage.person.bloodValue,
+          'You started your week!',
+        );
+        this.createEvent(
+          this.idCounter,
+          AutoType.AUTO_EVENT,
+          EventType.NOTHING,
+          new Date(),
+          storage.person.bloodValue,
+          'You started your week!',
+        );
     }
     get storage() {
         return this._storage;
