@@ -12,10 +12,13 @@ export class EventDispatcher {
     public constructor(storage : Storage){
         this._storage = storage;
         this._idCounter = 0;
-
-        this.chooseEventSwitch(1);
-        storage.eventsJson;
-
+        this.createEvent(
+            this.idCounter,
+            AutoType.AUTO_EVENT,
+            EventType.NOTHING,
+            new Date(),
+            storage.person.bloodValue,
+            "You started your week!");
     }
     get storage() {
         return this._storage;

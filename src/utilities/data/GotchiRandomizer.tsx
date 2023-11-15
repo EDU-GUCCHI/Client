@@ -1,4 +1,4 @@
-import { Gender, EatingHabit, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness } from './EnumAttributes';
+import { Gender, EatingHabit, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness, Age } from './EnumAttributes';
 import { Gotchi } from './Gotchi';
 
 export function newGotchi(name: string): Gotchi {
@@ -15,21 +15,22 @@ export function newGotchi(name: string): Gotchi {
   while(illnesses.size != count) {
     illnesses.add(getRandomEnum(Illness));
   }
-  const chosenIllnesses : Illness[] = Array.from(illnesses);
+  console.log(illnesses);
+  const chosenIllnesses = Array.from(illnesses);
   
   return new Gotchi(
     name,
     getRandomNumber(20, 80),
-    gender,
-    8,
     coinFlip() == 1,
     coinFlip() == 1,
+    getRandomEnum(Age),
     getRandomEnum(EatingHabit),
     getRandomEnum(Exercise),
     getRandomEnum(Weight),
     getRandomEnum(AlcoholHabit),
     getRandomEnum(SmokingHabit),
-    chosenIllnesses,
+    getRandomEnum(Gender),
+    chosenIllnesses
   );
 }
 

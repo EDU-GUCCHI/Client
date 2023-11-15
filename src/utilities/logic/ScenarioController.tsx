@@ -1,3 +1,4 @@
+import { Gotchi } from '../data/Gotchi';
 import { Storage } from '../data/Storage';
 import { Clock } from './Clock';
 import { EventDispatcher } from './EventDispatcher';
@@ -5,6 +6,7 @@ import { FormulaGenerator } from './FormulaGenerator';
 import { GUIController } from './GUIController';
 import { IntervallHandler } from './IntervalHandler';
 import { NotificationDispatcher } from './NotificationDispatcher';
+import { newGotchi } from '../data/GotchiRandomizer';
 
 export class ScenarioController
 {
@@ -38,6 +40,20 @@ export class ScenarioController
         this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
         this._clock.startClock(); // start clock pulse
+    }
+    public terminate()
+    {
+        // end scenario
+        console.log("Controller: Terminated");
+        this._clock.stopClock();
+        //refresh classes for possible new scenario
+        this._storage = new Storage();
+        this._GUIController = new GUIController(this._storage);
+        this._formulaGenerator = new FormulaGenerator();
+        this._notificationDispatcher = new NotificationDispatcher();
+        this._eventDispatcher = new EventDispatcher(this._storage);
+        this._clock = new Clock();
+        this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher, this._eventDispatcher, this._clock);
     }
 
     get GUIController(): GUIController 

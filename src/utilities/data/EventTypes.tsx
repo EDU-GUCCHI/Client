@@ -8,6 +8,7 @@ export enum EventType{
     FOOD_INTAKE,
     INSULIN_INJECTION,
     BLOOD_GLUCOSE_WARNING,
-    SLEEP
+    SLEEP,
+    NOTHING
     //MORE?
 }

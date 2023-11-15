@@ -1,7 +1,4 @@
-import React from 'react';
 import notifee, { AndroidImportance } from '@notifee/react-native';
-import { useNotification } from '../../hooks/useNotification';
-
 
 export class NotificationDispatcher
 {

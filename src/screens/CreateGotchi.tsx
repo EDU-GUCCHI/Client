@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
-import {s} from 'react-native-wind';
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import { s } from 'react-native-wind';
 import { useRoute } from '@react-navigation/native';
 
 import {ScenarioController} from '../utilities/logic/ScenarioController';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import Title from '../components/Title';
 import InputField from '../components/InputField';
@@ -46,6 +46,7 @@ function CreateGotchiScreen({navigation}: Props) {
   const [classCode, setClassCode] = useState('');
 
   const controller = useScenarioController();
+  const GUIController = controller.GUIController;
 
   return (
     <>
@@ -81,6 +82,7 @@ function CreateGotchiScreen({navigation}: Props) {
           onPress={() => {
             navigation.navigate('Home');
             controller.run(); // start controller flow
+            GUIController.updateGotchi(gotchiName);
           }}
         />
       </ViewContainer>
