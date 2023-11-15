@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
 import { s } from 'react-native-wind';
