@@ -12,6 +12,8 @@ export class EventDispatcher {
     public constructor(storage : Storage){
         this._storage = storage;
         this._idCounter = 0;
+
+
     }
     get storage() {
         return this._storage;
@@ -21,7 +23,7 @@ export class EventDispatcher {
     }
 
     //Create event with param values, answer values are optional
-    public createEvent(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, answerOptions?: [], correctAnswers?: []) {
+    public createEvent(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, symptomOptions?: [], correctSymptoms?: [], causeOptions?: [], correctCauses?: [], treatmentOptions?: [], correctTreatments?: []) {
         const event: Event =
     autoType === AutoType.USER_EVENT
       ? new UserInteractableEvent(
@@ -31,8 +33,12 @@ export class EventDispatcher {
           timeStamp,
           bloodGlucoseChange,
           description,
-          answerOptions || [],
-          correctAnswers || []
+          symptomOptions || [],
+          correctSymptoms || [],
+          causeOptions || [],
+          correctCauses || [],
+          treatmentOptions || [],
+          correctTreatments || []
         )
       : new Event(
           id,
