@@ -1,3 +1,4 @@
+import { Gotchi } from '../data/Gotchi';
 import { Storage } from '../data/Storage';
 import { Clock } from './Clock';
 import { EventDispatcher } from './EventDispatcher';
@@ -5,6 +6,7 @@ import { FormulaGenerator } from './FormulaGenerator';
 import { GUIController } from './GUIController';
 import { IntervallHandler } from './IntervalHandler';
 import { NotificationDispatcher } from './NotificationDispatcher';
+import { newGotchi } from '../data/GotchiRandomizer';
 
 export class ScenarioController
 {
