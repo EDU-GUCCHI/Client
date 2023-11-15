@@ -2,19 +2,26 @@ import { Event } from "./Event";
 import { AutoType, EventType } from "./EventTypes";
 
 export class UserInteractableEvent extends Event {
-    private readonly _answerOptions: [];
-    private readonly _correctAnswers: [];
+    /* private readonly _answerOptions: [];
+    private readonly _correctAnswers: []; */
+    private readonly _symptomOptions: [];
+    private readonly _correctSymptoms: [];
+    private readonly _causeOptions: [];
+    private readonly _correctCauses: [];
+    private readonly _treatmentOptions: [];
+    private readonly _correctTreatments: [];
 
-    public constructor(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, answerOptions: [], correctAnswers: []){
+
+
+    public constructor(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, symptomOptions: [], correctSymptoms: [], causeOptions: [], correctCauses: [], treatmentOptions: [], correctTreatments: []){
         super(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
-        this._answerOptions = answerOptions;
-        this._correctAnswers = correctAnswers;
+        this._symptomOptions = symptomOptions;
+        this._correctSymptoms = correctSymptoms;
+        this._causeOptions = causeOptions;
+        this._correctCauses = correctCauses;
+        this._treatmentOptions = treatmentOptions;
+        this._correctTreatments = correctTreatments;
+        
     }
 
-    get answerOptions() {
-        return this._answerOptions;
-    }
-    get correctAnswers() {
-        return this._correctAnswers;
-    }
 }
