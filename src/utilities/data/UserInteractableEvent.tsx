@@ -23,5 +23,24 @@ export class UserInteractableEvent extends Event {
         this._correctTreatments = correctTreatments;
         
     }
+    get symptomOptions(): [] {
+        return this._symptomOptions;
+      }
+      get correctSymptoms(): [] {
+        return this._correctSymptoms;
+      }
+      get causeOptions(): [] {
+        return this._causeOptions;
+      }
+      get correctCauses(): [] {
+        return this._correctCauses;
+      }
+      get treatmentOptions(): [] {
+        return this._treatmentOptions;
+      }
+      get correctTreatments(): [] {
+        return this._correctTreatments;
+      }
+
 
 }

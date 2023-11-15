@@ -1,6 +1,7 @@
 import { Gotchi } from "./Gotchi";
 import { newGotchi } from './GotchiRandomizer';
 import { Event } from "./Event";
+import { parseEventsToFormat } from "../logic/EventParser";
 
 export class Storage
 {
@@ -35,6 +36,12 @@ export class Storage
     }
     get triggeredEvents() {
         return this._triggeredEvents;
+    }
+    get eventsJson() {
+        const parsedData = parseEventsToFormat(this.triggeredEvents);
+        const JsonData = JSON.stringify(parsedData, null, 2);
+        console.log(JsonData);
+        return JsonData;
     }
     addTriggeredEvent(newEvent: Event): void {
         this._triggeredEvents.push(newEvent);
