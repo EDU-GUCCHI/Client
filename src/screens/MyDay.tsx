@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
-import {s} from 'react-native-wind';
-
+import React from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
+import { s } from 'react-native-wind';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import MyDayEvent from '../components/MyDayComponents/MyDayEvent';
 import ViewContainer from '../components/ViewContainer';
 
@@ -210,6 +210,7 @@ const weeklyEvents = [
   },
   // ... other days and events
 ];
+
 
 function MyDayScreen({navigation}: Props) {
   const [currentDayIndex, setCurrentDayIndex] = useState(

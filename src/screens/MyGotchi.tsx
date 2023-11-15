@@ -22,11 +22,11 @@ const sleep = '8h 24m';
 
 function MyGotchiScreen({navigation}: Props) {
   const controller = useScenarioController(); // retreive Controller instance
+  const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(
     controller.storage.person.bloodValue.toString(),
   ); // Default value
-  const guiController = controller.GUIController;
-
+  
   const updateBloodSugar = (newBloodSugar: string) => {
     setBloodSugar(newBloodSugar);
   };
@@ -45,12 +45,16 @@ function MyGotchiScreen({navigation}: Props) {
         <View style={s`bg-cyan-300 p-5 rounded-full`}>
           <Text style={s`text-6xl text-black`}>😉</Text>
         </View>
-        <Text style={s`text-black font-semibold text-4xl mt-4`}>
-          Alex-GOTCHI
+        <Text style={s`text-black font-semibold text-4xl`}>
+          { controller.storage.person.name } 
         </Text>
-        <Text style={s`text-black my-2.5`}>
-          Young adult • Height 184 cm • Weight 65 kg
-        </Text>
+        <View style={s`flex-row justify-between`}>
+          <Text style={s`text-black m-0.5`}>{controller.storage.person.ageStringRepresentation()}</Text>
+          <Text style={s`text-black m-0.5`}>{controller.storage.person.eatingHabitStringRepresentation()}</Text>
+          <Text style={s`text-black m-0.5`}>{controller.storage.person.exerciseHabitStringRepresentation()}</Text>
+          <Text style={s`text-black m-0.5`}>{controller.storage.person.genderStringRepresentation()}</Text>
+          <Text style={s`text-black m-0.5`}>{controller.storage.person.smokingHabitStringRepresentation()}</Text>
+        </View>
       </View>
       {/* Stats */}
 

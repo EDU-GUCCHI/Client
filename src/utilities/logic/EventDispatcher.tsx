@@ -12,8 +12,13 @@ export class EventDispatcher {
     public constructor(storage : Storage){
         this._storage = storage;
         this._idCounter = 0;
-
-
+        this.createEvent(
+            this.idCounter,
+            AutoType.AUTO_EVENT,
+            EventType.NOTHING,
+            new Date(),
+            storage.person.bloodValue,
+            "You started your week!");
     }
     get storage() {
         return this._storage;
@@ -103,4 +108,26 @@ export class EventDispatcher {
 
         this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }
+    /* BloodGlucoseWarningEvent() {
+
+    const id = 1;
+    const autoType = AutoType.USER_EVENT;
+    const eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    const timeStamp = new Date();
+    const bloodGlucoseChange = 10;
+    const description = 'Sample UserInteractableEvent';
+
+    const symptomOptions = ['Option 1', 'Option 2', 'Option 3'];
+    const correctSymptoms = [true, false, false];
+
+    const causeOptions = ['Cause Option 1', 'Cause Option 2', 'Cause Option 3'];
+    const correctCauses = [false, true, false];
+
+    const treatmentOptions = ['Treatment Option 1', 'Treatment Option 2', 'Treatment Option 3'];
+    const correctTreatments = [false, false, true];
+
+    const createdEvent = this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description, symptomOptions, correctSymptoms, causeOptions, correctCauses, treatmentOptions,
+        correctTreatments
+    );  
+    } */
 }
