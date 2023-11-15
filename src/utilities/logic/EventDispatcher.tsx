@@ -72,6 +72,7 @@ export class EventDispatcher {
             case EventType.EXERCISE: 
                 break;
             case EventType.BLOOD_GLUCOSE_WARNING: 
+                this.LowBloodSugar();
                 break;
             case EventType.INSULIN_INJECTION:
                 break;
@@ -92,13 +93,14 @@ export class EventDispatcher {
 
         this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }
-    BloodGlucoseWarningEvent() {
+    LowBloodSugar() {
         const id = this._idCounter++;
-        const autoType = AutoType.USER_EVENT;
+        const autoType = AutoType.AUTO_EVENT;
         const eventType = EventType.BLOOD_GLUCOSE_WARNING;
         const timeStamp = new Date();
-        const bloodGlucoseChange = 0;
-        const description = "Gotchi gots no sweet blood";
-        
+        const bloodGlucoseChange = -2;
+        const description = "Gotchi has low blood sugar";
+
+        this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }
 }

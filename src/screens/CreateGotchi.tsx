@@ -44,15 +44,15 @@ function sendData() {
 function CreateGotchiScreen({navigation}: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
-
+  
   const controller = useScenarioController();
 
   return (
     <>
       <ViewContainer style={s`items-center justify-center h-full`}>
-        <Title text="Create new EDU-GOTCHI" />
+        <Title text="Skapa en ny EDU-GOTCHI" />
         <InputField
-          placeholder="Name your gotchi..."
+          placeholder="Namnge din gotchi..."
           value={gotchiName}
           onChangeText={setGotchiName}
           colors={['#E9F1F7', '#E0DDD5']}
@@ -62,7 +62,7 @@ function CreateGotchiScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0}}
         />
         <InputField
-          placeholder="Class code..."
+          placeholder="Klasskod..."
           value={classCode}
           onChangeText={setClassCode}
           colors={['#E9F1F7', '#E0DDD5']}
@@ -72,7 +72,7 @@ function CreateGotchiScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0}}
         />
         <LgButton
-          text="Continue"
+          text="Nästa"
           colors={['#6ca7e8', '#70e0e1']}
           locations={[0, 0.7]}
           useAngle={true}

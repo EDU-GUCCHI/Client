@@ -20,9 +20,9 @@ type Props = {
 function TutorialScreen({navigation}: Props) {
   return (
     <ViewContainer style={s`items-center justify-center h-full`}>
-      <Title text="Tutorial" />
+      <Title text="Introduktion" />
       <LgButton
-        text="Next"
+        text="Nästa"
         colors={['#70e0e1', '#6ca7e8']}
         locations={[0, 0.7]}
         useAngle={true}
