@@ -99,6 +99,6 @@ export class EventDispatcher {
         const timeStamp = new Date();
         const bloodGlucoseChange = 0;
         const description = "Gotchi gots no sweet blood";
-        const 
+        
     }
 }
