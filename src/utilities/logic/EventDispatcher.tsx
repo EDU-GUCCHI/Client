@@ -92,4 +92,13 @@ export class EventDispatcher {
 
         this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }
+    BloodGlucoseWarningEvent() {
+        const id = this._idCounter++;
+        const autoType = AutoType.USER_EVENT;
+        const eventType = EventType.BLOOD_GLUCOSE_WARNING;
+        const timeStamp = new Date();
+        const bloodGlucoseChange = 0;
+        const description = "Gotchi gots no sweet blood";
+        const 
+    }
 }
