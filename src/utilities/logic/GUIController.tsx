@@ -2,13 +2,20 @@ import { Gotchi } from "../data/Gotchi";
 import { Storage } from "../data/Storage";
 
 export class GUIController { // responsibility of fetching/storing and displaying data in GUI
-  private _storage: Storage;
+    private _storage: Storage;
     private _person: Gotchi;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
 
     constructor(storage: Storage) {
         this._storage = storage;
         this._person = this._storage.person;
+    }
+
+    updateGotchi(name : string) {
+        this._storage.person.name = name;
+        this._person = this._storage.person;
+        console.log("Gotchi: Updated");
+        console.log(JSON.stringify(this._person));
     }
 
     setBloodSugar(newBloodSugar: number) {

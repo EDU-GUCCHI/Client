@@ -11,8 +11,8 @@ export class Storage
     private _triggeredEvents: Event[];
 
     public constructor()
-    {
-        this._person = newGotchi("subject");
+    {   
+        this._person = newGotchi("");
         this._bloodSugarFactor = 0.0;
         this._triggeredEvents = [];
     }

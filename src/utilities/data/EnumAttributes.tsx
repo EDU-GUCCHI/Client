@@ -5,6 +5,12 @@ export enum EatingHabit
     VOLATILE = 1,
 	BAD = 0.1
 }
+export enum Age 
+{
+    YOUNG_ADULT = 0.5,
+    ADULT = 1,
+    SENIOR = 1.5
+}
 export enum Exercise 
 {
     VERY_ACTIVE = 2,

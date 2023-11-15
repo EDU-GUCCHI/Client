@@ -12,8 +12,13 @@ export class EventDispatcher {
     public constructor(storage : Storage){
         this._storage = storage;
         this._idCounter = 0;
-
-
+        this.createEvent(
+            this.idCounter,
+            AutoType.AUTO_EVENT,
+            EventType.NOTHING,
+            new Date(),
+            storage.person.bloodValue,
+            "You started your week!");
     }
     get storage() {
         return this._storage;
@@ -99,6 +104,6 @@ export class EventDispatcher {
         const timeStamp = new Date();
         const bloodGlucoseChange = 0;
         const description = "Gotchi gots no sweet blood";
-        
+
     }
 }

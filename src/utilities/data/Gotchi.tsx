@@ -1,21 +1,13 @@
-import {
-  Gender,
-  EatingHabit,
-  Exercise,
-  Weight,
-  AlcoholHabit,
-  SmokingHabit,
-  Illness,
-} from './EnumAttributes';
+import { Gender, EatingHabit, Age, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness } from './EnumAttributes';
 
 export class Gotchi {
-  //Person attributes
+
   private _name: string;
-  private _age: number;
   private _bloodSugar: number;
   private _insulinPump: boolean;
   private _lchf: boolean;
-  //Enum-attributes
+
+  private _age : Age;
   private _eatingHabit: EatingHabit;
   private _exercise: Exercise;
   private _weight: Weight;
@@ -24,33 +16,32 @@ export class Gotchi {
   private _illnesses: Illness[];
   private _gender: Gender;
 
-  //add age and gender to constructor and getters/setters
   public constructor(
-    name: string,
-    age: number,
-    bloodSugar: number,
-    insulinPump: boolean,
-    lchf: boolean,
-    eatingHabit: EatingHabit,
-    exercise: Exercise,
-    weight: Weight,
+    name:         string,
+    bloodSugar:   number,
+    insulinPump:  boolean,
+    lchf:         boolean,
+    age:          Age,
+    eatingHabit:  EatingHabit,
+    exercise:     Exercise,
+    weight:       Weight,
     alcoholHabit: AlcoholHabit,
     smokingHabit: SmokingHabit,
-    illnesses: Illness[],
-    gender: Gender,
+    gender:       Gender,
+    illnesses:    Illness[]
   ) {
     this._name = name;
-    this._age = age;
     this._bloodSugar = bloodSugar;
     this._insulinPump = insulinPump;
     this._lchf = lchf;
-    this._illnesses = illnesses;
+    this._age = age;
     this._smokingHabit = smokingHabit;
     this._alcoholHabit = alcoholHabit;
     this._weight = weight;
     this._exercise = exercise;
     this._eatingHabit = eatingHabit;
     this._gender = gender;
+    this._illnesses = illnesses;
   }
   //getters-setters
   get name(): string {
@@ -119,5 +110,42 @@ export class Gotchi {
   }
   set illnesses(illnesses: Illness[]) {
     this._illnesses = illnesses;
+  }
+  
+
+  ageStringRepresentation(this: any) {
+    switch(this._age) {
+      case Age.YOUNG_ADULT : return "Young Adult";
+      case Age.ADULT : return "Adult";
+      case Age.SENIOR : return "Senior";
+    }
+  }
+  genderStringRepresentation(this: any) {
+    switch(this._gender) {
+      case Gender.MALE : return "Male";
+      case Gender.FEMALE : return "Female"
+    } 
+  }
+
+  eatingHabitStringRepresentation(this: any) {
+    switch(this._eatingHabit) {
+      case EatingHabit.BAD : return "Intermittent faster";
+      case EatingHabit.VOLATILE : return "Eats inconsistently";
+      case EatingHabit.CONSISTENT : return "Eats consistently";
+    }
+  }
+  exerciseHabitStringRepresentation(this: any) {
+    switch(this._exercise) {
+      case Exercise.VERY_ACTIVE : return "Exercises a lot";
+      case Exercise.ACTIVE : return "Exercises";
+      case Exercise.INACTIVE : return "Doesn't exercise";
+    }
+  }
+  smokingHabitStringRepresentation(this: any) {
+    switch(this._smokingHabit) {
+      case SmokingHabit.HEAVY_SMOKER : return "Smokes regularly";
+      case SmokingHabit.SOCIAL_SMOKER : return "Smokes socially";
+      case SmokingHabit.NON_SMOKER : return "Non-smoker";
+    }
   }
 }

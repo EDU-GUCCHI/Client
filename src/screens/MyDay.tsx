@@ -1,8 +1,8 @@
 import React from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
-import {s} from 'react-native-wind';
-
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
+import { s } from 'react-native-wind';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import MyDayEvent from '../components/MyDayComponents/MyDayEvent';
 import ViewContainer from '../components/ViewContainer';
 
@@ -26,7 +26,10 @@ const events = {
   cause: 'Working out too hard',
 };
 
+
 function MyDayScreen({navigation}: Props) {
+  const controller = useScenarioController();
+  
   return (
     <ViewContainer style={s`items-center justify-start h-full py-2`}>
       <View style={s`my-5`}>
@@ -39,7 +42,7 @@ function MyDayScreen({navigation}: Props) {
           31/10/2023
         </Text>
       </View>
-
+      
       <MyDayEvent
         navigation={navigation}
         eventTime={events.time}
