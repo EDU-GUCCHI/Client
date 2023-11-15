@@ -18,7 +18,7 @@ type Props = {
 };
 
 // Här ska vi hämta event och uppdatera elementen med dess innehåll
-const weeklyEvents = [
+const a = [
   {
     date: '13/11/2023',
     day: 'Måndag',
@@ -213,9 +213,12 @@ const weeklyEvents = [
 
 
 function MyDayScreen({navigation}: Props) {
+  const controller = useScenarioController();
+  const weeklyEvents = controller.storage.eventsJson || []; // Ensure this is always an array
+
   const [currentDayIndex, setCurrentDayIndex] = useState(
-    weeklyEvents.length - 1,
-  ); // Set to last index
+    weeklyEvents.length > 0 ? weeklyEvents.length - 1 : 0,
+  );
 
   const goToPreviousDay = () => {
     if (currentDayIndex > 0) {
