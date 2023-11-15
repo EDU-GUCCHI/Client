@@ -232,27 +232,33 @@ function MyDayScreen({navigation}: Props) {
 
   return (
     <ViewContainer style={s`flex-grow`}>
-      <View style={s`flex-row justify-between px-3`}>
-        {currentDayIndex > 0 && (
-          <TouchableOpacity onPress={goToPreviousDay}>
-            <Text style={s`text-2xl`}>← Previous</Text>
-          </TouchableOpacity>
-        )}
-        {currentDayIndex < weeklyEvents.length - 1 && (
-          <TouchableOpacity onPress={goToNextDay}>
-            <Text style={s`text-2xl`}>Next →</Text>
-          </TouchableOpacity>
-        )}
-      </View>
-
-      <View style={s`items-center justify-start py-2`}>
-        <View style={s`my-5`}>
-          <Text
-            style={s`text-4xl text-center mb-1 text-warmGray-600 font-semibold`}>
-            {currentDay.day}
-          </Text>
-          <Text
-            style={s`text-2xl py-2 text-center text-warmGray-600 font-semibold`}>
+      <View style={s`py-2`}>
+        <View style={s`mb-5`}>
+          <View style={s`w-full flex-row justify-between`}>
+            {currentDayIndex > 0 ? (
+              <TouchableOpacity onPress={goToPreviousDay} style={s`px-5 pb-5`}>
+                <Text style={s`text-5xl`}>←</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={s`px-5 pb-5`}>
+                <Text style={s`text-5xl text-transparent`}>←</Text>
+              </View> // Placeholder view with the same padding as the button
+            )}
+            <Text
+              style={s`text-4xl text-center text-warmGray-600 font-semibold text-vertical-center`}>
+              {currentDay.day}
+            </Text>
+            {currentDayIndex < weeklyEvents.length - 1 ? (
+              <TouchableOpacity onPress={goToNextDay} style={s`px-5 pb-5`}>
+                <Text style={s`text-5xl`}>→</Text>
+              </TouchableOpacity>
+            ) : (
+              <View style={s`px-5 pb-5`}>
+                <Text style={s`text-5xl text-transparent`}>→</Text>
+              </View> // Placeholder view with the same padding as the button
+            )}
+          </View>
+          <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
             {currentDay.date}
           </Text>
         </View>
