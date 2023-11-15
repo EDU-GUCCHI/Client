@@ -44,9 +44,9 @@ function HomeScreen({navigation}: Props) {
   return (
     <>
       <ViewContainer style={s`items-center justify-center h-full`}>
-        <Title text="Welcome to EDU-GOTCHI" />
+        <Title text="Välkommen till EDU-GOTCHI" />
         <LgButton
-          text="My day"
+          text="Min dag"
           colors={['#6ca7e8', '#70e0e1']}
           locations={[0, 0.7]}
           useAngle={true}
@@ -55,7 +55,7 @@ function HomeScreen({navigation}: Props) {
           onPress={() => navigation.navigate('MyDay')}
         />
         <LgButton
-          text="My EDU-GOTCHI"
+          text="Min EDU-GOTCHI"
           colors={['#6ca7e8', '#70e0e1']}
           locations={[0, 0.8]}
           useAngle={true}
@@ -64,7 +64,7 @@ function HomeScreen({navigation}: Props) {
           onPress={() => navigation.navigate('MyGotchi')}
         />
         <LgButton
-          text="Instructions"
+          text="Instruktioner"
           colors={['#6ca7e8', '#70e0e1']}
           locations={[0, 0.9]}
           useAngle={true}

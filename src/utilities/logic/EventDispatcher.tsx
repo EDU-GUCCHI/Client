@@ -12,6 +12,8 @@ export class EventDispatcher {
     public constructor(storage : Storage){
         this._storage = storage;
         this._idCounter = 0;
+        this.chooseEventSwitch(1);
+        this.chooseEventSwitch(3);
     }
     get storage() {
         return this._storage;
@@ -66,6 +68,7 @@ export class EventDispatcher {
             case EventType.EXERCISE: 
                 break;
             case EventType.BLOOD_GLUCOSE_WARNING: 
+                this.LowBloodSugar();
                 break;
             case EventType.INSULIN_INJECTION:
                 break;
@@ -83,6 +86,16 @@ export class EventDispatcher {
         const timeStamp = new Date();
         const bloodGlucoseChange = 2;
         const description = "Gotchi ate a banana";
+
+        this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
+    }
+    LowBloodSugar() {
+        const id = this._idCounter++;
+        const autoType = AutoType.AUTO_EVENT;
+        const eventType = EventType.BLOOD_GLUCOSE_WARNING;
+        const timeStamp = new Date();
+        const bloodGlucoseChange = -2;
+        const description = "Gotchi has low blood sugar";
 
         this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }

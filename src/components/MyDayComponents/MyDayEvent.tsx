@@ -41,11 +41,12 @@ function MyDayEvent({
         style={s`w-full px-3 rounded-lg items-center flex-row justify-between`}>
         <Text style={s`text-xl text-black font-bold text-center`}>
           {'🕑 '}
-          {eventTime} {/* GET TIME */}
+          {eventTime}
+          {/* GET TIME */}
         </Text>
 
-        <Text style={s`text-xl text-black font-bold py-4 `}>
-          {eventTitle} {/* GET EVENT INFO */}
+        <Text style={s`text-xl text-black font-bold py-4`}>
+          {eventTitle}{/* GET EVENT INFO */}
         </Text>
 
         <Text style={s`text-black text-3xl mb-2`}>{'→'}</Text>

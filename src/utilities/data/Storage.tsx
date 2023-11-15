@@ -33,6 +33,11 @@ export class Storage
     {
         this._bloodSugarFactor = factor;
     }
+
+    get triggeredEvents(): Event[] {
+        return this._triggeredEvents;
+    }
+    
     addTriggeredEvent(newEvent: Event): void {
         this._triggeredEvents.push(newEvent);
     }
