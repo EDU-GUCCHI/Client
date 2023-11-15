@@ -32,6 +32,7 @@ export class IntervallHandler
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
     }
+    
     public decreaseBloodSugar(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
         //just example increment for now!
