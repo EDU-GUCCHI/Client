@@ -3,7 +3,6 @@ export enum EatingHabit
 {
     CONSISTENT = 2,
     VOLATILE = 1,
-	BAD = 0.1
 }
 export enum Age 
 {

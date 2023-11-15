@@ -115,37 +115,36 @@ export class Gotchi {
 
   ageStringRepresentation(this: any) {
     switch(this._age) {
-      case Age.YOUNG_ADULT : return "Young Adult";
-      case Age.ADULT : return "Adult";
+      case Age.YOUNG_ADULT : return "Ung vuxen";
+      case Age.ADULT : return "Vuxen";
       case Age.SENIOR : return "Senior";
     }
   }
   genderStringRepresentation(this: any) {
     switch(this._gender) {
-      case Gender.MALE : return "Male";
-      case Gender.FEMALE : return "Female"
+      case Gender.MALE : return "Man";
+      case Gender.FEMALE : return "Kvinna"
     } 
   }
 
   eatingHabitStringRepresentation(this: any) {
     switch(this._eatingHabit) {
-      case EatingHabit.BAD : return "Intermittent faster";
-      case EatingHabit.VOLATILE : return "Eats inconsistently";
-      case EatingHabit.CONSISTENT : return "Eats consistently";
+      case EatingHabit.VOLATILE : return "Äter inkonsistent";
+      case EatingHabit.CONSISTENT : return "Äter konsistent";
     }
   }
   exerciseHabitStringRepresentation(this: any) {
     switch(this._exercise) {
-      case Exercise.VERY_ACTIVE : return "Exercises a lot";
-      case Exercise.ACTIVE : return "Exercises";
-      case Exercise.INACTIVE : return "Doesn't exercise";
+      case Exercise.VERY_ACTIVE : return "Tränar ofta";
+      case Exercise.ACTIVE : return "Tränar regelbundet";
+      case Exercise.INACTIVE : return "Tränar sällan";
     }
   }
   smokingHabitStringRepresentation(this: any) {
     switch(this._smokingHabit) {
-      case SmokingHabit.HEAVY_SMOKER : return "Smokes regularly";
-      case SmokingHabit.SOCIAL_SMOKER : return "Smokes socially";
-      case SmokingHabit.NON_SMOKER : return "Non-smoker";
+      case SmokingHabit.HEAVY_SMOKER : return "Vanerökare";
+      case SmokingHabit.SOCIAL_SMOKER : return "Röker socialt";
+      case SmokingHabit.NON_SMOKER : return "Icke-rökare";
     }
   }
 }
