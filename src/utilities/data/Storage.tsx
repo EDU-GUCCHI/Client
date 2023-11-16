@@ -1,6 +1,6 @@
-import { Gotchi } from "./Gotchi";
-import { newGotchi } from './GotchiRandomizer';
-import { Event } from "./Event";
+import { Gotchi } from "./gotchi/Gotchi";
+import { newGotchi } from './gotchi/GotchiRandomizer';
+import { Event } from "./event/Event";
 import { parseEventsToFormat } from "../logic/EventParser";
 
 export class Storage {

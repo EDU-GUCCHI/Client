@@ -1,4 +1,4 @@
-import { Gotchi } from "../data/Gotchi";
+import { Gotchi } from "../data/gotchi/Gotchi";
 import { EventDispatcher } from "./EventDispatcher";
 import { Clock } from "./Clock";
 import { GUIController } from "./GUIController";
@@ -66,39 +66,44 @@ export class IntervallHandler
     {
         if(this._bloodValue > 8 && !this._warningNotificationSent)
         {
-            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: high");
+            this._notificationDispatcher.SendBloodSugarWarning("Högt blodsocker");
             this._warningNotificationSent = true;
         }
         else if(this._bloodValue > 10 && !this._criticalWarningSent)
         {
-            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: critically high!");
+            this._notificationDispatcher.SendBloodSugarWarning("Kritiskt högt blodsocker");
             this._warningNotificationSent = true;
         }
         else if(this._bloodValue > 12 && !this._deathNotificationSent)
         {
-            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: Exceeded lethaly high levels. your gotchi died! T_T ");
+            this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             this._deathNotificationSent = true;
-            console.log("Gotchi: Died :(");
+            console.log("Task failed successfully");
             this._clock.stopClock(); // End scenario when this is triggered
         }
     }
     public checkLowerThreshold()
     {
+        console.log("Checking Lower Threshhold");
         if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
-            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: low");
+            this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
+            this._eventDispatcher.LowBloodSugar();
             this._warningNotificationSent = true;
+            console.log("Blood sugar warning sent")
         }
         else if(this._bloodValue < 2 && !this._criticalWarningSent) 
         {
-            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: Critically low!");
+            this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker!");
+            this._eventDispatcher.LowBloodSugar();
             this._criticalWarningSent = true;
+            console.log("Critical Blood sugar warning sent")
         }
         else if(this._bloodValue < 1 && !this._deathNotificationSent)
         {
-            this._notificationDispatcher.SendBloodSugarWarning("bloodsugar level: Exceeded lethaly low levels. your gotchi died! T_T ");
+            this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             this._deathNotificationSent = true;
-            console.log("Gotchi: Died :(");
+            console.log("Task failed successfully");
             this._clock.stopClock(); // End scenario when this is triggered
         }
     }

@@ -5,6 +5,7 @@ import {s} from 'react-native-wind';
 import MyGotchiStatus from '../components/MyGotchiComponents/MyGotchiStatus';
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
+import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -49,11 +50,51 @@ function MyGotchiScreen({navigation}: Props) {
           { controller.storage.person.name } 
         </Text>
         <View style={s`flex-row justify-between`}>
-          <Text style={s`text-black m-0.5`}>{controller.storage.person.ageStringRepresentation()}</Text>
-          <Text style={s`text-black m-0.5`}>{controller.storage.person.eatingHabitStringRepresentation()}</Text>
-          <Text style={s`text-black m-0.5`}>{controller.storage.person.exerciseHabitStringRepresentation()}</Text>
-          <Text style={s`text-black m-0.5`}>{controller.storage.person.genderStringRepresentation()}</Text>
-          <Text style={s`text-black m-0.5`}>{controller.storage.person.smokingHabitStringRepresentation()}</Text>
+          <AttributeButton
+            text={controller.storage.person.exerciseHabitStringRepresentation()}
+            colors={['#6ca7e8', '#70e0e1']}
+            locations={[0, 1]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{ x: 0.5, y: 0 }}
+            onPress={() => navigation.navigate('Conditions')}
+          />
+          <AttributeButton
+            text={controller.storage.person.ageStringRepresentation()}
+            colors={['#6ca7e8', '#70e0e1']}
+            locations={[0, 1]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{ x: 0.5, y: 0 }}
+            onPress={() => navigation.navigate('Conditions')}
+          />
+          <AttributeButton
+            text={controller.storage.person.eatingHabitStringRepresentation()}
+            colors={['#6ca7e8', '#70e0e1']}
+            locations={[0, 1]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{ x: 0.5, y: 0 }}
+            onPress={() => navigation.navigate('Conditions')}
+          />
+          <AttributeButton
+            text={controller.storage.person.genderStringRepresentation()}
+            colors={['#6ca7e8', '#70e0e1']}
+            locations={[0, 1]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{ x: 0.5, y: 0 }}
+            onPress={() => navigation.navigate('Conditions')}
+          />
+          <AttributeButton
+            text={controller.storage.person.smokingHabitStringRepresentation()}
+            colors={['#6ca7e8', '#70e0e1']}
+            locations={[0, 1]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{ x: 0.5, y: 0 }}
+            onPress={() => navigation.navigate('Conditions')}
+          />
         </View>
       </View>
       {/* Stats */}

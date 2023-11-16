@@ -1,4 +1,4 @@
-import { Gotchi } from "../data/Gotchi";
+import { Gotchi } from "../data/gotchi/Gotchi";
 import { Storage } from "../data/Storage";
 
 export class WeekPlanner {

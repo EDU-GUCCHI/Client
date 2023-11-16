@@ -1,5 +1,6 @@
-import { Event } from "../data/Event";
-import { UserInteractableEvent } from "../data/UserInteractableEvent";
+import { Event } from "../data/event/Event";
+import { AutoType } from "../data/event/EventTypes";
+import { UserInteractableEvent } from "../data/event/UserInteractableEvent";
 
 interface ParsedOption {
   option: string;
@@ -8,6 +9,7 @@ interface ParsedOption {
 }
 
 interface ParsedEvent {
+  interactable: boolean;
   time: string;
   title: string;
   symptoms: ParsedOption[];
@@ -25,6 +27,12 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
   const parsedDays: ParsedDay[] = [];
 
   events.forEach((event) => {
+    let interactable;
+    if(event.autoType === AutoType.AUTO_EVENT) {
+      interactable = false;
+    } else {
+      interactable = true;
+    }
     const timestamp = event.timeStamp;
     const date = `${timestamp.getDate()}/${timestamp.getMonth() + 1}/${timestamp.getFullYear()}`;
     const day = getDayOfWeek(timestamp);
@@ -37,6 +45,7 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
     }
 
     const parsedEvent: ParsedEvent = {
+      interactable: interactable,
       time: formatTime(timestamp),
       title: event.description,
       symptoms: [],

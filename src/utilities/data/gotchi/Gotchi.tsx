@@ -119,12 +119,14 @@ export class Gotchi {
       case Age.ADULT : return "Vuxen";
       case Age.SENIOR : return "Senior";
     }
+    return "Undefined";
   }
   genderStringRepresentation(this: any) {
     switch(this._gender) {
       case Gender.MALE : return "Man";
       case Gender.FEMALE : return "Kvinna"
-    } 
+    }
+    return "Undefined";
   }
 
   eatingHabitStringRepresentation(this: any) {
@@ -132,6 +134,7 @@ export class Gotchi {
       case EatingHabit.VOLATILE : return "Äter inkonsistent";
       case EatingHabit.CONSISTENT : return "Äter konsistent";
     }
+    return "Undefined";
   }
   exerciseHabitStringRepresentation(this: any) {
     switch(this._exercise) {
@@ -139,6 +142,7 @@ export class Gotchi {
       case Exercise.ACTIVE : return "Tränar regelbundet";
       case Exercise.INACTIVE : return "Tränar sällan";
     }
+    return "Undefined";
   }
   smokingHabitStringRepresentation(this: any) {
     switch(this._smokingHabit) {
@@ -146,5 +150,6 @@ export class Gotchi {
       case SmokingHabit.SOCIAL_SMOKER : return "Röker socialt";
       case SmokingHabit.NON_SMOKER : return "Icke-rökare";
     }
+    return "Undefined";
   }
 }

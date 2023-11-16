@@ -1,4 +1,4 @@
-import { Gotchi } from '../data/Gotchi';
+import { Gotchi } from '../data/gotchi/Gotchi';
 import { Storage } from '../data/Storage';
 import { Clock } from './Clock';
 import { EventDispatcher } from './EventDispatcher';
@@ -6,7 +6,6 @@ import { FormulaGenerator } from './FormulaGenerator';
 import { GUIController } from './GUIController';
 import { IntervallHandler } from './IntervalHandler';
 import { NotificationDispatcher } from './NotificationDispatcher';
-import { newGotchi } from '../data/GotchiRandomizer';
 
 export class ScenarioController
 {
@@ -40,6 +39,7 @@ export class ScenarioController
         this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
         this._clock.startClock(); // start clock pulse
+        this._eventDispatcher.pointOfEntryEvent();
     }
     public terminate()
     {

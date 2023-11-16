@@ -16,7 +16,7 @@ export class NotificationDispatcher
         // Display a notification
         await notifee.displayNotification({
         title: text,
-        body: 'Take action immediately',
+        body: 'Din Gotchi behöver dig!',
         android: {
           channelId,
           smallIcon: 'ic_small_icon', // optional, defaults to 'ic_launcher'.

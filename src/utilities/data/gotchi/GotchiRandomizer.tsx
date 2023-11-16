@@ -20,7 +20,7 @@ export function newGotchi(name: string): Gotchi {
   
   return new Gotchi(
     name,
-    getRandomNumber(20, 80),
+    getRandomNumber(4, 6),
     coinFlip() == 1,
     coinFlip() == 1,
     getRandomEnum(Age),

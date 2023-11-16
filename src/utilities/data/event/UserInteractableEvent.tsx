@@ -11,9 +11,20 @@ export class UserInteractableEvent extends Event {
     private readonly _treatmentOptions: [];
     private readonly _correctTreatments: [];
 
-
-
-    public constructor(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, symptomOptions: [], correctSymptoms: [], causeOptions: [], correctCauses: [], treatmentOptions: [], correctTreatments: []){
+    public constructor(
+      id: number, 
+      autoType: AutoType, 
+      eventType: EventType, 
+      timeStamp: Date, 
+      bloodGlucoseChange: number, 
+      description: string, 
+      symptomOptions: [], 
+      correctSymptoms: [], 
+      causeOptions: [], 
+      correctCauses: [], 
+      treatmentOptions: [], 
+      correctTreatments: []) 
+      {
         super(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
         this._symptomOptions = symptomOptions;
         this._correctSymptoms = correctSymptoms;
@@ -41,6 +52,4 @@ export class UserInteractableEvent extends Event {
       get correctTreatments(): [] {
         return this._correctTreatments;
       }
-
-
 }

@@ -12,6 +12,7 @@ import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
 import AnswerEventScreen from './src/screens/AnswerEvent';
 import { ScenarioControllerProvider } from './src/components/ScenarioControllerContext';
+import ConditionsScreen from './src/screens/Conditions';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,11 @@ export default class App extends Component<Props> {
             name="MyGotchi"
             options={{title: 'My Gotchi'}}
             component={MyGotchiScreen}
+          />
+          <Stack.Screen
+            name="Conditions"
+            options={{title: 'Condition'}}
+            component={ConditionsScreen}
           />
           <Stack.Screen
             name="AnswerEvent"

@@ -1,8 +1,8 @@
 // sends out Events.
-import {Event} from '../data/Event';
-import { AutoType, EventType } from '../data/EventTypes';
+import {Event} from '../data/event/Event';
+import { AutoType, EventType } from '../data/event/EventTypes';
 import { Storage } from '../data/Storage';
-import { UserInteractableEvent } from '../data/UserInteractableEvent';
+import { UserInteractableEvent } from '../data/event/UserInteractableEvent';
 
 export class EventDispatcher {
     private _storage : Storage;
@@ -12,29 +12,6 @@ export class EventDispatcher {
     public constructor(storage : Storage){
         this._storage = storage;
         this._idCounter = 0;
-        this.createEvent(
-            this.idCounter,
-            AutoType.AUTO_EVENT,
-            EventType.NOTHING,
-            new Date('2023-11-14T08:00:00.000Z'),
-            storage.person.bloodValue,
-            "BLUDSUGAR LOW");
-        this.createEvent(
-          this.idCounter,
-          AutoType.AUTO_EVENT,
-          EventType.NOTHING,
-          new Date(),
-          storage.person.bloodValue,
-          'You started your week!',
-        );
-        this.createEvent(
-          this.idCounter,
-          AutoType.AUTO_EVENT,
-          EventType.NOTHING,
-          new Date(),
-          storage.person.bloodValue,
-          'You started your week!',
-        );
     }
     get storage() {
         return this._storage;
@@ -43,11 +20,33 @@ export class EventDispatcher {
         return this._idCounter;
     }
 
+    public pointOfEntryEvent() {
+        this.createEvent(
+            this.idCounter,
+            AutoType.AUTO_EVENT,
+            EventType.NOTHING,
+            new Date(),
+            this.storage.person.bloodValue,
+            'Du började din vecka!',
+          );
+    }
+
     //Create event with param values, answer values are optional
-    public createEvent(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, symptomOptions?: [], correctSymptoms?: [], causeOptions?: [], correctCauses?: [], treatmentOptions?: [], correctTreatments?: []) {
-        const event: Event =
-    autoType === AutoType.USER_EVENT
-      ? new UserInteractableEvent(
+    public createEvent(
+        id: number, 
+        autoType: AutoType, 
+        eventType: EventType, 
+        timeStamp: Date, 
+        bloodGlucoseChange: number, 
+        description: string, 
+        symptomOptions?: [], 
+        correctSymptoms?: [], 
+        causeOptions?: [], 
+        correctCauses?: [], 
+        treatmentOptions?: [], 
+        correctTreatments?: []) {
+
+        const event: Event = autoType === AutoType.USER_EVENT ? new UserInteractableEvent(
           id,
           autoType,
           eventType,
@@ -59,9 +58,8 @@ export class EventDispatcher {
           causeOptions || [],
           correctCauses || [],
           treatmentOptions || [],
-          correctTreatments || []
-        )
-      : new Event(
+          correctTreatments || []) 
+          : new Event (
           id,
           autoType,
           eventType,
@@ -110,18 +108,18 @@ export class EventDispatcher {
         const eventType = EventType.FOOD_INTAKE;
         const timeStamp = new Date();
         const bloodGlucoseChange = 2;
-        const description = "Gotchi ate a banana";
+        const description = this.storage.person.name + " ate a banana";
 
         this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }
     LowBloodSugar() {
         const id = this._idCounter++;
-        const autoType = AutoType.AUTO_EVENT;
+        const autoType = AutoType.USER_EVENT;
         const eventType = EventType.BLOOD_GLUCOSE_WARNING;
         const timeStamp = new Date();
         const bloodGlucoseChange = -2;
-        const description = "Gotchi has low blood sugar";
-
+        const description = this.storage.person.name + " has low blood sugar";
+        console.log("Creating Low blood-sugar event")
         this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description);
     }
     /* BloodGlucoseWarningEvent() {

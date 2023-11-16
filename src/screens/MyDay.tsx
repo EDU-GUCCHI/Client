@@ -3,8 +3,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
 import { s } from 'react-native-wind';
 import { useScenarioController } from '../components/ScenarioControllerContext';
-import MyDayEvent from '../components/MyDayComponents/MyDayEvent';
 import ViewContainer from '../components/ViewContainer';
+import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
+import { AutoType } from '../utilities/data/event/EventTypes';
+import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -267,19 +269,36 @@ function MyDayScreen({navigation}: Props) {
           </Text>
         </View>
 
-        {currentDay.events.map((event, eventIndex) => (
-          <MyDayEvent
-            key={eventIndex}
-            navigation={navigation}
-            eventTime={event.time}
-            eventTitle={event.title}
-            colors={['#6ca7e8', '#70e0e1']}
-            locations={[0, 0.8]}
-            useAngle={true}
-            angle={25}
-            angleCenter={{x: 0.5, y: 0.6}}
-          />
-        ))}
+        {currentDay.events.map((event, eventIndex) => {
+          if(event.interactable === false) {
+            return (
+                <NonUserInteractableEvent
+                  key={eventIndex}
+                  eventTime={event.time}
+                  eventTitle={event.title}
+                  colors={['#9a9a9a', '#d4d4d4']}
+                  locations={[0, 0.8]}
+                  useAngle={true}
+                  angle={25}
+                  angleCenter={{x: 0.5, y: 0.6}}
+                /> 
+              )
+          } else {
+            return (
+              <UserInteractableEvent
+              key={eventIndex}
+              navigation={navigation}
+              eventTime={event.time}
+              eventTitle={event.title}
+              colors={['#6ca7e8', '#70e0e1']}
+              locations={[0, 0.8]}
+              useAngle={true}
+              angle={25}
+              angleCenter={{x: 0.5, y: 0.6}}
+            /> 
+            )}
+          })
+          }
       </View>
     </ViewContainer>
   );
