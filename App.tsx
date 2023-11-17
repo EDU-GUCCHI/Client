@@ -41,17 +41,17 @@ export default class App extends Component<Props> {
           />
           <Stack.Screen
             name="MyDay"
-            options={{title: 'My Day'}}
+            options={{title: 'Min Vecka'}}
             component={MyDayScreen}
           />
           <Stack.Screen
             name="Instructions"
-            options={{title: 'Instructions'}}
+            options={{title: 'Instruktioner'}}
             component={InstructionsScreen}
           />
           <Stack.Screen
             name="MyGotchi"
-            options={{title: 'My Gotchi'}}
+            options={{title: 'Min Gotchi'}}
             component={MyGotchiScreen}
           />
           <Stack.Screen
@@ -61,7 +61,7 @@ export default class App extends Component<Props> {
           />
           <Stack.Screen
             name="AnswerEvent"
-            options={{title: 'Answer Event'}}
+            options={{title: 'Välj Handling'}}
             component={AnswerEventScreen}
           />
         </Stack.Navigator>
