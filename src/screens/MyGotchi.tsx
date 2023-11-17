@@ -44,7 +44,7 @@ function MyGotchiScreen({navigation}: Props) {
       {/* Profile Info */}
       <View style={s`items-center my-5`}>
         <View style={s`bg-cyan-300 p-5 rounded-full`}>
-          <Text style={s`text-6xl text-black`}>😉</Text>
+          <Text style={s`text-6xl text-black`}>😇</Text>
         </View>
         <Text style={s`text-black font-semibold text-4xl`}>
           {controller.storage.person.name}

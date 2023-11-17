@@ -19,48 +19,16 @@ export class EventDispatcher {
   get idCounter() {
     return this._idCounter;
   }
-
+  
   public pointOfEntryEvent() {
     this.createEvent(
       this.idCounter,
-      AutoType.USER_EVENT,
+      AutoType.AUTO_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-14T08:00:00.000Z'),
+      new Date(),
       this.storage.person.bloodValue,
-      'Lågt blodsocker',
+      'Du startade veckan',
     );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-15T08:00:00.000Z'),
-      this.storage.person.bloodValue,
-      'Något annat event',
-    );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-16T08:00:00.000Z'),
-      this.storage.person.bloodValue,
-      'Något event',
-      );
-      this.createEvent(
-        this.idCounter,
-        AutoType.USER_EVENT,
-        EventType.BLOOD_GLUCOSE_WARNING,
-        new Date('2023-11-17T08:00:00.000Z'),
-        this.storage.person.bloodValue,
-        'Lågt blodsocker',
-        );
-        this.createEvent(
-          this.idCounter,
-          AutoType.USER_EVENT,
-          EventType.BLOOD_GLUCOSE_WARNING,
-          new Date(),
-          this.storage.person.bloodValue,
-          'Lågt blodsocker',
-        );
   }
 
   //Create event with param values, answer values are optional
@@ -159,7 +127,7 @@ export class EventDispatcher {
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
     const bloodGlucoseChange = -2;
-    const description = this.storage.person.name + ' has low blood sugar';
+    const description = 'Lågt blodsocker';
     console.log('Creating Low blood-sugar event');
     this.createEvent(
       id,

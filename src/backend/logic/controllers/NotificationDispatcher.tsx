@@ -21,9 +21,13 @@ export class NotificationDispatcher
           channelId,
           smallIcon: 'ic_small_icon', // optional, defaults to 'ic_launcher'.
           pressAction: {
-            id: 'default',
+            id: 'MyDay',
+            launchActivity: 'MyDay',
           },
         },
+        data: {
+
+        }
       });
     }
 }

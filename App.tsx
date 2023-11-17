@@ -5,7 +5,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import HomeScreen from './src/screens/Home';
 import CreateGotchiScreen from './src/screens/CreateGotchi';
-import NotifeeScreen from './src/screens/Notifee';
 import TutorialScreen from './src/screens/Tutorial';
 import MyDayScreen from './src/screens/MyDay';
 import InstructionsScreen from './src/screens/Instructions';
@@ -27,23 +26,18 @@ export default class App extends Component<Props> {
         <Stack.Navigator initialRouteName="TutorialScreen">
           <Stack.Screen
             name="Tutorial"
-            options={{title: 'Tutorial'}}
+            options={{title: 'Välkommen'}}
             component={TutorialScreen}
           />
           <Stack.Screen
             name="CreateGotchi"
-            options={{title: 'Create'}}
+            options={{title: 'Skapa din Gotchi'}}
             component={CreateGotchiScreen}
           />
           <Stack.Screen
             name="Home"
-            options={{title: 'Home', headerBackVisible: false}}
+            options={{title: 'Hem', headerBackVisible: false}}
             component={HomeScreen}
-          />
-          <Stack.Screen
-            name="Notifee"
-            options={{title: 'Notifee'}}
-            component={NotifeeScreen}
           />
           <Stack.Screen
             name="MyDay"

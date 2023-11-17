@@ -93,7 +93,7 @@ export class IntervallHandler
         }
         else if(this._bloodValue < 2 && !this._criticalWarningSent) 
         {
-            this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker!");
+            this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker");
             this._eventDispatcher.LowBloodSugar();
             this._criticalWarningSent = true;
             console.log("Critical Blood sugar warning sent")
