@@ -84,7 +84,6 @@ export class IntervallHandler
     }
     public checkLowerThreshold()
     {
-        console.log("Checking Lower Threshhold");
         if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
             this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");

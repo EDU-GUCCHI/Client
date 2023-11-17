@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {s} from 'react-native-wind';
+import { useScenarioController } from './ScenarioControllerContext';
 
 const MultiSelectionButtons = () => {
   const [selectedButtons, setSelectedButtons] = useState<string[]>([]);
   const [buttonOptions, setButtonOptions] = useState<string[]>([]);
+  const controller = useScenarioController();
+  const guiController = controller.GUIController;
 
   useEffect(() => {
     // Fetch button names from the backend here and set them using setButtonOptions
@@ -27,6 +30,10 @@ const MultiSelectionButtons = () => {
     } else {
       setSelectedButtons([...selectedButtons, option]);
     }
+
+    // send button to GUI controller, check if right or wrong, send callback which changes color on button.
+    // store result of clicked button.
+    guiController.handleButtonAnswer(option); // TODO: implement this.
   };
 
   return (
@@ -47,5 +54,4 @@ const MultiSelectionButtons = () => {
     </View>
   );
 };
-
 export default MultiSelectionButtons;

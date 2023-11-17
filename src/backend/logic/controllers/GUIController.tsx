@@ -36,6 +36,22 @@ export class GUIController { // responsibility of fetching/storing and displayin
         });
     }
 
+    handleButtonAnswer(buttonName: String): void
+    {
+        // fetch current event and check if option is correct to that value
+        console.log("handling button: " + buttonName);
+        let correct = false;
+
+        if(correct)
+        {
+            console.log("is correct");
+        }
+        else
+        {
+            console.log("is wrong");
+        }
+    }
+
     get storage(): Storage 
     {
         return this._storage;
