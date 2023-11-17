@@ -1,4 +1,4 @@
-import { Gotchi } from "../data/Gotchi";
+import { Gotchi } from "../../data/gotchi/Gotchi";
 
 export class FormulaGenerator
 {
@@ -6,6 +6,7 @@ export class FormulaGenerator
 
     public generateFormula(person: Gotchi): number
     {
+        /*
         let sum = 0;
         sum += person.alcoholHabit;
         sum += person.eatHabit;
@@ -18,7 +19,8 @@ export class FormulaGenerator
             sum += illnesses[sickness];
         }
         console.log("Generated factor: " + sum);
-        return sum;
+        return sum;*/
+        return 0.1;
     }
     public generateIncreaseFactor(): number
     {

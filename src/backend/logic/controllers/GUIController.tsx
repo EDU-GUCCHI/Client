@@ -1,5 +1,5 @@
-import { Gotchi } from "../data/Gotchi";
-import { Storage } from "../data/Storage";
+import { Gotchi } from "../../data/gotchi/Gotchi";
+import { Storage } from "../../data/Storage";
 
 export class GUIController { // responsibility of fetching/storing and displaying data in GUI
     private _storage: Storage;

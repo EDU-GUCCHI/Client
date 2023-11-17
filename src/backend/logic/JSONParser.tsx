@@ -1,4 +1,4 @@
-import { Gotchi } from "../data/Gotchi";
+import { Gotchi } from "../data/gotchi/Gotchi";
 
 class JSONParser {
     //Takes json string, creates a ts object and reads that data to create and return a Gotchi object

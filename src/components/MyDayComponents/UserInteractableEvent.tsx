@@ -3,7 +3,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {s} from 'react-native-wind';
 
-type MyDayEventProps = {
+type UserInteractableEventProps = {
   navigation: any;
   eventTime: string;
   eventTitle: string;
@@ -14,7 +14,7 @@ type MyDayEventProps = {
   angleCenter?: {x: number; y: number}; // Optional center for the gradient angle
 };
 
-function MyDayEvent({
+function UserInteractableEvent({
   navigation,
   eventTime,
   eventTitle,
@@ -23,7 +23,7 @@ function MyDayEvent({
   useAngle,
   angle,
   angleCenter,
-}: MyDayEventProps) {
+}: UserInteractableEventProps) {
   const handleNavigate = () => {
     navigation.navigate('AnswerEvent'); // Navigate to the 'AnswerEvent' screen
   };
@@ -55,4 +55,4 @@ function MyDayEvent({
   );
 }
 
-export default MyDayEvent;
+export default UserInteractableEvent;
