@@ -44,23 +44,23 @@ export class EventDispatcher {
       new Date('2023-11-16T08:00:00.000Z'),
       this.storage.person.bloodValue,
       'Något event',
-    );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date(),
-      this.storage.person.bloodValue,
-      'Lågt blodsocker',
-    );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-17T08:00:00.000Z'),
-      this.storage.person.bloodValue,
-      'Lågt blodsocker',
-    );
+      );
+      this.createEvent(
+        this.idCounter,
+        AutoType.USER_EVENT,
+        EventType.BLOOD_GLUCOSE_WARNING,
+        new Date('2023-11-17T08:00:00.000Z'),
+        this.storage.person.bloodValue,
+        'Lågt blodsocker',
+        );
+        this.createEvent(
+          this.idCounter,
+          AutoType.USER_EVENT,
+          EventType.BLOOD_GLUCOSE_WARNING,
+          new Date(),
+          this.storage.person.bloodValue,
+          'Lågt blodsocker',
+        );
   }
 
   //Create event with param values, answer values are optional
