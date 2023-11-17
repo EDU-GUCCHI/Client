@@ -31,7 +31,7 @@ export class EventDispatcher {
     );
     this.createEvent(
       this.idCounter,
-      AutoType.AUTO_EVENT,
+      AutoType.USER_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date('2023-11-15T08:00:00.000Z'),
       this.storage.person.bloodValue,
@@ -39,7 +39,7 @@ export class EventDispatcher {
     );
     this.createEvent(
       this.idCounter,
-      AutoType.AUTO_EVENT,
+      AutoType.USER_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date('2023-11-16T08:00:00.000Z'),
       this.storage.person.bloodValue,
