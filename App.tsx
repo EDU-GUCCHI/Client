@@ -11,8 +11,9 @@ import MyDayScreen from './src/screens/MyDay';
 import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
 import AnswerEventScreen from './src/screens/AnswerEvent';
+import AboutGotchiScreen from './src/screens/AboutGotchi';
+
 import { ScenarioControllerProvider } from './src/components/ScenarioControllerContext';
-import ConditionsScreen from './src/screens/Conditions';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,18 +27,23 @@ export default class App extends Component<Props> {
         <Stack.Navigator initialRouteName="TutorialScreen">
           <Stack.Screen
             name="Tutorial"
-            options={{title: 'Introduktion'}}
+            options={{title: 'Tutorial'}}
             component={TutorialScreen}
           />
           <Stack.Screen
             name="CreateGotchi"
-            options={{title: 'Skapa'}}
+            options={{title: 'Create'}}
             component={CreateGotchiScreen}
           />
           <Stack.Screen
             name="Home"
-            options={{title: 'Hem', headerBackVisible: false}}
+            options={{title: 'Home', headerBackVisible: false}}
             component={HomeScreen}
+          />
+          <Stack.Screen
+            name="Notifee"
+            options={{title: 'Notifee'}}
+            component={NotifeeScreen}
           />
           <Stack.Screen
             name="MyDay"
@@ -55,14 +61,14 @@ export default class App extends Component<Props> {
             component={MyGotchiScreen}
           />
           <Stack.Screen
-            name="Conditions"
-            options={{title: 'Condition'}}
-            component={ConditionsScreen}
-          />
-          <Stack.Screen
             name="AnswerEvent"
             options={{title: 'Answer Event'}}
             component={AnswerEventScreen}
+          />
+          <Stack.Screen
+            name="AboutGotchi"
+            options={{title: 'Om min Gotchi'}}
+            component={AboutGotchiScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

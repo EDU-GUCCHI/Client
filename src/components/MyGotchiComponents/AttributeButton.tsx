@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {s} from 'react-native-wind';
+import {ViewStyle} from 'react-native';
 
 type AttributeButtonProps = {
   text: string;
@@ -12,8 +13,6 @@ type AttributeButtonProps = {
   angle?: number;
   angleCenter?: {x: number; y: number};
 };
-
-import { ViewStyle } from 'react-native';
 
 const AttributeButton = ({
   onPress,
@@ -26,7 +25,7 @@ const AttributeButton = ({
 }: AttributeButtonProps) => (
   <TouchableOpacity
     onPress={onPress}
-    style={s`w-flex h-6 mt-3 flex items-center justify-center mt-3 rounded-md`}>
+    style={s`flex h-6 mt-3 items-center justify-center rounded-md`}>
     <LinearGradient
       colors={colors}
       locations={locations}
