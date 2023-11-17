@@ -27,7 +27,7 @@ export class EventDispatcher {
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date('2023-11-14T08:00:00.000Z'),
       this.storage.person.bloodValue,
-      'BLUDSUGAR LOW',
+      'Lågt blodsocker',
     );
     this.createEvent(
       this.idCounter,
@@ -35,7 +35,7 @@ export class EventDispatcher {
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date('2023-11-15T08:00:00.000Z'),
       this.storage.person.bloodValue,
-      'You started your week!',
+      'Något annat event',
     );
     this.createEvent(
       this.idCounter,
@@ -43,15 +43,23 @@ export class EventDispatcher {
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date('2023-11-16T08:00:00.000Z'),
       this.storage.person.bloodValue,
-      'You started your week!',
+      'Något event',
     );
     this.createEvent(
       this.idCounter,
-      AutoType.AUTO_EVENT,
+      AutoType.USER_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date(),
       this.storage.person.bloodValue,
-      'You started your week!',
+      'Lågt blodsocker',
+    );
+    this.createEvent(
+      this.idCounter,
+      AutoType.USER_EVENT,
+      EventType.BLOOD_GLUCOSE_WARNING,
+      new Date('2023-11-17T08:00:00.000Z'),
+      this.storage.person.bloodValue,
+      'Lågt blodsocker',
     );
   }
 

@@ -8,10 +8,10 @@ import ViewContainer from '../components/ViewContainer';
 import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
 
 type RootStackParamList = {
-  MyGotchi: undefined;
+  AboutGotchi: undefined;
 };
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'MyGotchi'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'AboutGotchi'>;
 
 type Props = {
   navigation: NavigationProp;
@@ -25,9 +25,9 @@ function MyGotchiScreen({navigation}: Props) {
   const controller = useScenarioController(); // retreive Controller instance
   const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(
-    controller.storage.person.bloodValue.toFixed(1).toString()
+    controller.storage.person.bloodValue.toFixed(1).toString(),
   ); // Default value
-  
+
   const updateBloodSugar = (newBloodSugar: string) => {
     setBloodSugar(newBloodSugar);
   };
@@ -47,58 +47,21 @@ function MyGotchiScreen({navigation}: Props) {
           <Text style={s`text-6xl text-black`}>😉</Text>
         </View>
         <Text style={s`text-black font-semibold text-4xl`}>
-          { controller.storage.person.name } 
+          {controller.storage.person.name}
+          {'-GOTCHI'}
         </Text>
-        <View style={s`flex-row justify-between`}>
-          <AttributeButton
-            text={controller.storage.person.exerciseHabitStringRepresentation()}
-            colors={['#6ca7e8', '#70e0e1']}
-            locations={[0, 1]}
-            useAngle={true}
-            angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
-            onPress={() => navigation.navigate('Conditions')}
-          />
-          <AttributeButton
-            text={controller.storage.person.ageStringRepresentation()}
-            colors={['#6ca7e8', '#70e0e1']}
-            locations={[0, 1]}
-            useAngle={true}
-            angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
-            onPress={() => navigation.navigate('Conditions')}
-          />
-          <AttributeButton
-            text={controller.storage.person.eatingHabitStringRepresentation()}
-            colors={['#6ca7e8', '#70e0e1']}
-            locations={[0, 1]}
-            useAngle={true}
-            angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
-            onPress={() => navigation.navigate('Conditions')}
-          />
-          <AttributeButton
-            text={controller.storage.person.genderStringRepresentation()}
-            colors={['#6ca7e8', '#70e0e1']}
-            locations={[0, 1]}
-            useAngle={true}
-            angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
-            onPress={() => navigation.navigate('Conditions')}
-          />
-          <AttributeButton
-            text={controller.storage.person.smokingHabitStringRepresentation()}
-            colors={['#6ca7e8', '#70e0e1']}
-            locations={[0, 1]}
-            useAngle={true}
-            angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
-            onPress={() => navigation.navigate('Conditions')}
-          />
+        <View style={s`flex-row justify-center w-32 my-2`}>
+          <Text style={s`text-lg`}>
+            {controller.storage.person.ageStringRepresentation()}
+          </Text>
+          <Text style={s`mx-2 text-lg`}>{'•'}</Text>
+          <Text style={s`text-lg`}>
+            {controller.storage.person.genderStringRepresentation()}
+          </Text>
         </View>
       </View>
-      {/* Stats */}
 
+      {/* Stats */}
       <View style={s`flex-row justify-between`}>
         <MyGotchiStatus
           style={s`flex-1 bg-blue-300 p-5 m-2.5 rounded-lg`}
@@ -125,17 +88,16 @@ function MyGotchiScreen({navigation}: Props) {
       </View>
 
       {/* Footer */}
-      {/*       <View style={s`flex-row justify-around mt-auto`}>
-        <TouchableOpacity>
-          <Text style={s`text-white`}>Summary</Text>
+      <View
+        style={s`flex-row w-52 justify-around absolute bottom-3 bg-warmGray-500 rounded-lg`}>
+        <TouchableOpacity
+          style={s`p-2`}
+          onPress={() => navigation.navigate('AboutGotchi')}>
+          <Text style={s`text-white text-lg`}>
+            Om {controller.storage.person.name}
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={s`text-white`}>Stats</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={s`text-white`}>Profile</Text>
-        </TouchableOpacity>
-      </View> */}
+      </View>
     </ViewContainer>
   );
 }
