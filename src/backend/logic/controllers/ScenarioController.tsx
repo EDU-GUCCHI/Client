@@ -1,10 +1,10 @@
-import { Gotchi } from '../data/gotchi/Gotchi';
-import { Storage } from '../data/Storage';
-import { Clock } from './Clock';
-import { EventDispatcher } from './EventDispatcher';
-import { FormulaGenerator } from './FormulaGenerator';
+import { Gotchi } from '../../data/gotchi/Gotchi';
+import { Storage } from '../../data/Storage';
+import { Clock } from '../time/Clock';
+import { EventDispatcher } from '../event/EventDispatcher';
+import { FormulaGenerator } from '../time/FormulaGenerator';
 import { GUIController } from './GUIController';
-import { IntervallHandler } from './IntervalHandler';
+import { IntervallHandler } from '../time/IntervalHandler';
 import { NotificationDispatcher } from './NotificationDispatcher';
 
 export class ScenarioController

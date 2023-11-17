@@ -72,24 +72,6 @@ function HomeScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0.4}}
           onPress={() => navigation.navigate('Instructions')}
         />
-        <MdButton
-          text="MdButton"
-          colors={['#6ca7e8', '#70e0e1']}
-          locations={[0, 1]}
-          useAngle={true}
-          angle={25}
-          angleCenter={{x: 0.5, y: 0}}
-          onPress={() => navigation.navigate('Notifee')}
-        />
-        <SmButton
-          text="Sm"
-          colors={['#6ca7e8', '#70e0e1']}
-          locations={[0, 1]}
-          useAngle={true}
-          angle={25}
-          angleCenter={{x: 0.5, y: 0}}
-          onPress={() => navigation.navigate('Notifee')}
-        />
       </ViewContainer>
     </>
   );

@@ -1,4 +1,4 @@
-import { Gotchi } from "../data/gotchi/Gotchi";
+import { Gotchi } from "../../data/gotchi/Gotchi";
 
 export class FormulaGenerator
 {

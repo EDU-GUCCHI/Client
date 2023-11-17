@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { ScenarioController } from '../utilities/logic/ScenarioController';
+import { ScenarioController } from '../backend/logic/controllers/ScenarioController';
 
 type ScenarioControllerType = ScenarioController | null;
 

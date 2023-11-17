@@ -1,8 +1,8 @@
-import { Gotchi } from "../data/gotchi/Gotchi";
-import { EventDispatcher } from "./EventDispatcher";
+import { Gotchi } from "../../data/gotchi/Gotchi";
+import { EventDispatcher } from "../event/EventDispatcher";
 import { Clock } from "./Clock";
-import { GUIController } from "./GUIController";
-import { NotificationDispatcher } from "./NotificationDispatcher";
+import { GUIController } from "../controllers/GUIController";
+import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
 
 export class IntervallHandler
 {

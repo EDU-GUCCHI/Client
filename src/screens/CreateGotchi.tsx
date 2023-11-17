@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { s } from 'react-native-wind';
 import { useRoute } from '@react-navigation/native';
 
-import {ScenarioController} from '../utilities/logic/ScenarioController';
+import {ScenarioController} from '../backend/logic/controllers/ScenarioController';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import Title from '../components/Title';

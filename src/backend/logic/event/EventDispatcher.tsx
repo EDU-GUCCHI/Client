@@ -1,8 +1,8 @@
 // sends out Events.
-import {Event} from '../data/event/Event';
-import { AutoType, EventType } from '../data/event/EventTypes';
-import { Storage } from '../data/Storage';
-import { UserInteractableEvent } from '../data/event/UserInteractableEvent';
+import { Event } from '../../data/event/Event';
+import { AutoType, EventType } from '../../data/event/EventTypes';
+import { Storage } from '../../data/Storage';
+import { UserInteractableEvent } from '../../data/event/UserInteractableEvent';
 
 export class EventDispatcher {
     private _storage : Storage;

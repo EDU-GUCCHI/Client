@@ -5,7 +5,6 @@ import { s } from 'react-native-wind';
 import { useScenarioController } from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
-import { AutoType } from '../utilities/data/event/EventTypes';
 import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
 
 type RootStackParamList = {
