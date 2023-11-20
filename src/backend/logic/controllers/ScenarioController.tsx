@@ -32,11 +32,11 @@ export class ScenarioController
         this._intervalHandler = new IntervallHandler(this._storage.person, this._GUIController, this._notificationDispatcher, this._eventDispatcher, this._clock);
     }
 
-    public run(name: string)
+    public run()
     {
         console.log("Controller: Runs");
         // app flow
-        this._storage.person = newGotchi(name);
+        this._storage.person = newGotchi(this._GUIController.gotchisName);
         this._clock.addObserver(this._intervalHandler);
         this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
         this._intervalHandler.factor = this._storage.bloodSugarFactor;

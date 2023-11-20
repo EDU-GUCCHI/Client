@@ -5,10 +5,12 @@ export class GUIController { // responsibility of fetching/storing and displayin
     private _storage: Storage;
     private _person: Gotchi;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
+    private _Gotchisname: string;
 
     constructor(storage: Storage) {
         this._storage = storage;
         this._person = this._storage.person;
+        this._Gotchisname = "";
     }
 
     updateGotchi(name : string) {
@@ -17,6 +19,7 @@ export class GUIController { // responsibility of fetching/storing and displayin
         console.log("Gotchi: Updated");
         console.log(JSON.stringify(this._person));
     }
+
     setBloodSugar(newBloodSugar: number) {
         this._person.bloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
@@ -52,6 +55,14 @@ export class GUIController { // responsibility of fetching/storing and displayin
         }
     }
 
+    set gotchisName(newName: string)
+    {
+        this._Gotchisname = newName;
+    }
+    get gotchisName(): string
+    {
+        return this._Gotchisname;
+    }
     get storage(): Storage 
     {
         return this._storage;
