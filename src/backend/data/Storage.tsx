@@ -2,6 +2,7 @@ import { Gotchi } from "./gotchi/Gotchi";
 import { newGotchi } from './gotchi/GotchiRandomizer';
 import { Event } from "./event/Event";
 import { parseEventsToFormat } from "../logic/event/EventParser";
+import { Age, AlcoholHabit, EatingHabit, Exercise, Gender, Illness, SmokingHabit, Weight } from "./gotchi/EnumAttributes";
 
 export class Storage {
   // store/initialize all data storage classes here, ex: Gotchi
@@ -11,7 +12,15 @@ export class Storage {
   private _triggeredEvents: Event[];
 
   public constructor() {
-    this._person = newGotchi('');
+    this._person = new Gotchi("",0,false,false,
+    Age.SENIOR,
+    EatingHabit.VOLATILE,
+    Exercise.INACTIVE,
+    Weight.UNDERWEIGHT,
+    AlcoholHabit.HEAVY_DRINKER,
+    SmokingHabit.NON_SMOKER,
+    Gender.OTHER,[Illness.FEVER]);
+    
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
   }

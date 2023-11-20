@@ -81,8 +81,8 @@ function CreateGotchiScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0.3}}
           onPress={() => {
             navigation.navigate('Home');
-            controller.run(); // start controller flow
-            GUIController.updateGotchi(gotchiName);
+            controller.run(gotchiName); // start controller flow
+            //GUIController.updateGotchi(gotchiName);
           }}
         />
       </ViewContainer>
