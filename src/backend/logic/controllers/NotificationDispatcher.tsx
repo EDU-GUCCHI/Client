@@ -1,4 +1,4 @@
-import notifee, { AndroidImportance } from '@notifee/react-native';
+import notifee, { AndroidImportance, AuthorizationStatus } from '@notifee/react-native';
 
 export class NotificationDispatcher
 {
@@ -30,4 +30,22 @@ export class NotificationDispatcher
         }
       });
     }
+
+  async startApp() 
+  {
+    const permissions = await notifee.getNotificationSettings();
+    if(permissions.authorizationStatus == AuthorizationStatus.NOT_DETERMINED)
+    {
+      // request permission
+      await notifee.requestPermission();
+    }
+    else if(permissions.authorizationStatus == AuthorizationStatus.AUTHORIZED)
+    {
+      // grant entry to app
+    }
+    else if(permissions.authorizationStatus == AuthorizationStatus.DENIED)
+    {
+      // deny entry to app
+    }
+  }
 }
