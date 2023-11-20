@@ -11,8 +11,28 @@ import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
 import AnswerEventScreen from './src/screens/AnswerEvent';
 import AboutGotchiScreen from './src/screens/AboutGotchi';
+import notifee, { AuthorizationStatus } from '@notifee/react-native';
 
 import { ScenarioControllerProvider } from './src/components/ScenarioControllerContext';
+import { Settings } from 'react-native';
+
+async function startApp() 
+  {
+    const permissions = await notifee.getNotificationSettings();
+    if(permissions.authorizationStatus == AuthorizationStatus.NOT_DETERMINED)
+    {
+      // request permission
+      await notifee.requestPermission();
+    }
+    else if(permissions.authorizationStatus == AuthorizationStatus.AUTHORIZED)
+    {
+      // grant entry to app
+    }
+    else if(permissions.authorizationStatus == AuthorizationStatus.DENIED)
+    {
+      // deny entry to app
+    }
+  }
 
 const Stack = createNativeStackNavigator();
 

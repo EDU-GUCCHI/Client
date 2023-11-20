@@ -39,14 +39,6 @@ export class IntervallHandler
         this._bloodValue -= (this._factor / 3);
         this._person.bloodValue = this._bloodValue;
     }
-    public update(): void // updates done every pulse
-    {
-        this.decreaseBloodSugar(); // Update Values
-        this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
-        this.resetNotificationFlags();
-        this.checkUpperTreshold();
-        this.checkLowerThreshold();
-    }
     public resetNotificationFlags()
     {
         if(this._bloodValue >= 4 && this._bloodValue <= 8)
@@ -105,6 +97,35 @@ export class IntervallHandler
             console.log("Task failed successfully");
             this._clock.stopClock(); // End scenario when this is triggered
         }
+    }
+    public negateValue() // flip value to be negative / positive
+    {
+        this._bloodValue = (this._bloodValue * -1);
+        this._person.bloodValue = this._bloodValue;
+    }
+    public eatBreakfast()
+    {
+        
+    }
+    public eatLunch()
+    {
+
+    }
+    public eatDinner()
+    {
+
+    }
+    public GotchiSleep()
+    {
+
+    }
+    public update(): void // updates done every pulse
+    {
+        this.decreaseBloodSugar(); // Update Values
+        this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
+        this.resetNotificationFlags();
+        this.checkUpperTreshold();
+        this.checkLowerThreshold();
     }
     
     get bloodValue(): number 
