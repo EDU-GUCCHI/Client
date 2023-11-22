@@ -36,7 +36,7 @@ export class ScenarioController
     {
         console.log("Controller: Runs");
         // app flow
-        //this._storage.person = newGotchi(this._GUIController.gotchisName);
+        //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
         this._clock.addObserver(this._intervalHandler);
         this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
