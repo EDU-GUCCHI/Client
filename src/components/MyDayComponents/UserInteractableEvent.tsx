@@ -7,17 +7,19 @@ type UserInteractableEventProps = {
   navigation: any;
   eventTime: string;
   eventTitle: string;
-  colors: string[]; // Array of colors for the gradient
-  locations?: number[]; // Optional locations for the gradient colors
-  useAngle?: boolean; // Optional boolean to use angle or not
-  angle?: number; // Optional angle for the gradient direction
-  angleCenter?: {x: number; y: number}; // Optional center for the gradient angle
+  eventData: ParsedEvent; // Make sure ParsedEvent is correctly defined and imported
+  colors: string[];
+  locations?: number[];
+  useAngle?: boolean;
+  angle?: number;
+  angleCenter?: {x: number; y: number};
 };
 
 function UserInteractableEvent({
   navigation,
   eventTime,
   eventTitle,
+  eventData, // Include eventData here
   colors,
   locations,
   useAngle,
@@ -25,7 +27,7 @@ function UserInteractableEvent({
   angleCenter,
 }: UserInteractableEventProps) {
   const handleNavigate = () => {
-    navigation.navigate('AnswerEvent'); // Navigate to the 'AnswerEvent' screen
+    navigation.navigate('AnswerEvent', {event: eventData}); // Pass eventData to AnswerEvent screen
   };
 
   return (
@@ -42,12 +44,9 @@ function UserInteractableEvent({
         <Text style={s`text-xl text-black font-bold text-center`}>
           {'🕑 '}
           {eventTime}
-          {/* GET TIME */}
         </Text>
 
-        <Text style={s`text-xl text-black font-bold py-4`}>
-          {eventTitle}{/* GET EVENT INFO */}
-        </Text>
+        <Text style={s`text-xl text-black font-bold py-4`}>{eventTitle}</Text>
 
         <Text style={s`text-black text-3xl mb-2`}>{'→'}</Text>
       </LinearGradient>
