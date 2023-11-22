@@ -36,7 +36,7 @@ export class ScenarioController
     {
         console.log("Controller: Runs");
         // app flow
-        this._storage.person = newGotchi(this._GUIController.gotchisName);
+        //this._storage.person = newGotchi(this._GUIController.gotchisName);
         this._clock.addObserver(this._intervalHandler);
         this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(this._storage.person);
         this._intervalHandler.factor = this._storage.bloodSugarFactor;
@@ -49,7 +49,6 @@ export class ScenarioController
         console.log("Controller: Terminated");
         this._clock.stopClock();
         //refresh classes for possible new scenario
-        
         this._storage = new Storage();
         this._GUIController = new GUIController(this._storage);
         this._formulaGenerator = new FormulaGenerator();
