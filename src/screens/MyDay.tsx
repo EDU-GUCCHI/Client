@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
-import { s } from 'react-native-wind';
-import { useScenarioController } from '../components/ScenarioControllerContext';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
+import {s} from 'react-native-wind';
+import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
 import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
@@ -212,10 +212,12 @@ const a = [
   // ... other days and events
 ];
 
-
 function MyDayScreen({navigation}: Props) {
   const controller = useScenarioController();
-  const weeklyEvents = controller.storage.eventsJson || []; // Ensure this is always an array
+  const weeklyEvents = controller.storage.eventsJson || [];
+  console.log(weeklyEvents, 'weekly events ---------------'); // Ensure this is always an array
+  const weeklyParsed = JSON.stringify(weeklyEvents);
+  console.log(weeklyParsed, 'weekly parsed ---------------');
 
   const [currentDayIndex, setCurrentDayIndex] = useState(
     weeklyEvents.length > 0 ? weeklyEvents.length - 1 : 0,
@@ -269,35 +271,36 @@ function MyDayScreen({navigation}: Props) {
         </View>
 
         {currentDay.events.map((event, eventIndex) => {
-          if(event.interactable === false) {
+          if (event.interactable === false) {
             return (
-                <NonUserInteractableEvent
-                  key={eventIndex}
-                  eventTime={event.time}
-                  eventTitle={event.title}
-                  colors={['#9a9a9a', '#d4d4d4']}
-                  locations={[0, 0.8]}
-                  useAngle={true}
-                  angle={25}
-                  angleCenter={{x: 0.5, y: 0.6}}
-                /> 
-              )
+              <NonUserInteractableEvent
+                key={eventIndex}
+                eventTime={event.time}
+                eventTitle={event.title}
+                colors={['#9a9a9a', '#d4d4d4']}
+                locations={[0, 0.8]}
+                useAngle={true}
+                angle={25}
+                angleCenter={{x: 0.5, y: 0.6}}
+              />
+            );
           } else {
             return (
               <UserInteractableEvent
-              key={eventIndex}
-              navigation={navigation}
-              eventTime={event.time}
-              eventTitle={event.title}
-              colors={['#6ca7e8', '#70e0e1']}
-              locations={[0, 0.8]}
-              useAngle={true}
-              angle={25}
-              angleCenter={{x: 0.5, y: 0.6}}
-            /> 
-            )}
-          })
+                key={eventIndex}
+                eventData={event} // Pass the entire event object
+                navigation={navigation}
+                eventTime={event.time}
+                eventTitle={event.title}
+                colors={['#6ca7e8', '#70e0e1']}
+                locations={[0, 0.8]}
+                useAngle={true}
+                angle={25}
+                angleCenter={{x: 0.5, y: 0.6}}
+              />
+            );
           }
+        })}
       </View>
     </ViewContainer>
   );

@@ -12,9 +12,9 @@ interface ParsedEvent {
   interactable: boolean;
   time: string;
   title: string;
-  symptoms: ParsedOption[];
-  treatment: ParsedOption[];
-  cause: ParsedOption[];
+  symptoms: object;
+  treatment: object;
+  cause: object;
 }
 
 interface ParsedDay {
@@ -55,9 +55,9 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
 
     if (event instanceof UserInteractableEvent) {
       // If it's a UserInteractableEvent, populate the parsedEvent with its data
-      parsedEvent.symptoms = parseOptions(event.symptomOptions, event.correctSymptoms);
-      parsedEvent.treatment = parseOptions(event.treatmentOptions, event.correctTreatments);
-      parsedEvent.cause = parseOptions(event.causeOptions, event.correctCauses);
+      parsedEvent.symptoms = parseOptions(event.symptomOptions as { [key: string]: boolean });
+      parsedEvent.treatment = parseOptions(event.treatmentOptions as { [key: string]: boolean });
+      parsedEvent.cause = parseOptions(event.causeOptions as { [key: string]: boolean });
     }
 
     parsedDay.events.push(parsedEvent);
@@ -66,10 +66,15 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
   return parsedDays;
 }
 
-function parseOptions(options: any[], correctOptions: any[]): ParsedOption[] {
-  return options.map((option, index) => ({
+function parseOptions(options: {[key: string]: boolean}): ParsedOption[] {
+  // Check if options is an object and not null
+  if (typeof options !== 'object' || options === null) {
+    return [];
+  }
+
+  return Object.entries(options).map(([option, correct]) => ({
     option,
-    correct: correctOptions[index],
+    correct,
     answered: false,
   }));
 }

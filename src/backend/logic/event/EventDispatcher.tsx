@@ -21,7 +21,7 @@ export class EventDispatcher {
   }
 
   public pointOfEntryEvent() {
-    this.createEvent(
+    /*     this.createEvent(
       this.idCounter,
       AutoType.USER_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
@@ -52,15 +52,16 @@ export class EventDispatcher {
       new Date(),
       this.storage.person.bloodValue,
       'Lågt blodsocker',
-    );
+    ); 
     this.createEvent(
       this.idCounter,
       AutoType.USER_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-17T08:00:00.000Z'),
+      new Date(),
       this.storage.person.bloodValue,
       'Lågt blodsocker',
-    );
+    );*/
+    this.LowBloodSugar();
   }
 
   //Create event with param values, answer values are optional
@@ -71,12 +72,9 @@ export class EventDispatcher {
     timeStamp: Date,
     bloodGlucoseChange: number,
     description: string,
-    symptomOptions?: [],
-    correctSymptoms?: [],
-    causeOptions?: [],
-    correctCauses?: [],
-    treatmentOptions?: [],
-    correctTreatments?: [],
+    symptomOptions?: object,
+    causeOptions?: object,
+    treatmentOptions?: object,
   ) {
     const event: Event =
       autoType === AutoType.USER_EVENT
@@ -87,12 +85,9 @@ export class EventDispatcher {
             timeStamp,
             bloodGlucoseChange,
             description,
-            symptomOptions || [],
-            correctSymptoms || [],
-            causeOptions || [],
-            correctCauses || [],
-            treatmentOptions || [],
-            correctTreatments || [],
+            symptomOptions || {},
+            causeOptions || {},
+            treatmentOptions || {},
           )
         : new Event(
             id,
@@ -159,7 +154,24 @@ export class EventDispatcher {
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
     const bloodGlucoseChange = -2;
-    const description = this.storage.person.name + ' has low blood sugar';
+    const description = 'Low blood sugar';
+    const symptomOptions = [
+      { option: 'Svettig', correct: true, answered: false },
+      { option: 'Svag', correct: true, answered: false },
+      { option: 'Huvudvärk', correct: false, answered: false },
+    ];
+    const causeOptions = [
+      { option: 'För lite insulin', correct: true, answered: false },
+      { option: 'För mycket insulin', correct: false, answered: false },
+      { option: 'För lite mat', correct: false, answered: false },
+    ];
+    const treatmentOptions = [
+      { option: 'Ät något', correct: true, answered: false },
+      { option: 'Ta insulin', correct: false, answered: false },
+      { option: 'Vila', correct: false, answered: false },
+    ];
+    const eventAnswered = false;
+
     console.log('Creating Low blood-sugar event');
     this.createEvent(
       id,
@@ -168,6 +180,9 @@ export class EventDispatcher {
       timeStamp,
       bloodGlucoseChange,
       description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
     );
   }
   /* BloodGlucoseWarningEvent() {

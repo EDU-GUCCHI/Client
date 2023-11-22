@@ -2,20 +2,12 @@ import React, {useState} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {s} from 'react-native-wind';
 
-const MultiSelectionButtons = () => {
+const MultiSelectionButtons = ({options, correctAnswers}) => {
   const [selectedButtons, setSelectedButtons] = useState(new Set());
   const [submitted, setSubmitted] = useState(false);
-  const buttonOptions = [
-    'Button 1',
-    'Button 2',
-    'Button 3',
-    'Button 4',
-    'Button 5',
-    'Button 6',
-  ];
 
   const handleButtonPress = option => {
-    if (submitted) return; // Disable button presses after submission
+    if (submitted) return;
     const newSelectedButtons = new Set(selectedButtons);
     if (newSelectedButtons.has(option)) {
       newSelectedButtons.delete(option);
@@ -31,7 +23,7 @@ const MultiSelectionButtons = () => {
 
   const getButtonStyle = option => {
     if (submitted) {
-      if (option === 'Button 1' || option === 'Button 4') {
+      if (correctAnswers.includes(option)) {
         return s`bg-green-400 border-green-500 text-white`;
       }
       return s`bg-red-400 border-red-500 text-white`;
@@ -44,11 +36,11 @@ const MultiSelectionButtons = () => {
   return (
     <View style={s`flex flex-col items-center`}>
       <View style={s`flex-row flex-wrap justify-center items-center`}>
-        {buttonOptions.map(option => {
-          if (submitted && !selectedButtons.has(option)) return null; // Hide non-selected buttons after submission
+        {options.map((option, index) => {
+          if (submitted && !selectedButtons.has(option)) return null;
           return (
             <TouchableOpacity
-              key={option}
+              key={index}
               style={[
                 s`p-2 m-2 w-1/4 items-center justify-center rounded-lg`,
                 getButtonStyle(option),
@@ -62,8 +54,7 @@ const MultiSelectionButtons = () => {
       <TouchableOpacity
         style={s`bg-blue-500 p-3 rounded-lg m-2`}
         onPress={handleSubmit}
-        disabled={submitted} // Disable submit button after submission
-      >
+        disabled={submitted}>
         <Text style={s`text-white`}>Submit</Text>
       </TouchableOpacity>
     </View>
