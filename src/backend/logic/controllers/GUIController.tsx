@@ -19,7 +19,6 @@ export class GUIController { // responsibility of fetching/storing and displayin
         console.log("Gotchi: Updated");
         console.log(JSON.stringify(this._person));
     }
-
     setBloodSugar(newBloodSugar: number) {
         this._person.bloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
@@ -38,7 +37,6 @@ export class GUIController { // responsibility of fetching/storing and displayin
             callback(newBloodSugar);
         });
     }
-
     handleButtonAnswer(buttonName: String): void
     {
         // fetch current event and check if option is correct to that value

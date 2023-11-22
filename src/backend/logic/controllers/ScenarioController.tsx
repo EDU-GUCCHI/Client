@@ -69,9 +69,10 @@ export class ScenarioController
             } 
             catch (error) 
             {
-                console.log("Gotchi failed to randomize");
+                console.log("Gotchi nr: " + i + " failed to randomize");
                 break;
             }
+            console.log("Gotchi nr: " + i + " success");
         }
     }
 
