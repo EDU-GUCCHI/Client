@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { s } from 'react-native-wind';
 import { useRoute } from '@react-navigation/native';
@@ -48,6 +48,12 @@ function CreateGotchiScreen({navigation}: Props) {
   const controller = useScenarioController();
   const GUIController = controller.GUIController;
 
+  useEffect(() => {
+    if (gotchiName !== '') {
+      GUIController.gotchisName = gotchiName;
+    }
+  }, [gotchiName, GUIController]);
+
   return (
     <>
       <ViewContainer style={s`items-center justify-center h-full`}>
@@ -81,7 +87,6 @@ function CreateGotchiScreen({navigation}: Props) {
           angleCenter={{x: 0.5, y: 0.3}}
           onPress={() => {
             navigation.navigate('Home');
-            GUIController.gotchisName = gotchiName;
             controller.run(); // start controller flow
           }}
         />
