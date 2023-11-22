@@ -12,7 +12,7 @@ export class Storage {
   private _triggeredEvents: Event[];
 
   public constructor() {
-    this._person = new Gotchi("",0,false,false,
+    this._person = new Gotchi("",5,false,false,
     Age.SENIOR,
     EatingHabit.VOLATILE,
     Exercise.INACTIVE,
