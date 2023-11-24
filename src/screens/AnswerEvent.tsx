@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {
   View,
+  ScrollView,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -22,65 +23,86 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function AnswerEventScreen({route, navigation}) {
-  const event = route.params?.event; // Retrieve the passed event data
+function AnswerEventScreen({ route, navigation }) {
+  const event = route.params?.event;
+  const [showSymptomSelection, setShowSymptomSelection] = useState(false);
+  const [showTreatmentSelection, setShowTreatmentSelection] = useState(false);
+  const [showCauseSelection, setShowCauseSelection] = useState(false);
 
-  // Function to extract correct answers
-  const getCorrectAnswers = items =>
-    items.filter(item => item.correct.correct).map(item => item.correct.option);
+  const getCorrectAnswers = (items) =>
+    items.filter((item) => item.correct.correct).map((item) => item.correct.option);
 
-  // Extract correct answers for each category
   const correctSymptoms = getCorrectAnswers(event.symptoms);
   const correctTreatment = getCorrectAnswers(event.treatment);
   const correctCause = getCorrectAnswers(event.cause);
 
-  const firstSymptom =
-    event.symptoms.length > 0
-      ? event.symptoms[1].correct.option
-      : 'No symptoms';
-
   if (!event) {
-    // Handle the case where no event data is passed
     return <Text>No Event Data</Text>;
   }
 
+  const collapsedBoxStyle = s`border p-4 mb-4 rounded-lg w-80 relative`; // Set a fixed width for the collapsed state
+
   return (
-    <ViewContainer style={s`flex h-full items-center`}>
-      <Text style={s`text-4xl text-black font-semibold w-80 text-center my-4`}>
-        {event.title}
-      </Text>
+    <ViewContainer style={s`flex h-full items-center p-4`}>
+      {/* Symptom Section */}
+      <TouchableOpacity onPress={() => setShowSymptomSelection(!showSymptomSelection)}>
+        <View style={collapsedBoxStyle}>
+          <View style={s`flex-row justify-between items-center`}>
+            <Text style={s`text-2xl text-black font-semibold`}>
+              Symptom
+            </Text>
+            <Text style={s`text-xl`}>{showSymptomSelection ? '↑' : '↓'}</Text>
+          </View>
+          {showSymptomSelection && (
+            <MultiSelectionButtons
+              options={event.symptoms.map((s) => s.correct.option)}
+              correctAnswers={correctSymptoms}
+            />
+          )}
+        </View>
+      </TouchableOpacity>
 
-      {/* Symptoms */}
-      <View style={s`items-center`}>
-        <Text style={s`text-2xl text-black font-semibold`}>Symptom</Text>
-        <Text style={s`text-sm`}>Välj flera</Text>
-        <MultiSelectionButtons
-          options={event.symptoms.map(s => s.correct.option)}
-          correctAnswers={correctSymptoms}
-        />
-      </View>
+      {/* Treatment Section */}
+      <TouchableOpacity onPress={() => setShowTreatmentSelection(!showTreatmentSelection)}>
+        <View style={collapsedBoxStyle}>
+          <View style={s`flex-row justify-between items-center`}>
+            <Text style={s`text-2xl text-black font-semibold`}>
+              Treatment
+            </Text>
+            <Text style={s`text-xl`}>{showTreatmentSelection ? '↑' : '↓'}</Text>
+          </View>
+          {showTreatmentSelection && (
+            <MultiSelectionButtons
+              options={event.treatment.map((t) => t.correct.option)}
+              correctAnswers={correctTreatment}
+            />
+          )}
+        </View>
+      </TouchableOpacity>
 
-      {/* Treatment */}
-      <View style={s`items-center`}>
-        <Text style={s`text-2xl text-black font-semibold`}>Treatment</Text>
-        <Text style={s`text-sm`}>Välj flera</Text>
-        <MultiSelectionButtons
-          options={event.treatment.map(t => t.correct.option)}
-          correctAnswers={correctTreatment}
-        />
-      </View>
-
-      {/* Cause */}
-      <View style={s`items-center`}>
-        <Text style={s`text-2xl text-black font-semibold`}>Cause</Text>
-        <Text style={s`text-sm`}>Välj flera</Text>
-        <MultiSelectionButtons
-          options={event.cause.map(c => c.correct.option)}
-          correctAnswers={correctCause}
-        />
-      </View>
+      {/* Cause Section */}
+      <TouchableOpacity onPress={() => setShowCauseSelection(!showCauseSelection)}>
+        <View style={collapsedBoxStyle}>
+          <View style={s`flex-row justify-between items-center`}>
+            <Text style={s`text-2xl text-black font-semibold`}>
+              Cause
+            </Text>
+            <Text style={s`text-xl`}>{showCauseSelection ? '↑' : '↓'}</Text>
+          </View>
+          {showCauseSelection && (
+            <MultiSelectionButtons
+              options={event.cause.map((c) => c.correct.option)}
+              correctAnswers={correctCause}
+            />
+          )}
+        </View>
+      </TouchableOpacity>
     </ViewContainer>
   );
 }
 
 export default AnswerEventScreen;
+
+
+
+
