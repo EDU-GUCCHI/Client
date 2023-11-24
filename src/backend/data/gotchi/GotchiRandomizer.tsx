@@ -1,14 +1,9 @@
-import { Gender, EatingHabit, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness, Age } from './EnumAttributes';
+import { EatingHabit, Exercise, AlcoholHabit } from './FrequencyEnum';
+import { Age, Weight, Illness } from './ConstantEnum'
 import { Gotchi } from './Gotchi';
 
 export function newGotchi(name: string): Gotchi {
   const random = Math.random();
-
-  var gender = Gender.FEMALE;
-  var flip = coinFlip();
-  if (flip === 1) {
-    gender = Gender.MALE;
-  }
 
   let count = Math.floor(random * Object.keys(Illness).length);
   let illnesses = new Set();
@@ -17,7 +12,6 @@ export function newGotchi(name: string): Gotchi {
   }
   console.log(illnesses);
   const chosenIllnesses = Array.from(illnesses);
-  
   return new Gotchi(
     name,
     getRandomNumber(4, 6),
@@ -28,16 +22,13 @@ export function newGotchi(name: string): Gotchi {
     getRandomEnum(Exercise),
     getRandomEnum(Weight),
     getRandomEnum(AlcoholHabit),
-    getRandomEnum(SmokingHabit),
-    getRandomEnum(Gender),
-    chosenIllnesses
+    coinFlip() == 1,
+    getRandomEnum(Illness)
   );
 }
 
 function getRandomEnum<T>(anEnum: T): T[keyof T] {
-  const enumValues = Object.keys(anEnum)
-    .map(n => Number.parseInt(n))
-    .filter(n => !Number.isNaN(n)) as unknown as T[keyof T][];
+  const enumValues = Object.keys(anEnum as object).map(n => Number.parseInt(n)).filter(n => !Number.isNaN(n)) as unknown as T[keyof T][];
   const randomIndex = Math.floor(Math.random() * enumValues.length);
   const randomEnumValue = enumValues[randomIndex];
   return randomEnumValue;

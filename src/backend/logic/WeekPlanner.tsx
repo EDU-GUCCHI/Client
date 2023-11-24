@@ -1,4 +1,4 @@
-import {Exercise} from '../data/gotchi/EnumAttributes';
+import {Exercise} from '../data/gotchi/FrequencyEnum';
 import {Gotchi} from '../data/gotchi/Gotchi';
 import {Storage} from '../data/Storage';
 //import cron from 'node-cron';

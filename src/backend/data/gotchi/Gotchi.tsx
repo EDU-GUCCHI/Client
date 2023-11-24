@@ -1,4 +1,5 @@
-import { Gender, EatingHabit, Age, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness } from './EnumAttributes';
+import {EatingHabit, Exercise, AlcoholHabit} from './FrequencyEnum';
+import {Age, Weight, Illness} from './ConstantEnum'
 
 export class Gotchi {
   private _name: string;
@@ -11,9 +12,9 @@ export class Gotchi {
   private _exercise: Exercise;
   private _weight: Weight;
   private _alcoholHabit: AlcoholHabit;
-  private _smokingHabit: SmokingHabit;
-  private _illnesses: Illness[];
-  private _gender: Gender;
+  private _illnesses: Illness;
+  private _gender: boolean;
+
 
   public constructor(
     name:         string,
@@ -25,16 +26,14 @@ export class Gotchi {
     exercise:     Exercise,
     weight:       Weight,
     alcoholHabit: AlcoholHabit,
-    smokingHabit: SmokingHabit,
-    gender:       Gender,
-    illnesses:    Illness[]
+    gender:       boolean,
+    illnesses:    Illness
   ) {
     this._name = name;
     this._bloodSugar = bloodSugar;
     this._insulinPump = insulinPump;
     this._lchf = lchf;
     this._age = age;
-    this._smokingHabit = smokingHabit;
     this._alcoholHabit = alcoholHabit;
     this._weight = weight;
     this._exercise = exercise;
@@ -70,13 +69,10 @@ export class Gotchi {
   get alcoholHabit(): AlcoholHabit {
     return this._alcoholHabit;
   }
-  get smokeHabit(): SmokingHabit {
-    return this._smokingHabit;
-  }
-  get illnesses(): Illness[] {
+  get illnesses(): Illness {
     return this._illnesses;
   }
-  get gender(): Gender {
+  get gender(): boolean {
     return this._gender;
   }
   // Setters for private attributes
@@ -104,13 +100,17 @@ export class Gotchi {
   set alcoholHabit(alcoholHabbit: AlcoholHabit) {
     this._alcoholHabit = alcoholHabbit;
   }
-  set smokeHabit(smokeHabbit: SmokingHabit) {
-    this._smokingHabit = smokeHabbit;
-  }
-  set illnesses(illnesses: Illness[]) {
+  set illnesses(illnesses: Illness) {
     this._illnesses = illnesses;
   }
   
+  staticValues() : any {
+    let arr = [];
+    arr.push(this._age);
+    arr.push(this._weight);
+    arr.push(this._illnesses);
+    return arr;
+  }
   ageStringRepresentation(this: any) {
     switch(this._age) {
       case Age.YOUNG_ADULT : return "Ung vuxen";
@@ -120,11 +120,11 @@ export class Gotchi {
     return "Undefined";
   }
   genderStringRepresentation(this: any) {
-    switch(this._gender) {
-      case Gender.MALE : return "Man";
-      case Gender.FEMALE : return "Kvinna"
+    if(this._gender) {
+      return "Kvinna"
+    } else {
+      return "Man";
     }
-    return "Undefined";
   }
 
   eatingHabitStringRepresentation(this: any) {
@@ -139,14 +139,6 @@ export class Gotchi {
       case Exercise.VERY_ACTIVE : return "Tränar ofta";
       case Exercise.ACTIVE : return "Tränar regelbundet";
       case Exercise.INACTIVE : return "Tränar sällan";
-    }
-    return "Undefined";
-  }
-  smokingHabitStringRepresentation(this: any) {
-    switch(this._smokingHabit) {
-      case SmokingHabit.HEAVY_SMOKER : return "Vanerökare";
-      case SmokingHabit.SOCIAL_SMOKER : return "Röker socialt";
-      case SmokingHabit.NON_SMOKER : return "Icke-rökare";
     }
     return "Undefined";
   }
