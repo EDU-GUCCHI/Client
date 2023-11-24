@@ -53,6 +53,11 @@ export class IntervallHandler
         this._bloodValue += this._increaseFactor;
         this._person.bloodValue = this.bloodValue;
     }
+    public negateValue() // flip value to be negative / positive
+    {
+        this._bloodValue = (this._bloodValue * -1);
+        this._person.bloodValue = this._bloodValue;
+    }
     public resetNotificationFlags()
     {
         if(this._bloodValue >= 4 && this._bloodValue <= 8)
@@ -111,11 +116,6 @@ export class IntervallHandler
             console.log("Task failed successfully");
             this._clock.stopClock(); // End scenario when this is triggered
         }
-    }
-    public negateValue() // flip value to be negative / positive
-    {
-        this._bloodValue = (this._bloodValue * -1);
-        this._person.bloodValue = this._bloodValue;
     }
     public update(): void // updates done every pulse
     {

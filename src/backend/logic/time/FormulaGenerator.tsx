@@ -5,8 +5,8 @@ export class FormulaGenerator
 {
     private _baseline : number;
 
-    public constructor(person : Gotchi) { 
-        this._baseline = this.generateFormula(person);
+    public constructor() { 
+        this._baseline = 1;
     }
 
     public generateFormula(person: Gotchi): number
@@ -39,13 +39,12 @@ export class FormulaGenerator
     {
         this._baseline = baseline;
     }
-    public generateIncreaseFactor(enumValue : any): number
+    public static generateIncreaseFactor(): number
     {
-        this._baseline *= enumValue.value;
-        return this._baseline;
+        return 1;
     }
-    public generateDecreaseFactor(): number
+    public static generateDecreaseFactor(): number
     {
-        return this._baseline;
+        return 1
     }
 }

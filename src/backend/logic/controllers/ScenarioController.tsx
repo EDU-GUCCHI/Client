@@ -26,10 +26,14 @@ export class ScenarioController {
     this._storage = new Storage();
     this._GUIController = new GUIController(this._storage.person);
     this._formulaGenerator = new FormulaGenerator();
+    this._storage.increaseFactor = FormulaGenerator.generateIncreaseFactor();
+    this._storage.decreaseFactor = FormulaGenerator.generateDecreaseFactor();
+
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
     this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
+      this._storage,
       this._storage.person,
       this._GUIController,
       this._notificationDispatcher,
@@ -48,7 +52,6 @@ export class ScenarioController {
     this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
       this._storage.person,
     );
-    this._intervalHandler.factor = this._storage.bloodSugarFactor;
     this._clock.startClock(); // start clock pulse
     this._eventDispatcher.pointOfEntryEvent();
   }

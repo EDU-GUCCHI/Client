@@ -31,12 +31,13 @@ export class Storage {
     
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
+    this._increaseFactor = 0;
+    this._decreaseFactor = 0;
   }
   // getters-setters here
   get person(): Gotchi {
     return this._person;
   }
-
   get increaseFactor(): number {
     return this._increaseFactor;
   }
