@@ -2,7 +2,7 @@ import { Gotchi } from "../data/gotchi/Gotchi";
 
 class JSONParser {
     //Takes json string, creates a ts object and reads that data to create and return a Gotchi object
-    static parse(json:string): Gotchi | null {
+    static toGotchi(json:string): Gotchi | null {
         if(!json) return null;
 
         const data = JSON.parse(json);
@@ -24,7 +24,7 @@ class JSONParser {
     }
     //Takes a Gotchi object, creates and returns a JSON string with those attributes
     //TODO: Kolla om vi behöver göra något angående enum. just nu returnerar getters numeriska värden 
-    static toJSON(gotchi: Gotchi): any {
+    static GotchiToJSON(gotchi: Gotchi): any {
         const jsonData = {
             mockGotchi: {
                 name: gotchi.name,

@@ -24,7 +24,7 @@ export class ScenarioController {
     console.log('Controller: Created');
     // instantiate classes
     this._storage = new Storage();
-    this._GUIController = new GUIController(this._storage);
+    this._GUIController = new GUIController(this._storage.person);
     this._formulaGenerator = new FormulaGenerator();
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
@@ -58,12 +58,13 @@ export class ScenarioController {
     this._clock.stopClock();
     //refresh classes for possible new scenario
     this._storage = new Storage();
-    this._GUIController = new GUIController(this._storage);
+    this._GUIController = new GUIController(this._storage.person);
     this._formulaGenerator = new FormulaGenerator();
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
     this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
+      this._storage,
       this._storage.person,
       this._GUIController,
       this._notificationDispatcher,
@@ -71,12 +72,17 @@ export class ScenarioController {
       this._clock,
     );
   }
-  public debugRandomizer() {
+  public debugRandomizer() 
+  {
     let i = 0;
-    for (i; i < 100; i++) {
-      try {
+    for (i; i < 100; i++) 
+    {
+      try 
+      {
         let g = newGotchi('subject');
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.log('Gotchi nr: ' + i + ' failed to randomize');
         break;
       }

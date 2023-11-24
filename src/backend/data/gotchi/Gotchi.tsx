@@ -1,7 +1,6 @@
 import { Gender, EatingHabit, Age, Exercise, Weight, AlcoholHabit, SmokingHabit, Illness } from './EnumAttributes';
 
 export class Gotchi {
-
   private _name: string;
   private _bloodSugar: number;
   private _insulinPump: boolean;
@@ -112,7 +111,6 @@ export class Gotchi {
     this._illnesses = illnesses;
   }
   
-
   ageStringRepresentation(this: any) {
     switch(this._age) {
       case Age.YOUNG_ADULT : return "Ung vuxen";

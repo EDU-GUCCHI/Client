@@ -2,23 +2,15 @@ import { Gotchi } from "../../data/gotchi/Gotchi";
 import { Storage } from "../../data/Storage";
 
 export class GUIController { // responsibility of fetching/storing and displaying data in GUI
-    private _storage: Storage;
     private _person: Gotchi;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
     private _gotchisname: string;
 
-    constructor(storage: Storage) {
-        this._storage = storage;
-        this._person = this._storage.person;
+    constructor(person: Gotchi) {
+        this._person = person;
         this._gotchisname = "";
     }
 
-    updateGotchi(name : string) {
-        this._storage.person.name = name;
-        this._person = this._storage.person;
-        console.log("Gotchi: Updated");
-        console.log(JSON.stringify(this._person));
-    }
     setBloodSugar(newBloodSugar: number) {
         this._person.bloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
@@ -42,7 +34,6 @@ export class GUIController { // responsibility of fetching/storing and displayin
         // fetch current event and check if option is correct to that value
         console.log("handling button: " + buttonName);
         let correct = false;
-
         if(correct)
         {
             console.log("is correct");
@@ -60,10 +51,6 @@ export class GUIController { // responsibility of fetching/storing and displayin
     get gotchisName(): string
     {
         return this._gotchisname;
-    }
-    get storage(): Storage 
-    {
-        return this._storage;
     }
     get person(): Gotchi 
     {

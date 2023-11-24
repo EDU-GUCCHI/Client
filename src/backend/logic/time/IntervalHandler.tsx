@@ -3,11 +3,13 @@ import { EventDispatcher } from "../event/EventDispatcher";
 import { Clock } from "./Clock";
 import { GUIController } from "../controllers/GUIController";
 import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
+import { Storage } from "../../data/Storage";
 
 export class IntervallHandler
 {
     private _bloodValue: number;
-    private _factor: number;
+    private _increaseFactor: number;
+    private _decreaseFactor: number;
     private _person: Gotchi;
     private _GUIController: GUIController;
     private _notificationDispatcher: NotificationDispatcher;
@@ -17,13 +19,16 @@ export class IntervallHandler
     private _warningNotificationSent: Boolean;
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
+    private _storage: Storage;
 
-    public constructor(person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock)
+    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock)
     {
         this._person = person;
+        this._storage = storage;
         this._bloodValue = person.bloodValue;
         this._GUIController = GUIController;
-        this._factor = 0;
+        this._increaseFactor = 0;
+        this._decreaseFactor = 0;
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._clock = clock;
@@ -32,12 +37,21 @@ export class IntervallHandler
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
     }
-    
-    public decreaseBloodSugar(): void // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
+
+    public updateFactors()
     {
-        //just example increment for now!
-        this._bloodValue -= (this._factor / 3);
+        this.increaseFactor = this._storage.increaseFactor;
+        this._decreaseFactor = this._storage.decreaseFactor;
+    }
+    public decreaseBloodSugar() // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
+    {
+        this._bloodValue -= this._decreaseFactor;
         this._person.bloodValue = this._bloodValue;
+    }
+    public increaseBloodSugar()
+    {
+        this._bloodValue += this._increaseFactor;
+        this._person.bloodValue = this.bloodValue;
     }
     public resetNotificationFlags()
     {
@@ -103,22 +117,6 @@ export class IntervallHandler
         this._bloodValue = (this._bloodValue * -1);
         this._person.bloodValue = this._bloodValue;
     }
-    public eatBreakfast()
-    {
-        
-    }
-    public eatLunch()
-    {
-
-    }
-    public eatDinner()
-    {
-
-    }
-    public GotchiSleep()
-    {
-
-    }
     public update(): void // updates done every pulse
     {
         this.decreaseBloodSugar(); // Update Values
@@ -136,12 +134,12 @@ export class IntervallHandler
     {
         this._bloodValue = value;
     }
-    get factor(): number 
+    get increaseFactor(): number 
     {
-        return this._factor;
+        return this._increaseFactor;
     }
-    set factor(value: number) 
+    set increaseFactor(value: number) 
     {
-        this._factor = value;
+        this._increaseFactor = value;
     }
 }

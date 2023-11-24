@@ -11,6 +11,9 @@ export class Storage {
   //add attr. for storing Events. Array/map?. Store pre-defined events or store triggered events or both?
   private _triggeredEvents: Event[];
 
+  private _increaseFactor: number;
+  private _decreaseFactor: number;
+
   public constructor() {
     this._person = new Gotchi("",5,false,false,
     Age.SENIOR,
@@ -20,6 +23,9 @@ export class Storage {
     AlcoholHabit.HEAVY_DRINKER,
     SmokingHabit.NON_SMOKER,
     Gender.OTHER,[Illness.FEVER]);
+
+    this._increaseFactor = 0;
+    this._decreaseFactor = 0;
     
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
@@ -27,6 +33,19 @@ export class Storage {
   // getters-setters here
   get person(): Gotchi {
     return this._person;
+  }
+
+  get increaseFactor(): number {
+    return this._increaseFactor;
+  }
+  set increaseFactor(incfac: number) {
+    this._increaseFactor = incfac;
+  }
+  get decreaseFactor(): number {
+    return this._decreaseFactor;
+  }
+  set decreaseFactor(decfac: number){
+    this._decreaseFactor = decfac;
   }
   set person(newPerson: Gotchi) {
     this._person = newPerson;
