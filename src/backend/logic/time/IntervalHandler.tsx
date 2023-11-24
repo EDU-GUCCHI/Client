@@ -3,6 +3,7 @@ import { EventDispatcher } from "../event/EventDispatcher";
 import { Clock } from "./Clock";
 import { GUIController } from "../controllers/GUIController";
 import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
+import { FormulaGenerator } from "./FormulaGenerator";
 
 export class IntervallHandler
 {
@@ -23,7 +24,8 @@ export class IntervallHandler
         this._person = person;
         this._bloodValue = person.bloodValue;
         this._GUIController = GUIController;
-        this._factor = 0;
+
+        
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._clock = clock;

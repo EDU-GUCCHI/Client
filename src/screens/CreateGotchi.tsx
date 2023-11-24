@@ -41,9 +41,15 @@ function sendData() {
   });
 }
 
+const data = [
+  {key:'1', value:'Malmö Universitet', disabled:true},
+  {key:'2', value:'Göteborgs Universitet'},
+]
+
 function CreateGotchiScreen({navigation}: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
+  const [institutionName, setInstitutionName] = useState('');
   
   const controller = useScenarioController();
   const GUIController = controller.GUIController;
@@ -62,6 +68,16 @@ function CreateGotchiScreen({navigation}: Props) {
           placeholder="Namnge din gotchi..."
           value={gotchiName}
           onChangeText={setGotchiName}
+          colors={['#E9F1F7', '#E0DDD5']}
+          locations={[0, 1]}
+          useAngle={true}
+          angle={25}
+          angleCenter={{x: 0.5, y: 0}}
+        />
+        <InputField
+          placeholder="Institution..."
+          value={institutionName}
+          onChangeText={setInstitutionName}
           colors={['#E9F1F7', '#E0DDD5']}
           locations={[0, 1]}
           useAngle={true}
