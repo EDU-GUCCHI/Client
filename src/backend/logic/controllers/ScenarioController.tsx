@@ -25,6 +25,7 @@ export class ScenarioController {
     // instantiate classes
     this._storage = new Storage();
     this._GUIController = new GUIController(this._storage.person);
+
     this._formulaGenerator = new FormulaGenerator();
     this._storage.increaseFactor = FormulaGenerator.generateIncreaseFactor();
     this._storage.decreaseFactor = FormulaGenerator.generateDecreaseFactor();
@@ -48,6 +49,7 @@ export class ScenarioController {
     // app flow
     //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
     //this.debugRandomizer(); use to test gothi randomizer
+    this._storage.person = newGotchi(this._GUIController.gotchisName);
     this._clock.addObserver(this._intervalHandler);
     this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
       this._storage.person,

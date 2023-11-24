@@ -3,8 +3,7 @@ import { Age, Weight, Illness } from './ConstantEnum'
 import { Gotchi } from './Gotchi';
 
 export function newGotchi(name: string): Gotchi {
-  const random = Math.random();
-
+  /*
   let count = Math.floor(random * Object.keys(Illness).length);
   let illnesses = new Set();
   while(illnesses.size != count) {
@@ -12,6 +11,7 @@ export function newGotchi(name: string): Gotchi {
   }
   console.log(illnesses);
   const chosenIllnesses = Array.from(illnesses);
+  */
   return new Gotchi(
     name,
     getRandomNumber(4, 6),

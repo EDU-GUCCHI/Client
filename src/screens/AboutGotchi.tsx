@@ -56,14 +56,6 @@ function AboutGotchiScreen({navigation}: Props) {
 
         <Text style={s`mb-3 text-xl text-black`}>
           {' '}
-          {controller.storage.person.smokingHabitStringRepresentation()}
-        </Text>
-        <Text style={s`mb-3 text-lg w-80 bg-white text-black pb-24`}>
-          Beskrivning
-        </Text>
-
-        <Text style={s`mb-3 text-xl text-black`}>
-          {' '}
           {controller.storage.person.eatingHabitStringRepresentation()}
         </Text>
         <Text style={s`mb-3 text-lg w-80 bg-white text-black pb-24`}>

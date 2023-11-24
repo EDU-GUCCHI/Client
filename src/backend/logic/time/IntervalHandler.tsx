@@ -36,6 +36,7 @@ export class IntervallHandler
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
+        this.updateFactors();
     }
 
     public updateFactors()

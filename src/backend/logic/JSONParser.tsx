@@ -17,9 +17,8 @@ class JSONParser {
         data.exercise || Exercise.ACTIVE,
         data.weight || Weight.NORMAL_WEIGHT,
         data.alcoholHabit || AlcoholHabit.SOBER,
-        data.smokingHabit || SmokingHabit.NON_SMOKER,
         data.illnesses || [],
-        data.gender || Gender.OTHER
+        data.gender
         );
     }
     //Takes a Gotchi object, creates and returns a JSON string with those attributes
