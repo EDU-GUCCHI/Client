@@ -15,6 +15,16 @@ export class FormulaGenerator
         for (let enumAttribute of person.staticValues()) {
             this._baseline *= enumAttribute.value;
         }
+        /**
+         * Baseline är den totala sammansättningen av 1 * konstanta enum-värden
+         * som vi i sin tur multiplicerar vidare på
+         * 
+         * Så exempelvis baseline * Age.YOUNG_ADULT * Weight.OVERWEIGHT * Illness.FEVER
+         * Bör returnera någonting i stil med 0.85 - 0.95 (?)
+         * För eating-event verkar det som att decimal-spannet vi ska multiplicera med är
+         * något i stil med 0.00026
+         * 
+         */
         /*
         let sum = 0;
         sum += person.alcoholHabit;

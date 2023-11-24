@@ -11,7 +11,8 @@ export enum Weight
 	UNDERWEIGHT = -2
 }
 export enum Illness
-{
+{   
+    NONE = 0,
     FEVER = 2,
     PAIN = -1,
     ACUTE_Disease = 1,
