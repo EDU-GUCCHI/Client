@@ -23,31 +23,7 @@ export class EventDispatcher {
   public pointOfEntryEvent() {
     /*     this.createEvent(
       this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-14T08:00:00.000Z'),
-      this.storage.person.bloodValue,
-      'Lågt blodsocker',
-    );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-15T08:00:00.000Z'),
-      this.storage.person.bloodValue,
-      'Något annat event',
-    );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date('2023-11-16T08:00:00.000Z'),
-      this.storage.person.bloodValue,
-      'Något event',
-    );
-    this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
+      AutoType.AUTO_EVENT,
       EventType.BLOOD_GLUCOSE_WARNING,
       new Date(),
       this.storage.person.bloodValue,
@@ -155,20 +131,30 @@ export class EventDispatcher {
     const timeStamp = new Date();
     const bloodGlucoseChange = -2;
     const description = 'Low blood sugar';
+    const treatmentOptions = [
+      {option: 'Ät mer mat', correct: false, answered: false},
+      {option: 'Ta insulin', correct: false, answered: false},
+      {option: 'Läsk eller druvsocker', correct: true, answered: false},
+    ];
     const symptomOptions = [
-      { option: 'Svettig', correct: true, answered: false },
-      { option: 'Svag', correct: true, answered: false },
-      { option: 'Huvudvärk', correct: false, answered: false },
+      {option: 'Svettningar', correct: true, answered: false},
+      {option: 'Törst', correct: false, answered: false},
+      {option: 'Hjärtklappningar', correct: true, answered: false},
+      {option: 'Konfusion', correct: true, answered: false},
+      {option: 'Ökad urinproduktion', correct: false, answered: false},
+      {option: 'Sluddrigt tal', correct: true, answered: false},
+      {option: 'Krampanfall', correct: true, answered: false},
     ];
     const causeOptions = [
-      { option: 'För lite insulin', correct: true, answered: false },
-      { option: 'För mycket insulin', correct: false, answered: false },
-      { option: 'För lite mat', correct: false, answered: false },
-    ];
-    const treatmentOptions = [
-      { option: 'Ät något', correct: true, answered: false },
-      { option: 'Ta insulin', correct: false, answered: false },
-      { option: 'Vila', correct: false, answered: false },
+      {option: 'Feber', correct: false, answered: false},
+      {option: 'För mycket insulin', correct: true, answered: false},
+      {option: 'Dåligt intag av kolhydrater', correct: true, answered: false},
+      {option: 'Alkoholintag', correct: true, answered: false},
+      {option: 'Träning', correct: true, answered: false},
+      {option: 'Smärtor', correct: false, answered: false},
+      {option: 'Kortison', correct: false, answered: false},
+      {option: 'Brist på kortisol', correct: true, answered: false},
+      {option: 'Stress', correct: false, answered: false},
     ];
     const eventAnswered = false;
 
