@@ -48,6 +48,29 @@ const MultiSelectionButtons = ({
     setSelectedButtons(newSelectedButtons);
   };
 
+  const handleSymptomsSelection = selectedOption => {
+    setselectedSymptoms(prevSelectedSymptoms => {
+      const newSelectedSymptoms = new Set(prevSelectedSymptoms);
+      if (newSelectedSymptoms.has(selectedOption)) {
+        newSelectedSymptoms.delete(selectedOption);
+      } else {
+        newSelectedSymptoms.add(selectedOption);
+      }
+      return newSelectedSymptoms;
+    });
+  };
+  const handleCausesSelection = selectedOption => {
+    setselectedCauses(prevSelectedCauses => {
+      const newSelectedCauses = new Set(prevSelectedCauses);
+      if (newSelectedCauses.has(selectedOption)) {
+        newSelectedCauses.delete(selectedOption);
+      } else {
+        newSelectedCauses.add(selectedOption);
+      }
+      return newSelectedCauses;
+    });
+  };
+
   const getButtonStyle = option => {
     const result = answersEvaluation[option];
     if (submitted && result) {

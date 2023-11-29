@@ -1,17 +1,32 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {s} from 'react-native-wind';
+import {useScenarioController} from '../components/ScenarioControllerContext';
+
 import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
 
+
 function AnswerEventScreen({route}) {
   const event = route.params?.event;
+  const controller = useScenarioController(); // retreive Controller instance
+
   const [submitted, setSubmitted] = useState(false);
   const [selectedTreatment, setSelectedTreatment] = useState(null);
+  const [selectedSymptoms, setselectedSymptom] = useState(new Set());
+  const [selectedCauses, setselectedCauses] = useState(new Set());
 
   const handleTreatmentSelection = selectedOption => {
     setSelectedTreatment(selectedOption);
+  };
+
+  const handleSymptomsSelection = selectedOption => {
+    setselectedSymptom(selectedOption);
+  };
+
+  const handleCausesSelection = selectedOption => {
+    setselectedCauses(selectedOption);
   };
 
   // Function to extract correct answers
@@ -24,8 +39,30 @@ function AnswerEventScreen({route}) {
 
   // Function to handle the submission of all answers
   const handleSubmitAll = () => {
+    console.log('Selected Treatment:', selectedTreatment);
+    console.log('Selected Symptoms:', Array.from(selectedSymptoms));
+    console.log('Selected Causes:', Array.from(selectedCauses));
+
     setSubmitted(true);
+    controller.updateEventWithOptionsAnswered(
+      event.id,
+      selectedTreatment,
+      Array.from(selectedSymptoms),
+      Array.from(selectedCauses),
+    );
   };
+
+  /* const handleSubmitAll = () => {
+    setSubmitted(true);
+    controller.updateEventWithOptionsAnswered(
+      event.id,
+      selectedTreatment,
+      selectedSymptoms,
+      selectedCauses,
+    );
+    const split = event;
+    console.log(split)
+  }; */
 
   if (!event) {
     return <Text>No Event Data</Text>;
@@ -46,7 +83,7 @@ function AnswerEventScreen({route}) {
             options={event.treatment.map(t => t.correct.option)}
             correctAnswers={correctTreatment}
             submitted={submitted}
-            onAnswerEvaluation={() => {}}
+            onAnswerEvaluation={() => handleTreatmentSelection(selectedTreatment)}
           />
         </View>
 

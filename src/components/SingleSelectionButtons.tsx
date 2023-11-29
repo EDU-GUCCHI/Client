@@ -2,6 +2,12 @@ import {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {s} from 'react-native-wind';
 
+type SingleSelectionButtonsProps = {
+  options: string[];
+  correctAnswers: string[];
+  submitted: boolean;
+  onAnswerEvaluation?: (selectedOption: string) => void;
+};
 const SingleSelectionButtons = ({
   options,
   correctAnswers,
@@ -38,8 +44,11 @@ const SingleSelectionButtons = ({
   }, [submitted, options, correctAnswers, selectedButton]);
 
   const handleButtonPress = option => {
-    if (submitted) return; // Prevent interaction after submission
-    setSelectedButton(option); // Update the selected button
+    if (submitted) return;
+    setSelectedButton(option);
+    if (onAnswerEvaluation) {
+      onAnswerEvaluation(option); // Pass the selected option
+    }
   };
 
   const getButtonStyle = option => {

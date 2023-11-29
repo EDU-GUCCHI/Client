@@ -1,9 +1,9 @@
-import { Gotchi } from "./gotchi/Gotchi";
-import { newGotchi } from './gotchi/GotchiRandomizer';
-import { Event } from "./event/Event";
-import { parseEventsToFormat } from "../logic/event/EventParser";
-import { AlcoholHabit, EatingHabit, Exercise} from "./gotchi/FrequencyEnum";
-import { Age, Weight, Illness} from "./gotchi/ConstantEnum";
+import {Gotchi} from './gotchi/Gotchi';
+import {newGotchi} from './gotchi/GotchiRandomizer';
+import {Event} from './event/Event';
+import {parseEventsToFormat} from '../logic/event/EventParser';
+import {AlcoholHabit, EatingHabit, Exercise} from './gotchi/FrequencyEnum';
+import {Age, Weight, Illness} from './gotchi/ConstantEnum';
 
 export class Storage {
   // store/initialize all data storage classes here, ex: Gotchi
@@ -17,7 +17,7 @@ export class Storage {
 
   public constructor() {
     this._person = new Gotchi(
-      "",
+      '',
       5,
       false,
       false,
@@ -27,12 +27,19 @@ export class Storage {
       Weight.UNDERWEIGHT,
       AlcoholHabit.HEAVY_DRINKER,
       true,
-      Illness.FEVER);
-    
+      Illness.FEVER,
+    );
+
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
     this._increaseFactor = 0;
     this._decreaseFactor = 0;
+  }
+  updateEvent(eventId, updatedEvent) {
+    const eventIndex = this.triggeredEvents.findIndex(e => e.id === eventId);
+    if (eventIndex !== -1) {
+      this.triggeredEvents[eventIndex] = updatedEvent;
+    }
   }
   // getters-setters here
   get person(): Gotchi {
@@ -47,7 +54,7 @@ export class Storage {
   get decreaseFactor(): number {
     return this._decreaseFactor;
   }
-  set decreaseFactor(decfac: number){
+  set decreaseFactor(decfac: number) {
     this._decreaseFactor = decfac;
   }
   set person(newPerson: Gotchi) {

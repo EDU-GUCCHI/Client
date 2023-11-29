@@ -8,6 +8,7 @@ import {IntervallHandler} from '../time/IntervalHandler';
 import {NotificationDispatcher} from './NotificationDispatcher';
 import {newGotchi} from '../../data/gotchi/GotchiRandomizer';
 import {WeekPlanner} from '../WeekPlanner';
+import { UserInteractableEvent } from '../../data/event/UserInteractableEvent';
 
 export class ScenarioController {
   // has logic classes and access to stored data
@@ -77,17 +78,36 @@ export class ScenarioController {
       this._clock,
     );
   }
-  public debugRandomizer() 
-  {
+  public updateEventWithOptionsAnswered(
+    eventId,
+    selectedTreatment,
+    selectedSymptoms,
+    selectedCauses,
+  ) {
+    const event = this._storage.triggeredEvents.find(e => e.id === eventId);
+
+    if (event instanceof UserInteractableEvent) {
+      // Or check for the existence of properties
+      event.treatment.forEach(option => {
+        option.answered = selectedTreatment.includes(option.option);
+      });
+      event.symptoms.forEach(option => {
+        option.answered = selectedSymptoms.includes(option.option);
+      });
+      event.cause.forEach(option => {
+        option.answered = selectedCauses.includes(option.option);
+      });
+
+      this._storage.updateEvent(eventId, event);
+    }
+  }
+
+  public debugRandomizer() {
     let i = 0;
-    for (i; i < 100; i++) 
-    {
-      try 
-      {
+    for (i; i < 100; i++) {
+      try {
         let g = newGotchi('subject');
-      } 
-      catch (error) 
-      {
+      } catch (error) {
         console.log('Gotchi nr: ' + i + ' failed to randomize');
         break;
       }
