@@ -104,7 +104,7 @@ export class Gotchi {
     this._illnesses = illnesses;
   }
   
-  staticValues() : any {
+  constantValues() : any {
     let arr = [];
     arr.push(this._age);
     arr.push(this._weight);

@@ -12,9 +12,10 @@ export class FormulaGenerator
     public generateFormula(person: Gotchi): number
     {   
         this._baseline = 0.1;
-        for (let enumAttribute of person.staticValues()) {
+        for (let enumAttribute of person.constantValues()) {
             this._baseline *= enumAttribute.value;
         }
+
         /**
          * Baseline är den totala sammansättningen av 1 * konstanta enum-värden
          * som vi i sin tur multiplicerar vidare på

@@ -5,10 +5,12 @@ export class GUIController { // responsibility of fetching/storing and displayin
     private _person: Gotchi;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
     private _gotchisname: string;
+    private _tempFactor: number;
 
     constructor(person: Gotchi) {
         this._person = person;
         this._gotchisname = "";
+        this._tempFactor = 0;
     }
 
     setBloodSugar(newBloodSugar: number) {
@@ -23,6 +25,10 @@ export class GUIController { // responsibility of fetching/storing and displayin
                 this._bloodSugarSubscribers.splice(index, 1);
             }
         };
+    }
+    postTempFactor(tempFactor: number)
+    {
+        this._tempFactor = tempFactor;
     }
     private notifySubscribers(newBloodSugar: string) {
         this._bloodSugarSubscribers.forEach((callback) => {
@@ -59,5 +65,13 @@ export class GUIController { // responsibility of fetching/storing and displayin
     get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] 
     {
         return this._bloodSugarSubscribers;
+    }
+    set tempFactor(factor: number)
+    {
+        this._tempFactor = factor;
+    }
+    get tempFactor(): number 
+    {
+        return this._tempFactor;
     }
 }

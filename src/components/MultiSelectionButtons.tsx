@@ -6,6 +6,8 @@ import { useScenarioController } from './ScenarioControllerContext';
 const MultiSelectionButtons = ({options, correctAnswers}) => {
   const [selectedButtons, setSelectedButtons] = useState(new Set());
   const [submitted, setSubmitted] = useState(false);
+  let controller = useScenarioController();
+  let GUIController = controller.GUIController;
 
   const handleButtonPress = option => {
     if (submitted) return;
@@ -20,6 +22,10 @@ const MultiSelectionButtons = ({options, correctAnswers}) => {
 
   const handleSubmit = () => {
     setSubmitted(true);
+
+    // need factor and need time for how long factor is active
+    // GUIController.postTempFactor();
+    // controller.storage.tempFactor = // where to get value?
   };
 
   const getButtonStyle = option => {

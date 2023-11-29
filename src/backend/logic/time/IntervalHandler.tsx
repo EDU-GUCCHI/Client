@@ -20,6 +20,10 @@ export class IntervallHandler
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
     private _storage: Storage;
+    private _baseFactor: number;
+    private _tempFactor: number;
+    private _factorTime: number;
+    private _testFactorTime: number; // only used temporarily before we can get intervall time from GUI!
 
     public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock)
     {
@@ -31,27 +35,54 @@ export class IntervallHandler
         this._decreaseFactor = 0;
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
+        this._baseFactor = storage.baseFactor;
+        this._tempFactor = 0.1; // temporary temp factor
+        this._factorTime = 0;
+        this._testFactorTime = 10; // runs temp formula for 10 sec / intervalls
         this._clock = clock;
 
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
-        this.updateFactors();
     }
 
-    public updateFactors()
+    public fetchFactors()
     {
         this.increaseFactor = this._storage.increaseFactor;
         this._decreaseFactor = this._storage.decreaseFactor;
+        this._baseFactor = this._storage.baseFactor;
+    }
+
+    public generateTempFactor(e: Event)
+    {
+        // fetch temp factor from submited event here
+        // generate a deltaValue for how many intervals this factor should be valid.
+
+
+    }
+    public factorUpdate() // make this either a callback or something that only runs when button is clicked
+    {
+        // fetch new factor
+        //this._tempFactor = this._GUIController.tempFactor;
+        if(this._testFactorTime > 0)
+        {
+            // use temp factor submited by GUI
+            this._testFactorTime--;
+        }
+        else 
+        {
+            this._tempFactor = 0;
+            // use new factor with deltatime
+        }
     }
     public decreaseBloodSugar() // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     {
-        this._bloodValue -= this._decreaseFactor;
-        this._person.bloodValue = this._bloodValue;
+        this._bloodValue -= (this._baseFactor + this._tempFactor);
+        this._person.bloodValue = this.bloodValue;
     }
     public increaseBloodSugar()
     {
-        this._bloodValue += this._increaseFactor;
+        this._bloodValue += (this._baseFactor + this._tempFactor);
         this._person.bloodValue = this.bloodValue;
     }
     public negateValue() // flip value to be negative / positive
@@ -120,6 +151,11 @@ export class IntervallHandler
     }
     public update(): void // updates done every pulse
     {
+        console.log("Base Factor: " + this._baseFactor + "\n");
+        console.log("Temp Factor: " + this._tempFactor + "\n");
+        console.log("Time left on factor: " + this._testFactorTime + " sec" + "\n");
+
+        this.factorUpdate(); // check if formula should use a new temporary factor
         this.decreaseBloodSugar(); // Update Values
         this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
         this.resetNotificationFlags();

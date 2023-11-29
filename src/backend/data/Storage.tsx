@@ -8,7 +8,8 @@ import { Age, Weight, Illness} from "./gotchi/ConstantEnum";
 export class Storage {
   // store/initialize all data storage classes here, ex: Gotchi
   private _person: Gotchi;
-  private _bloodSugarFactor: number;
+  private _baseFactor: number;
+  private _tempFactor: number;
   //add attr. for storing Events. Array/map?. Store pre-defined events or store triggered events or both?
   private _triggeredEvents: Event[];
 
@@ -29,14 +30,21 @@ export class Storage {
       true,
       Illness.FEVER);
     
-    this._bloodSugarFactor = 0.0;
+    this._baseFactor = 0.0;
     this._triggeredEvents = [];
     this._increaseFactor = 0;
     this._decreaseFactor = 0;
+    this._tempFactor = 0;
   }
   // getters-setters here
   get person(): Gotchi {
     return this._person;
+  }
+  get tempFactor(): number {
+    return this._tempFactor;
+  }
+  set tempFactor(tempfac: number) {
+    this._tempFactor = tempfac;
   }
   get increaseFactor(): number {
     return this._increaseFactor;
@@ -53,11 +61,11 @@ export class Storage {
   set person(newPerson: Gotchi) {
     this._person = newPerson;
   }
-  get bloodSugarFactor(): number {
-    return this._bloodSugarFactor;
+  get baseFactor(): number {
+    return this._baseFactor;
   }
-  set bloodSugarFactor(factor: number) {
-    this._bloodSugarFactor = factor;
+  set baseFactor(factor: number) {
+    this._baseFactor = factor;
   }
   get triggeredEvents() {
     return this._triggeredEvents;

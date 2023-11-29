@@ -51,9 +51,10 @@ export class ScenarioController {
     //this.debugRandomizer(); use to test gothi randomizer
     this._storage.person = newGotchi(this._GUIController.gotchisName);
     this._clock.addObserver(this._intervalHandler);
-    this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
+    this._storage.baseFactor = this._formulaGenerator.generateFormula(
       this._storage.person,
     );
+    this._intervalHandler.fetchFactors();
     this._clock.startClock(); // start clock pulse
     this._eventDispatcher.pointOfEntryEvent();
   }
