@@ -149,8 +149,8 @@ export class IntervallHandler
         console.log("Temp Factor: " + this._tempFactor + "\n");
         console.log("Time left on factor: " + this._testFactorTime + " sec" + "\n");
 
-        this.factorUpdate(); // check if formula should use a new temporary factor
         this.decreaseBloodSugar(); // Update Values
+        this.factorUpdate(); // check if formula should use a new temporary factor
         this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
         this.resetNotificationFlags();
         this.checkUpperTreshold();
