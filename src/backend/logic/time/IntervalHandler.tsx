@@ -99,8 +99,9 @@ export class IntervallHandler
             this._deathNotificationSent = false;
         }
     }
-    public checkUpperTreshold()
+    public checkTreshold()
     {
+        // check upper treshold
         if(this._bloodValue > 8 && !this._warningNotificationSent)
         {
             this._notificationDispatcher.SendBloodSugarWarning("Högt blodsocker");
@@ -118,9 +119,8 @@ export class IntervallHandler
             console.log("Task failed successfully");
             this._clock.stopClock(); // End scenario when this is triggered
         }
-    }
-    public checkLowerThreshold()
-    {
+
+        // check lower threshold
         if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
             this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
@@ -153,8 +153,7 @@ export class IntervallHandler
         this.factorUpdate(); // check if formula should use a new temporary factor
         this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
         this.resetNotificationFlags();
-        this.checkUpperTreshold();
-        this.checkLowerThreshold();
+        this.checkTreshold();
     }
     
     get bloodValue(): number 
