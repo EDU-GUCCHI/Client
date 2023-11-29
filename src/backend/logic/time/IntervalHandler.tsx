@@ -8,8 +8,6 @@ import { Storage } from "../../data/Storage";
 export class IntervallHandler
 {
     private _bloodValue: number;
-    private _increaseFactor: number;
-    private _decreaseFactor: number;
     private _person: Gotchi;
     private _GUIController: GUIController;
     private _notificationDispatcher: NotificationDispatcher;
@@ -31,8 +29,6 @@ export class IntervallHandler
         this._storage = storage;
         this._bloodValue = person.bloodValue;
         this._GUIController = GUIController;
-        this._increaseFactor = 0;
-        this._decreaseFactor = 0;
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._baseFactor = storage.baseFactor;
@@ -48,8 +44,6 @@ export class IntervallHandler
 
     public fetchFactors()
     {
-        this.increaseFactor = this._storage.increaseFactor;
-        this._decreaseFactor = this._storage.decreaseFactor;
         this._baseFactor = this._storage.baseFactor;
     }
 
