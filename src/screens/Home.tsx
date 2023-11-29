@@ -46,7 +46,7 @@ function HomeScreen({navigation}: Props) {
       <ViewContainer style={s`items-center justify-center h-full`}>
         <Title text="Välkommen till EDU-GOTCHI" />
         <LgButton
-          text="Min dag"
+          text="Min vecka"
           colors={['#6ca7e8', '#70e0e1']}
           locations={[0, 0.7]}
           useAngle={true}
