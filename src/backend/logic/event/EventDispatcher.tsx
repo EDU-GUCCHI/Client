@@ -13,9 +13,11 @@ export class EventDispatcher {
     this._storage = storage;
     this._idCounter = 0;
   }
+
   get storage() {
     return this._storage;
   }
+
   get idCounter() {
     return this._idCounter;
   }
@@ -37,6 +39,9 @@ export class EventDispatcher {
       this.storage.person.bloodValue,
       'Lågt blodsocker',
     );*/
+    this.LowBloodSugar(); // What id does this one have? Get it from the storage?
+    this.LowBloodSugar();
+    this.LowBloodSugar();
     this.LowBloodSugar();
   }
 
@@ -107,6 +112,7 @@ export class EventDispatcher {
         console.log('Default case');
     }
   }
+
   EatingEvent() {
     const id = this._idCounter++;
     const autoType = AutoType.AUTO_EVENT;
@@ -124,15 +130,16 @@ export class EventDispatcher {
       description,
     );
   }
+
   LowBloodSugar() {
     const id = this._idCounter++;
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
     const bloodGlucoseChange = -2;
-    const description = 'Low blood sugar';
+    const description = 'Lågt blodsocker';
     const treatmentOptions = [
-      {option: 'Ät mer mat', correct: false, answered: false},
+      {option: 'Ät mer mat', correct: false, answered: false}, // TODO: Change answered to true when event is submitted, only apply to the options that are selected by the user
       {option: 'Ta insulin', correct: false, answered: false},
       {option: 'Läsk eller druvsocker', correct: true, answered: false},
     ];
@@ -156,9 +163,10 @@ export class EventDispatcher {
       {option: 'Brist på kortisol', correct: true, answered: false},
       {option: 'Stress', correct: false, answered: false},
     ];
-    const eventAnswered = false;
+    const eventAnswered = false; // TODO: Change to true when event answers are submitted
 
     console.log('Creating Low blood-sugar event');
+    console.log('Event is answered: ', eventAnswered);
     this.createEvent(
       id,
       autoType,
@@ -171,6 +179,7 @@ export class EventDispatcher {
       treatmentOptions,
     );
   }
+
   /* BloodGlucoseWarningEvent() {
 
     const id = 1;
