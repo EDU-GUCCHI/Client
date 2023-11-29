@@ -165,12 +165,4 @@ export class IntervallHandler
     {
         this._bloodValue = value;
     }
-    get increaseFactor(): number 
-    {
-        return this._increaseFactor;
-    }
-    set increaseFactor(value: number) 
-    {
-        this._increaseFactor = value;
-    }
 }
