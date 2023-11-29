@@ -46,13 +46,10 @@ export class IntervallHandler
     {
         this._baseFactor = this._storage.baseFactor;
     }
-
     public generateTempFactor(e: Event)
     {
         // fetch temp factor from submited event here
         // generate a deltaValue for how many intervals this factor should be valid.
-
-
     }
     public factorUpdate() // make this either a callback or something that only runs when button is clicked
     {
@@ -119,7 +116,6 @@ export class IntervallHandler
             console.log("Task failed successfully");
             this._clock.stopClock(); // End scenario when this is triggered
         }
-
         // check lower threshold
         if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
