@@ -8,6 +8,10 @@ import { Storage } from "../../data/Storage";
 export class IntervallHandler
 {
     private _bloodValue: number;
+    private _baseFactor: number;
+    private _tempFactor: number;
+    private _factorTime: number;
+    private _testFactorTime: number; // only used temporarily before we can get intervall time from GUI!
     private _person: Gotchi;
     private _GUIController: GUIController;
     private _notificationDispatcher: NotificationDispatcher;
@@ -18,10 +22,6 @@ export class IntervallHandler
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
     private _storage: Storage;
-    private _baseFactor: number;
-    private _tempFactor: number;
-    private _factorTime: number;
-    private _testFactorTime: number; // only used temporarily before we can get intervall time from GUI!
 
     public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock)
     {
@@ -50,6 +50,10 @@ export class IntervallHandler
     {
         // fetch temp factor from submited event here
         // generate a deltaValue for how many intervals this factor should be valid.
+    }
+    public fetchFactorTime()
+    {
+        // fetch the intervalltime for how long to use new factor 
     }
     public factorUpdate() // make this either a callback or something that only runs when button is clicked
     {
