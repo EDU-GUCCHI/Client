@@ -1,5 +1,6 @@
 import {EatingHabit, Exercise, AlcoholHabit} from './FrequencyEnum';
 import {Age, Weight, Illness} from './ConstantEnum'
+import { GotchiStateMachine } from '../../logic/event/GotchiStateMachine';
 
 export class Gotchi {
   private _name: string;
@@ -14,6 +15,7 @@ export class Gotchi {
   private _alcoholHabit: AlcoholHabit;
   private _illnesses: Illness;
   private _gender: boolean;
+  private _stateMachine: GotchiStateMachine;
 
 
   public constructor(
@@ -40,6 +42,7 @@ export class Gotchi {
     this._eatingHabit = eatingHabit;
     this._gender = gender;
     this._illnesses = illnesses;
+    this._stateMachine = new GotchiStateMachine();
   }
   //getters-setters
   get name(): string {
@@ -74,6 +77,9 @@ export class Gotchi {
   }
   get gender(): boolean {
     return this._gender;
+  }
+  get stateMachine(): GotchiStateMachine {
+    return this.stateMachine;
   }
   // Setters for private attributes
   set name(name: string) {

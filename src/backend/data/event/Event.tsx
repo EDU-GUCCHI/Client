@@ -2,7 +2,9 @@
 
 //event type: enum (automatic event, user event)
 
+import { State } from '../../logic/event/GotchiStateMachine';
 import {AutoType, EventType} from './EventTypes';
+
 
 
 export  class Event {
@@ -12,17 +14,21 @@ export  class Event {
   private readonly _timeStamp: Date;
   private readonly _bloodGlucoseChange: number;
   private readonly _description: string;
+  //State can be used to set state in stateMachine
+  private _state: State;
+
   
   //What other attributes are needed? 
   //ID? 
 
-  public constructor(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string) {
+  public constructor(id: number, autoType: AutoType, eventType: EventType, timeStamp: Date, bloodGlucoseChange: number, description: string, state?: State) {
     this._id = id;
     this._autoType = autoType;
     this._eventType = eventType;
     this._timeStamp = timeStamp;
     this._bloodGlucoseChange = bloodGlucoseChange;
     this._description = description;
+    this._state = state || State.Idle;
     
   }
 

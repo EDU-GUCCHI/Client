@@ -18,7 +18,7 @@ export class ScenarioController {
   private _GUIController: GUIController;
   private _notificationDispatcher: NotificationDispatcher;
   private _eventDispatcher: EventDispatcher;
-  //private _weekPlanner: WeekPlanner;
+  private _weekPlanner: WeekPlanner;
   // flow of program here:
   public constructor() {
     console.log('Controller: Created');
@@ -32,6 +32,7 @@ export class ScenarioController {
 
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
+    this._weekPlanner = new WeekPlanner(this._eventDispatcher);
     this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
       this._storage,
@@ -40,8 +41,8 @@ export class ScenarioController {
       this._notificationDispatcher,
       this._eventDispatcher,
       this._clock,
+      this._weekPlanner
     );
-    //this._weekPlanner = new WeekPlanner(this._storage, this._storage.person);
   }
 
   public run() {
@@ -67,6 +68,7 @@ export class ScenarioController {
     this._formulaGenerator = new FormulaGenerator();
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
+    this._weekPlanner = new WeekPlanner(this._eventDispatcher);
     this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
       this._storage,
@@ -75,6 +77,7 @@ export class ScenarioController {
       this._notificationDispatcher,
       this._eventDispatcher,
       this._clock,
+      this._weekPlanner
     );
   }
   public debugRandomizer() 

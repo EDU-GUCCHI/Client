@@ -1,16 +1,17 @@
 //Ligger denna i rätt mapp?
-enum State {
+export enum State {
   Idle = 'idle',
   Exercise = 'exercise',
   Work = 'work',
   Social = 'social',
 }
 
-class GotchiStateMachine {
+export class GotchiStateMachine {
   private _currentState: State;
 
-  constructor(initialState: State) {
-    this._currentState = initialState;
+  constructor() {
+    //Initial state
+    this._currentState = State.Idle;
   }
 
   public transitionTo(newState: State): void {
@@ -36,7 +37,7 @@ class GotchiStateMachine {
     return validTransitions[currentState].includes(newState);
   }
 
-  public getCurrentState(): State {
+  public currentState(): State {
     return this._currentState;
   }
 }

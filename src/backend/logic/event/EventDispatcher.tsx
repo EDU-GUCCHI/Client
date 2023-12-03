@@ -41,6 +41,7 @@ export class EventDispatcher {
   }
 
   //Create event with param values, answer values are optional
+  //Add state if needed, maybe use optional param here instead of constructor in event?
   public createEvent(
     id: number,
     autoType: AutoType,

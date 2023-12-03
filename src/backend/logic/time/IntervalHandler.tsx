@@ -4,6 +4,7 @@ import { Clock } from "./Clock";
 import { GUIController } from "../controllers/GUIController";
 import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
 import { Storage } from "../../data/Storage";
+import { WeekPlanner } from "../WeekPlanner";
 
 export class IntervallHandler
 {
@@ -20,8 +21,9 @@ export class IntervallHandler
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
     private _storage: Storage;
+    private _weekplanner: WeekPlanner;
 
-    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock)
+    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock, weekplanner: WeekPlanner)
     {
         this._person = person;
         this._storage = storage;
@@ -32,6 +34,7 @@ export class IntervallHandler
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._clock = clock;
+        this._weekplanner = weekplanner;
 
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
@@ -125,6 +128,8 @@ export class IntervallHandler
         this.resetNotificationFlags();
         this.checkUpperTreshold();
         this.checkLowerThreshold();
+        //Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
+        this._weekplanner.checkDate();
     }
     
     get bloodValue(): number 

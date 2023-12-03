@@ -1,34 +1,74 @@
-import {Exercise} from '../data/gotchi/FrequencyEnum';
+import {Event} from '../data/event/Event';
+import {AutoType, EventType} from '../data/event/EventTypes';
 import {Gotchi} from '../data/gotchi/Gotchi';
 import {Storage} from '../data/Storage';
-//import cron from 'node-cron';
+import {EventDispatcher} from './event/EventDispatcher';
+import {State} from './event/GotchiStateMachine';
+import {EventQueue} from './EventQueue';
+
 export class WeekPlanner {
-  private _storage: Storage;
-  private _gotchi: Gotchi;
-  private _gotchiStateMachine: GotchiStateMachine;
+  private _eventDispatcher: EventDispatcher;
+  private _scheduledEventQueue: EventQueue;
 
-  public constructor(storage: Storage, gotchi: Gotchi) {
-    this._storage = storage;
-    this._gotchi = gotchi;
-    this._gotchiStateMachine = new GotchiStateMachine(State.Idle);
-    //this.scheduleTest();
+  public constructor(eventDispatcher: EventDispatcher) {
+    this._eventDispatcher = eventDispatcher;
+    this._scheduledEventQueue = new EventQueue();
+    this.testSchedule();
   }
+  //Create scheduled event and add to the queue
+  createScheduledEvent(
+    id: number,
+    autoType: AutoType,
+    eventType: EventType,
+    timeStamp: Date,
+    bloodGlucoseChange: number,
+    description: string,
+    state: State,
+  ) {
+    let scheduledEvent = new Event(
+      id,
+      autoType,
+      eventType,
+      timeStamp,
+      bloodGlucoseChange,
+      description,
+      state,
+    );
+    this._scheduledEventQueue.addEvent(scheduledEvent);
+    return scheduledEvent;
+  }
+  //Compare the current time to the Date on the earliest scheduled event, if the current time is past the one in the event, it triggers
+  checkDate() {
+    const peekedEvent = this._scheduledEventQueue.peek();
 
-  //Kan testa om något sånt här fungerar, man kan schemalägga event till specifika tidpunkter
-  /*  public scheduleEvents(): void {
-    if (this._gotchi.exercise == Exercise.ACTIVE) {
-      // Schedule exercise at 8 AM every other day, kolla node cron för syntax på schedule
-      cron.schedule('* 8 * * *', () => {
-        console.log('Scheduled exercise');
-        // Add event for exercise, behöver känna till eventdispatcher
-        this._gotchiStateMachine.transitionTo(State.Exercise);
-      });
+    if (peekedEvent) {
+      const currentDate = new Date();
+      if (currentDate.getTime() >= peekedEvent.timeStamp.getTime()) {
+        this.triggerEvent();
+        return true;
+      }
+    }
+    // Return false if there is no peeked event
+    return false;
+  }
+  //Dispatches the event, ie adds it to the event list in storage
+  triggerEvent() {
+    const eventToTrigger = this._scheduledEventQueue.getNextEvent();
+    if (eventToTrigger) {
+      this._eventDispatcher.dispatchEvent(eventToTrigger);
     }
   }
-
-  public scheduleTest(): void {
-    cron.schedule('* * * * * *', () => {
-      console.log("I'm ticking, tik tok tik tok");
-    });
-  } */
+  //Just a random event that should trigger 20 seconds after calling.
+  testSchedule() {
+    const currentDate = new Date();
+    this.createScheduledEvent(
+      1,
+      AutoType.AUTO_EVENT,
+      EventType.FOOD_INTAKE,
+      new Date(currentDate.getTime() + 20 * 1000),
+      5,
+      'Scheduled Event Test',
+      State.Social,
+    );
+  }
 }
