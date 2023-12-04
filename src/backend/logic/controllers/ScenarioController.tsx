@@ -8,6 +8,8 @@ import {IntervallHandler} from '../time/IntervalHandler';
 import {NotificationDispatcher} from './NotificationDispatcher';
 import {newGotchi} from '../../data/gotchi/GotchiRandomizer';
 import {WeekPlanner} from '../WeekPlanner';
+import notifee, { AndroidImportance, AuthorizationStatus} from '@notifee/react-native';
+import { Alert } from 'react-native';
 
 export class ScenarioController {
   // has logic classes and access to stored data
@@ -19,6 +21,7 @@ export class ScenarioController {
   private _notificationDispatcher: NotificationDispatcher;
   private _eventDispatcher: EventDispatcher;
   private _weekPlanner: WeekPlanner;
+  private _canRun: Boolean;
   // flow of program here:
   public constructor() {
     console.log('Controller: Created');
@@ -34,6 +37,7 @@ export class ScenarioController {
     this._eventDispatcher = new EventDispatcher(this._storage);
     this._weekPlanner = new WeekPlanner(this._eventDispatcher);
     this._clock = new Clock();
+    
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
@@ -43,20 +47,48 @@ export class ScenarioController {
       this._clock,
       this._weekPlanner
     );
+    this._canRun = false;
   }
-
-  public run() {
-    console.log('Controller: Runs');
-    // app flow
-    //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
-    //this.debugRandomizer(); use to test gothi randomizer
-    this._storage.person = newGotchi(this._GUIController.gotchisName);
-    this._clock.addObserver(this._intervalHandler);
-    this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
+  checkPermissions = async () => {
+    try 
+    {
+      const settings = await notifee.getNotificationSettings();
+      if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) 
+      {
+        this._canRun = true;
+        Alert.alert('Permissions authorized feel free to start scenario!');
+      }
+      else
+      {
+        await notifee.requestPermission();
+      }
+    } 
+    catch (error) 
+    {
+      console.error('Error checking notification permission:', error);
+    }
+  };
+  public run() 
+  {
+    this.checkPermissions();
+    if(this._canRun)
+    {
+      console.log('Controller: Runs');
+      // app flow
+      //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
+      //this.debugRandomizer(); use to test gothi randomizer
+      this._storage.person = newGotchi(this._GUIController.gotchisName);
+      this._clock.addObserver(this._intervalHandler);
+      this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
       this._storage.person,
-    );
-    this._clock.startClock(); // start clock pulse
-    this._eventDispatcher.pointOfEntryEvent();
+      );
+      this._clock.startClock(); // start clock pulse
+      this._eventDispatcher.pointOfEntryEvent();
+    }
+    else
+    {
+      Alert.alert('Enable notification permission in the apps settings to start a scenario!');
+    }
   }
   public terminate() {
     // end scenario

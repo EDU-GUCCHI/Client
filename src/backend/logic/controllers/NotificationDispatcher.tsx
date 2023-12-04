@@ -1,9 +1,24 @@
-import notifee, { AndroidImportance, AuthorizationStatus } from '@notifee/react-native';
+import notifee, { AndroidImportance, AuthorizationStatus} from '@notifee/react-native';
+import { Alert } from 'react-native';
 
 export class NotificationDispatcher
 {
-    public constructor(){}
-
+    public constructor()
+    {
+      this.checkNotificationPermission();
+    }
+    checkNotificationPermission = async () => {
+      try {
+        const settings = await notifee.getNotificationSettings();
+  
+        if ( !(settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) ) {
+          // Permission is denied, you might want to inform the user
+          await notifee.requestPermission();
+        }
+      } catch (error) {
+        console.error('Error checking notification permission:', error);
+      }
+    };
     public async SendBloodSugarWarning(text: string)
     {
         await notifee.requestPermission();
@@ -30,22 +45,4 @@ export class NotificationDispatcher
         }
       });
     }
-
-  async startApp() 
-  {
-    const permissions = await notifee.getNotificationSettings();
-    if(permissions.authorizationStatus == AuthorizationStatus.NOT_DETERMINED)
-    {
-      // request permission
-      await notifee.requestPermission();
-    }
-    else if(permissions.authorizationStatus == AuthorizationStatus.AUTHORIZED)
-    {
-      // grant entry to app
-    }
-    else if(permissions.authorizationStatus == AuthorizationStatus.DENIED)
-    {
-      // deny entry to app
-    }
-  }
 }
