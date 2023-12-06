@@ -4,7 +4,7 @@ export class NotificationScheduler
 {
     public constructor(){}
 
-    public scheduleNotification(date: Date)
+    public scheduleNotification(date: Date) // parse an object with timestamp and some other info about event
     {
         // schedule notifications for a week
         async function onCreateTriggerNotification() 
@@ -28,8 +28,8 @@ export class NotificationScheduler
             // Create a trigger notification
             await notifee.createTriggerNotification(
               {
-                title: 'Meeting with Jane',
-                body: 'Today at 11:20am',
+                title: 'Meeting with Jane', // take from parsed object
+                body: 'Today at 11:20am', // same here
                 android: {
                   channelId,
                 },
