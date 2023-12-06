@@ -7,6 +7,7 @@ export class NotificationDispatcher
     {
       this.checkNotificationPermission();
     }
+    
     checkNotificationPermission = async () => {
       try {
         const settings = await notifee.getNotificationSettings();
