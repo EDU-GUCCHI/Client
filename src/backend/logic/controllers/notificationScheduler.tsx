@@ -39,7 +39,7 @@ export class NotificationScheduler
               trigger,
             );
           }
-          onCreateTriggerNotification();
+      onCreateTriggerNotification();
     }
     public cancelAllNotifications()
     {
