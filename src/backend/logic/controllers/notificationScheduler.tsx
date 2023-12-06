@@ -9,9 +9,6 @@ export class NotificationScheduler
         // schedule notifications for a week
         async function onCreateTriggerNotification() 
         {
-
-            // fetch dates for events in some form of for loop and then shedule trigger notifications with the dates
-
             let _date = date;
             // Create a time-based trigger
             const trigger: TimestampTrigger = 
