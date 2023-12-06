@@ -54,7 +54,7 @@ export class ScenarioController {
       if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) 
       {
         Alert.alert('Permissions authorized feel free to start scenario!');
-        this.run();
+        this.run(); // run app if permissions are authorized
       }
       else
       {
