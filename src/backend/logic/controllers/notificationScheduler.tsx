@@ -11,13 +11,11 @@ export class NotificationScheduler
             const date = new Date(Date.now());
             date.setHours(11);
             date.setMinutes(10);
-        
             // Create a time-based trigger
             const trigger: TimestampTrigger = {
               type: TriggerType.TIMESTAMP,
               timestamp: date.getTime(), // fire at 11:10am (10 minutes before meeting)
             };
-        
             const channelId = await notifee.createChannel({
                 id: 'important',
                 name: 'Important Notifications',
@@ -29,7 +27,7 @@ export class NotificationScheduler
                 title: 'Meeting with Jane',
                 body: 'Today at 11:20am',
                 android: {
-                  channelId: 'your-channel-id',
+                  channelId,
                 },
               },
               trigger,
