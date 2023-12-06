@@ -9,6 +9,9 @@ export class NotificationScheduler
         // schedule notifications for a week
         async function onCreateTriggerNotification() 
         {
+
+            // fetch dates for events in some form of for loop and then shedule trigger notifications with the dates
+
             const date = new Date(Date.now());
             date.setHours(11);
             date.setMinutes(10);
@@ -36,5 +39,18 @@ export class NotificationScheduler
               trigger,
             );
           }
-    }    
+          onCreateTriggerNotification();
+    }
+    public cancelAllNotifications()
+    {
+      const cancelAllTriggeredNotifications = async () => {
+        try {
+          await notifee.cancelAllNotifications();
+          console.log('All triggered notifications cancelled successfully!');
+        } catch (error) {
+          console.error('Error cancelling notifications:', error);
+        }
+      };
+      cancelAllTriggeredNotifications();
+    }
 }
