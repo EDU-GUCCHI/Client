@@ -21,7 +21,6 @@ export class ScenarioController {
   private _notificationDispatcher: NotificationDispatcher;
   private _eventDispatcher: EventDispatcher;
   private _weekPlanner: WeekPlanner;
-  private _canRun: Boolean;
   // flow of program here:
   public constructor() {
     console.log('Controller: Created');
@@ -47,7 +46,6 @@ export class ScenarioController {
       this._clock,
       this._weekPlanner
     );
-    this._canRun = false;
   }
   checkPermissions = async () => {
     try 
@@ -55,8 +53,8 @@ export class ScenarioController {
       const settings = await notifee.getNotificationSettings();
       if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) 
       {
-        this._canRun = true;
         Alert.alert('Permissions authorized feel free to start scenario!');
+        this.run();
       }
       else
       {
@@ -68,27 +66,19 @@ export class ScenarioController {
       console.error('Error checking notification permission:', error);
     }
   };
-  public run() 
-  {
-    this.checkPermissions();
-    if(this._canRun)
-    {
-      console.log('Controller: Runs');
-      // app flow
-      //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
-      //this.debugRandomizer(); use to test gothi randomizer
-      this._storage.person = newGotchi(this._GUIController.gotchisName);
-      this._clock.addObserver(this._intervalHandler);
-      this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
-      this._storage.person,
-      );
-      this._clock.startClock(); // start clock pulse
-      this._eventDispatcher.pointOfEntryEvent();
-    }
-    else
-    {
-      Alert.alert('Enable notification permission in the apps settings to start a scenario!');
-    }
+  public run()
+  { 
+    console.log('Controller: Runs');
+    // app flow
+    //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
+    //this.debugRandomizer(); use to test gothi randomizer
+    this._storage.person = newGotchi(this._GUIController.gotchisName);
+    this._clock.addObserver(this._intervalHandler);
+    this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
+    this._storage.person,
+    );
+    this._clock.startClock(); // start clock pulse
+    this._eventDispatcher.pointOfEntryEvent();  
   }
   public terminate() {
     // end scenario
