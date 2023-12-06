@@ -131,6 +131,14 @@ export class IntervallHandler
         //Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
         this._weekplanner.checkDate();
     }
+    public processWeek()
+    {
+        // increment entire week. (make sure death state doest just stop interval)
+        // format seconds to proper timestamp
+        // save timestamps
+        // ask notification scheduler to schedule notifications for entire week
+        // print out notification statements
+    }
     
     get bloodValue(): number 
     {
