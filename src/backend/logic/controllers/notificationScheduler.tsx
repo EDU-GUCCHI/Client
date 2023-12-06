@@ -6,35 +6,35 @@ export class NotificationScheduler
 
     public scheduleNotification(date: Date) // parse an object with timestamp and some other info about event
     {
-        // schedule notifications for a week
-        async function onCreateTriggerNotification() 
+      // schedule notifications for a week
+      async function onCreateTriggerNotification() 
+      {
+        let _date = date;
+        // Create a time-based trigger
+        const trigger: TimestampTrigger = 
         {
-            let _date = date;
-            // Create a time-based trigger
-            const trigger: TimestampTrigger = 
-            {
-              type: TriggerType.TIMESTAMP,
-              timestamp: _date.getTime(), // fire at 11:10am (10 minutes before meeting)
-            };
-            const channelId = await notifee.createChannel(
-              {
-                id: 'important',
-                name: 'Important Notifications',
-                importance: AndroidImportance.HIGH,
-              });
-            // Create a trigger notification
-            await notifee.createTriggerNotification(
-              {
-                title: 'Meeting with Jane', // take from parsed object
-                body: 'Today at 11:20am', // same here
-                android: {
-                  channelId,
-                },
-              },
-              trigger,
-            );
-          }
-      onCreateTriggerNotification();
+          type: TriggerType.TIMESTAMP,
+          timestamp: _date.getTime(), // fire at 11:10am (10 minutes before meeting)
+        };
+        const channelId = await notifee.createChannel(
+          {
+            id: 'important',
+            name: 'Important Notifications',
+            importance: AndroidImportance.HIGH,
+          });
+          // Create a trigger notification
+          await notifee.createTriggerNotification(
+          {
+            title: 'Meeting with Jane', // take from parsed object
+            body: 'Today at 11:20am', // same here
+            android: {
+              channelId,
+            },
+          },
+            trigger,
+          );
+      }
+        onCreateTriggerNotification();
     }
     public cancelAllNotifications()
     {
