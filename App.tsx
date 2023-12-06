@@ -13,7 +13,7 @@ import AnswerEventScreen from './src/screens/AnswerEvent';
 import AboutGotchiScreen from './src/screens/AboutGotchi';
 import notifee, { AuthorizationStatus } from '@notifee/react-native';
 
-import { ScenarioControllerProvider } from './src/components/ScenarioControllerContext';
+import { ScenarioControllerProvider, useScenarioController } from './src/components/ScenarioControllerContext';
 import { Settings } from 'react-native';
 
 const Stack = createNativeStackNavigator();
