@@ -4,7 +4,7 @@ export class NotificationScheduler
 {
     public constructor(){}
 
-    public scheduleNotification(date: Date) // parse an object with timestamp and some other info about event
+    public static scheduleNotification(date: Date) // parse an object with timestamp and some other info about event
     {
       // schedule notifications for a week
       async function onCreateTriggerNotification() 
@@ -36,7 +36,7 @@ export class NotificationScheduler
       }
         onCreateTriggerNotification();
     }
-    public cancelAllNotifications()
+    public static cancelAllNotifications()
     {
       const cancelAllTriggeredNotifications = async () => {
         try {

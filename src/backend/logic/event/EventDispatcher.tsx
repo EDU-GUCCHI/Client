@@ -86,7 +86,7 @@ export class EventDispatcher {
     this._storage.addTriggeredEvent(event);
     //Send notifications from notificationDispatcher, this class knows nothing
 
-    console.log(event);
+    //console.log(event);
   }
 
   //Add hardcoded events to use based on int or enum?

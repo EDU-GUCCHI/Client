@@ -215,9 +215,9 @@ const a = [
 function MyDayScreen({navigation}: Props) {
   const controller = useScenarioController();
   const weeklyEvents = controller.storage.eventsJson || [];
-  console.log(weeklyEvents, 'weekly events ---------------'); // Ensure this is always an array
-  const weeklyParsed = JSON.stringify(weeklyEvents);
-  console.log(weeklyParsed, 'weekly parsed ---------------');
+  //console.log(weeklyEvents, 'weekly events ---------------'); // Ensure this is always an array
+  //const weeklyParsed = JSON.stringify(weeklyEvents);
+  //console.log(weeklyParsed, 'weekly parsed ---------------');
 
   const [currentDayIndex, setCurrentDayIndex] = useState(
     weeklyEvents.length > 0 ? weeklyEvents.length - 1 : 0,

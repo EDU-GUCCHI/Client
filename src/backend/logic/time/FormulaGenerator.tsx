@@ -51,10 +51,10 @@ export class FormulaGenerator
     }
     public static generateIncreaseFactor(): number
     {
-        return 0;
+        return 0.001;
     }
     public static generateDecreaseFactor(): number
     {
-        return 0;
+        return 0.001;
     }
 }
