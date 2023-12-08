@@ -1,8 +1,8 @@
 // sends out Events.
-import {Event} from '../../data/event/Event';
-import {AutoType, EventType} from '../../data/event/EventTypes';
-import {Storage} from '../../data/Storage';
-import {UserInteractableEvent} from '../../data/event/UserInteractableEvent';
+import { Event } from '../../data/event/Event';
+import { AutoType, EventType } from '../../data/event/EventTypes';
+import { Storage } from '../../data/Storage';
+import { UserInteractableEvent } from '../../data/event/UserInteractableEvent';
 
 export class EventDispatcher {
   private _storage: Storage;
@@ -19,7 +19,7 @@ export class EventDispatcher {
   get idCounter() {
     return this._idCounter;
   }
-  
+
   public pointOfEntryEvent() {
     /*     this.createEvent(
       this.idCounter,
@@ -56,20 +56,20 @@ export class EventDispatcher {
     const event: Event =
       autoType === AutoType.USER_EVENT
         ? new UserInteractableEvent(
-            autoType,
-            eventType,
-            timeStamp,
-            description,
-            symptomOptions || {},
-            causeOptions || {},
-            treatmentOptions || {},
-          )
+          autoType,
+          eventType,
+          timeStamp,
+          description,
+          symptomOptions || {},
+          causeOptions || {},
+          treatmentOptions || {},
+        )
         : new Event(
-            autoType,
-            eventType,
-            timeStamp,
-            description,
-          );
+          autoType,
+          eventType,
+          timeStamp,
+          description,
+        );
 
     this.dispatchEvent(event);
     return event;

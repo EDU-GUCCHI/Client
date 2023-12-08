@@ -3,7 +3,7 @@ import notifee, { TimestampTrigger, TriggerType, AndroidImportance, Authorizatio
 export class NotificationScheduler
 {
     public constructor(){}
-
+    
     public static scheduleNotification(date: Date) // parse an object with timestamp and some other info about event
     {
       // schedule notifications for a week

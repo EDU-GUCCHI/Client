@@ -1,7 +1,7 @@
-import {Gotchi} from '../../data/gotchi/Gotchi';
-import {} from '../../data/gotchi/FrequencyEnum';
-import {Age, Illness, Weight} from '../../data/gotchi/ConstantEnum';
-import {EventType} from '../../data/event/EventTypes';
+import { Gotchi } from '../../data/gotchi/Gotchi';
+import { } from '../../data/gotchi/FrequencyEnum';
+import { Age, Illness, Weight } from '../../data/gotchi/ConstantEnum';
+import { EventType } from '../../data/event/EventTypes';
 
 export class FormulaGenerator {
   private _baseline: number;

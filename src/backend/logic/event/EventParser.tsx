@@ -28,7 +28,7 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
 
   events.forEach((event) => {
     let interactable;
-    if(event.autoType === AutoType.AUTO_EVENT) {
+    if (event.autoType === AutoType.AUTO_EVENT) {
       interactable = false;
     } else {
       interactable = true;
@@ -66,7 +66,7 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
   return parsedDays;
 }
 
-function parseOptions(options: {[key: string]: boolean}): ParsedOption[] {
+function parseOptions(options: { [key: string]: boolean }): ParsedOption[] {
   // Check if options is an object and not null
   if (typeof options !== 'object' || options === null) {
     return [];

@@ -53,6 +53,7 @@ export class IntervallHandler
         this._bloodValue = 5; // reset bloodlevels
         this._person.bloodValue = this.bloodValue;
         let date = this.secondsToDate(this._sec);
+
         //Schemalägg när gotchin kommer ut ur sjukan
         //NotificationScheduler.scheduleNotification(date + 2 timmar);
         console.log("Your gotchi was treated at the hospital and is now fine.");
