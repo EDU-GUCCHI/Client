@@ -19,7 +19,6 @@ export class IntervallHandler
     private _eventDispatcher: EventDispatcher;
     private _scenarioStartDate: number;
     private _dateString: string;
-
     private _warningNotificationSent: Boolean;
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
@@ -40,7 +39,6 @@ export class IntervallHandler
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._weekplanner = weekplanner;
-
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
@@ -49,32 +47,30 @@ export class IntervallHandler
 
     public sendGotchiToHospital()
     {
-        this._sec += 7200;
-        this._bloodValue = 5;
+        this._sec += 7200; // Gotchi at hospital for 2 hours
+        this._bloodValue = 5; // reset bloodlevels
         this._person.bloodValue = this.bloodValue;
         let date = this.secondsToDate(this._sec);
         //NotificationScheduler.scheduleNotification(date);
         console.log("Your gotchi was treated at the hospital and is now fine.");
         console.log("Your gotchi got home at: " + this._dateString);
     }
-    public formatDigitalClock(date: Date): string {
+    public formatDigitalClock(date: Date): string 
+    {
         const hour = date.getHours().toString().padStart(2, '0');
         const minute = date.getMinutes().toString().padStart(2, '0');
         const second = date.getSeconds().toString().padStart(2, '0');
         return `${hour}:${minute}:${second}`;
-      }
+    }
     public secondsToDate(seconds: number): Date 
     {
         const milliseconds = seconds * 1000; // Convert seconds to milliseconds
         const currentDate = new Date();
         const date = new Date(currentDate.getTime() + milliseconds); // Create a new Date object using milliseconds
-
         const year: number = date.getFullYear();
         const month: number = date.getMonth() + 1; // Months are zero-based (0-11), so adding 1
         const day: number = date.getDate();
-
         const formattedTime = this.formatDigitalClock(date);
-
         this._dateString = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${formattedTime}`;
         return date;
     }
@@ -198,7 +194,7 @@ export class IntervallHandler
         // increment entire week. (make sure death state doest just stop interval)
         // format seconds to proper timestamp - DONE
         // save timestamps - DONE
-        // ask notification scheduler to schedule notifications for entire week
+        // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
         // print out notification statements
 
         // TODO: implement to reprocess week from current time to end Date if user answers event
