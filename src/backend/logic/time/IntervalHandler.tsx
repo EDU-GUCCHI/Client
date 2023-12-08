@@ -22,6 +22,7 @@ export class IntervallHandler
     private _warningNotificationSent: Boolean;
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
+    private _reprocessTrigger: Boolean;
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
 
@@ -42,6 +43,7 @@ export class IntervallHandler
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
+        this._reprocessTrigger = false;
         this.updateFactors();
     }
 
