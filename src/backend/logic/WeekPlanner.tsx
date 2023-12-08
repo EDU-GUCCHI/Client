@@ -68,28 +68,33 @@ export class WeekPlanner {
     let exerciseDays = this.selectDistinctDays(gotchi.exercise);
     let partyDays = this.selectDistinctDays(gotchi.alcoholHabit);
     let weekday = Number.parseInt(String(new Date().getDate()).padStart(2, '0'));
-    //console.log("WEEKDAY GENERATED: " + weekday)
+    
     for (let i = 1; i < 6; i++) {
       if (gotchi.eatHabit == EatingHabit.CONSISTENT) {
         let breakfastTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "08:00");
         let lunchTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "12:00");
         let dinnerTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "18:00");
+
         let breakfastEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, breakfastTime, gotchi.name + " ate breakfast");
         let lunchEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, lunchTime, gotchi.name + " ate lunch");
         let dinnerEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, dinnerTime, gotchi.name + " ate dinner");
+
         events.push(breakfastEvent);
         events.push(lunchEvent);
         events.push(dinnerEvent);
       } else if (gotchi.eatHabit == EatingHabit.VOLATILE) {
         let lunchTime = this.selectRandomTimeWithBounds(weekday, 60, 60, "12:00");
         let dinnerTime = this.selectRandomTimeWithBounds(weekday, 60, 60, "19:00");
+
         let lunchEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, lunchTime, gotchi.name + " ate lunch");
         let dinnerEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, dinnerTime, gotchi.name + " ate dinner");
+
         events.push(lunchEvent);
         events.push(dinnerEvent);
       }
       let exerciseTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "17:00");
       let alcoholTime = this.selectRandomTimeWithBounds(weekday, 60, 60, "21:30");
+      
       let workoutEvent: Event;
       let drinkingEvent: Event;
       if (exerciseDays.includes(i)) {
