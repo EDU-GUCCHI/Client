@@ -56,22 +56,18 @@ export class EventDispatcher {
     const event: Event =
       autoType === AutoType.USER_EVENT
         ? new UserInteractableEvent(
-            id,
             autoType,
             eventType,
             timeStamp,
-            bloodGlucoseChange,
             description,
             symptomOptions || {},
             causeOptions || {},
             treatmentOptions || {},
           )
         : new Event(
-            id,
             autoType,
             eventType,
             timeStamp,
-            bloodGlucoseChange,
             description,
           );
 

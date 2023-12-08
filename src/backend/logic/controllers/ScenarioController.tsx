@@ -33,8 +33,7 @@ export class ScenarioController {
 
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
-    this._weekPlanner = new WeekPlanner(this._eventDispatcher);
-    
+    this._weekPlanner = new WeekPlanner(this._eventDispatcher, this._storage.person);
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
@@ -70,7 +69,7 @@ export class ScenarioController {
     //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
     //this.debugRandomizer(); use to test gothi randomizer
     this._storage.person = newGotchi(this._GUIController.gotchisName);
-    //this._clock.addObserver(this._intervalHandler);
+    this._weekPlanner.planWeek(this._storage.person);
     this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
     this._storage.person,
     );
@@ -88,7 +87,7 @@ export class ScenarioController {
     this._formulaGenerator = new FormulaGenerator();
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
-    this._weekPlanner = new WeekPlanner(this._eventDispatcher);
+    this._weekPlanner = new WeekPlanner(this._eventDispatcher, this._storage.person);
     //this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
       this._storage,

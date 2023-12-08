@@ -53,7 +53,8 @@ export class IntervallHandler
         this._bloodValue = 5; // reset bloodlevels
         this._person.bloodValue = this.bloodValue;
         let date = this.secondsToDate(this._sec);
-        //NotificationScheduler.scheduleNotification(date);
+        //Schemalägg när gotchin kommer ut ur sjukan
+        //NotificationScheduler.scheduleNotification(date + 2 timmar);
         console.log("Your gotchi was treated at the hospital and is now fine.");
         console.log("Your gotchi got home at: " + this._dateString);
     }
@@ -171,6 +172,7 @@ export class IntervallHandler
             //NotificationScheduler.scheduleNotification(date);
             this._deathNotificationSent = true;
             console.log("gotchi sent to hospital because of low bloodsugar at: " + this._dateString);
+            // Schemalägg notif om att gotchin åkte till sjukhus
             this.sendGotchiToHospital();
             //console.log("Task failed successfully");
         }

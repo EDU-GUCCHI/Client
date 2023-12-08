@@ -4,12 +4,14 @@ export enum AutoType {
 }
 
 //TODO: Ge dessa värden som ska påverka blodsockerfaktorn
-export enum EventType {
-  EXERCISE,
-  FOOD_INTAKE,
-  INSULIN_INJECTION,
-  BLOOD_GLUCOSE_WARNING,
-  SLEEP,
-  NOTHING,
-  //MORE?
+
+export enum EventType{
+    EXERCISE,
+    FOOD_INTAKE,
+    ALCOHOL_INTAKE,
+    INSULIN_INJECTION,
+    BLOOD_GLUCOSE_WARNING,
+    SLEEP,
+    NOTHING
+    //MORE?
 }
