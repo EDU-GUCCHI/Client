@@ -1,14 +1,11 @@
 import { Gotchi } from "../../data/gotchi/Gotchi";
 import { EventDispatcher } from "../event/EventDispatcher";
-import { Clock } from "./Clock";
 import { GUIController } from "../controllers/GUIController";
 import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
 import { Storage } from "../../data/Storage";
 import { WeekPlanner } from "../WeekPlanner";
-import { NotificationScheduler } from "../controllers/notificationScheduler";
 
-export class IntervallHandler
-{
+export class IntervallHandler {
     private _bloodValue: number;
     private _increaseFactor: number;
     private _decreaseFactor: number;
@@ -26,8 +23,7 @@ export class IntervallHandler
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
 
-    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, weekplanner: WeekPlanner)
-    {
+    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, weekplanner: WeekPlanner) {
         this._person = person;
         this._storage = storage;
         this._sec = 0;
@@ -47,8 +43,7 @@ export class IntervallHandler
         this.updateFactors();
     }
 
-    public sendGotchiToHospital()
-    {
+    public sendGotchiToHospital() {
         this._sec += 7200; // Gotchi at hospital for 2 hours
         this._bloodValue = 5; // reset bloodlevels
         this._person.bloodValue = this.bloodValue;
@@ -59,15 +54,15 @@ export class IntervallHandler
         console.log("Your gotchi was treated at the hospital and is now fine.");
         console.log("Your gotchi got home at: " + this._dateString);
     }
-    public formatDigitalClock(date: Date): string 
-    {
+
+    public formatDigitalClock(date: Date): string {
         const hour = date.getHours().toString().padStart(2, '0');
         const minute = date.getMinutes().toString().padStart(2, '0');
         const second = date.getSeconds().toString().padStart(2, '0');
         return `${hour}:${minute}:${second}`;
     }
-    public secondsToDate(seconds: number): Date 
-    {
+
+    public secondsToDate(seconds: number): Date {
         const milliseconds = seconds * 1000; // Convert seconds to milliseconds
         const currentDate = new Date();
         const date = new Date(currentDate.getTime() + milliseconds); // Create a new Date object using milliseconds
@@ -78,63 +73,55 @@ export class IntervallHandler
         this._dateString = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${formattedTime}`;
         return date;
     }
-    public updateFactors()
-    {
+
+    public updateFactors() {
         this.increaseFactor = this._storage.increaseFactor;
         this._decreaseFactor = this._storage.decreaseFactor;
     }
-    public decreaseBloodSugar() // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
-    {
+
+    // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
+    public decreaseBloodSugar() {
         this._bloodValue -= this._decreaseFactor;
         this._person.bloodValue = this._bloodValue;
         //console.log("Bloodsugar: " + this._bloodValue);
     }
-    public increaseBloodSugar()
-    {
+    public increaseBloodSugar() {
         this._bloodValue += this._increaseFactor;
         this._person.bloodValue = this.bloodValue;
     }
-    public negateValue() // flip value to be negative / positive
-    {
+    // flip value to be negative / positive
+    public negateValue() {
         this._bloodValue = (this._bloodValue * -1);
         this._person.bloodValue = this._bloodValue;
     }
-    public resetNotificationFlags()
-    {
-        if(this._bloodValue >= 4 && this._bloodValue <= 8)
-        {
+    public resetNotificationFlags() {
+        if (this._bloodValue >= 4 && this._bloodValue <= 8) {
             this._warningNotificationSent = false;
         }
-        if(this._bloodValue >= 2 && this._bloodValue <= 10)
-        {
+        if (this._bloodValue >= 2 && this._bloodValue <= 10) {
             this._criticalWarningSent = false;
         }
-        if(this._bloodValue >= 1 && this._bloodValue <= 12)
-        {
+        if (this._bloodValue >= 1 && this._bloodValue <= 12) {
             this._deathNotificationSent = false;
         }
     }
-    public checkUpperTreshold()
-    {
+    public checkUpperTreshold() {
         let date;
-        if(this._bloodValue > 8 && !this._warningNotificationSent)
-        {
+        if (this._bloodValue > 8 && !this._warningNotificationSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Högt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
             console.log("warning sent for high bloodsugar! at: " + this._dateString);
             this._warningNotificationSent = true;
         }
-        else if(this._bloodValue > 10 && !this._criticalWarningSent)
-        {
+        else if (this._bloodValue > 10 && !this._criticalWarningSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt högt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
             console.log("critical warning sent for high bloodsugar! at: " + this._dateString);
             this._warningNotificationSent = true;
         }
-        else if(this._bloodValue > 12 && !this._deathNotificationSent)
-        {
+        else if (this._bloodValue > 12 && !this._deathNotificationSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
@@ -143,10 +130,9 @@ export class IntervallHandler
             this.sendGotchiToHospital();
         }
     }
-    public checkLowerThreshold()
-    {
+    public checkLowerThreshold() {
         let date;
-        if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
+        if (this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
             //this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
             date = this.secondsToDate(this._sec);
@@ -156,8 +142,7 @@ export class IntervallHandler
             console.log("warning of low bloodsugar sent at: " + this._dateString);
             //console.log("Blood sugar warning sent")
         }
-        else if(this._bloodValue < 2 && !this._criticalWarningSent) 
-        {
+        else if (this._bloodValue < 2 && !this._criticalWarningSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
@@ -166,8 +151,7 @@ export class IntervallHandler
             console.log("warning of critically low bloodsugar sent at: " + this._dateString);
             //console.log("Critical Blood sugar warning sent")
         }
-        else if(this._bloodValue < 1 && !this._deathNotificationSent)
-        {
+        else if (this._bloodValue < 1 && !this._deathNotificationSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
@@ -178,8 +162,8 @@ export class IntervallHandler
             //console.log("Task failed successfully");
         }
     }
-    public update(): void // updates done every pulse
-    {
+    // updates done every pulse
+    public update(): void {
         this.decreaseBloodSugar(); // Update Values
         //this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
         this.resetNotificationFlags();
@@ -189,10 +173,9 @@ export class IntervallHandler
         this._weekplanner.checkDate();
         this._sec++;
     }
-    public processWeek()
-    {
-        while(this._sec <= 432000) // seconds in a week
-        {
+
+    public processWeek() {
+        while (this._sec <= 432000) {
             this.update(); // process what happens every second
         }
         console.log("entire week processed!");
@@ -206,21 +189,17 @@ export class IntervallHandler
         // cancel notifications if reprocessing is occured
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
-    
-    get bloodValue(): number 
-    {
+
+    get bloodValue(): number {
         return this._bloodValue;
     }
-    set bloodValue(value: number) 
-    {
+    set bloodValue(value: number) {
         this._bloodValue = value;
     }
-    get increaseFactor(): number 
-    {
+    get increaseFactor(): number {
         return this._increaseFactor;
     }
-    set increaseFactor(value: number) 
-    {
+    set increaseFactor(value: number) {
         this._increaseFactor = value;
     }
 }

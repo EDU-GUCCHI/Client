@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {s} from 'react-native-wind';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { s } from 'react-native-wind';
 import { useScenarioController } from './ScenarioControllerContext';
 
-const MultiSelectionButtons = ({options, correctAnswers}) => {
+const MultiSelectionButtons = ({ options, correctAnswers }) => {
   const [selectedButtons, setSelectedButtons] = useState(new Set());
   const [submitted, setSubmitted] = useState(false);
 

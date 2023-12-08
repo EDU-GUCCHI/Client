@@ -1,4 +1,3 @@
-export class EventListener
-{
-    
+export class EventListener {
+
 }

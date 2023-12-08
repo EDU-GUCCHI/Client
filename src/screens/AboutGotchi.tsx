@@ -4,8 +4,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { s } from 'react-native-wind';
 import { useScenarioController } from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
-import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
-import { PrivateValueStore } from '@react-navigation/native';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -60,7 +58,7 @@ function AboutGotchiScreen({ navigation }: Props) {
           <AttributeSection
             label="Age"
             value={controller.storage.person.ageStringRepresentation()}
-            description="Din gotchi är..."
+            description="Din gotchi är en..."
           />
 
           <AttributeSection

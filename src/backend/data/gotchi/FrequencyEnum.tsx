@@ -1,17 +1,14 @@
-export enum EatingHabit
-{
+export enum EatingHabit {
     CONSISTENT,
     VOLATILE
 }
-export enum Exercise 
-{
+export enum Exercise {
     VERY_ACTIVE = 4,
-	ACTIVE = 2,
-	INACTIVE = 0
+    ACTIVE = 2,
+    INACTIVE = 0
 }
-export enum AlcoholHabit
-{
+export enum AlcoholHabit {
     HEAVY_DRINKER = 3,
-	SOCIAL_DRINKER = 1,
-	SOBER = 0
+    SOCIAL_DRINKER = 1,
+    SOBER = 0
 }

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
 import MyGotchiStatus from '../components/MyGotchiComponents/MyGotchiStatus';
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
 import LgButton from '../components/LgButton';
@@ -19,7 +19,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function TutorialScreen({navigation}: Props) {
+function TutorialScreen({ navigation }: Props) {
   return (
     <ViewContainer style={s`items-center justify-center h-full`}>
       <Title text="Introduktion" />
@@ -29,7 +29,7 @@ function TutorialScreen({navigation}: Props) {
         locations={[0, 0.7]}
         useAngle={true}
         angle={25}
-        angleCenter={{x: 0.5, y: 0.5}}
+        angleCenter={{ x: 0.5, y: 0.5 }}
         onPress={() => {
           navigation.navigate('CreateGotchi');
         }}

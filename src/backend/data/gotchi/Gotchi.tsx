@@ -1,5 +1,5 @@
-import {EatingHabit, Exercise, AlcoholHabit} from './FrequencyEnum';
-import {Age, Weight, Illness} from './ConstantEnum'
+import { EatingHabit, Exercise, AlcoholHabit } from './FrequencyEnum';
+import { Age, Weight, Illness } from './ConstantEnum'
 import { GotchiStateMachine } from '../../logic/event/GotchiStateMachine';
 
 export class Gotchi {
@@ -8,7 +8,7 @@ export class Gotchi {
   private _insulinPump: boolean;
   private _lchf: boolean;
 
-  private _age : Age;
+  private _age: Age;
   private _eatingHabit: EatingHabit;
   private _exercise: Exercise;
   private _weight: Weight;
@@ -17,20 +17,18 @@ export class Gotchi {
   private _gender: boolean;
   private _stateMachine: GotchiStateMachine;
 
-
   public constructor(
-    name:         string,
-    bloodSugar:   number,
-    insulinPump:  boolean,
-    lchf:         boolean,
-    age:          Age,
-    eatingHabit:  EatingHabit,
-    exercise:     Exercise,
-    weight:       Weight,
+    name: string,
+    bloodSugar: number,
+    insulinPump: boolean,
+    lchf: boolean,
+    age: Age,
+    eatingHabit: EatingHabit,
+    exercise: Exercise,
+    weight: Weight,
     alcoholHabit: AlcoholHabit,
-    gender:       boolean,
-    illnesses:    Illness
-  ) {
+    gender: boolean,
+    illnesses: Illness) {
     this._name = name;
     this._bloodSugar = bloodSugar;
     this._insulinPump = insulinPump;
@@ -44,7 +42,9 @@ export class Gotchi {
     this._illnesses = illnesses;
     this._stateMachine = new GotchiStateMachine();
   }
-  //getters-setters
+  /**
+   * Getters and setters for attributes.
+   */
   get name(): string {
     return this._name;
   }
@@ -81,7 +81,6 @@ export class Gotchi {
   get stateMachine(): GotchiStateMachine {
     return this.stateMachine;
   }
-  // Setters for private attributes
   set name(name: string) {
     this._name = name;
   }
@@ -109,24 +108,30 @@ export class Gotchi {
   set illnesses(illnesses: Illness) {
     this._illnesses = illnesses;
   }
-  
-  staticValues() : any {
+  /**
+   * This method is responsible for returning
+   * all constant values of the Gotchi which 
+   * affects blood-glucose levels.
+   * @returns [] of enum-values
+   */
+  constantValues(): any {
     let arr = [];
     arr.push(this._age);
     arr.push(this._weight);
     arr.push(this._illnesses);
     return arr;
   }
+
   ageStringRepresentation(this: any) {
-    switch(this._age) {
-      case Age.YOUNG_ADULT : return "Ung vuxen";
-      case Age.ADULT : return "Vuxen";
-      case Age.SENIOR : return "Senior";
+    switch (this._age) {
+      case Age.YOUNG_ADULT: return "Ung vuxen";
+      case Age.ADULT: return "Vuxen";
+      case Age.SENIOR: return "Senior";
     }
     return "Undefined";
   }
   genderStringRepresentation(this: any) {
-    if(this._gender) {
+    if (this._gender) {
       return "Kvinna"
     } else {
       return "Man";
@@ -134,17 +139,17 @@ export class Gotchi {
   }
 
   eatingHabitStringRepresentation(this: any) {
-    switch(this._eatingHabit) {
-      case EatingHabit.VOLATILE : return "Äter inkonsistent";
-      case EatingHabit.CONSISTENT : return "Äter konsistent";
+    switch (this._eatingHabit) {
+      case EatingHabit.VOLATILE: return "Äter inkonsistent";
+      case EatingHabit.CONSISTENT: return "Äter konsistent";
     }
     return "Undefined";
   }
   exerciseHabitStringRepresentation(this: any) {
-    switch(this._exercise) {
-      case Exercise.VERY_ACTIVE : return "Tränar ofta";
-      case Exercise.ACTIVE : return "Tränar regelbundet";
-      case Exercise.INACTIVE : return "Tränar sällan";
+    switch (this._exercise) {
+      case Exercise.VERY_ACTIVE: return "Tränar ofta";
+      case Exercise.ACTIVE: return "Tränar regelbundet";
+      case Exercise.INACTIVE: return "Tränar sällan";
     }
     return "Undefined";
   }

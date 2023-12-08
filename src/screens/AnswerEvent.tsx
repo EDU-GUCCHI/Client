@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
 import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
@@ -22,7 +22,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function AnswerEventScreen({route, navigation}) {
+function AnswerEventScreen({ route, navigation }) {
   const event = route.params?.event; // Retrieve the passed event data
 
   // Function to extract correct answers

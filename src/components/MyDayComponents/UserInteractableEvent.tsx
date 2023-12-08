@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {s} from 'react-native-wind';
+import { s } from 'react-native-wind';
 
 type UserInteractableEventProps = {
   navigation: any;
@@ -12,7 +12,7 @@ type UserInteractableEventProps = {
   locations?: number[];
   useAngle?: boolean;
   angle?: number;
-  angleCenter?: {x: number; y: number};
+  angleCenter?: { x: number; y: number };
 };
 
 function UserInteractableEvent({
@@ -27,7 +27,7 @@ function UserInteractableEvent({
   angleCenter,
 }: UserInteractableEventProps) {
   const handleNavigate = () => {
-    navigation.navigate('AnswerEvent', {event: eventData}); // Pass eventData to AnswerEvent screen
+    navigation.navigate('AnswerEvent', { event: eventData }); // Pass eventData to AnswerEvent screen
   };
 
   return (

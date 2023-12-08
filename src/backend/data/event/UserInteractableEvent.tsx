@@ -7,7 +7,7 @@ export class UserInteractableEvent extends Event {
   private readonly _symptomOptions: {};
   private readonly _causeOptions: {};
   private readonly _treatmentOptions: {};
-  private _answered : boolean;
+  private _answered: boolean;
 
   public constructor(
     autoType: AutoType,
@@ -35,10 +35,10 @@ export class UserInteractableEvent extends Event {
   get treatmentOptions(): object {
     return this._treatmentOptions;
   }
-  get answered() : boolean {
+  get answered(): boolean {
     return this._answered;
   }
-  set answered(answered : boolean) {
+  set answered(answered: boolean) {
     this._answered = answered;
   }
 }

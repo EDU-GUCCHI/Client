@@ -70,8 +70,8 @@ export const useNotification = () => {
           // Reference the name created (Optional, defaults to 'ic_launcher')
           smallIcon: 'ic_small_icon',
 
-           // Set color of icon (Optional, defaults to white)
-        
+          // Set color of icon (Optional, defaults to white)
+
         }
       },
       trigger, // use displayNotification to update triggerNotifications which trigger already fired

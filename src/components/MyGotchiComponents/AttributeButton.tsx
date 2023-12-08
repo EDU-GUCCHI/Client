@@ -1,8 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {s} from 'react-native-wind';
-import {ViewStyle} from 'react-native';
+import { s } from 'react-native-wind';
 
 type AttributeButtonProps = {
   text: string;
@@ -11,7 +10,7 @@ type AttributeButtonProps = {
   locations?: number[];
   useAngle?: boolean;
   angle?: number;
-  angleCenter?: {x: number; y: number};
+  angleCenter?: { x: number; y: number };
 };
 
 const AttributeButton = ({

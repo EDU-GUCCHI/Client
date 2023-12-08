@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, SafeAreaView, StatusBar, View} from 'react-native';
-import {useNotification} from '../hooks/useNotification';
+import { Button, SafeAreaView, StatusBar, View } from 'react-native';
+import { useNotification } from '../hooks/useNotification';
 import styles from '../styles/style';
 import notifee, { AndroidImportance } from '@notifee/react-native';
 

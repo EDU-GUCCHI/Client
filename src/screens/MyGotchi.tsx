@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
 import MyGotchiStatus from '../components/MyGotchiComponents/MyGotchiStatus';
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
 
@@ -21,7 +21,7 @@ const water = '2 L';
 const heartRate = '80 bpm';
 const sleep = '8h 24m';
 
-function MyGotchiScreen({navigation}: Props) {
+function MyGotchiScreen({ navigation }: Props) {
   const controller = useScenarioController(); // retreive Controller instance
   const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(

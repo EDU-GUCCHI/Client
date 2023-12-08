@@ -1,5 +1,4 @@
 import { Gotchi } from "../../data/gotchi/Gotchi";
-import { Storage } from "../../data/Storage";
 
 export class GUIController { // responsibility of fetching/storing and displaying data in GUI
     private _person: Gotchi;
@@ -29,35 +28,28 @@ export class GUIController { // responsibility of fetching/storing and displayin
             callback(newBloodSugar);
         });
     }
-    handleButtonAnswer(buttonName: String): void
-    {
+    handleButtonAnswer(buttonName: String): void {
         // fetch current event and check if option is correct to that value
         console.log("handling button: " + buttonName);
         let correct = false;
-        if(correct)
-        {
+        if (correct) {
             console.log("is correct");
         }
-        else
-        {
+        else {
             console.log("is wrong");
         }
     }
 
-    set gotchisName(newName: string)
-    {
+    set gotchisName(newName: string) {
         this._gotchisname = newName;
     }
-    get gotchisName(): string
-    {
+    get gotchisName(): string {
         return this._gotchisname;
     }
-    get person(): Gotchi 
-    {
+    get person(): Gotchi {
         return this._person;
     }
-    get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] 
-    {
+    get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] {
         return this._bloodSugarSubscribers;
     }
 }

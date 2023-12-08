@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {s} from 'react-native-wind';
+import { s } from 'react-native-wind';
 
 type LgButtonProps = {
   text: string;
@@ -10,7 +10,7 @@ type LgButtonProps = {
   locations?: number[]; // Optional locations for the gradient colors
   useAngle?: boolean; // Optional boolean to use angle or not
   angle?: number; // Optional angle for the gradient direction
-  angleCenter?: {x: number; y: number}; // Optional center for the gradient angle
+  angleCenter?: { x: number; y: number }; // Optional center for the gradient angle
 };
 
 const LgButton = ({

@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {s} from 'react-native-wind';
+import React, { useState } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { s } from 'react-native-wind';
 
 const SingleSelectionButtons = () => {
   const [selectedButton, setSelectedButton] = useState(null);

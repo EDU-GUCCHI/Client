@@ -1,11 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
 
 import LgButton from '../components/LgButton';
-import MdButton from '../components/MdButton';
-import SmButton from '../components/SmButton';
 import Title from '../components/Title';
 import ViewContainer from '../components/ViewContainer';
 
@@ -23,7 +20,7 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-function HomeScreen({navigation}: Props) {
+function HomeScreen({ navigation }: Props) {
   /*   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
@@ -51,7 +48,7 @@ function HomeScreen({navigation}: Props) {
           locations={[0, 0.7]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 1}}
+          angleCenter={{ x: 0.5, y: 1 }}
           onPress={() => navigation.navigate('MyDay')}
         />
         <LgButton
@@ -60,7 +57,7 @@ function HomeScreen({navigation}: Props) {
           locations={[0, 0.8]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0.6}}
+          angleCenter={{ x: 0.5, y: 0.6 }}
           onPress={() => navigation.navigate('MyGotchi')}
         />
         <LgButton
@@ -69,7 +66,7 @@ function HomeScreen({navigation}: Props) {
           locations={[0, 0.9]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0.4}}
+          angleCenter={{ x: 0.5, y: 0.4 }}
           onPress={() => navigation.navigate('Instructions')}
         />
       </ViewContainer>

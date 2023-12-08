@@ -1,7 +1,7 @@
 import React from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { Text, View } from 'react-native';
-import {s} from 'react-native-wind';
+import { s } from 'react-native-wind';
 
 
 type RootStackParamList = {
@@ -14,7 +14,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function ConditionsScreen({navigation}: Props) {
+function ConditionsScreen({ navigation }: Props) {
   return (
     <View style={s`flex h-full items-center justify-center bg-coolGray-100`}>
       {/* TutorialScreen */}

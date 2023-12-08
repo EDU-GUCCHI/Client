@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { s } from 'react-native-wind';
-import { useRoute } from '@react-navigation/native';
 
-import {ScenarioController} from '../backend/logic/controllers/ScenarioController';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import Title from '../components/Title';
@@ -42,15 +39,15 @@ function sendData() {
 }
 
 const data = [
-  {key:'1', value:'Malmö Universitet', disabled:true},
-  {key:'2', value:'Göteborgs Universitet'},
+  { key: '1', value: 'Malmö Universitet', disabled: true },
+  { key: '2', value: 'Göteborgs Universitet' },
 ]
 
-function CreateGotchiScreen({navigation}: Props) {
+function CreateGotchiScreen({ navigation }: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
   const [institutionName, setInstitutionName] = useState('');
-  
+
   const controller = useScenarioController();
   const GUIController = controller.GUIController;
 
@@ -72,7 +69,7 @@ function CreateGotchiScreen({navigation}: Props) {
           locations={[0, 1]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0}}
+          angleCenter={{ x: 0.5, y: 0 }}
         />
         <InputField
           placeholder="Institution..."
@@ -82,7 +79,7 @@ function CreateGotchiScreen({navigation}: Props) {
           locations={[0, 1]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0}}
+          angleCenter={{ x: 0.5, y: 0 }}
         />
         <InputField
           placeholder="Klasskod..."
@@ -92,7 +89,7 @@ function CreateGotchiScreen({navigation}: Props) {
           locations={[0, 1]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0}}
+          angleCenter={{ x: 0.5, y: 0 }}
         />
         <LgButton
           text="Nästa"
@@ -100,7 +97,7 @@ function CreateGotchiScreen({navigation}: Props) {
           locations={[0, 0.7]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0.3}}
+          angleCenter={{ x: 0.5, y: 0.3 }}
           onPress={() => {
             navigation.navigate('Home');
             controller.checkPermissions(); // start controller flow

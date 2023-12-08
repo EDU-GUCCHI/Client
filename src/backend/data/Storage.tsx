@@ -1,9 +1,8 @@
 import { Gotchi } from "./gotchi/Gotchi";
-import { newGotchi } from './gotchi/GotchiRandomizer';
 import { Event } from "./event/Event";
 import { parseEventsToFormat } from "../logic/event/EventParser";
-import { AlcoholHabit, EatingHabit, Exercise} from "./gotchi/FrequencyEnum";
-import { Age, Weight, Illness} from "./gotchi/ConstantEnum";
+import { AlcoholHabit, EatingHabit, Exercise } from "./gotchi/FrequencyEnum";
+import { Age, Weight, Illness } from "./gotchi/ConstantEnum";
 
 export class Storage {
   // store/initialize all data storage classes here, ex: Gotchi
@@ -28,7 +27,7 @@ export class Storage {
       AlcoholHabit.HEAVY_DRINKER,
       true,
       Illness.FEVER);
-    
+
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
     this._increaseFactor = 0;
@@ -47,7 +46,7 @@ export class Storage {
   get decreaseFactor(): number {
     return this._decreaseFactor;
   }
-  set decreaseFactor(decfac: number){
+  set decreaseFactor(decfac: number) {
     this._decreaseFactor = decfac;
   }
   set person(newPerson: Gotchi) {
