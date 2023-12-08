@@ -141,7 +141,6 @@ export class IntervallHandler
             this._deathNotificationSent = true;
             console.log("Gotchi is sent to hospital because of high bloodsugar at: " + this._dateString);
             this.sendGotchiToHospital();
-            // send gotchi to hospital
         }
     }
     public checkLowerThreshold()
@@ -176,7 +175,6 @@ export class IntervallHandler
             console.log("gotchi sent to hospital because of low bloodsugar at: " + this._dateString);
             this.sendGotchiToHospital();
             //console.log("Task failed successfully");
-            // send gotchi to hospital
         }
     }
     public update(): void // updates done every pulse
@@ -198,10 +196,14 @@ export class IntervallHandler
         }
         console.log("entire week processed!");
         // increment entire week. (make sure death state doest just stop interval)
-        // format seconds to proper timestamp
-        // save timestamps
+        // format seconds to proper timestamp - DONE
+        // save timestamps - DONE
         // ask notification scheduler to schedule notifications for entire week
         // print out notification statements
+
+        // TODO: implement to reprocess week from current time to end Date if user answers event
+        // cancel notifications if reprocessing is occured
+        // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
     
     get bloodValue(): number 
