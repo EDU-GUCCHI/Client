@@ -11,11 +11,12 @@ export class IntervallHandler
     private _bloodValue: number;
     private _increaseFactor: number;
     private _decreaseFactor: number;
+    private _sec: number;
     private _person: Gotchi;
     private _GUIController: GUIController;
     private _notificationDispatcher: NotificationDispatcher;
     private _eventDispatcher: EventDispatcher;
-    private _clock: Clock;
+    private _scenarioStartDate: number;
 
     private _warningNotificationSent: Boolean;
     private _criticalWarningSent: Boolean;
@@ -23,17 +24,18 @@ export class IntervallHandler
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
 
-    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, clock: Clock, weekplanner: WeekPlanner)
+    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, weekplanner: WeekPlanner)
     {
         this._person = person;
         this._storage = storage;
+        this._sec = 0;
+        this._scenarioStartDate = Date.now();
         this._bloodValue = person.bloodValue;
         this._GUIController = GUIController;
         this._increaseFactor = 0;
         this._decreaseFactor = 0;
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
-        this._clock = clock;
         this._weekplanner = weekplanner;
 
         this._warningNotificationSent = false;
@@ -94,7 +96,7 @@ export class IntervallHandler
             this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             this._deathNotificationSent = true;
             console.log("Task failed successfully");
-            this._clock.stopClock(); // End scenario when this is triggered
+            // send gotchi to hospital
         }
     }
     public checkLowerThreshold()
@@ -118,7 +120,7 @@ export class IntervallHandler
             this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             this._deathNotificationSent = true;
             console.log("Task failed successfully");
-            this._clock.stopClock(); // End scenario when this is triggered
+            // send gotchi to hospital
         }
     }
     public update(): void // updates done every pulse
@@ -130,9 +132,20 @@ export class IntervallHandler
         this.checkLowerThreshold();
         //Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
         this._weekplanner.checkDate();
+        this._sec++;
+    }
+    public secondsToDate(seconds: number): Date 
+    {
+        const milliseconds = seconds * 1000; // Convert seconds to milliseconds
+        const date = new Date(milliseconds); // Create a new Date object using milliseconds
+        return date;
     }
     public processWeek()
     {
+        while(this._sec != 432000) // seconds in a week
+        {
+            this.update();
+        }
         // increment entire week. (make sure death state doest just stop interval)
         // format seconds to proper timestamp
         // save timestamps
