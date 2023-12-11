@@ -76,6 +76,7 @@ export class ScenarioController {
     );
     //this._clock.startClock(); // start clock pulse
     this._intervalHandler.processWeek();
+    this._intervalHandler.reprocessWeek();
     this._eventDispatcher.pointOfEntryEvent();  
   }
   public terminate() {

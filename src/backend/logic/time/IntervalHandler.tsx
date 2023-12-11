@@ -12,17 +12,17 @@ export class IntervallHandler
     private _bloodValue: number;
     private _increaseFactor: number;
     private _decreaseFactor: number;
+    private _weektime: number;
     private _sec: number;
     private _person: Gotchi;
     private _GUIController: GUIController;
     private _notificationDispatcher: NotificationDispatcher;
     private _eventDispatcher: EventDispatcher;
-    private _scenarioStartDate: number;
+    private _scenarioStartDate: Date;
     private _dateString: string;
     private _warningNotificationSent: Boolean;
     private _criticalWarningSent: Boolean;
     private _deathNotificationSent: Boolean;
-    private _reprocessTrigger: Boolean;
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
 
@@ -32,18 +32,18 @@ export class IntervallHandler
         this._storage = storage;
         this._sec = 0;
         this._dateString = "";
-        this._scenarioStartDate = Date.now();
+        this._scenarioStartDate = new Date();
         this._bloodValue = person.bloodValue;
         this._GUIController = GUIController;
         this._increaseFactor = 0;
         this._decreaseFactor = 0;
+        this._weektime = 432000;
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._weekplanner = weekplanner;
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
         this._deathNotificationSent = false;
-        this._reprocessTrigger = false;
         this.updateFactors();
     }
 
@@ -76,6 +76,12 @@ export class IntervallHandler
         this._dateString = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')} ${formattedTime}`;
         return date;
     }
+    public dateToSeconds(date: Date): number {
+        const currentDate = new Date();
+        const milliseconds = date.getTime() - currentDate.getTime(); // Get the difference in milliseconds
+        const seconds = milliseconds / 1000; // Convert milliseconds to seconds
+        return seconds;
+    }
     public updateFactors()
     {
         this.increaseFactor = this._storage.increaseFactor;
@@ -92,10 +98,9 @@ export class IntervallHandler
         this._bloodValue += this._increaseFactor;
         this._person.bloodValue = this.bloodValue;
     }
-    public negateValue() // flip value to be negative / positive
+    public negateValue(num: number): number // flip value to be negative / positive
     {
-        this._bloodValue = (this._bloodValue * -1);
-        this._person.bloodValue = this._bloodValue;
+        return (num * -1);
     }
     public resetNotificationFlags()
     {
@@ -175,6 +180,12 @@ export class IntervallHandler
             //console.log("Task failed successfully");
         }
     }
+    public calculateDeltaTime()
+    {
+        let deltaDate = this.dateToSeconds(this._scenarioStartDate); // returns negative millisec from startdate
+        let secondsFromStart = this.negateValue(deltaDate);
+        this._sec = secondsFromStart; // set increment to current date
+    }
     public update(): void // updates done every pulse
     {
         this.decreaseBloodSugar(); // Update Values
@@ -188,20 +199,34 @@ export class IntervallHandler
     }
     public processWeek()
     {
-        while(this._sec <= 432000) // seconds in a week
+        this._scenarioStartDate = new Date(); // assign current date as startpoint
+        while(this._sec <= this._weektime) // seconds in a week
         {
             this.update(); // process what happens every second
         }
         console.log("entire week processed!");
+        console.log("");
+        console.log("");
         // increment entire week. (make sure death state doest just stop interval)
         // format seconds to proper timestamp - DONE
         // save timestamps - DONE
         // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
         // print out notification statements
 
-        // TODO: implement to reprocess week from current time to end Date if user answers event
+        // TODO: implement to reprocess week from current time to end Date - DONE
         // cancel notifications if reprocessing is occured
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
+    }
+    public reprocessWeek() // fetch data object for example as JSON or other date saved in file
+    {
+        this.calculateDeltaTime(); // calculates the difference in time from start of scenario
+        console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
+        console.log("MILLISECONDS FROM START-DATE: " + this._sec);
+        while(this._sec <= this._weektime) // seconds in a week
+        {
+            this.update(); // process what happens every second
+        }
+        console.log("entire week reprocessed!");
     }
     
     get bloodValue(): number 
