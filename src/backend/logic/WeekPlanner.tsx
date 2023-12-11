@@ -59,22 +59,30 @@ export class WeekPlanner {
    * calculating a week of activities
    * 
    * @returns an [] of Events. These contain timestamps for scheduling 
-   * notifications and calculating the next blood-glucose value
+   * notifications and calculating the next blood-glucose value within the
+   * context of the interval handler.
    */
 
   planWeek(gotchi: Gotchi): Array<Event> {
-    console.log(JSON.stringify(gotchi));
+
     let events: Array<Event> = new Array();
     let exerciseDays = this.selectDistinctDays(gotchi.exercise);
     let partyDays = this.selectDistinctDays(gotchi.alcoholHabit);
-    let weekday = Number.parseInt(String(new Date().getDate()).padStart(2, '0'));
-    
-    for (let i = 1; i < 6; i++) {
-      if (gotchi.eatHabit == EatingHabit.CONSISTENT) {
-        let breakfastTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "08:00");
-        let lunchTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "12:00");
-        let dinnerTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "18:00");
 
+    let today = new Date();
+    let todaysDay = today.getDay();
+    
+    if(todaysDay == 0 || todaysDay == 6) {
+      throw new Error("All Gotchis are free during the weekend");
+    }
+    let daysUntilFriday = 6 - todaysDay;
+    console.log("Days until Friday: " + daysUntilFriday);
+
+    for (let i = 0; i < daysUntilFriday; i++) {
+      if (gotchi.eatHabit == EatingHabit.CONSISTENT) {
+        let breakfastTime = this.selectRandomTimeWithBounds(today, 30, 30, "08:00");
+        let lunchTime = this.selectRandomTimeWithBounds(today, 30, 30, "12:00");
+        let dinnerTime = this.selectRandomTimeWithBounds(today, 30, 30, "18:00");
         let breakfastEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, breakfastTime, gotchi.name + " ate breakfast");
         let lunchEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, lunchTime, gotchi.name + " ate lunch");
         let dinnerEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, dinnerTime, gotchi.name + " ate dinner");
@@ -83,18 +91,17 @@ export class WeekPlanner {
         events.push(lunchEvent);
         events.push(dinnerEvent);
       } else if (gotchi.eatHabit == EatingHabit.VOLATILE) {
-        let lunchTime = this.selectRandomTimeWithBounds(weekday, 60, 60, "12:00");
-        let dinnerTime = this.selectRandomTimeWithBounds(weekday, 60, 60, "19:00");
+        let lunchTime = this.selectRandomTimeWithBounds(today, 60, 60, "12:00");
+        let dinnerTime = this.selectRandomTimeWithBounds(today, 60, 60, "19:00");
 
         let lunchEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, lunchTime, gotchi.name + " ate lunch");
         let dinnerEvent = new Event(AutoType.AUTO_EVENT, EventType.FOOD_INTAKE, dinnerTime, gotchi.name + " ate dinner");
-
         events.push(lunchEvent);
         events.push(dinnerEvent);
       }
-      let exerciseTime = this.selectRandomTimeWithBounds(weekday, 30, 30, "17:00");
-      let alcoholTime = this.selectRandomTimeWithBounds(weekday, 60, 60, "21:30");
-      
+      let exerciseTime = this.selectRandomTimeWithBounds(today, 30, 30, "17:00");
+      let alcoholTime = this.selectRandomTimeWithBounds(today, 60, 60, "21:30");
+
       let workoutEvent: Event;
       let drinkingEvent: Event;
       if (exerciseDays.includes(i)) {
@@ -102,27 +109,44 @@ export class WeekPlanner {
         events.push(workoutEvent);
       }
       if (partyDays.includes(i)) {
-        drinkingEvent = new Event(AutoType.AUTO_EVENT, EventType.ALCOHOL_INTAKE, alcoholTime, gotchi.name + " had a great time out with friends")
-        events.push(drinkingEvent)
+        drinkingEvent = new Event(AutoType.AUTO_EVENT, EventType.ALCOHOL_INTAKE, alcoholTime, gotchi.name + " had a great time out with friends");
+        events.push(drinkingEvent);
       }
-      weekday++;
+      today.setDate(today.getDate() + 1);
     }
-    /*events.forEach((event) => {
-      console.log("EVENT\t" + event.timeStamp.toLocaleDateString() + "\t" + event.timeStamp.toLocaleTimeString() + "\t" + event.description);
-    })*/
     return events;
   }
 
   /**
    * 
-   * @param day 
+   * @param date 
+   * Weekday to select (in Date() format, ie 1 for Monday, 2 for
+   * Wednesday etc)
+   * 
    * @param lowerBoundMinutes 
+   * Lower bound of minutes allowed to randomize between
+   * 
    * @param upperBoundMinutes 
+   * Upper bound of mintues allowed to randomize between
+   * 
    * @param fixedTime 
+   * Point of time we're able to randomize between
+   * 
    * @returns 
+   * A @class Date() object with time set in above parameters. For instance,
+   * a method call with 1, 30, 30, "18:00" would generate a date object
+   * with time set between 17:30 and 18:30. This in turn to pass along
+   * to an @class Event() constructor
    */
-  selectRandomTimeWithBounds(day: number, lowerBoundMinutes: number, upperBoundMinutes: number, fixedTime: string): Date {
-    const fixedDate = new Date();
+
+  selectRandomTimeWithBounds(date: Date, lowerBoundMinutes: number, upperBoundMinutes: number, fixedTime: string): Date {
+    //const today = new Date();
+    const currentMonth = date.getMonth();
+    const currentYear = date.getFullYear();
+    const currentDay = date.getDate();
+
+    const fixedDate = new Date(currentYear, currentMonth, currentDay);
+    fixedDate.setDate(fixedDate.getDate() + date.getDay() - fixedDate.getDay());
     const [fixedHours, fixedMinutes] = fixedTime.split(':').map(Number);
     fixedDate.setHours(fixedHours, fixedMinutes, 0, 0);
 
@@ -131,15 +155,15 @@ export class WeekPlanner {
     const randomTime = new Date(
       lowerBound.getTime() + Math.random() * (upperBound.getTime() - lowerBound.getTime())
     );
-    randomTime.setDate(day);
+
     return randomTime;
   }
 
   /**
-   * This method is responsible for selecting @param numberOfDays 
-   * distinct, random days in a span. A Gotchi has a set of 
+   * This method is responsible for selecting a @param numberOfDays 
+   * of distinct, random days in a span. A Gotchi has a set of 
    * activities which they perform (affecting blood-glucose). 
-   * This method selects the days which it performs them. 
+   * This method selects the days in which these events are sheduled
    * 
    * @param numberOfDays Count of days an activity needs to be
    * performed

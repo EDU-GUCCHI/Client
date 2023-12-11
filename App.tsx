@@ -11,6 +11,7 @@ import InstructionsScreen from './src/screens/Instructions';
 import MyGotchiScreen from './src/screens/MyGotchi';
 import AnswerEventScreen from './src/screens/AnswerEvent';
 import AboutGotchiScreen from './src/screens/AboutGotchi';
+import BeforeWeBeginScreen from './src/screens/BeforeWeBegin'
 import notifee, { AuthorizationStatus } from '@notifee/react-native';
 
 import { ScenarioControllerProvider, useScenarioController } from './src/components/ScenarioControllerContext';
@@ -28,8 +29,12 @@ export default class App extends Component<Props> {
         <Stack.Navigator initialRouteName="TutorialScreen">
           <Stack.Screen
             name="Tutorial"
-            options={{title: 'Välkommen'}}
             component={TutorialScreen}
+          />
+          <Stack.Screen
+            name="BeforeWeBegin"
+            options={{title: 'Viktigt!'}}
+            component={BeforeWeBeginScreen}
           />
           <Stack.Screen
             name="CreateGotchi"
