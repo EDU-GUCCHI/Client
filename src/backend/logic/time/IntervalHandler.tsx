@@ -228,17 +228,11 @@ export class IntervallHandler
             console.log("");
             return true;
         }
-        
-        // increment entire week. (make sure death state doest just stop interval)
-        // format seconds to proper timestamp - DONE
-        // save timestamps - DONE
-        // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
-        // print out notification statements
-
         // TODO: 
         // implement to reprocess week from current time to end Date - DONE
         // cancel notifications if reprocessing is occured - DONE
         // week should always run to friday for current week, week can be started late! - DONE
+        // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
     public reprocessWeek()
