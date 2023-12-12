@@ -1,12 +1,11 @@
+import { AnswerOptions } from "./AnswerOptions";
 import { Event } from "./Event";
 import { AutoType, EventType } from "./EventTypes";
 
 export class UserInteractableEvent extends Event {
-  /* private readonly _answerOptions: [];
-    private readonly _correctAnswers: []; */
-  private readonly _symptomOptions: {};
-  private readonly _causeOptions: {};
-  private readonly _treatmentOptions: {};
+  private readonly _symptomOptions: AnswerOptions;
+  private readonly _causeOptions: AnswerOptions;
+  private readonly _treatmentOptions: AnswerOptions;
   private _answered: boolean;
 
   public constructor(
@@ -14,9 +13,9 @@ export class UserInteractableEvent extends Event {
     eventType: EventType,
     timeStamp: Date,
     description: string,
-    symptomOptions: object,
-    causeOptions: object,
-    treatmentOptions: object,
+    symptomOptions: AnswerOptions,
+    causeOptions: AnswerOptions,
+    treatmentOptions: AnswerOptions,
   ) {
     super(autoType, eventType, timeStamp, description);
     this._symptomOptions = symptomOptions;

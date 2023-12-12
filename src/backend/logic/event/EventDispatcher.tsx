@@ -3,6 +3,7 @@ import { Event } from '../../data/event/Event';
 import { AutoType, EventType } from '../../data/event/EventTypes';
 import { Storage } from '../../data/Storage';
 import { UserInteractableEvent } from '../../data/event/UserInteractableEvent';
+import { AnswerOptions } from '../../data/event/AnswerOptions';
 
 export class EventDispatcher {
   private _storage: Storage;
@@ -47,9 +48,9 @@ export class EventDispatcher {
     eventType: EventType,
     timeStamp: Date,
     description: string,
-    symptomOptions?: object,
-    causeOptions?: object,
-    treatmentOptions?: object,
+    symptomOptions?: AnswerOptions,
+    causeOptions?: AnswerOptions,
+    treatmentOptions?: AnswerOptions,
   ) {
     const event: Event =
       autoType === AutoType.USER_EVENT
@@ -58,9 +59,9 @@ export class EventDispatcher {
           eventType,
           timeStamp,
           description,
-          symptomOptions || {},
-          causeOptions || {},
-          treatmentOptions || {},
+          symptomOptions || new AnswerOptions(),
+          causeOptions || new AnswerOptions(),
+          treatmentOptions || new AnswerOptions(),
         )
         : new Event(
           autoType,
@@ -116,13 +117,11 @@ export class EventDispatcher {
     );
   }
   LowBloodSugar() {
-    const id = this._idCounter++;
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
-    const bloodGlucoseChange = -2;
     const description = 'Low blood sugar';
-    const symptomOptions = [
+    /* const symptomOptions = [
       { option: 'Svettig', correct: true, answered: false },
       { option: 'Svag', correct: true, answered: false },
       { option: 'Huvudvärk', correct: false, answered: false },
@@ -137,7 +136,28 @@ export class EventDispatcher {
       { option: 'Ta insulin', correct: false, answered: false },
       { option: 'Vila', correct: false, answered: false },
     ];
-    const eventAnswered = false;
+    const eventAnswered = false; */
+    const symptomOptions = new AnswerOptions(
+      [
+        { optionString: 'Svettig', optionCorrect: true },
+        { optionString: 'Svag', optionCorrect: true },
+        { optionString: 'Huvudvärk', optionCorrect: false }
+    ]
+    );
+    const causeOptions = new AnswerOptions(
+      [
+        { optionString: 'För lite insulin', optionCorrect: true },
+        { optionString: 'För mycket insulin', optionCorrect: false },
+        { optionString: 'För lite mat', optionCorrect: false }
+    ]
+    );
+    const treatmentOptions = new AnswerOptions(
+      [
+        { optionString: 'Ät något', optionCorrect: true },
+        { optionString: 'Ta insulin', optionCorrect: true },
+        { optionString: 'Vila', optionCorrect: false }
+    ]
+    );
 
     console.log('Creating Low blood-sugar event');
     this.createEvent(
