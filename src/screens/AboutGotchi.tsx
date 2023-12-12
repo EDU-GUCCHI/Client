@@ -17,12 +17,12 @@ type Props = {
 
 function AttributeSection({ label, value, description }: any) {
   return (
-    <View style={s`mb-6 border-b`}>
-      <View style={s`flex flex-row items-center border-black pb-2 mb-2`}>
-        <Text style={s`text-xl font-bold text-black mr-2`}>{label}:</Text>
-        <Text style={s`text-lg text-black`}>{value}</Text>
+    <View style={s`mb-6 border-b p-4 border-warmGray-300`}>
+      <View style={s`flex flex-row items-center pb-2 mb-2`}>
+        <Text style={s`text-lg font-bold text-gray-800 mr-2`}>{label}:</Text>
+        <Text style={s`text-base text-gray-700`}>{value}</Text>
       </View>
-      <Text style={s`text-lg text-black p-3`}>{description}</Text>
+      <Text style={s`text-base text-gray-700`}>{description}</Text>
     </View>
   );
 }
@@ -46,7 +46,7 @@ function AboutGotchiScreen({ navigation }: Props) {
   }, []);
 
   return (
-    <ViewContainer style={s`items-start justify-start h-full px-5 py-2`}>
+    <ViewContainer style={s`items-start justify-start h-full px-5 py-2 bg-coolGray-100`}>
       <ScrollView style={s`w-full`}>
         <View style={s`flex`}>
           <AttributeSection
@@ -79,5 +79,6 @@ function AboutGotchiScreen({ navigation }: Props) {
 }
 
 export default AboutGotchiScreen;
+
 
 
