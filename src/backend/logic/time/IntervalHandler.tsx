@@ -194,7 +194,7 @@ export class IntervallHandler
     }
     public calculateDeltaTime() // difference in time since start-Date in seconds
     {
-        let deltaDate = this.dateToSeconds(this._scenarioStartDate); // returns negative millisec from startdate
+        let deltaDate = this.dateToSeconds(this._scenarioStartDate); // returns negative sec from startdate
         let secondsFromStart = this.negateValue(deltaDate);
         this._sec = secondsFromStart; // set increment to current date
     }
