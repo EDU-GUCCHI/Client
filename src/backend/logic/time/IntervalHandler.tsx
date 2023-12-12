@@ -37,7 +37,7 @@ export class IntervallHandler
         this._GUIController = GUIController;
         this._increaseFactor = 0;
         this._decreaseFactor = 0;
-        this._weektime = 432000;
+        this._weektime = 432000; // default value of 5 days in seconds
         this._notificationDispatcher = notificationDispatcher;
         this._eventDispatcher = eventDispatcher;
         this._weekplanner = weekplanner;
@@ -47,6 +47,18 @@ export class IntervallHandler
         this.updateFactors();
     }
 
+    public defineWeekTime() // seconds from current time to friday (midnight)
+    {
+        const currentDate = new Date();
+        const currentDay = currentDate.getDay();
+        const daysUntilFriday = (5 - currentDay + 7) % 7;
+        const fridayDate = new Date(currentDate);
+        fridayDate.setDate(currentDate.getDate() + daysUntilFriday);
+        fridayDate.setHours(23, 55, 0, 0);
+        const timeDifferenceInSeconds = Math.floor((fridayDate.getTime() - currentDate.getTime()) / 1000);
+        console.log(`Seconds until Friday 23:55: ${timeDifferenceInSeconds}`);
+        this._weektime = timeDifferenceInSeconds;
+    }
     public sendGotchiToHospital()
     {
         this._sec += 7200; // Gotchi at hospital for 2 hours
@@ -180,7 +192,7 @@ export class IntervallHandler
             //console.log("Task failed successfully");
         }
     }
-    public calculateDeltaTime()
+    public calculateDeltaTime() // difference in time since start-Date in seconds
     {
         let deltaDate = this.dateToSeconds(this._scenarioStartDate); // returns negative millisec from startdate
         let secondsFromStart = this.negateValue(deltaDate);
@@ -193,35 +205,48 @@ export class IntervallHandler
         this.resetNotificationFlags();
         this.checkUpperTreshold();
         this.checkLowerThreshold();
-        //Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
-        this._weekplanner.checkDate();
+        this._weekplanner.checkDate(); // Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
         this._sec++;
     }
-    public processWeek()
+    public processWeek(): Boolean
     {
-        this._scenarioStartDate = new Date(); // assign current date as startpoint
-        while(this._sec <= this._weektime) // seconds in a week
+        let currentDate = new Date();
+        if(currentDate.getDay() == 6 || currentDate.getDay() == 7)
         {
-            this.update(); // process what happens every second
+            return false;
         }
-        console.log("entire week processed!");
-        console.log("");
-        console.log("");
+        else
+        {
+            this._scenarioStartDate = new Date(); // assign current date as startpoint
+            this.defineWeekTime();
+            while(this._sec <= this._weektime) // seconds in a week
+            {
+                this.update(); // process what happens every second
+            }
+            console.log("entire week processed!");
+            console.log("");
+            console.log("");
+            return true;
+        }
+        
         // increment entire week. (make sure death state doest just stop interval)
         // format seconds to proper timestamp - DONE
         // save timestamps - DONE
         // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
         // print out notification statements
 
-        // TODO: implement to reprocess week from current time to end Date - DONE
-        // cancel notifications if reprocessing is occured
+        // TODO: 
+        // implement to reprocess week from current time to end Date - DONE
+        // cancel notifications if reprocessing is occured - DONE
+        // week should always run to friday for current week, week can be started late! - DONE
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
-    public reprocessWeek() // fetch data object for example as JSON or other date saved in file
+    public reprocessWeek()
     {
+        NotificationScheduler.cancelAllNotifications();
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
-        console.log("MILLISECONDS FROM START-DATE: " + this._sec);
+        console.log("SECONDS FROM START-DATE: " + this._sec);
         while(this._sec <= this._weektime) // seconds in a week
         {
             this.update(); // process what happens every second

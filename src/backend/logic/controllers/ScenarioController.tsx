@@ -75,9 +75,16 @@ export class ScenarioController {
     this._storage.person,
     );
     //this._clock.startClock(); // start clock pulse
-    this._intervalHandler.processWeek();
-    this._intervalHandler.reprocessWeek();
-    this._eventDispatcher.pointOfEntryEvent();  
+    let isWeekDay = this._intervalHandler.processWeek();
+    if(isWeekDay)
+    {
+      this._intervalHandler.reprocessWeek();
+      this._eventDispatcher.pointOfEntryEvent();
+    } 
+    else
+    {
+      console.log("can't start scenario on weekends! Scenarios are available: MON - FRI");
+    }
   }
   public terminate() {
     // end scenario
