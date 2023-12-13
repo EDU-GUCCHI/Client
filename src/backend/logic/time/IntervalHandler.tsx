@@ -103,8 +103,7 @@ export class IntervallHandler {
         this._bloodValue += this._increaseFactor;
         this._person.bloodValue = this.bloodValue;
     }
-    public negateValue(num: number): number // flip value to be negative / positive
-    {
+    public negateValue(num: number): number { // flip value to be negative / positive
         return (num * -1);
     }
     public resetNotificationFlags() {
