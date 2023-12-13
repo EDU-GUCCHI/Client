@@ -1,7 +1,7 @@
 import React from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { s } from 'react-native-wind';
-
+import { View } from 'react-native';
 import LgButton from '../components/LgButton';
 import Title from '../components/Title';
 import ViewContainer from '../components/ViewContainer';
@@ -21,27 +21,13 @@ type Props = {
 };
 
 function HomeScreen({ navigation }: Props) {
-  /*   useFocusEffect(
-    React.useCallback(() => {
-      const onBackPress = () => {
-        // Do nothing or exit the app if you want to
-        // return true if the event has been handled, false otherwise
-        return true;
-      };
-
-      // Add event listener for hardware back button
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-
-      // Cleanup the event listener
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, []),
-  ); */
-
   return (
-    <>
-      <ViewContainer style={s`items-center justify-center h-full`}>
+    <ViewContainer style={s`flex-1 justify-center items-center mt-0 mb-0`}>
+      <View style={s`flex-1 justify-center`}>
         <Title text="Välkommen till EDU-GOTCHI" />
+      </View>
+
+      <View style={s`flex-1 justify-middle`}>
         <LgButton
           text="Min dag"
           colors={['#6ca7e8', '#70e0e1']}
@@ -69,9 +55,15 @@ function HomeScreen({ navigation }: Props) {
           angleCenter={{ x: 0.5, y: 0.4 }}
           onPress={() => navigation.navigate('Instructions')}
         />
-      </ViewContainer>
-    </>
+      </View>
+    </ViewContainer>
   );
 }
 
 export default HomeScreen;
+
+
+
+
+
+

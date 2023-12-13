@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { s } from 'react-native-wind';
-
+import { View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import Title from '../components/Title';
@@ -59,8 +59,9 @@ function CreateGotchiScreen({ navigation }: Props) {
 
   return (
     <>
-      <ViewContainer style={s`items-center justify-center h-full`}>
+      <ViewContainer style={s`items-center justify-center h-full p-8`}>
         <Title text="Skapa en ny EDU-GOTCHI" />
+        <View style={s`mt-5`}>
         <InputField
           placeholder="Namnge din gotchi..."
           value={gotchiName}
@@ -71,6 +72,7 @@ function CreateGotchiScreen({ navigation }: Props) {
           angle={25}
           angleCenter={{ x: 0.5, y: 0 }}
         />
+
         <InputField
           placeholder="Institution..."
           value={institutionName}
@@ -81,6 +83,7 @@ function CreateGotchiScreen({ navigation }: Props) {
           angle={25}
           angleCenter={{ x: 0.5, y: 0 }}
         />
+
         <InputField
           placeholder="Klasskod..."
           value={classCode}
@@ -91,21 +94,24 @@ function CreateGotchiScreen({ navigation }: Props) {
           angle={25}
           angleCenter={{ x: 0.5, y: 0 }}
         />
-        <LgButton
-          text="Nästa"
-          colors={['#6ca7e8', '#70e0e1']}
-          locations={[0, 0.7]}
-          useAngle={true}
-          angle={25}
-          angleCenter={{ x: 0.5, y: 0.3 }}
-          onPress={() => {
-            navigation.navigate('Home');
-            controller.checkPermissions(); // start controller flow
-          }}
-        />
+        </View>
+
+        <View style={s`mt-5`}>
+          <LgButton
+            text="Nästa"
+            colors={['#6ca7e8', '#70e0e1']}
+            locations={[0, 0.7]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{ x: 0.5, y: 0.3 }}
+            onPress={() => {
+              navigation.navigate('Home');
+              controller.checkPermissions(); // start controller flow
+            }}
+          />
+        </View>
       </ViewContainer>
     </>
   );
 }
-
 export default CreateGotchiScreen;

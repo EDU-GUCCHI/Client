@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { s } from 'react-native-wind';
@@ -21,21 +21,31 @@ type Props = {
 
 function TutorialScreen({ navigation }: Props) {
   return (
-    <ViewContainer style={s`items-center justify-center h-full`}>
-      <Title text="Introduktion" />
-      <LgButton
-        text="Nästa"
-        colors={['#70e0e1', '#6ca7e8']}
-        locations={[0, 0.7]}
-        useAngle={true}
-        angle={25}
-        angleCenter={{ x: 0.5, y: 0.5 }}
-        onPress={() => {
-          navigation.navigate('CreateGotchi');
-        }}
-      />
+    <ViewContainer style={s`items-center justify-between h-full pb-8`}>
+      <View style={s`mt-20 pt-20`}>
+        {/* Adjusted margin-top to move down the header */}
+        <Title text="Introduktion" />
+      </View>
+
+      <View style={s`justify-bottom mb-20`}>
+        <LgButton
+          text="Nästa"
+          colors={['#70e0e1', '#6ca7e8']}
+          locations={[0, 0.7]}
+          useAngle={true}
+          angle={25}
+          angleCenter={{ x: 0.5, y: 0.5 }}
+          onPress={() => {
+            navigation.navigate('CreateGotchi');
+          }}
+        />
+      </View>
     </ViewContainer>
   );
 }
 
 export default TutorialScreen;
+
+
+
+

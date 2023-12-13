@@ -24,17 +24,19 @@ const LgButton = ({
 }: LgButtonProps) => (
   <TouchableOpacity
     onPress={onPress}
-    style={s`w-72 h-12 mt-3 rounded-md items-center justify-center`}>
+    style={s`w-80 h-16 mt-3 mb-3 rounded-full items-center justify-center`}>
     <LinearGradient
       colors={colors}
       locations={locations}
       useAngle={useAngle}
       angle={angle}
       angleCenter={angleCenter}
-      style={s`w-full h-full rounded-md items-center justify-center`}>
-      <Text style={s`text-white text-md font-bold`}>{text}</Text>
+      style={s`w-full h-full rounded-full items-center justify-center`}>
+      <Text style={s`text-white text-base font-bold`}>{text}</Text>
     </LinearGradient>
   </TouchableOpacity>
 );
 
 export default LgButton;
+
+
