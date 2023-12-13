@@ -4,6 +4,7 @@ import { GUIController } from "../controllers/GUIController";
 import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
 import { Storage } from "../../data/Storage";
 import { WeekPlanner } from "../WeekPlanner";
+import { NotificationScheduler } from "../controllers/notificationScheduler";
 
 export class IntervallHandler {
     private _bloodValue: number;
