@@ -27,8 +27,8 @@ const InputField = ({
 }: InputFieldProps) => (
 
   <TextInput
-    style={s`w-72 px-3 rounded-md mb-5 bg-gray-100`}
-    placeholderTextColor="#003f5c"
+    style={s`w-80 h-9 px-3 mb-5 bg-gray-100 rounded-full`}
+    placeholderTextColor="#c1c1c1"
     placeholder={placeholder}
     onChangeText={onChangeText}
     value={value}
