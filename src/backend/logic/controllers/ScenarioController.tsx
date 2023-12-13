@@ -45,11 +45,11 @@ export class ScenarioController {
     try {
       const settings = await notifee.getNotificationSettings();
       if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) {
-        Alert.alert('Slå på notifikationer för en bättre upplevelse');
         this.run(); // run app if permissions are authorized
       }
       else {
         await notifee.requestPermission();
+        Alert.alert('Slå på notifikationer för en bättre upplevelse');
       }
     }
     catch (error) {
