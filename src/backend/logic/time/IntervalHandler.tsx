@@ -186,7 +186,7 @@ export class IntervallHandler {
         this._weekplanner.checkDate(); // Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
         this._sec++;
     }
-    public processWeek(): Boolean {
+    public processWeek(): Boolean { // preprocesses entire week of events, returns false if current day is saturday - sunday and true otherwise
         let currentDate = new Date();
         let day = currentDate.getDay();
         if (day == 0 || day == 6) {
@@ -211,7 +211,7 @@ export class IntervallHandler {
         // make logic to receive the weekplanner
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
-    public reprocessWeek() {
+    public reprocessWeek() { // reprocesses week from current day to friday (23:55)
         NotificationScheduler.cancelAllNotifications(); // async operation (can possibly cause issue)
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
