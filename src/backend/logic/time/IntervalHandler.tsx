@@ -44,8 +44,7 @@ export class IntervallHandler {
         this.updateFactors();
     }
 
-    public defineWeekTime() // seconds from current time to friday (midnight)
-    {
+    public defineWeekTime() { // seconds from current time to friday (midnight)
         const currentDate = new Date();
         const currentDay = currentDate.getDay();
         const daysUntilFriday = (5 - currentDay + 7) % 7;
@@ -176,14 +175,12 @@ export class IntervallHandler {
             //console.log("Task failed successfully");
         }
     }
-    public calculateDeltaTime() // difference in time since start-Date in seconds
-    {
+    public calculateDeltaTime() { // difference in time since start-Date in seconds
         let deltaDate = this.dateToSeconds(this._scenarioStartDate); // returns negative sec from startdate
         let secondsFromStart = this.negateValue(deltaDate);
         this._sec = secondsFromStart; // set increment to current date
     }
-    public update(): void // updates done every pulse
-    {
+    public update(): void { // updates done every pulse
         this.decreaseBloodSugar(); // Update Values
         //this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
         this.resetNotificationFlags();
@@ -201,7 +198,7 @@ export class IntervallHandler {
         else {
             this._scenarioStartDate = new Date(); // assign current date as startpoint
             this.defineWeekTime(); // find how many seconds scenario should be
-            while (this._sec <= this._weektime){ // seconds in a week
+            while (this._sec <= this._weektime) { // seconds in a week
                 this.update(); // process what happens every second
             }
             console.log("Entire week processed!");
@@ -217,12 +214,11 @@ export class IntervallHandler {
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
     public reprocessWeek() {
-        NotificationScheduler.cancelAllNotifications();
+        NotificationScheduler.cancelAllNotifications(); // async operation (can maybe cause issue)
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);
-        while (this._sec <= this._weektime) // seconds in a week
-        {
+        while (this._sec <= this._weektime) { // seconds in a week
             this.update(); // process what happens every second
         }
         console.log("Entire week reprocessed!");
