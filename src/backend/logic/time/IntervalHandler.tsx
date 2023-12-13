@@ -211,14 +211,15 @@ export class IntervallHandler
     public processWeek(): Boolean
     {
         let currentDate = new Date();
-        if(currentDate.getDay() == 6 || currentDate.getDay() == 7)
+        let day = currentDate.getDay();
+        if(day == 6 || day == 7)
         {
             return false;
         }
         else
         {
             this._scenarioStartDate = new Date(); // assign current date as startpoint
-            this.defineWeekTime();
+            this.defineWeekTime(); // find how many seconds scenario should be
             while(this._sec <= this._weektime) // seconds in a week
             {
                 this.update(); // process what happens every second
