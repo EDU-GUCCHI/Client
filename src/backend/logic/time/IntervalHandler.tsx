@@ -7,8 +7,7 @@ import { Storage } from "../../data/Storage";
 import { WeekPlanner } from "../WeekPlanner";
 import { NotificationScheduler } from "../controllers/notificationScheduler";
 
-export class IntervallHandler
-{
+export class IntervallHandler {
     private _bloodValue: number;
     private _increaseFactor: number;
     private _decreaseFactor: number;
@@ -26,8 +25,7 @@ export class IntervallHandler
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
 
-    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, weekplanner: WeekPlanner)
-    {
+    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, weekplanner: WeekPlanner) {
         this._person = person;
         this._storage = storage;
         this._sec = 0;
@@ -59,8 +57,7 @@ export class IntervallHandler
         console.log(`Seconds until Friday 23:55: ${timeDifferenceInSeconds}`);
         this._weektime = timeDifferenceInSeconds;
     }
-    public sendGotchiToHospital()
-    {
+    public sendGotchiToHospital() {
         this._sec += 7200; // Gotchi at hospital for 2 hours
         this._bloodValue = 5; // reset bloodlevels
         this._person.bloodValue = this.bloodValue;
@@ -69,15 +66,13 @@ export class IntervallHandler
         console.log("Your gotchi was treated at the hospital and is now fine.");
         console.log("Your gotchi got home at: " + this._dateString);
     }
-    public formatDigitalClock(date: Date): string 
-    {
+    public formatDigitalClock(date: Date): string {
         const hour = date.getHours().toString().padStart(2, '0');
         const minute = date.getMinutes().toString().padStart(2, '0');
         const second = date.getSeconds().toString().padStart(2, '0');
         return `${hour}:${minute}:${second}`;
     }
-    public secondsToDate(seconds: number): Date 
-    {
+    public secondsToDate(seconds: number): Date {
         const milliseconds = seconds * 1000; // Convert seconds to milliseconds
         const currentDate = new Date();
         const date = new Date(currentDate.getTime() + milliseconds); // Create a new Date object using milliseconds
@@ -94,8 +89,7 @@ export class IntervallHandler
         const seconds = milliseconds / 1000; // Convert milliseconds to seconds
         return seconds;
     }
-    public updateFactors()
-    {
+    public updateFactors() {
         this.increaseFactor = this._storage.increaseFactor;
         this._decreaseFactor = this._storage.decreaseFactor;
     }
@@ -105,8 +99,7 @@ export class IntervallHandler
         this._person.bloodValue = this._bloodValue;
         //console.log("Bloodsugar: " + this._bloodValue);
     }
-    public increaseBloodSugar()
-    {
+    public increaseBloodSugar() {
         this._bloodValue += this._increaseFactor;
         this._person.bloodValue = this.bloodValue;
     }
@@ -114,42 +107,34 @@ export class IntervallHandler
     {
         return (num * -1);
     }
-    public resetNotificationFlags()
-    {
-        if(this._bloodValue >= 4 && this._bloodValue <= 8)
-        {
+    public resetNotificationFlags() {
+        if (this._bloodValue >= 4 && this._bloodValue <= 8) {
             this._warningNotificationSent = false;
         }
-        if(this._bloodValue >= 2 && this._bloodValue <= 10)
-        {
+        if (this._bloodValue >= 2 && this._bloodValue <= 10) {
             this._criticalWarningSent = false;
         }
-        if(this._bloodValue >= 1 && this._bloodValue <= 12)
-        {
+        if (this._bloodValue >= 1 && this._bloodValue <= 12) {
             this._deathNotificationSent = false;
         }
     }
-    public checkUpperTreshold()
-    {
+    public checkUpperTreshold() {
         let date;
-        if(this._bloodValue > 8 && !this._warningNotificationSent)
-        {
+        if (this._bloodValue > 8 && !this._warningNotificationSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Högt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
             console.log("warning sent for high bloodsugar! at: " + this._dateString);
             this._warningNotificationSent = true;
         }
-        else if(this._bloodValue > 10 && !this._criticalWarningSent)
-        {
+        else if (this._bloodValue > 10 && !this._criticalWarningSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt högt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
             console.log("critical warning sent for high bloodsugar! at: " + this._dateString);
             this._warningNotificationSent = true;
         }
-        else if(this._bloodValue > 12 && !this._deathNotificationSent)
-        {
+        else if (this._bloodValue > 12 && !this._deathNotificationSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
@@ -158,10 +143,9 @@ export class IntervallHandler
             this.sendGotchiToHospital();
         }
     }
-    public checkLowerThreshold()
-    {
+    public checkLowerThreshold() {
         let date;
-        if(this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
+        if (this._bloodValue < 4 && !this._warningNotificationSent) // check if to send notificationwarning
         {
             //this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
             date = this.secondsToDate(this._sec);
@@ -171,8 +155,7 @@ export class IntervallHandler
             console.log("warning of low bloodsugar sent at: " + this._dateString);
             //console.log("Blood sugar warning sent")
         }
-        else if(this._bloodValue < 2 && !this._criticalWarningSent) 
-        {
+        else if (this._bloodValue < 2 && !this._criticalWarningSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
@@ -181,8 +164,7 @@ export class IntervallHandler
             console.log("warning of critically low bloodsugar sent at: " + this._dateString);
             //console.log("Critical Blood sugar warning sent")
         }
-        else if(this._bloodValue < 1 && !this._deathNotificationSent)
-        {
+        else if (this._bloodValue < 1 && !this._deathNotificationSent) {
             //this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
@@ -208,20 +190,16 @@ export class IntervallHandler
         this._weekplanner.checkDate(); // Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
         this._sec++;
     }
-    public processWeek(): Boolean
-    {
+    public processWeek(): Boolean {
         let currentDate = new Date();
         let day = currentDate.getDay();
-        if(day == 6 || day == 7)
-        {
+        if (day == 6 || day == 7) {
             return false;
         }
-        else
-        {
+        else {
             this._scenarioStartDate = new Date(); // assign current date as startpoint
             this.defineWeekTime(); // find how many seconds scenario should be
-            while(this._sec <= this._weektime) // seconds in a week
-            {
+            while (this._sec <= this._weektime){ // seconds in a week
                 this.update(); // process what happens every second
             }
             console.log("Entire week processed!");
@@ -236,33 +214,28 @@ export class IntervallHandler
         // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
-    public reprocessWeek()
-    {
+    public reprocessWeek() {
         NotificationScheduler.cancelAllNotifications();
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);
-        while(this._sec <= this._weektime) // seconds in a week
+        while (this._sec <= this._weektime) // seconds in a week
         {
             this.update(); // process what happens every second
         }
         console.log("Entire week reprocessed!");
     }
-    
-    get bloodValue(): number 
-    {
+
+    get bloodValue(): number {
         return this._bloodValue;
     }
-    set bloodValue(value: number) 
-    {
+    set bloodValue(value: number) {
         this._bloodValue = value;
     }
-    get increaseFactor(): number 
-    {
+    get increaseFactor(): number {
         return this._increaseFactor;
     }
-    set increaseFactor(value: number) 
-    {
+    set increaseFactor(value: number) {
         this._increaseFactor = value;
     }
 }
