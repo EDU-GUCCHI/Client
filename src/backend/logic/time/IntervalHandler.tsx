@@ -224,7 +224,7 @@ export class IntervallHandler
             {
                 this.update(); // process what happens every second
             }
-            console.log("entire week processed!");
+            console.log("Entire week processed!");
             console.log("");
             console.log("");
             return true;
@@ -246,7 +246,7 @@ export class IntervallHandler
         {
             this.update(); // process what happens every second
         }
-        console.log("entire week reprocessed!");
+        console.log("Entire week reprocessed!");
     }
     
     get bloodValue(): number 
