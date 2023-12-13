@@ -62,7 +62,7 @@ export class IntervallHandler {
         let date = this.secondsToDate(this._sec);
 
         //Schemalägg när gotchin kommer ut ur sjukan
-        //NotificationScheduler.scheduleNotification(date + 2 timmar);
+        //NotificationScheduler.scheduleNotification(date);
         console.log("Your gotchi was treated at the hospital and is now fine.");
         console.log("Your gotchi got home at: " + this._dateString);
     }
@@ -191,7 +191,7 @@ export class IntervallHandler {
     public processWeek(): Boolean {
         let currentDate = new Date();
         let day = currentDate.getDay();
-        if (day == 6 || day == 7) {
+        if (day == 0 || day == 6) {
             return false;
         }
         else {
