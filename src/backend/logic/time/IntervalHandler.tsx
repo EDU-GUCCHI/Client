@@ -93,7 +93,6 @@ export class IntervallHandler {
         this.increaseFactor = this._storage.increaseFactor;
         this._decreaseFactor = this._storage.decreaseFactor;
     }
-
     // TODO: send to event dispatcher to dispatch relevant events based on bloodusgar level
     public decreaseBloodSugar() {
         this._bloodValue -= this._decreaseFactor;
@@ -211,6 +210,7 @@ export class IntervallHandler {
         // cancel notifications if reprocessing is occured - DONE
         // week should always run to friday for current week, week can be started late! - DONE
         // ask notification scheduler to schedule notifications for entire week - NEED ACCURATE DATA BEFOREHAND
+        // make logic to receive the weekplanner
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
     public reprocessWeek() {
