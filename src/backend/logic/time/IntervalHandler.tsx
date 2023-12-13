@@ -60,8 +60,6 @@ export class IntervallHandler {
         this._bloodValue = 5; // reset bloodlevels
         this._person.bloodValue = this.bloodValue;
         let date = this.secondsToDate(this._sec);
-
-        //Schemalägg när gotchin kommer ut ur sjukan
         //NotificationScheduler.scheduleNotification(date);
         console.log("Your gotchi was treated at the hospital and is now fine.");
         console.log("Your gotchi got home at: " + this._dateString);
@@ -214,7 +212,7 @@ export class IntervallHandler {
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
     public reprocessWeek() {
-        NotificationScheduler.cancelAllNotifications(); // async operation (can maybe cause issue)
+        NotificationScheduler.cancelAllNotifications(); // async operation (can possibly cause issue)
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);
