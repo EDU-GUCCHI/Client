@@ -1,10 +1,12 @@
 import React from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { s } from 'react-native-wind';
-import { View } from 'react-native';
+import { View, StatusBar, Platform, SafeAreaView } from 'react-native';
 import LgButton from '../components/LgButton';
 import Title from '../components/Title';
 import ViewContainer from '../components/ViewContainer';
+
+
 
 type RootStackParamList = {
   Home: undefined;
@@ -22,12 +24,14 @@ type Props = {
 
 function HomeScreen({ navigation }: Props) {
   return (
+
     <ViewContainer style={s`flex-1 justify-center items-center mt-0 mb-0`}>
-      <View style={s`flex-1 justify-center`}>
+    
+      <View style={s`flex-1 justify-center mt-20`}>
         <Title text="Välkommen till EDU-GOTCHI" />
       </View>
 
-      <View style={s`flex-1 justify-middle`}>
+      <View style={s`flex-1 justify-middle mb-7`}>
         <LgButton
           text="Min dag"
           colors={['#6ca7e8', '#70e0e1']}

@@ -18,13 +18,13 @@ type Props = {
 
 function TutorialScreen({ navigation }: Props) {
   return (
-    <ViewContainer style={s`items-center justify-between h-full pb-8`}>
-      <View style={s`mt-20 pt-20`}>
-        {/* Adjusted margin-top to move down the header */}
+    <ViewContainer style={s`items-center justify-between h-full`}>
+      <View style={s`flex-1 justify-center`}>
+        {/* Adjusted styles to use flex and justify-center */}
         <Title text="Välkommen till EDU-Gotchi" />
       </View>
 
-      <View style={s`justify-bottom mb-20`}>
+      <View style={s`items-center mb-8`}>
         <LgButton
           text="Nästa"
           colors={['#70e0e1', '#6ca7e8']}
@@ -42,6 +42,7 @@ function TutorialScreen({ navigation }: Props) {
 }
 
 export default TutorialScreen;
+
 
 
 
