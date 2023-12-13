@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react';
 import { s } from 'react-native-wind';
 import { ViewStyle } from 'react-native';
 import { LinearGradient } from 'react-native-linear-gradient';
+import { StatusBar, Platform } from 'react-native';
+
 
 type ViewContainerProps = {
   children: ReactNode; // This allows the component to accept children
@@ -11,6 +13,7 @@ type ViewContainerProps = {
 const ViewContainer = ({ children, style }: ViewContainerProps) => {
   return (
     <>
+
       <LinearGradient
         colors={['#85b0f1', '#fee0d6', '#fee0d6']}
         start={{ x: 0.0, y: 1 }}

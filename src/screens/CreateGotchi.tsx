@@ -59,9 +59,11 @@ function CreateGotchiScreen({ navigation }: Props) {
 
   return (
     <>
-      <ViewContainer style={s`items-center justify-center h-full p-8`}>
+      <ViewContainer style={s`items-center justify-between h-full`}>
+      <View style={s`flex-1 justify-center`}>
+
         <Title text="Skapa en ny EDU-GOTCHI" />
-        <View style={s`mt-5`}>
+  
         <InputField
           placeholder="Namnge din gotchi..."
           value={gotchiName}
@@ -96,7 +98,7 @@ function CreateGotchiScreen({ navigation }: Props) {
         />
         </View>
 
-        <View style={s`mt-5`}>
+        <View style={s`items-center mb-8`}>
           <LgButton
             text="Nästa"
             colors={['#6ca7e8', '#70e0e1']}
@@ -109,7 +111,7 @@ function CreateGotchiScreen({ navigation }: Props) {
               controller.checkPermissions(); // start controller flow
             }}
           />
-        </View>
+          </View>
       </ViewContainer>
     </>
   );
