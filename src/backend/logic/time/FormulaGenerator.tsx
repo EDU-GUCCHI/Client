@@ -3,6 +3,18 @@ import { } from '../../data/gotchi/FrequencyEnum';
 import { Age, Illness, Weight } from '../../data/gotchi/ConstantEnum';
 import { EventType } from '../../data/event/EventTypes';
 
+/**
+ * @type Helper
+ * @type Model
+ * @description
+ * This method is responsible for 
+ * 1) At construction time to generate the default value that
+ *    the blood-glucose should change every interval. 
+ * 2) Within the scope of generating a new schedule to generate
+ *    new blood-glucose change levels if a Gotchi is working out,
+ *    eating e.g
+ */
+
 export class FormulaGenerator {
   private _baseline: number;
 
@@ -48,20 +60,13 @@ export class FormulaGenerator {
     this._baseline = baseline;
   }
 
-  public calculateFactor(
-    age: Age,
-    weight: Weight,
-    illnesses?: Illness[],
-    eventType?: EventType,
-  ): number {
+  public calculateFactor(age: Age, weight: Weight, illnesses?: Illness[], eventType?: EventType): number {
     let factor = this._baseline * age * weight;
-
     if (illnesses && illnesses.length > 0) {
       illnesses.forEach(illness => {
         factor *= illness;
       });
     }
-
     if (eventType) {
       factor *= eventType;
     }

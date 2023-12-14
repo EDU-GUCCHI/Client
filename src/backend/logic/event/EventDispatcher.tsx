@@ -84,8 +84,8 @@ export class EventDispatcher {
   }
 
   //Add hardcoded events to use based on int or enum?
-  chooseEventSwitch(eventNumber: number) {
-    switch (eventNumber) {
+  chooseEventSwitch(eventType : EventType) {
+    switch (eventType) {
       case EventType.FOOD_INTAKE:
         this.EatingEvent();
         break;
@@ -102,6 +102,7 @@ export class EventDispatcher {
         console.log('Default case');
     }
   }
+  
   EatingEvent() {
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.FOOD_INTAKE;
@@ -139,7 +140,7 @@ export class EventDispatcher {
     ];
     const eventAnswered = false;
 
-    console.log('Creating Low blood-sugar event');
+    //console.log('Creating Low blood-sugar event');
     this.createEvent(
       autoType,
       eventType,

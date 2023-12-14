@@ -9,6 +9,13 @@ import { WeekPlanner } from '../WeekPlanner';
 import notifee, { AndroidImportance, AuthorizationStatus } from '@notifee/react-native';
 import { Alert } from 'react-native';
 
+/**
+ * @type Controller
+ * @description
+ * This class is responsible for a lot of stuff.
+ * 
+ */
+
 export class ScenarioController {
   // has logic classes and access to stored data
   private _formulaGenerator: FormulaGenerator;
@@ -31,7 +38,7 @@ export class ScenarioController {
 
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
-    this._weekPlanner = new WeekPlanner(this._eventDispatcher, this._storage.person);
+    this._weekPlanner = new WeekPlanner(this._storage.person);
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
@@ -62,7 +69,7 @@ export class ScenarioController {
     //this._storage.person = newGotchi(this._GUIController.gotchisName); TODO: fix freeze bugg with gotchi randomizer
     //this.debugRandomizer(); use to test gothi randomizer
     this._storage.person = newGotchi(this._GUIController.gotchisName);
-    this._weekPlanner.planWeek(this._storage.person);
+    this._weekPlanner.plannedWeek(this._storage.person);
     this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
       this._storage.person,
     );
@@ -86,7 +93,7 @@ export class ScenarioController {
     this._formulaGenerator = new FormulaGenerator();
     this._notificationDispatcher = new NotificationDispatcher();
     this._eventDispatcher = new EventDispatcher(this._storage);
-    this._weekPlanner = new WeekPlanner(this._eventDispatcher, this._storage.person);
+    this._weekPlanner = new WeekPlanner(this._storage.person);
     //this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
       this._storage,

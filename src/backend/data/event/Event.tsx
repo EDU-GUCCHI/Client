@@ -1,13 +1,15 @@
 import { AutoType, EventType } from './EventTypes';
 
 /**
- * Container class representing timestamped events
- * which the Gotchi performs during a week. These are
- * markedly uninteractable events as per the inheriting
- * @class UserInteractableEvent. 
+ * @type Model
+ * @description
+ * Container class representing timestamped events which the 
+ * Gotchi performs during a week. These are markedly uninteractable 
+ * as per the inheriting @class UserInteractableEvent. 
  */
 
 export class Event {
+
   private readonly _autoType: AutoType;
   private readonly _eventType: EventType;
   private readonly _timeStamp: Date;
@@ -32,6 +34,10 @@ export class Event {
     this._description = description;
   }
 
+  /**
+   * Getters, setters
+   */
+
   get autoType() {
     return this._autoType;
   }
@@ -44,6 +50,11 @@ export class Event {
   get description() {
     return this._description;
   }
+  
+  /**
+   * To-string method
+   * @returns a string representation of this object
+   */
 
   toString() {
     return "EVENT: " + this.timeStamp.toLocaleDateString() + "\t" + this.timeStamp.toLocaleTimeString() + "\t" + this.description;

@@ -1,5 +1,12 @@
 import notifee, { AndroidImportance, AuthorizationStatus, TimestampTrigger, TriggerType } from '@notifee/react-native';
 
+/**
+ * @type Controller
+ * @description
+ * 
+ * 
+ */
+
 export class NotificationDispatcher {
 
   public constructor() {
@@ -18,6 +25,7 @@ export class NotificationDispatcher {
       console.error('Error checking notification permission:', error);
     }
   };
+  
   public async SendBloodSugarWarning(text: string) {
     await notifee.requestPermission();
     // Create a channel (required for Android)
@@ -43,6 +51,7 @@ export class NotificationDispatcher {
       }
     });
   }
+
 
   async testTriggerNotification(hour: number, minute: number) {
 

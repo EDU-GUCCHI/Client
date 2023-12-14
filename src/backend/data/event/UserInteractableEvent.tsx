@@ -1,6 +1,16 @@
 import { Event } from "./Event";
 import { AutoType, EventType } from "./EventTypes";
 
+/**
+ * @type Model
+ * @description
+ * Container class representing events which require input
+ * from the user of the application. Extends event for
+ * relevant info to be presented to the user while new 
+ * fields represent form information to be used and sent
+ * back.
+ */
+
 export class UserInteractableEvent extends Event {
   /* private readonly _answerOptions: [];
     private readonly _correctAnswers: []; */
@@ -24,6 +34,11 @@ export class UserInteractableEvent extends Event {
     this._treatmentOptions = treatmentOptions;
     this._answered = false;
   }
+
+  /**
+   * Getters, setters
+   */
+
   get symptomOptions(): object {
     return this._symptomOptions;
   }

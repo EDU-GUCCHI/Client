@@ -4,15 +4,26 @@ import { parseEventsToFormat } from "../logic/event/EventParser";
 import { AlcoholHabit, EatingHabit, Exercise } from "./gotchi/FrequencyEnum";
 import { Age, Weight, Illness } from "./gotchi/ConstantEnum";
 
+/**
+ * @type Model
+ * @type Repository
+ * @description
+ * This class is responsible for storing information that is needed for 
+ * further use. 
+ */
+
 export class Storage {
-  // store/initialize all data storage classes here, ex: Gotchi
+
   private _person: Gotchi;
   private _bloodSugarFactor: number;
-  //add attr. for storing Events. Array/map?. Store pre-defined events or store triggered events or both?
   private _triggeredEvents: Event[];
-
   private _increaseFactor: number;
   private _decreaseFactor: number;
+
+  /**
+   * Constructor needs to initialize an "Empty" Gotchi, otherwise
+   * it simply initializes all field-variables to default-values.
+   */
 
   public constructor() {
     this._person = new Gotchi(
@@ -33,7 +44,11 @@ export class Storage {
     this._increaseFactor = 0;
     this._decreaseFactor = 0;
   }
-  // getters-setters here
+
+  /**
+   * Getters, setters
+   */
+
   get person(): Gotchi {
     return this._person;
   }
@@ -61,9 +76,21 @@ export class Storage {
   get triggeredEvents() {
     return this._triggeredEvents;
   }
+
+  /**
+   * Returns a parsed version of all events. Function
+   * imported from @class EventParser
+   */
+
   get eventsJson() {
     return parseEventsToFormat(this.triggeredEvents);
   }
+
+  /**
+   * Appends a triggered event to the list
+   * @param newEvent Event to add
+   */
+
   addTriggeredEvent(newEvent: Event): void {
     this._triggeredEvents.push(newEvent);
   }

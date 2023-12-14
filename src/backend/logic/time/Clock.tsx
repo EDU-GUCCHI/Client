@@ -1,3 +1,4 @@
+
 export class Clock {
     interval: NodeJS.Timeout | null;
     private _observers: any[] = [];

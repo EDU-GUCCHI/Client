@@ -4,7 +4,7 @@ import { GUIController } from "../controllers/GUIController";
 import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
 import { Storage } from "../../data/Storage";
 import { WeekPlanner } from "../WeekPlanner";
-import { NotificationScheduler } from "../controllers/notificationScheduler";
+import { NotificationScheduler } from "../controllers/NotificationScheduler";
 
 export class IntervallHandler {
     private _bloodValue: number;
@@ -61,8 +61,8 @@ export class IntervallHandler {
         this._person.bloodValue = this.bloodValue;
         let date = this.secondsToDate(this._sec);
         //NotificationScheduler.scheduleNotification(date);
-        console.log("Your gotchi was treated at the hospital and is now fine.");
-        console.log("Your gotchi got home at: " + this._dateString);
+        //console.log("Your gotchi was treated at the hospital and is now fine.");
+        //console.log("Your gotchi got home at: " + this._dateString);
     }
     public formatDigitalClock(date: Date): string {
         const hour = date.getHours().toString().padStart(2, '0');
@@ -149,7 +149,7 @@ export class IntervallHandler {
             //NotificationScheduler.scheduleNotification(date);
             this._eventDispatcher.LowBloodSugar();
             this._warningNotificationSent = true;
-            console.log("warning of low bloodsugar sent at: " + this._dateString);
+            //console.log("warning of low bloodsugar sent at: " + this._dateString);
             //console.log("Blood sugar warning sent")
         }
         else if (this._bloodValue < 2 && !this._criticalWarningSent) {
@@ -158,7 +158,7 @@ export class IntervallHandler {
             //NotificationScheduler.scheduleNotification(date);
             this._eventDispatcher.LowBloodSugar();
             this._criticalWarningSent = true;
-            console.log("warning of critically low bloodsugar sent at: " + this._dateString);
+            //console.log("warning of critically low bloodsugar sent at: " + this._dateString);
             //console.log("Critical Blood sugar warning sent")
         }
         else if (this._bloodValue < 1 && !this._deathNotificationSent) {
@@ -166,7 +166,7 @@ export class IntervallHandler {
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
             this._deathNotificationSent = true;
-            console.log("gotchi sent to hospital because of low bloodsugar at: " + this._dateString);
+            //console.log("gotchi sent to hospital because of low bloodsugar at: " + this._dateString);
             // Schemalägg notif om att gotchin åkte till sjukhus
             this.sendGotchiToHospital();
             //console.log("Task failed successfully");
@@ -183,7 +183,15 @@ export class IntervallHandler {
         this.resetNotificationFlags();
         this.checkUpperTreshold();
         this.checkLowerThreshold();
-        this._weekplanner.checkDate(); // Jämför datum i array av schemalagda events i weekplanner, om lika eller senare, pop och skapa event?
+
+        if(this._weekplanner.checkDate(this.secondsToDate(this._weektime))) {
+            let event = this._weekplanner.eventQueue.getNextEvent();
+            if(event) {
+                console.log("SCHEDULED: " + event.toString());
+                // Set bloodsugar to new value based on event
+                NotificationScheduler.scheduleNotification(event?.description, event?.eventType, event?.timeStamp);            
+            }
+        }
         this._sec++;
     }
     public processWeek(): Boolean { // preprocesses entire week of events, returns false if current day is saturday - sunday and true otherwise

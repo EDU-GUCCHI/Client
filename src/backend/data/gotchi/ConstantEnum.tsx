@@ -1,3 +1,18 @@
+/** 
+ * @type Model
+ * @description
+ * The following enum-categories represent the constant factors 
+ * which affect blood-glucose values. The logic is that age, 
+ * weight and something like an illneess doesn't change during 
+ * a given work-week and factored in together represent how 
+ * blood-glucose values would change in an idle situation.
+ */
+
+export enum DiabetesType {
+    Type1 = -0.5,
+    Type2 = 2.5 
+}
+
 export enum Age {
     YOUNG_ADULT = 0.5,
     ADULT = 1,
