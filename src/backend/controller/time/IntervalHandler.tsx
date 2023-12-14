@@ -1,10 +1,9 @@
-import { Gotchi } from "../../data/gotchi/Gotchi";
-import { EventDispatcher } from "../event/EventDispatcher";
+import { Gotchi } from "../../model/gotchi/Gotchi";
+import { EventController } from "../controllers/EventController";
 import { GUIController } from "../controllers/GUIController";
-import { NotificationDispatcher } from "../controllers/NotificationDispatcher";
-import { Storage } from "../../data/Storage";
-import { WeekPlanner } from "../WeekPlanner";
-import { NotificationScheduler } from "../controllers/NotificationScheduler";
+import { NotificationController } from "../controllers/NotificationController";
+import { Storage } from "../../model/Storage";
+import { WeekPlanner } from "../../model/event/WeekPlanner";
 
 export class IntervallHandler {
     private _bloodValue: number;
@@ -13,9 +12,8 @@ export class IntervallHandler {
     private _weektime: number;
     private _sec: number;
     private _person: Gotchi;
-    private _GUIController: GUIController;
-    private _notificationDispatcher: NotificationDispatcher;
-    private _eventDispatcher: EventDispatcher;
+    private _notificationController: NotificationController;
+    private _eventController: EventController;
     private _scenarioStartDate: Date;
     private _dateString: string;
     private _warningNotificationSent: Boolean;
@@ -24,19 +22,24 @@ export class IntervallHandler {
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
 
-    public constructor(storage: Storage, person: Gotchi, GUIController: GUIController, notificationDispatcher: NotificationDispatcher, eventDispatcher: EventDispatcher, weekplanner: WeekPlanner) {
+    public constructor(
+        storage: Storage, 
+        person: Gotchi, 
+        notificationController: NotificationController, 
+        eventController: EventController, 
+        weekplanner: WeekPlanner) 
+        {
         this._person = person;
         this._storage = storage;
         this._sec = 0;
         this._dateString = "";
         this._scenarioStartDate = new Date();
         this._bloodValue = person.bloodValue;
-        this._GUIController = GUIController;
         this._increaseFactor = 0;
         this._decreaseFactor = 0;
         this._weektime = 432000; // default value of 5 days in seconds
-        this._notificationDispatcher = notificationDispatcher;
-        this._eventDispatcher = eventDispatcher;
+        this._notificationController = notificationController;
+        this._eventController = eventController;
         this._weekplanner = weekplanner;
         this._warningNotificationSent = false;
         this._criticalWarningSent = false;
@@ -55,6 +58,7 @@ export class IntervallHandler {
         console.log(`Seconds until Friday 23:55: ${timeDifferenceInSeconds}`);
         this._weektime = timeDifferenceInSeconds;
     }
+    
     public sendGotchiToHospital() {
         this._sec += 7200; // Gotchi at hospital for 2 hours
         this._bloodValue = 5; // reset bloodlevels
@@ -147,7 +151,7 @@ export class IntervallHandler {
             //this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
-            this._eventDispatcher.LowBloodSugar();
+            this._eventController.LowBloodSugar();
             this._warningNotificationSent = true;
             //console.log("warning of low bloodsugar sent at: " + this._dateString);
             //console.log("Blood sugar warning sent")
@@ -156,7 +160,7 @@ export class IntervallHandler {
             //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
-            this._eventDispatcher.LowBloodSugar();
+            this._eventController.LowBloodSugar();
             this._criticalWarningSent = true;
             //console.log("warning of critically low bloodsugar sent at: " + this._dateString);
             //console.log("Critical Blood sugar warning sent")
@@ -189,7 +193,7 @@ export class IntervallHandler {
             if(event) {
                 console.log("SCHEDULED: " + event.toString());
                 // Set bloodsugar to new value based on event
-                NotificationScheduler.scheduleNotification(event?.description, event?.eventType, event?.timeStamp);            
+                this._notificationController.scheduleNotification(event?.description, event?.eventType, event?.timeStamp);            
             }
         }
         this._sec++;
@@ -220,7 +224,7 @@ export class IntervallHandler {
         // see to so that only active hours have events (from 06:00 in morning to 22:00 at night)
     }
     public reprocessWeek() { // reprocesses week from current day to friday (23:55)
-        NotificationScheduler.cancelAllNotifications(); // async operation (can possibly cause issue)
+        this._notificationController.cancelAllNotifications(); // async operation (can possibly cause issue)
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);

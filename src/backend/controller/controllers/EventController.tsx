@@ -1,10 +1,12 @@
 // sends out Events.
-import { Event } from '../../data/event/Event';
-import { AutoType, EventType } from '../../data/event/EventTypes';
-import { Storage } from '../../data/Storage';
-import { UserInteractableEvent } from '../../data/event/UserInteractableEvent';
+import { Event } from '../../model/event/Event';
+import { AutoType, EventType } from '../../model/event/EventTypes';
+import { Storage } from '../../model/Storage';
+import { UserInteractableEvent } from '../../model/event/UserInteractableEvent';
 
-export class EventDispatcher {
+
+
+export class EventController {
   private _storage: Storage;
   //How do we want to handle ids?
   private _idCounter: number;
@@ -28,7 +30,7 @@ export class EventDispatcher {
       new Date(),
       this.storage.person.bloodValue,
       'Lågt blodsocker',
-    ); 
+    );
     this.createEvent(
       this.idCounter,
       AutoType.USER_EVENT,
@@ -58,7 +60,7 @@ export class EventDispatcher {
           eventType,
           timeStamp,
           description,
-          symptomOptions || {},
+          symptomOptions || {}, 
           causeOptions || {},
           treatmentOptions || {},
         )
@@ -73,7 +75,7 @@ export class EventDispatcher {
     return event;
   }
 
-  public dispatchEvent(event: Event) {
+  dispatchEvent(event: Event) {
     //how do we want to dispatch the event?
 
     //add event to storage

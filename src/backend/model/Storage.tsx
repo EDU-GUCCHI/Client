@@ -1,14 +1,12 @@
 import { Gotchi } from "./gotchi/Gotchi";
 import { Event } from "./event/Event";
-import { parseEventsToFormat } from "../logic/event/EventParser";
+import { parseEventsToFormat } from "./event/EventParser";
 import { AlcoholHabit, EatingHabit, Exercise } from "./gotchi/FrequencyEnum";
 import { Age, Weight, Illness } from "./gotchi/ConstantEnum";
 
 /**
- * @type Model
  * @type Repository
- * @description
- * This class is responsible for storing information that is needed for 
+ * @description for storing information that is needed for 
  * further use. 
  */
 
@@ -21,7 +19,8 @@ export class Storage {
   private _decreaseFactor: number;
 
   /**
-   * Constructor needs to initialize an "Empty" Gotchi, otherwise
+   * Constructor needs to initialize an "Emp
+ * This class is responsiblety" Gotchi, otherwise
    * it simply initializes all field-variables to default-values.
    */
 

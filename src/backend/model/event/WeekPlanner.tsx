@@ -1,8 +1,8 @@
-import { Event } from '../data/event/Event';
-import { AutoType, EventType } from '../data/event/EventTypes';
-import { EatingHabit } from '../data/gotchi/FrequencyEnum';
-import { Gotchi } from '../data/gotchi/Gotchi';
-import { EventQueue } from './event/EventQueue';
+import { Event } from './Event';
+import { AutoType, EventType } from './EventTypes';
+import { EatingHabit } from '../gotchi/FrequencyEnum';
+import { Gotchi } from '../gotchi/Gotchi';
+import { EventQueue } from './EventQueue';
 
 /**
  * @type Helper

@@ -1,13 +1,13 @@
-import { Gotchi } from '../../data/gotchi/Gotchi';
-import { } from '../../data/gotchi/FrequencyEnum';
-import { Age, Illness, Weight } from '../../data/gotchi/ConstantEnum';
-import { EventType } from '../../data/event/EventTypes';
+import { Gotchi } from '../../model/gotchi/Gotchi';
+import { } from '../../model/gotchi/FrequencyEnum';
+import { Age, Illness, Weight } from '../../model/gotchi/ConstantEnum';
+import { EventType } from '../../model/event/EventTypes';
 
 /**
  * @type Helper
  * @type Model
  * @description
- * This method is responsible for 
+ * This class is responsible for 
  * 1) At construction time to generate the default value that
  *    the blood-glucose should change every interval. 
  * 2) Within the scope of generating a new schedule to generate

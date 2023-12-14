@@ -1,4 +1,4 @@
-import { Event } from "../../data/event/Event";
+import { Event } from "./Event";
 
 /**
  * @type Model

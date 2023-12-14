@@ -1,6 +1,6 @@
-import { Event } from "../../data/event/Event";
-import { AutoType } from "../../data/event/EventTypes";
-import { UserInteractableEvent } from "../../data/event/UserInteractableEvent";
+import { Event } from "./Event";
+import { AutoType } from "./EventTypes";
+import { UserInteractableEvent } from "./UserInteractableEvent";
 
 interface ParsedOption {
   option: string;

@@ -1,4 +1,4 @@
-import { Gotchi } from "../../data/gotchi/Gotchi";
+import { Gotchi } from "../../model/gotchi/Gotchi";
 
 /**
  * @type Controller

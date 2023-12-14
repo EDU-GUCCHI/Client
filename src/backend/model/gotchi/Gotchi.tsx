@@ -1,6 +1,5 @@
 import { EatingHabit, Exercise, AlcoholHabit } from './FrequencyEnum';
 import { Age, Weight, Illness } from './ConstantEnum'
-import { GotchiStateMachine } from '../../logic/event/GotchiStateMachine';
 
 /**
  * @type Model
@@ -23,7 +22,6 @@ export class Gotchi {
   private _alcoholHabit: AlcoholHabit;
   private _illnesses: Illness;
   private _gender: boolean;
-  private _stateMachine: GotchiStateMachine;
 
   /**
    * 
@@ -71,7 +69,6 @@ export class Gotchi {
     this._eatingHabit = eatingHabit;
     this._gender = gender;
     this._illnesses = illnesses;
-    this._stateMachine = new GotchiStateMachine();
   }
 
   /**
@@ -110,9 +107,6 @@ export class Gotchi {
   }
   get gender(): boolean {
     return this._gender;
-  }
-  get stateMachine(): GotchiStateMachine {
-    return this.stateMachine;
   }
   set name(name: string) {
     this._name = name;

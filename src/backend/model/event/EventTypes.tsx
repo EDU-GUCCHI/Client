@@ -27,6 +27,7 @@ export enum EventType{
     EXERCISE = "Exercise",
     FOOD_INTAKE = "Eating",
     ALCOHOL_INTAKE = "Partying",
+    HOSPITAL_VISIT = "At hospital",
     INSULIN_INJECTION = "Self-help",
     BLOOD_GLUCOSE_WARNING = "What",
     SLEEP = "Sleeping",

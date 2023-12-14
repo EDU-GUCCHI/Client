@@ -1,11 +1,11 @@
-import { Storage } from '../../data/Storage';
-import { EventDispatcher } from '../event/EventDispatcher';
+import { Storage } from '../../model/Storage';
+import { EventController } from './EventController';
 import { FormulaGenerator } from '../time/FormulaGenerator';
 import { GUIController } from './GUIController';
 import { IntervallHandler } from '../time/IntervalHandler';
-import { NotificationDispatcher } from './NotificationDispatcher';
-import { newGotchi } from '../../data/gotchi/GotchiRandomizer';
-import { WeekPlanner } from '../WeekPlanner';
+import { NotificationController } from './NotificationController';
+import { newGotchi } from '../../model/gotchi/GotchiRandomizer';
+import { WeekPlanner } from '../../model/event/WeekPlanner';
 import notifee, { AndroidImportance, AuthorizationStatus } from '@notifee/react-native';
 import { Alert } from 'react-native';
 
@@ -22,8 +22,8 @@ export class ScenarioController {
   private _storage: Storage;
   private _intervalHandler: IntervallHandler;
   private _GUIController: GUIController;
-  private _notificationDispatcher: NotificationDispatcher;
-  private _eventDispatcher: EventDispatcher;
+  private _notificationController: NotificationController;
+  private _eventController: EventController;
   private _weekPlanner: WeekPlanner;
   // flow of program here:
   public constructor() {
@@ -36,15 +36,15 @@ export class ScenarioController {
     this._storage.increaseFactor = FormulaGenerator.generateIncreaseFactor();
     this._storage.decreaseFactor = FormulaGenerator.generateDecreaseFactor();
 
-    this._notificationDispatcher = new NotificationDispatcher();
-    this._eventDispatcher = new EventDispatcher(this._storage);
+    this._notificationController = new NotificationController();
+    this._eventController = new EventController(this._storage);
     this._weekPlanner = new WeekPlanner(this._storage.person);
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
       this._GUIController,
-      this._notificationDispatcher,
-      this._eventDispatcher,
+      this._notificationController,
+      this._eventController,
       this._weekPlanner
     );
   }
@@ -77,7 +77,7 @@ export class ScenarioController {
     let isWeekDay = this._intervalHandler.processWeek();
     if (isWeekDay) {
       this._intervalHandler.reprocessWeek();
-      this._eventDispatcher.pointOfEntryEvent();
+      this._eventController.pointOfEntryEvent();
     }
     else {
       console.log("can't start scenario on weekends! Scenarios are available: MON - FRI");
@@ -91,16 +91,16 @@ export class ScenarioController {
     this._storage = new Storage();
     this._GUIController = new GUIController(this._storage.person);
     this._formulaGenerator = new FormulaGenerator();
-    this._notificationDispatcher = new NotificationDispatcher();
-    this._eventDispatcher = new EventDispatcher(this._storage);
+    this._notificationController = new NotificationController();
+    this._eventController = new EventController(this._storage);
     this._weekPlanner = new WeekPlanner(this._storage.person);
     //this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
       this._GUIController,
-      this._notificationDispatcher,
-      this._eventDispatcher,
+      this._notificationController,
+      this._eventController,
       //this._clock,
       this._weekPlanner
     );
@@ -126,6 +126,6 @@ export class ScenarioController {
     return this._storage;
   }
   get eventDispatcher() {
-    return this._eventDispatcher;
+    return this._eventController;
   }
 }
