@@ -42,7 +42,6 @@ export class ScenarioController {
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
-      this._GUIController,
       this._notificationController,
       this._eventController,
       this._weekPlanner
