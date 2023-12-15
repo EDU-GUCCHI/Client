@@ -77,17 +77,23 @@ export class ScenarioController {
     );
     let isWeekDay = this._intervalHandler.processWeek();
     if (isWeekDay) {
-      this._intervalHandler.reprocessWeek();
-      this._GUIController.resetIndex();
-      this._eventController.pointOfEntryEvent();
-      this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
-      this._clock.addObserver(this._GUIController);
-      this._clock.startClock(); // start clock pulse
+      this.reprocessWeek();
+      // on exit stop clock and remove observers
     }
     else {
       console.log("can't start scenario on weekends! Scenarios are available: MON - FRI");
     }
   }
+
+  public reprocessWeek() {
+    this._intervalHandler.reprocessWeek();
+      this._GUIController.resetIndex();
+      this._eventController.pointOfEntryEvent();
+      this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
+      this._clock.addObserver(this._GUIController);
+      this._clock.startClock(); // start clock pulse
+  }
+
   public terminate() {
     // end scenario
     console.log('Controller: Terminated');
