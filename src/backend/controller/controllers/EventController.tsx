@@ -1,5 +1,5 @@
 // sends out Events.
-import {Event} from '../../data/event/Event';
+import {Event} from '../../model/event/Event';
 import {AutoType, EventType} from '../../model/event/EventTypes';
 import {Storage} from '../../model/Storage';
 import {UserInteractableEvent} from '../../model/event/UserInteractableEvent';
