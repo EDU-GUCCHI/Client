@@ -84,7 +84,6 @@ export class ScenarioController {
       console.log("can't start scenario on weekends! Scenarios are available: MON - FRI");
     }
   }
-
   public reprocessWeek() {
     this._intervalHandler.reprocessWeek();
       this._GUIController.resetIndex();
@@ -93,7 +92,6 @@ export class ScenarioController {
       this._clock.addObserver(this._GUIController);
       this._clock.startClock(); // start clock pulse
   }
-
   public terminate() {
     // end scenario
     console.log('Controller: Terminated');
