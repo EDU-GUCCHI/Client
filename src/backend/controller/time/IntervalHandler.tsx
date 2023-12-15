@@ -11,6 +11,7 @@ export class IntervallHandler {
     private _decreaseFactor: number;
     private _weektime: number;
     private _sec: number;
+    private _updateIncrement: number;
     private _person: Gotchi;
     private _notificationController: NotificationController;
     private _eventController: EventController;
@@ -21,6 +22,7 @@ export class IntervallHandler {
     private _deathNotificationSent: Boolean;
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
+    private _bloodSugarValues: number[];
 
     public constructor(
         storage: Storage, 
@@ -31,12 +33,14 @@ export class IntervallHandler {
         {
         this._person = person;
         this._storage = storage;
+        this._bloodSugarValues = [];
         this._sec = 0;
         this._dateString = "";
         this._scenarioStartDate = new Date();
         this._bloodValue = person.bloodValue;
         this._increaseFactor = 0;
         this._decreaseFactor = 0;
+        this._updateIncrement = 0;
         this._weektime = 432000; // default value of 5 days in seconds
         this._notificationController = notificationController;
         this._eventController = eventController;
@@ -183,11 +187,14 @@ export class IntervallHandler {
     }
     public update(): void { // updates done every pulse
         this.decreaseBloodSugar(); // Update Values
-        //this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
         this.resetNotificationFlags();
         this.checkUpperTreshold();
         this.checkLowerThreshold();
-
+        
+        if(this._updateIncrement == 5) {
+            this._bloodSugarValues.push(this._bloodValue); // add bloodvalue every 5 sec intervall
+            this._updateIncrement = 0;
+        }
         if(this._weekplanner.checkDate(this.secondsToDate(this._weektime))) {
             let event = this._weekplanner.eventQueue.getNextEvent();
             if(event) {
@@ -196,6 +203,7 @@ export class IntervallHandler {
                 this._notificationController.scheduleNotification(event?.description, event?.eventType, event?.timeStamp);            
             }
         }
+        this._updateIncrement++;
         this._sec++;
     }
     public processWeek(): Boolean { // preprocesses entire week of events, returns false if current day is saturday - sunday and true otherwise
@@ -206,10 +214,12 @@ export class IntervallHandler {
         }
         else {
             this._scenarioStartDate = new Date(); // assign current date as startpoint
+            this._bloodSugarValues = [];
             this.defineWeekTime(); // find how many seconds scenario should be
             while (this._sec <= this._weektime) { // seconds in a week
                 this.update(); // process what happens every second
             }
+            this._storage.bloodSugarValues = this._bloodSugarValues;
             console.log("Entire week processed!");
             console.log("");
             console.log("");
@@ -228,9 +238,11 @@ export class IntervallHandler {
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);
+        this._bloodSugarValues = [];
         while (this._sec <= this._weektime) { // seconds in a week
             this.update(); // process what happens every second
         }
+        this._storage.bloodSugarValues = this._bloodSugarValues;
         console.log("Entire week reprocessed!");
     }
 

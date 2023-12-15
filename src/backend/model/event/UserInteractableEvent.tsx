@@ -1,5 +1,6 @@
-import { Event } from "./Event";
-import { AutoType, EventType } from "./EventTypes";
+import {AnswerOptions} from './AnswerOptions';
+import {Event} from './Event';
+import {AutoType, EventType} from './EventTypes';
 
 /**
  * @type Model
@@ -12,11 +13,9 @@ import { AutoType, EventType } from "./EventTypes";
  */
 
 export class UserInteractableEvent extends Event {
-  /* private readonly _answerOptions: [];
-    private readonly _correctAnswers: []; */
-  private readonly _symptomOptions: {};
-  private readonly _causeOptions: {};
-  private readonly _treatmentOptions: {};
+  private _symptomOptions: AnswerOptions;
+  private _causeOptions: AnswerOptions;
+  private _treatmentOptions: AnswerOptions;
   private _answered: boolean;
 
   public constructor(
@@ -24,9 +23,9 @@ export class UserInteractableEvent extends Event {
     eventType: EventType,
     timeStamp: Date,
     description: string,
-    symptomOptions: object,
-    causeOptions: object,
-    treatmentOptions: object,
+    symptomOptions: AnswerOptions,
+    causeOptions: AnswerOptions,
+    treatmentOptions: AnswerOptions,
   ) {
     super(autoType, eventType, timeStamp, description);
     this._symptomOptions = symptomOptions;
@@ -55,5 +54,18 @@ export class UserInteractableEvent extends Event {
   }
   set answered(answered: boolean) {
     this._answered = answered;
+  }
+  updateOptionsVariable(
+    treatmentIndex: number,
+    symptomIndexes: number[],
+    causeIndexes: number[],
+  ) {
+    this._treatmentOptions.setOptionFlag(treatmentIndex);
+    symptomIndexes.forEach(num => {
+      this._symptomOptions.setOptionFlag(num);
+    });
+    causeIndexes.forEach(num => {
+      this._causeOptions.setOptionFlag(num);
+    });
   }
 }

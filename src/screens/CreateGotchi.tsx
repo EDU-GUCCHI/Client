@@ -60,7 +60,7 @@ function CreateGotchiScreen({ navigation }: Props) {
   return (
     <>
       <ViewContainer style={s`items-center justify-between h-full`}>
-      <View style={s`flex-1 justify-center`}>
+      <View style={s`flex-1 justify-center items-center`}>
 
         <Title text="Skapa en ny EDU-GOTCHI" />
   

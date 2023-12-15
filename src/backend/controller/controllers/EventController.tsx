@@ -1,10 +1,9 @@
 // sends out Events.
-import { Event } from '../../model/event/Event';
-import { AutoType, EventType } from '../../model/event/EventTypes';
-import { Storage } from '../../model/Storage';
-import { UserInteractableEvent } from '../../model/event/UserInteractableEvent';
-
-
+import {Event} from '../../model/event/Event';
+import {AutoType, EventType} from '../../model/event/EventTypes';
+import {Storage} from '../../model/Storage';
+import {UserInteractableEvent} from '../../model/event/UserInteractableEvent';
+import {AnswerOptions} from '../../model/event/AnswerOptions';
 
 export class EventController {
   private _storage: Storage;
@@ -49,27 +48,22 @@ export class EventController {
     eventType: EventType,
     timeStamp: Date,
     description: string,
-    symptomOptions?: object,
-    causeOptions?: object,
-    treatmentOptions?: object,
+    symptomOptions?: AnswerOptions,
+    causeOptions?: AnswerOptions,
+    treatmentOptions?: AnswerOptions,
   ) {
     const event: Event =
       autoType === AutoType.USER_EVENT
         ? new UserInteractableEvent(
-          autoType,
-          eventType,
-          timeStamp,
-          description,
-          symptomOptions || {}, 
-          causeOptions || {},
-          treatmentOptions || {},
-        )
-        : new Event(
-          autoType,
-          eventType,
-          timeStamp,
-          description,
-        );
+            autoType,
+            eventType,
+            timeStamp,
+            description,
+            symptomOptions || new AnswerOptions(),
+            causeOptions || new AnswerOptions(),
+            treatmentOptions || new AnswerOptions(),
+          )
+        : new Event(autoType, eventType, timeStamp, description);
 
     this.dispatchEvent(event);
     return event;
@@ -86,7 +80,7 @@ export class EventController {
   }
 
   //Add hardcoded events to use based on int or enum?
-  chooseEventSwitch(eventType : EventType) {
+  chooseEventSwitch(eventType: EventType) {
     switch (eventType) {
       case EventType.FOOD_INTAKE:
         this.EatingEvent();
@@ -104,26 +98,19 @@ export class EventController {
         console.log('Default case');
     }
   }
-  
+
   EatingEvent() {
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.FOOD_INTAKE;
     const timeStamp = new Date();
     const description = this.storage.person.name + ' ate a banana';
 
-    this.createEvent(
-      autoType,
-      eventType,
-      timeStamp,
-      description,
-    );
+    this.createEvent(autoType, eventType, timeStamp, description);
   }
   LowBloodSugar() {
-    const id = this._idCounter++;
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
-    const bloodGlucoseChange = -2;
     const description = 'Low blood sugar';
     const treatmentOptions = [
       {option: 'Ät mer mat', correct: false, answered: false}, // TODO: Change answered to true when event is submitted, only apply to the options that are selected by the user
