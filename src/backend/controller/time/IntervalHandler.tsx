@@ -233,9 +233,9 @@ export class IntervallHandler {
     public reprocessWeek() { // reprocesses week from current day to friday (23:55)
         this._notificationController.cancelAllNotifications(); // async operation (can possibly cause issue)
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
-        this._bloodSugarValues = [];
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);
+        this._bloodSugarValues = [];
         while (this._sec <= this._weektime) { // seconds in a week
             this.update(); // process what happens every second
         }
