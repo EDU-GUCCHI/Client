@@ -21,6 +21,7 @@ export class IntervallHandler {
     private _deathNotificationSent: Boolean;
     private _storage: Storage;
     private _weekplanner: WeekPlanner;
+    private _bloodSugarValues: number[];
 
     public constructor(
         storage: Storage, 
@@ -31,6 +32,7 @@ export class IntervallHandler {
         {
         this._person = person;
         this._storage = storage;
+        this._bloodSugarValues = [];
         this._sec = 0;
         this._dateString = "";
         this._scenarioStartDate = new Date();
@@ -183,11 +185,14 @@ export class IntervallHandler {
     }
     public update(): void { // updates done every pulse
         this.decreaseBloodSugar(); // Update Values
-        //this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
+        // this._GUIController.setBloodSugar(this._bloodValue); // update GUI element
+        // do another method where the clock updates bloodvalue in gui every 5 seconds
         this.resetNotificationFlags();
         this.checkUpperTreshold();
         this.checkLowerThreshold();
-
+        if(this._sec % 5 == 0) {
+            this._bloodSugarValues.push(this._bloodValue); // add bloodvalue every 5 sec intervall
+        }
         if(this._weekplanner.checkDate(this.secondsToDate(this._weektime))) {
             let event = this._weekplanner.eventQueue.getNextEvent();
             if(event) {
@@ -206,10 +211,12 @@ export class IntervallHandler {
         }
         else {
             this._scenarioStartDate = new Date(); // assign current date as startpoint
+            this._bloodSugarValues = [];
             this.defineWeekTime(); // find how many seconds scenario should be
             while (this._sec <= this._weektime) { // seconds in a week
                 this.update(); // process what happens every second
             }
+            this._storage.bloodSugarValues = this._bloodSugarValues;
             console.log("Entire week processed!");
             console.log("");
             console.log("");
@@ -226,11 +233,13 @@ export class IntervallHandler {
     public reprocessWeek() { // reprocesses week from current day to friday (23:55)
         this._notificationController.cancelAllNotifications(); // async operation (can possibly cause issue)
         this.calculateDeltaTime(); // calculates the difference in time from start of scenario
+        this._bloodSugarValues = [];
         console.log("CURRENT PROCESS DATE: " + this.secondsToDate(this._sec));
         console.log("SECONDS FROM START-DATE: " + this._sec);
         while (this._sec <= this._weektime) { // seconds in a week
             this.update(); // process what happens every second
         }
+        this._storage.bloodSugarValues = this._bloodSugarValues;
         console.log("Entire week reprocessed!");
     }
 

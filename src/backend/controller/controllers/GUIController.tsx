@@ -33,6 +33,7 @@ export class GUIController {
      * updating the value in the GUI.
      */
 
+    // fetch current second from array and update value
     setBloodSugar(newBloodSugar: number) {
         this._person.bloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());

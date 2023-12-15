@@ -13,7 +13,7 @@ export class Clock {
     }
     public startClock(): void {
         if (this.interval === null) {
-            this.interval = setInterval(this.tickClock.bind(this), 1000);
+            this.interval = setInterval(this.tickClock.bind(this), 5000);
         }
     }
     public stopClock(): void {
