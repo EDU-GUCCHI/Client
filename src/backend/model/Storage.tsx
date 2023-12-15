@@ -1,17 +1,17 @@
-import { Gotchi } from "./gotchi/Gotchi";
-import { Event } from "./event/Event";
-import { parseEventsToFormat } from "./event/EventParser";
-import { AlcoholHabit, EatingHabit, Exercise } from "./gotchi/FrequencyEnum";
-import { Age, Weight, Illness } from "./gotchi/ConstantEnum";
+import {Gotchi} from './gotchi/Gotchi';
+import {Event} from './event/Event';
+import {parseEventsToFormat} from '../model/event/EventParser';
+import {AlcoholHabit, EatingHabit, Exercise} from './gotchi/FrequencyEnum';
+import {Age, Weight, Illness} from './gotchi/ConstantEnum';
+import {UserInteractableEvent} from './event/UserInteractableEvent';
 
 /**
  * @type Repository
- * @description for storing information that is needed for 
- * further use. 
+ * @description for storing information that is needed for
+ * further use.
  */
 
 export class Storage {
-
   private _person: Gotchi;
   private _bloodSugarFactor: number;
   private _triggeredEvents: Event[];
@@ -20,13 +20,13 @@ export class Storage {
 
   /**
    * Constructor needs to initialize an "Emp
- * This class is responsiblety" Gotchi, otherwise
+   * This class is responsiblety" Gotchi, otherwise
    * it simply initializes all field-variables to default-values.
    */
 
   public constructor() {
     this._person = new Gotchi(
-      "",
+      '',
       5,
       false,
       false,
@@ -36,7 +36,8 @@ export class Storage {
       Weight.UNDERWEIGHT,
       AlcoholHabit.HEAVY_DRINKER,
       true,
-      Illness.FEVER);
+      Illness.FEVER,
+    );
 
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
@@ -92,5 +93,23 @@ export class Storage {
 
   addTriggeredEvent(newEvent: Event): void {
     this._triggeredEvents.push(newEvent);
+  }
+  updateEvent(
+    dateTime: Date,
+    treatmentIndex: number,
+    symptomIndexes: number[],
+    causeIndexes: number[],
+  ): void {
+    for (const event of this._triggeredEvents) {
+      if (event.timeStamp.getTime() === dateTime.getTime()) {
+        if (event instanceof UserInteractableEvent) {
+          event.updateOptionsVariable(
+            treatmentIndex,
+            symptomIndexes,
+            causeIndexes,
+          );
+        }
+      }
+    }
   }
 }
