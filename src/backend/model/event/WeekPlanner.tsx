@@ -201,8 +201,8 @@ export class WeekPlanner {
 
   checkDate(date : Date) {
     const peekedEvent = this._eventQueue.peek();
-    console.log("DATE RECEIVED: " + date.toLocaleString());
-    console.log("DATE FOUND: " + peekedEvent?.timeStamp.toLocaleString());
+    //console.log("DATE RECEIVED: " + date.toLocaleString());
+    //console.log("DATE FOUND: " + peekedEvent?.timeStamp.toLocaleString());
     if(!peekedEvent) {
       console.log("> NO EVENTS")
       return false;
