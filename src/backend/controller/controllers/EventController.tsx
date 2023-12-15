@@ -129,19 +129,27 @@ export class EventController {
     ];
     const eventAnswered = false; */
     const symptomOptions = new AnswerOptions([
-      {optionString: 'Svettig', optionCorrect: true},
-      {optionString: 'Svag', optionCorrect: true},
-      {optionString: 'Huvudvärk', optionCorrect: false},
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
     ]);
     const causeOptions = new AnswerOptions([
-      {optionString: 'För lite insulin', optionCorrect: true},
-      {optionString: 'För mycket insulin', optionCorrect: false},
-      {optionString: 'För lite mat', optionCorrect: false},
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: true,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: false, optionChosen: false},
     ]);
     const treatmentOptions = new AnswerOptions([
-      {optionString: 'Ät något', optionCorrect: true},
-      {optionString: 'Ta insulin', optionCorrect: true},
-      {optionString: 'Vila', optionCorrect: false},
+      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: true, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
     ]);
 
     //console.log('Creating Low blood-sugar event');
