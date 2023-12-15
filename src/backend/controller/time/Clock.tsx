@@ -34,7 +34,7 @@ export class Clock {
         this._observers = [];
     }
     private notifyObservers(): void {
-        this._observers.forEach((observer) => observer.update());
+        this._observers.forEach((observer) => observer.setBloodSugar());
     }
     get observers(): any[] {
         return this._observers;

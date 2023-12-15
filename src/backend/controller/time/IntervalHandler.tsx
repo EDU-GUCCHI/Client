@@ -239,6 +239,7 @@ export class IntervallHandler {
         while (this._sec <= this._weektime) { // seconds in a week
             this.update(); // process what happens every second
         }
+
         this._storage.bloodSugarValues = this._bloodSugarValues;
         console.log("Entire week reprocessed!");
     }

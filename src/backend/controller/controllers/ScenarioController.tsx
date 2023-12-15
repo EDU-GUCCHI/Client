@@ -21,7 +21,7 @@ export class ScenarioController {
   // has logic classes and access to stored data
   private _formulaGenerator: FormulaGenerator;
   private _storage: Storage;
-  // private _clock: Clock;
+  private _clock: Clock;
   private _intervalHandler: IntervallHandler;
   private _GUIController: GUIController;
   private _notificationController: NotificationController;
@@ -33,7 +33,7 @@ export class ScenarioController {
     // instantiate classes
     this._storage = new Storage();
     this._GUIController = new GUIController(this._storage.person);
-    // this._clock = new Clock();
+    this._clock = new Clock();
 
     this._formulaGenerator = new FormulaGenerator();
     this._storage.increaseFactor = FormulaGenerator.generateIncreaseFactor();
@@ -78,8 +78,11 @@ export class ScenarioController {
     let isWeekDay = this._intervalHandler.processWeek();
     if (isWeekDay) {
       this._intervalHandler.reprocessWeek();
+      this._GUIController.resetIndex();
       this._eventController.pointOfEntryEvent();
-      //this._clock.startClock(); // start clock pulse
+      this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
+      this._clock.addObserver(this._GUIController);
+      this._clock.startClock(); // start clock pulse
     }
     else {
       console.log("can't start scenario on weekends! Scenarios are available: MON - FRI");
@@ -88,7 +91,7 @@ export class ScenarioController {
   public terminate() {
     // end scenario
     console.log('Controller: Terminated');
-    //this._clock.stopClock();
+    this._clock.stopClock();
     //refresh classes for possible new scenario
     this._storage = new Storage();
     this._GUIController = new GUIController(this._storage.person);
@@ -96,7 +99,7 @@ export class ScenarioController {
     this._notificationController = new NotificationController();
     this._eventController = new EventController(this._storage);
     this._weekPlanner = new WeekPlanner(this._storage.person);
-    //this._clock = new Clock();
+    this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
       this._storage,
       this._storage.person,
