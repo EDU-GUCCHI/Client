@@ -7,6 +7,7 @@ import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
 
 function AnswerEventScreen({route}) {
+  const controller = useScenarioController();
   const event = route.params?.event;
   const [submitted, setSubmitted] = useState(false);
   const [selectedTreatmentIndex, setSelectedTreatmentIndex] = useState(null);
@@ -39,14 +40,15 @@ function AnswerEventScreen({route}) {
 
   // Function to handle the submission of all answers
   const handleSubmitAll = () => {
-
+    const id = event.id;
+    controller.storage.updateEvent(id, selectedTreatmentIndex, Array.from(selectedSymptomIndices), Array.from(selectedCauseIndice));
     setSubmitted(true);
     console.log('Selected Treatment Index:', selectedTreatmentIndex);
     console.log(
       'Selected Symptom Indices:',
       Array.from(selectedSymptomIndices),
-    );
-    console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
+      );
+      console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
   };
 
   if (!event) {

@@ -9,6 +9,7 @@ import {AutoType, EventType} from './EventTypes';
  */
 
 export class Event {
+  private readonly _id: number;
   private readonly _autoType: AutoType;
   private readonly _eventType: EventType;
   private readonly _timeStamp: Date;
@@ -27,11 +28,13 @@ export class Event {
    */
 
   public constructor(
+    id: number,
     autoType: AutoType,
     eventType: EventType,
     timeStamp: Date,
     description: string,
   ) {
+    this._id = id;
     this._autoType = autoType;
     this._eventType = eventType;
     this._timeStamp = timeStamp;
@@ -41,6 +44,10 @@ export class Event {
   /**
    * Getters, setters
    */
+
+  get id(): number {
+    return this._id;
+  }
 
   get autoType() {
     return this._autoType;

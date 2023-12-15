@@ -103,13 +103,14 @@ export class Storage {
     this._triggeredEvents.push(newEvent);
   }
   updateEvent(
+    id: number,
     dateTime: Date,
     treatmentIndex: number,
     symptomIndexes: number[],
     causeIndexes: number[],
   ): void {
     for (const event of this._triggeredEvents) {
-      if (event.timeStamp.getTime() === dateTime.getTime()) {
+      if (event.id === id) {
         if (event instanceof UserInteractableEvent) {
           event.updateOptionsVariable(
             treatmentIndex,
@@ -119,5 +120,6 @@ export class Storage {
         }
       }
     }
+    console.log(this._triggeredEvents);
   }
 }

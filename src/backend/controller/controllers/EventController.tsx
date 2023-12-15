@@ -44,6 +44,7 @@ export class EventController {
   //Create event with param values, answer values are optional
   //Add state if needed, maybe use optional param here instead of constructor in event?
   public createEvent(
+    id: number,
     autoType: AutoType,
     eventType: EventType,
     timeStamp: Date,
@@ -55,6 +56,7 @@ export class EventController {
     const event: Event =
       autoType === AutoType.USER_EVENT
         ? new UserInteractableEvent(
+            id,
             autoType,
             eventType,
             timeStamp,
@@ -63,7 +65,7 @@ export class EventController {
             causeOptions || new AnswerOptions(),
             treatmentOptions || new AnswerOptions(),
           )
-        : new Event(autoType, eventType, timeStamp, description);
+        : new Event(id, autoType, eventType, timeStamp, description);
 
     this.dispatchEvent(event);
     return event;
@@ -100,14 +102,16 @@ export class EventController {
   }
 
   EatingEvent() {
+    const id = 1;
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.FOOD_INTAKE;
     const timeStamp = new Date();
     const description = this.storage.person.name + ' ate a banana';
 
-    this.createEvent(autoType, eventType, timeStamp, description);
+    this.createEvent(id, autoType, eventType, timeStamp, description);
   }
   LowBloodSugar() {
+    const id = 1;
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
@@ -141,6 +145,7 @@ export class EventController {
 
     //console.log('Creating Low blood-sugar event');
     this.createEvent(
+      id,
       autoType,
       eventType,
       timeStamp,

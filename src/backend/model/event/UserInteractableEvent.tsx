@@ -19,6 +19,7 @@ export class UserInteractableEvent extends Event {
   private _answered: boolean;
 
   public constructor(
+    id: number,
     autoType: AutoType,
     eventType: EventType,
     timeStamp: Date,
@@ -27,7 +28,7 @@ export class UserInteractableEvent extends Event {
     causeOptions: AnswerOptions,
     treatmentOptions: AnswerOptions,
   ) {
-    super(autoType, eventType, timeStamp, description);
+    super(id, autoType, eventType, timeStamp, description);
     this._symptomOptions = symptomOptions;
     this._causeOptions = causeOptions;
     this._treatmentOptions = treatmentOptions;
@@ -37,6 +38,7 @@ export class UserInteractableEvent extends Event {
   /**
    * Getters, setters
    */
+
 
   get symptomOptions(): object {
     return this._symptomOptions;
