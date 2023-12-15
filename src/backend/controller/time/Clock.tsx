@@ -13,7 +13,7 @@ export class Clock {
     }
     public startClock(): void {
         if (this.interval === null) {
-            this.interval = setInterval(this.tickClock.bind(this), 1000);
+            this.interval = setInterval(this.tickClock.bind(this), 5000);
         }
     }
     public stopClock(): void {
@@ -34,7 +34,7 @@ export class Clock {
         this._observers = [];
     }
     private notifyObservers(): void {
-        this._observers.forEach((observer) => observer.update());
+        this._observers.forEach((observer) => observer.setBloodSugar());
     }
     get observers(): any[] {
         return this._observers;

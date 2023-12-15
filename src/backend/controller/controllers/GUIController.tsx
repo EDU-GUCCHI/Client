@@ -12,6 +12,8 @@ export class GUIController {
     private _person: Gotchi;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
     private _gotchisname: string;
+    private _bloodSugarValues: number[];
+    private _bsIndex: number;
 
     /**
      * Constructor for class
@@ -23,6 +25,8 @@ export class GUIController {
     constructor(person: Gotchi) {
         this._person = person;
         this._gotchisname = "";
+        this._bloodSugarValues = [];
+        this._bsIndex = 0;
     }
 
     /**
@@ -33,9 +37,19 @@ export class GUIController {
      * updating the value in the GUI.
      */
 
-    setBloodSugar(newBloodSugar: number) {
+    // fetch value from array and increment every 5 sec
+    setBloodSugar() { // needs storage
+        let newBloodSugar = this._bloodSugarValues[this._bsIndex];
+        console.log(newBloodSugar);
+        if(this._bsIndex < this._bloodSugarValues.length) {
+            this._bsIndex++;
+        }
         this._person.bloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
+    }
+
+    public resetIndex() {
+        this._bsIndex = 0;
     }
 
     /**
@@ -84,6 +98,9 @@ export class GUIController {
 
     set gotchisName(newName: string) {
         this._gotchisname = newName;
+    }
+    set bloodSugarValues(values: number[]) {
+        this._bloodSugarValues = values;
     }
     get gotchisName(): string {
         return this._gotchisname;

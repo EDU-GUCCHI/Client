@@ -17,6 +17,7 @@ export class Storage {
   private _triggeredEvents: Event[];
   private _increaseFactor: number;
   private _decreaseFactor: number;
+  private _bloodSugarValues: number[];
 
   /**
    * Constructor needs to initialize an "Emp
@@ -43,6 +44,7 @@ export class Storage {
     this._triggeredEvents = [];
     this._increaseFactor = 0;
     this._decreaseFactor = 0;
+    this._bloodSugarValues = [];
   }
 
   /**
@@ -75,6 +77,12 @@ export class Storage {
   }
   get triggeredEvents() {
     return this._triggeredEvents;
+  }
+  get bloodSugarValues(): number[] {
+    return this._bloodSugarValues;
+  }
+  set bloodSugarValues(values: number[]) {
+    this._bloodSugarValues = values;
   }
 
   /**
