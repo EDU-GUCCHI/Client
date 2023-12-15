@@ -1,8 +1,9 @@
-import { Gotchi } from "./gotchi/Gotchi";
-import { Event } from "./event/Event";
-import { parseEventsToFormat } from "../logic/event/EventParser";
-import { AlcoholHabit, EatingHabit, Exercise } from "./gotchi/FrequencyEnum";
-import { Age, Weight, Illness } from "./gotchi/ConstantEnum";
+import {Gotchi} from './gotchi/Gotchi';
+import {Event} from './event/Event';
+import {parseEventsToFormat} from '../logic/event/EventParser';
+import {AlcoholHabit, EatingHabit, Exercise} from './gotchi/FrequencyEnum';
+import {Age, Weight, Illness} from './gotchi/ConstantEnum';
+import {UserInteractableEvent} from './event/UserInteractableEvent';
 
 export class Storage {
   // store/initialize all data storage classes here, ex: Gotchi
@@ -16,7 +17,7 @@ export class Storage {
 
   public constructor() {
     this._person = new Gotchi(
-      "",
+      '',
       5,
       false,
       false,
@@ -26,7 +27,8 @@ export class Storage {
       Weight.UNDERWEIGHT,
       AlcoholHabit.HEAVY_DRINKER,
       true,
-      Illness.FEVER);
+      Illness.FEVER,
+    );
 
     this._bloodSugarFactor = 0.0;
     this._triggeredEvents = [];
@@ -66,5 +68,23 @@ export class Storage {
   }
   addTriggeredEvent(newEvent: Event): void {
     this._triggeredEvents.push(newEvent);
+  }
+  updateEvent(
+    dateTime: Date,
+    treatmentIndex: number,
+    symptomIndexes: number[],
+    causeIndexes: number[],
+  ): void {
+    for (const event of this._triggeredEvents) {
+      if (event.timeStamp.getTime() === dateTime.getTime()) {
+        if (event instanceof UserInteractableEvent) {
+          event.updateOptionsVariable(
+            treatmentIndex,
+            symptomIndexes,
+            causeIndexes,
+          );
+        }
+      }
+    }
   }
 }

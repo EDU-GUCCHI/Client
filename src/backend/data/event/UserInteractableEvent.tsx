@@ -1,11 +1,11 @@
-import { AnswerOptions } from "./AnswerOptions";
-import { Event } from "./Event";
-import { AutoType, EventType } from "./EventTypes";
+import {AnswerOptions} from './AnswerOptions';
+import {Event} from './Event';
+import {AutoType, EventType} from './EventTypes';
 
 export class UserInteractableEvent extends Event {
-  private readonly _symptomOptions: AnswerOptions;
-  private readonly _causeOptions: AnswerOptions;
-  private readonly _treatmentOptions: AnswerOptions;
+  private _symptomOptions: AnswerOptions;
+  private _causeOptions: AnswerOptions;
+  private _treatmentOptions: AnswerOptions;
   private _answered: boolean;
 
   public constructor(
@@ -39,5 +39,18 @@ export class UserInteractableEvent extends Event {
   }
   set answered(answered: boolean) {
     this._answered = answered;
+  }
+  updateOptionsVariable(
+    treatmentIndex: number,
+    symptomIndexes: number[],
+    causeIndexes: number[],
+  ) {
+    this._treatmentOptions.setOptionFlag(treatmentIndex);
+    symptomIndexes.forEach(num => {
+      this._symptomOptions.setOptionFlag(num);
+    });
+    causeIndexes.forEach(num => {
+      this._causeOptions.setOptionFlag(num);
+    });
   }
 }
