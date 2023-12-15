@@ -192,7 +192,6 @@ export class IntervallHandler {
         this.checkLowerThreshold();
         
         if(this._updateIncrement == 5) {
-            console.log(this._bloodValue);
             this._bloodSugarValues.push(this._bloodValue); // add bloodvalue every 5 sec intervall
             this._updateIncrement = 0;
         }
