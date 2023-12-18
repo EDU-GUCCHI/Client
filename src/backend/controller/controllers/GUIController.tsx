@@ -1,4 +1,6 @@
 import { Gotchi } from "../../model/gotchi/Gotchi";
+import { Clock } from "../time/Clock";
+import { ScenarioController } from "./ScenarioController";
 
 /**
  * @type Controller
@@ -9,7 +11,8 @@ import { Gotchi } from "../../model/gotchi/Gotchi";
  */
 
 export class GUIController {
-    private _person: Gotchi;
+    private _controller: ScenarioController;
+    private _clock: Clock;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
     private _gotchisname: string;
     private _bloodSugarValues: number[];
@@ -22,8 +25,9 @@ export class GUIController {
      * after boot-up.
      */
 
-    constructor(person: Gotchi) {
-        this._person = person;
+    constructor(controller: ScenarioController, clock: Clock) {
+        this._controller = controller;
+        this._clock = clock;
         this._gotchisname = "";
         this._bloodSugarValues = [];
         this._bsIndex = 0;
@@ -40,14 +44,16 @@ export class GUIController {
     // fetch value from array and increment every 5 sec
     setBloodSugar() { // needs storage
         let newBloodSugar = this._bloodSugarValues[this._bsIndex];
+        if(this._bsIndex == this._bloodSugarValues.length - 1) {
+            this.stopUpdateBloodsugar();
+        }
         console.log(newBloodSugar);
         if(this._bsIndex < this._bloodSugarValues.length) {
             this._bsIndex++;
         }
-        this._person.bloodValue = newBloodSugar;
+        this._controller.gotchiBloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
     }
-
     public resetIndex() {
         this._bsIndex = 0;
     }
@@ -67,7 +73,6 @@ export class GUIController {
             }
         };
     }
-
     private notifySubscribers(newBloodSugar: string) {
         this._bloodSugarSubscribers.forEach((callback) => {
             callback(newBloodSugar);
@@ -91,6 +96,14 @@ export class GUIController {
             console.log("is wrong");
         }
     }
+    public startUpdateBloodsugar() {
+        this._clock.addObserver(this);
+        this._clock.startClock(); // start clock pulse
+    }
+    public stopUpdateBloodsugar() {
+        this._clock.stopClock();
+        this._clock.removeAllObservers();
+    }
 
     /**
      * Getters, setters for fields
@@ -106,7 +119,7 @@ export class GUIController {
         return this._gotchisname;
     }
     get person(): Gotchi {
-        return this._person;
+        return this._controller.storage.person;
     }
     get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] {
         return this._bloodSugarSubscribers;
