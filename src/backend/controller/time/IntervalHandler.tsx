@@ -190,7 +190,6 @@ export class IntervallHandler {
         this.resetNotificationFlags();
         this.checkUpperTreshold();
         this.checkLowerThreshold();
-        
         if(this._updateIncrement == 5) {
             this._bloodSugarValues.push(this._bloodValue); // add bloodvalue every 5 sec intervall
             this._updateIncrement = 0;
@@ -219,7 +218,9 @@ export class IntervallHandler {
             while (this._sec <= this._weektime) { // seconds in a week
                 this.update(); // process what happens every second
             }
+            this._updateIncrement = 0;
             this._storage.bloodSugarValues = this._bloodSugarValues;
+            console.log("Bloodsugar at start: " + this. _bloodSugarValues[0]);
             console.log("Entire week processed!");
             console.log("");
             console.log("");
@@ -242,6 +243,7 @@ export class IntervallHandler {
         while (this._sec <= this._weektime) { // seconds in a week
             this.update(); // process what happens every second
         }
+        this._updateIncrement = 0;
         this._storage.bloodSugarValues = this._bloodSugarValues;
         console.log("Entire week reprocessed!");
     }
