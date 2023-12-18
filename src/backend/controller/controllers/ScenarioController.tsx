@@ -33,7 +33,7 @@ export class ScenarioController {
     // instantiate classes
     this._storage = new Storage();
     this._clock = new Clock();
-    this._GUIController = new GUIController(this._storage.person, this._clock);
+    this._GUIController = new GUIController(this, this._clock);
 
     this._formulaGenerator = new FormulaGenerator();
     this._storage.increaseFactor = FormulaGenerator.generateIncreaseFactor();
@@ -97,7 +97,7 @@ export class ScenarioController {
     this._GUIController.stopUpdateBloodsugar();
     //refresh classes for possible new scenario
     this._storage = new Storage();
-    this._GUIController = new GUIController(this._storage.person, this._clock);
+    this._GUIController = new GUIController(this, this._clock);
     this._formulaGenerator = new FormulaGenerator();
     this._notificationController = new NotificationController();
     this._eventController = new EventController(this._storage);
@@ -124,7 +124,10 @@ export class ScenarioController {
       console.log('Gotchi nr: ' + i + ' success');
     }
   }
-
+  
+  set gotchiBloodValue(value: number) {
+    this._storage.person.bloodValue = value;
+  }
   get GUIController(): GUIController {
     return this._GUIController;
   }

@@ -1,5 +1,6 @@
 import { Gotchi } from "../../model/gotchi/Gotchi";
 import { Clock } from "../time/Clock";
+import { ScenarioController } from "./ScenarioController";
 
 /**
  * @type Controller
@@ -10,7 +11,7 @@ import { Clock } from "../time/Clock";
  */
 
 export class GUIController {
-    private _person: Gotchi;
+    private _controller: ScenarioController;
     private _clock: Clock;
     private _bloodSugarSubscribers: ((newBloodSugar: string) => void)[] = [];
     private _gotchisname: string;
@@ -24,8 +25,8 @@ export class GUIController {
      * after boot-up.
      */
 
-    constructor(person: Gotchi, clock: Clock) {
-        this._person = person;
+    constructor(controller: ScenarioController, clock: Clock) {
+        this._controller = controller;
         this._clock = clock;
         this._gotchisname = "";
         this._bloodSugarValues = [];
@@ -50,7 +51,7 @@ export class GUIController {
         if(this._bsIndex < this._bloodSugarValues.length) {
             this._bsIndex++;
         }
-        this._person.bloodValue = newBloodSugar;
+        this._controller.gotchiBloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
     }
     public resetIndex() {
@@ -118,7 +119,7 @@ export class GUIController {
         return this._gotchisname;
     }
     get person(): Gotchi {
-        return this._person;
+        return this._controller.storage.person;
     }
     get bloodSugarSubscribers(): ((newBloodSugar: string) => void)[] {
         return this._bloodSugarSubscribers;
