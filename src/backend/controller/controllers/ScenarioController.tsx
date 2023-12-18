@@ -32,8 +32,8 @@ export class ScenarioController {
     console.log('Controller: Created');
     // instantiate classes
     this._storage = new Storage();
-    this._GUIController = new GUIController(this._storage.person);
     this._clock = new Clock();
+    this._GUIController = new GUIController(this._storage.person, this._clock);
 
     this._formulaGenerator = new FormulaGenerator();
     this._storage.increaseFactor = FormulaGenerator.generateIncreaseFactor();
@@ -89,16 +89,15 @@ export class ScenarioController {
       this._GUIController.resetIndex();
       this._eventController.pointOfEntryEvent();
       this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
-      this._clock.addObserver(this._GUIController);
-      this._clock.startClock(); // start clock pulse
+      this._GUIController.startUpdateBloodsugar();
   }
   public terminate() {
     // end scenario
     console.log('Controller: Terminated');
-    this._clock.stopClock();
+    this._GUIController.stopUpdateBloodsugar();
     //refresh classes for possible new scenario
     this._storage = new Storage();
-    this._GUIController = new GUIController(this._storage.person);
+    this._GUIController = new GUIController(this._storage.person, this._clock);
     this._formulaGenerator = new FormulaGenerator();
     this._notificationController = new NotificationController();
     this._eventController = new EventController(this._storage);
