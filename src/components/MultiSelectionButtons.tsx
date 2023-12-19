@@ -37,7 +37,7 @@ const MultiSelectionButtons = ({
         };
       });
       setAnswersEvaluation(evaluation);
-      onAnswerEvaluation(evaluation);
+      onAnswerEvaluation();
     }
   }, [submitted, options, correctAnswers, selectedButtons]);
 

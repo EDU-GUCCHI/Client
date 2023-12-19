@@ -111,7 +111,7 @@ export class EventController {
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
-    const description = 'Low blood sugar';
+    const description = 'Lågt blodsocker';
     const treatmentOptions = [
       {option: 'Ät mer mat', correct: false, answered: false}, // TODO: Change answered to true when event is submitted, only apply to the options that are selected by the user
       {option: 'Ta insulin', correct: false, answered: false},
