@@ -155,7 +155,7 @@ export class IntervallHandler {
             //this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
-            this._eventController.LowBloodSugar();
+            //this._eventController.LowBloodSugar();
             this._warningNotificationSent = true;
             //console.log("warning of low bloodsugar sent at: " + this._dateString);
             //console.log("Blood sugar warning sent")
@@ -164,7 +164,7 @@ export class IntervallHandler {
             //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker");
             date = this.secondsToDate(this._sec);
             //NotificationScheduler.scheduleNotification(date);
-            this._eventController.LowBloodSugar();
+            //this._eventController.LowBloodSugar();
             this._criticalWarningSent = true;
             //console.log("warning of critically low bloodsugar sent at: " + this._dateString);
             //console.log("Critical Blood sugar warning sent")

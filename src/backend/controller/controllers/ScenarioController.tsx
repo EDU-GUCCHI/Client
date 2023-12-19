@@ -75,7 +75,9 @@ export class ScenarioController {
     this._storage.bloodSugarFactor = this._formulaGenerator.generateFormula(
       this._storage.person,
     );
+    this._eventController.pointOfEntryEvent();
     let isWeekDay = this._intervalHandler.processWeek();
+    
     if (isWeekDay) {
       this.reprocessWeek();
       // on exit stop clock and remove observers
@@ -87,7 +89,6 @@ export class ScenarioController {
   public reprocessWeek() {
     this._intervalHandler.reprocessWeek();
       this._GUIController.resetIndex();
-      this._eventController.pointOfEntryEvent();
       this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
       this._GUIController.startUpdateBloodsugar();
   }
