@@ -9,9 +9,11 @@ const MultiSelectionButtons = ({
   onAnswerEvaluation = () => {},
   onSelection, // New prop for handling selection
 }) => {
-  const [selectedButtons, setSelectedButtons] = useState(new Set());
   const [answersEvaluation, setAnswersEvaluation] = useState({});
-  const [selectedIndices, setSelectedIndices] = useState([]);
+  const [selectedButtons, setSelectedButtons] = useState<Set<string>>(
+    new Set(),
+  );
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
   useEffect(() => {
     // Initialize answersEvaluation with all options
@@ -46,7 +48,7 @@ const MultiSelectionButtons = ({
     }
   }, [submitted]); // Depend only on submitted
 
-  const handleButtonPress = (option, index) => {
+  const handleButtonPress = (option: string, index: number) => {
     if (submitted) return;
     const newSelectedButtons = new Set(selectedButtons);
     let newSelectedIndices = [...selectedIndices];

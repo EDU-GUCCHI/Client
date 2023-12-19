@@ -47,7 +47,7 @@ export class GUIController {
         if(this._bsIndex == this._bloodSugarValues.length - 1) {
             this.stopUpdateBloodsugar();
         }
-        console.log(newBloodSugar);
+        //console.log(newBloodSugar);
         if(this._bsIndex < this._bloodSugarValues.length) {
             this._bsIndex++;
         }
