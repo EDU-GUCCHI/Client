@@ -112,32 +112,45 @@ export class EventController {
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
     const description = 'Low blood sugar';
-    const treatmentOptions = [
-      {option: 'Ät mer mat', correct: false, answered: false}, // TODO: Change answered to true when event is submitted, only apply to the options that are selected by the user
-      {option: 'Ta insulin', correct: false, answered: false},
-      {option: 'Läsk eller druvsocker', correct: true, answered: false},
-    ];
-    const symptomOptions = [
-      {option: 'Svettningar', correct: true, answered: false},
-      {option: 'Törst', correct: false, answered: false},
-      {option: 'Hjärtklappningar', correct: true, answered: false},
-      {option: 'Konfusion', correct: true, answered: false},
-      {option: 'Ökad urinproduktion', correct: false, answered: false},
-      {option: 'Sluddrigt tal', correct: true, answered: false},
-      {option: 'Krampanfall', correct: true, answered: false},
+    /* const symptomOptions = [
+      {option: 'Svettig', correct: true, answered: false},
+      {option: 'Svag', correct: true, answered: false},
+      {option: 'Huvudvärk', correct: false, answered: false},
     ];
     const causeOptions = [
-      {option: 'Feber', correct: false, answered: false},
-      {option: 'För mycket insulin', correct: true, answered: false},
-      {option: 'Dåligt intag av kolhydrater', correct: true, answered: false},
-      {option: 'Alkoholintag', correct: true, answered: false},
-      {option: 'Träning', correct: true, answered: false},
-      {option: 'Smärtor', correct: false, answered: false},
-      {option: 'Kortison', correct: false, answered: false},
-      {option: 'Brist på kortisol', correct: true, answered: false},
-      {option: 'Stress', correct: false, answered: false},
+      {option: 'För lite insulin', correct: true, answered: false},
+      {option: 'För mycket insulin', correct: false, answered: false},
+      {option: 'För lite mat', correct: false, answered: false},
     ];
+    const treatmentOptions = [
+      {option: 'Ät något', correct: true, answered: false},
+      {option: 'Ta insulin', correct: false, answered: false},
+      {option: 'Vila', correct: false, answered: false},
+    ]; */
     const eventAnswered = false;
+    const symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
+    ]);
+    const causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: true,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: false, optionChosen: false},
+    ]);
+    const treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: true, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
 
     //console.log('Creating Low blood-sugar event');
     this.createEvent(

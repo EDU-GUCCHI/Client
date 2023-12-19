@@ -17,6 +17,7 @@ function AnswerEventScreen({route}) {
   const initialRender = useRef(true);
 
   useEffect(() => {
+<<<<<<< Updated upstream
     if (initialRender.current) {
       initialRender.current = false;
     } else {
@@ -27,8 +28,40 @@ function AnswerEventScreen({route}) {
         Array.from(selectedSymptomIndices),
       );
       console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
+=======
+    // Use the updated values after state has been updated
+    console.log('Selected Treatment Index:', selectedTreatmentIndex);
+
+    console.log(
+      'Selected Symptom Indices:',
+      Array.from(selectedSymptomIndices),
+    );
+
+    console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
+
+    // Other logic you want to execute after state updates
+    const date = new Date(event.dateObject);
+    if (selectedTreatmentIndex != null) {
+      const symptomIndicesArray = Array.from(
+        selectedSymptomIndices,
+      ) as number[];
+      const causeIndicesArray = Array.from(selectedCauseIndices) as number[];
+
+      controller.storage.updateEvent(
+        date,
+        selectedTreatmentIndex,
+        symptomIndicesArray,
+        causeIndicesArray,
+      );
+      console.log(
+        date,
+        selectedTreatmentIndex,
+        symptomIndicesArray,
+        causeIndicesArray,
+      );
+>>>>>>> Stashed changes
     }
-  }, [selectedTreatmentIndex, selectedSymptomIndices, selectedCauseIndices]);
+  }, [submitted, selectedSymptomIndices, selectedCauseIndices]);
 
   const handleTreatmentSelection = index => {
     setSelectedTreatmentIndex(index);
@@ -71,7 +104,7 @@ function AnswerEventScreen({route}) {
           <Text style={s`text-2xl text-black font-semibold`}>Behandling</Text>
           <Text style={s`text-sm`}>Välj en</Text>
           <SingleSelectionButtons
-            options={event.treatment.map(t => t.correct.option)}
+            options={event.treatment.map(t => t.correct.optionString)}
             correctAnswers={correctTreatment}
             submitted={submitted}
             onAnswerEvaluation={() => {}}
@@ -84,7 +117,7 @@ function AnswerEventScreen({route}) {
           <Text style={s`text-2xl text-black font-semibold`}>Symptom</Text>
           <Text style={s`text-sm`}>Välj flera</Text>
           <MultiSelectionButtons
-            options={event.symptoms.map(s => s.correct.option)}
+            options={event.symptoms.map(s => s.correct.optionString)}
             correctAnswers={correctSymptoms}
             submitted={submitted}
             onAnswerEvaluation={() => {}}
@@ -97,7 +130,7 @@ function AnswerEventScreen({route}) {
           <Text style={s`text-2xl text-black font-semibold`}>Orsak</Text>
           <Text style={s`text-sm`}>Välj flera</Text>
           <MultiSelectionButtons
-            options={event.cause.map(c => c.correct.option)}
+            options={event.cause.map(c => c.correct.optionString)}
             correctAnswers={correctCause}
             submitted={submitted}
             onAnswerEvaluation={() => {}}

@@ -7,7 +7,7 @@ import {AutoType, EventType} from './EventTypes';
  * @description
  * Container class representing events which require input
  * from the user of the application. Extends event for
- * relevant info to be presented to the user while new 
+ * relevant info to be presented to the user while new
  * fields represent form information to be used and sent
  * back.
  */
@@ -41,13 +41,22 @@ export class UserInteractableEvent extends Event {
   get symptomOptions(): object {
     return this._symptomOptions;
   }
+  get symptomOptionsList(): object {
+    return this._symptomOptions.options;
+  }
 
   get causeOptions(): object {
     return this._causeOptions;
   }
+  get causeOptionsList(): object {
+    return this._causeOptions.options;
+  }
 
   get treatmentOptions(): object {
     return this._treatmentOptions;
+  }
+  get treatmentOptionsList(): object {
+    return this._treatmentOptions.options;
   }
   get answered(): boolean {
     return this._answered;
@@ -60,6 +69,15 @@ export class UserInteractableEvent extends Event {
     symptomIndexes: number[],
     causeIndexes: number[],
   ) {
+    if (
+      treatmentIndex == null ||
+      !symptomIndexes ||
+      symptomIndexes.length < 1 ||
+      !causeIndexes ||
+      causeIndexes.length < 1
+    ) {
+      return;
+    }
     this._treatmentOptions.setOptionFlag(treatmentIndex);
     symptomIndexes.forEach(num => {
       this._symptomOptions.setOptionFlag(num);
@@ -67,5 +85,7 @@ export class UserInteractableEvent extends Event {
     causeIndexes.forEach(num => {
       this._causeOptions.setOptionFlag(num);
     });
+
+    console.log(this);
   }
 }

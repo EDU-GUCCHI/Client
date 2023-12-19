@@ -61,13 +61,13 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
     if (event instanceof UserInteractableEvent) {
       // If it's a UserInteractableEvent, populate the parsedEvent with its data
       parsedEvent.symptoms = parseOptions(
-        event.symptomOptions as {[key: string]: boolean},
+        event.symptomOptionsList as {[key: string]: boolean},
       );
       parsedEvent.treatment = parseOptions(
-        event.treatmentOptions as {[key: string]: boolean},
+        event.treatmentOptionsList as {[key: string]: boolean},
       );
       parsedEvent.cause = parseOptions(
-        event.causeOptions as {[key: string]: boolean},
+        event.causeOptionsList as {[key: string]: boolean},
       );
     }
 
