@@ -13,55 +13,46 @@ function AnswerEventScreen({route}) {
   const [selectedTreatmentIndex, setSelectedTreatmentIndex] = useState(null);
   const [selectedSymptomIndices, setSelectedSymptomIndices] = useState([]);
   const [selectedCauseIndices, setSelectedCauseIndices] = useState([]);
-  
+
   const initialRender = useRef(true);
 
   useEffect(() => {
-<<<<<<< Updated upstream
     if (initialRender.current) {
       initialRender.current = false;
     } else {
-      // Your effect here
+      // Use the updated values after state has been updated
       console.log('Selected Treatment Index:', selectedTreatmentIndex);
+
       console.log(
         'Selected Symptom Indices:',
         Array.from(selectedSymptomIndices),
       );
+
       console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
-=======
-    // Use the updated values after state has been updated
-    console.log('Selected Treatment Index:', selectedTreatmentIndex);
 
-    console.log(
-      'Selected Symptom Indices:',
-      Array.from(selectedSymptomIndices),
-    );
+      // Other logic you want to execute after state updates
+      const date = new Date(event.dateObject);
+      if (selectedTreatmentIndex != null) {
+        const symptomIndicesArray = Array.from(
+          selectedSymptomIndices,
+        ) as number[];
+        const causeIndicesArray = Array.from(selectedCauseIndices) as number[];
 
-    console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
-
-    // Other logic you want to execute after state updates
-    const date = new Date(event.dateObject);
-    if (selectedTreatmentIndex != null) {
-      const symptomIndicesArray = Array.from(
-        selectedSymptomIndices,
-      ) as number[];
-      const causeIndicesArray = Array.from(selectedCauseIndices) as number[];
-
-      controller.storage.updateEvent(
-        date,
-        selectedTreatmentIndex,
-        symptomIndicesArray,
-        causeIndicesArray,
-      );
-      console.log(
-        date,
-        selectedTreatmentIndex,
-        symptomIndicesArray,
-        causeIndicesArray,
-      );
->>>>>>> Stashed changes
+        controller.storage.updateEvent(
+          date,
+          selectedTreatmentIndex,
+          symptomIndicesArray,
+          causeIndicesArray,
+        );
+        console.log(
+          date,
+          selectedTreatmentIndex,
+          symptomIndicesArray,
+          causeIndicesArray,
+        );
+      }
     }
-  }, [submitted, selectedSymptomIndices, selectedCauseIndices]);
+  }, [selectedTreatmentIndex, selectedSymptomIndices, selectedCauseIndices]);
 
   const handleTreatmentSelection = index => {
     setSelectedTreatmentIndex(index);
