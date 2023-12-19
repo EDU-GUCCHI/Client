@@ -76,8 +76,8 @@ export class ScenarioController {
       this._storage.person,
     );
     let isWeekDay = this._intervalHandler.processWeek();
-    if (isWeekDay) {
-      this.reprocessWeek();
+    if (isWeekDay) { // change this. just a placeholder for logic 
+      this.reprocessWeek(); // abstract this method to just processWeek
       // on exit stop clock and remove observers
     }
     else {
