@@ -1,6 +1,6 @@
-import { Event } from "./Event";
-import { AutoType } from "./EventTypes";
-import { UserInteractableEvent } from "./UserInteractableEvent";
+import {Event} from './Event';
+import {AutoType} from './EventTypes';
+import {UserInteractableEvent} from './UserInteractableEvent';
 
 interface ParsedOption {
   option: string;
@@ -15,6 +15,7 @@ interface ParsedEvent {
   symptoms: object;
   treatment: object;
   cause: object;
+  dateObject: string;
 }
 
 interface ParsedDay {
@@ -26,7 +27,7 @@ interface ParsedDay {
 function parseEventsToFormat(events: Event[]): ParsedDay[] {
   const parsedDays: ParsedDay[] = [];
 
-  events.forEach((event) => {
+  events.forEach(event => {
     let interactable;
     if (event.autoType === AutoType.AUTO_EVENT) {
       interactable = false;
@@ -34,13 +35,16 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
       interactable = true;
     }
     const timestamp = event.timeStamp;
-    const date = `${timestamp.getDate()}/${timestamp.getMonth() + 1}/${timestamp.getFullYear()}`;
+    const date = `${timestamp.getDate()}/${
+      timestamp.getMonth() + 1
+    }/${timestamp.getFullYear()}`;
     const day = getDayOfWeek(timestamp);
+    const dateObject = timestamp.toISOString();
 
-    let parsedDay = parsedDays.find((d) => d.date === date && d.day === day);
+    let parsedDay = parsedDays.find(d => d.date === date && d.day === day);
 
     if (!parsedDay) {
-      parsedDay = { date, day, events: [] };
+      parsedDay = {date, day, events: []};
       parsedDays.push(parsedDay);
     }
 
@@ -51,13 +55,20 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
       symptoms: [],
       treatment: [],
       cause: [],
+      dateObject: dateObject,
     };
 
     if (event instanceof UserInteractableEvent) {
       // If it's a UserInteractableEvent, populate the parsedEvent with its data
-      parsedEvent.symptoms = parseOptions(event.symptomOptions as { [key: string]: boolean });
-      parsedEvent.treatment = parseOptions(event.treatmentOptions as { [key: string]: boolean });
-      parsedEvent.cause = parseOptions(event.causeOptions as { [key: string]: boolean });
+      parsedEvent.symptoms = parseOptions(
+        event.symptomOptions as {[key: string]: boolean},
+      );
+      parsedEvent.treatment = parseOptions(
+        event.treatmentOptions as {[key: string]: boolean},
+      );
+      parsedEvent.cause = parseOptions(
+        event.causeOptions as {[key: string]: boolean},
+      );
     }
 
     parsedDay.events.push(parsedEvent);
@@ -66,7 +77,7 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
   return parsedDays;
 }
 
-function parseOptions(options: { [key: string]: boolean }): ParsedOption[] {
+function parseOptions(options: {[key: string]: boolean}): ParsedOption[] {
   // Check if options is an object and not null
   if (typeof options !== 'object' || options === null) {
     return [];
@@ -80,7 +91,15 @@ function parseOptions(options: { [key: string]: boolean }): ParsedOption[] {
 }
 
 function getDayOfWeek(date: Date): string {
-  const days = ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag'];
+  const days = [
+    'Söndag',
+    'Måndag',
+    'Tisdag',
+    'Onsdag',
+    'Torsdag',
+    'Fredag',
+    'Lördag',
+  ];
   return days[date.getDay()];
 }
 
@@ -90,4 +109,4 @@ function formatTime(date: Date): string {
   return `${hours}:${minutes}`;
 }
 
-export { parseEventsToFormat };
+export {parseEventsToFormat};

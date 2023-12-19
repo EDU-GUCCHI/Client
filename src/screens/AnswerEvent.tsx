@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {s} from 'react-native-wind';
 import MultiSelectionButtons from '../components/MultiSelectionButtons';
@@ -7,6 +7,7 @@ import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
 
 function AnswerEventScreen({route}) {
+  const controller = useScenarioController();
   const event = route.params?.event;
   const [submitted, setSubmitted] = useState(false);
   const [selectedTreatmentIndex, setSelectedTreatmentIndex] = useState(null);
@@ -14,6 +15,33 @@ function AnswerEventScreen({route}) {
     new Set(),
   );
   const [selectedCauseIndices, setSelectedCauseIndices] = useState(new Set());
+  useEffect(() => {
+    // Use the updated values after state has been updated
+    console.log('Selected Treatment Index:', selectedTreatmentIndex);
+
+    console.log(
+      'Selected Symptom Indices:',
+      Array.from(selectedSymptomIndices),
+    );
+
+    console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
+
+    // Other logic you want to execute after state updates
+    const date = new Date(event.dateObject);
+    if (selectedTreatmentIndex != null) {
+      const symptomIndicesArray = Array.from(
+        selectedSymptomIndices,
+      ) as number[];
+      const causeIndicesArray = Array.from(selectedCauseIndices) as number[];
+
+      /* controller.storage.updateEvent(
+        date,
+        selectedTreatmentIndex,
+        symptomIndicesArray,
+        causeIndicesArray,
+      ); */
+    }
+  }, [selectedTreatmentIndex, selectedSymptomIndices, selectedCauseIndices]);
 
   const handleTreatmentSelection = index => {
     setSelectedTreatmentIndex(index);
@@ -39,7 +67,6 @@ function AnswerEventScreen({route}) {
 
   // Function to handle the submission of all answers
   const handleSubmitAll = () => {
-
     setSubmitted(true);
     console.log('Selected Treatment Index:', selectedTreatmentIndex);
     console.log(
