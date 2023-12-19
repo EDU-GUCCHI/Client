@@ -39,12 +39,17 @@ const SingleSelectionButtons = ({
     }
   }, [submitted, options, correctAnswers, selectedButton]);
 
+  useEffect(() => {
+    if (submitted) {
+      onSelection(selectedIndex); // Call onSelection with the current indices
+    }
+  }, [submitted]); // Depend only on submitted
+
   const handleButtonPress = (option, index) => {
     if (submitted) return; // Prevent interaction after submission
     setSelectedButton(option);
     setSelectedIndex(index); // Ensure this state is being updated
     console.log('Selected button index: ', index);
-    onSelection(index); // Call the passed function with the index
   };
 
   const getButtonStyle = option => {

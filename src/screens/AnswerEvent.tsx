@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {s} from 'react-native-wind';
 import MultiSelectionButtons from '../components/MultiSelectionButtons';
@@ -11,35 +11,22 @@ function AnswerEventScreen({route}) {
   const event = route.params?.event;
   const [submitted, setSubmitted] = useState(false);
   const [selectedTreatmentIndex, setSelectedTreatmentIndex] = useState(null);
-  const [selectedSymptomIndices, setSelectedSymptomIndices] = useState(
-    new Set(),
-  );
-  const [selectedCauseIndices, setSelectedCauseIndices] = useState(new Set());
+  const [selectedSymptomIndices, setSelectedSymptomIndices] = useState([]);
+  const [selectedCauseIndices, setSelectedCauseIndices] = useState([]);
+  
+  const initialRender = useRef(true);
+
   useEffect(() => {
-    // Use the updated values after state has been updated
-    console.log('Selected Treatment Index:', selectedTreatmentIndex);
-
-    console.log(
-      'Selected Symptom Indices:',
-      Array.from(selectedSymptomIndices),
-    );
-
-    console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
-
-    // Other logic you want to execute after state updates
-    const date = new Date(event.dateObject);
-    if (selectedTreatmentIndex != null) {
-      const symptomIndicesArray = Array.from(
-        selectedSymptomIndices,
-      ) as number[];
-      const causeIndicesArray = Array.from(selectedCauseIndices) as number[];
-
-      /* controller.storage.updateEvent(
-        date,
-        selectedTreatmentIndex,
-        symptomIndicesArray,
-        causeIndicesArray,
-      ); */
+    if (initialRender.current) {
+      initialRender.current = false;
+    } else {
+      // Your effect here
+      console.log('Selected Treatment Index:', selectedTreatmentIndex);
+      console.log(
+        'Selected Symptom Indices:',
+        Array.from(selectedSymptomIndices),
+      );
+      console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
     }
   }, [selectedTreatmentIndex, selectedSymptomIndices, selectedCauseIndices]);
 
@@ -49,12 +36,10 @@ function AnswerEventScreen({route}) {
 
   const handleSymptomSelection = indices => {
     setSelectedSymptomIndices(indices); // Update state with received array
-    console.log('Received Symptom Indices:', indices);
   };
 
   const handleCauseSelection = indices => {
     setSelectedCauseIndices(indices); // Update state with received array
-    console.log('Received Cause Indices:', indices);
   };
 
   // Function to extract correct answers
@@ -68,12 +53,6 @@ function AnswerEventScreen({route}) {
   // Function to handle the submission of all answers
   const handleSubmitAll = () => {
     setSubmitted(true);
-    console.log('Selected Treatment Index:', selectedTreatmentIndex);
-    console.log(
-      'Selected Symptom Indices:',
-      Array.from(selectedSymptomIndices),
-    );
-    console.log('Selected Cause Indices:', Array.from(selectedCauseIndices));
   };
 
   if (!event) {
@@ -96,7 +75,7 @@ function AnswerEventScreen({route}) {
             correctAnswers={correctTreatment}
             submitted={submitted}
             onAnswerEvaluation={() => {}}
-            onSelection={handleTreatmentSelection} // Pass the function here
+            onSelection={handleTreatmentSelection}
           />
         </View>
 
