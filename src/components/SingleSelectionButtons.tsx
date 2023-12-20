@@ -64,21 +64,28 @@ const SingleSelectionButtons = ({
     const result = answersEvaluation[option];
     if (!result) return s`bg-warmGray-100 border-gray-100`; // Fallback style
 
+    // Color and border for selected correct and incorrect answers when
+    // viewing an already answered event
     if (eventAnswered && result.chosen) {
       return result.correct
         ? s`border-4 bg-green-400 border-black`
         : s`border-4 bg-red-400 border-black`;
     }
+    // Color and border for selected correct and incorrect answers when
+    // an event is submitted and the user is viewing the results
     if (submitted && selectedButton === option) {
       return result.correct
         ? s`border-4 bg-green-400 border-black`
         : s`border-4 bg-red-400 border-black`;
     }
+    // Color for all non-selected answers when an event is submitted
     if (submitted && result) {
       return result.correct
         ? s`bg-green-400 border-green-500 text-white`
         : s`bg-red-400 border-red-500 text-white`;
     }
+    // Color and border for when the user selects an option
+    // and deselects it before submitting
     return option === selectedButton
       ? s`bg-blue-200 border-blue-400`
       : s`bg-warmGray-100 border-gray-100`;
