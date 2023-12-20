@@ -15,7 +15,7 @@ interface ParsedEvent {
   treatment: object;
   cause: object;
   dateObject: string;
-  answered: boolean;
+  eventAnswered: boolean;
 }
 
 interface ParsedDay {
@@ -56,7 +56,7 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
       treatment: [],
       cause: [],
       dateObject: dateObject,
-      answered: event.answered,
+      eventAnswered: event.answered,
     };
 
     if (event instanceof UserInteractableEvent) {
@@ -87,7 +87,6 @@ function parseOptions(options: {[key: string]: boolean}): ParsedOption[] {
   return Object.entries(options).map(([option, correct]) => ({
     option,
     correct,
-    answered: false,
   }));
 }
 

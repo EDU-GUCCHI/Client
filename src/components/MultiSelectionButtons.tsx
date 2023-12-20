@@ -1,13 +1,16 @@
 import {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import {s} from 'react-native-wind';
+import {AnswerOptions} from '../backend/model/event/AnswerOptions';
 
 const MultiSelectionButtons = ({
   options,
   correctAnswers,
+  chosenAnswers,
   submitted,
+  eventAnswered,
   onAnswerEvaluation = () => {},
-  onSelection, // New prop for handling selection
+  onSelection,
 }) => {
   const [answersEvaluation, setAnswersEvaluation] = useState({});
   const [selectedButtons, setSelectedButtons] = useState<Set<string>>(
@@ -16,9 +19,8 @@ const MultiSelectionButtons = ({
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
   useEffect(() => {
-    // Initialize answersEvaluation with all options
     const initialEvaluation = {};
-    options.forEach((option, index) => {
+    options.forEach(option => {
       initialEvaluation[option] = {
         selected: false,
         correct: false,
@@ -34,12 +36,13 @@ const MultiSelectionButtons = ({
         evaluation[option] = {
           selected: selectedButtons.has(option),
           correct: correctAnswers.includes(option),
+          chosen: chosenAnswers.includes(option),
         };
       });
       setAnswersEvaluation(evaluation);
       onAnswerEvaluation(evaluation);
     }
-  }, [submitted, options, correctAnswers, selectedButtons]);
+  }, [submitted, options, correctAnswers, chosenAnswers, selectedButtons]);
 
   // Separate useEffect for handling selection on submission
   useEffect(() => {
@@ -49,7 +52,8 @@ const MultiSelectionButtons = ({
   }, [submitted]); // Depend only on submitted
 
   const handleButtonPress = (option: string, index: number) => {
-    if (submitted) return;
+    if (submitted) return; // Disable changes after submission
+
     const newSelectedButtons = new Set(selectedButtons);
     let newSelectedIndices = [...selectedIndices];
 
@@ -63,18 +67,26 @@ const MultiSelectionButtons = ({
 
     setSelectedButtons(newSelectedButtons);
     setSelectedIndices(newSelectedIndices);
-
-    console.log('Selected button index: ', index);
   };
 
   const getButtonStyle = option => {
     const result = answersEvaluation[option];
+    if (!result) return s`bg-warmGray-100 border-gray-100`; // Fallback style
+
+    if (eventAnswered && result.chosen) {
+      return result.correct
+        ? s`border-4 bg-green-400 border-black`
+        : s`border-4 bg-red-400 border-black`;
+    }
+    if (submitted && selectedButtons.has(option)) {
+      return result.correct
+        ? s`border-4 bg-green-400 border-black`
+        : s`border-4 bg-red-400 border-black`;
+    }
     if (submitted && result) {
-      if (result.selected) {
-        return result.correct
-          ? s`bg-green-400 border-green-500 text-white`
-          : s`bg-red-400 border-red-500 text-white`;
-      }
+      return result.correct
+        ? s`bg-green-400 border-green-500 text-white`
+        : s`bg-red-400 border-red-500 text-white`;
     }
     return selectedButtons.has(option)
       ? s`bg-blue-200 border-blue-400`
@@ -83,21 +95,18 @@ const MultiSelectionButtons = ({
 
   return (
     <View style={s`flex flex-row flex-wrap items-center justify-center`}>
-      {options.map((option, index) => {
-        if (submitted && !selectedButtons.has(option)) return null; // Hide non-selected buttons after submission
-        return (
-          <TouchableOpacity
-            key={index}
-            style={[
-              s`p-2 px-3 m-1 items-center justify-center rounded-lg border`,
-              getButtonStyle(option),
-            ]}
-            onPress={() => handleButtonPress(option, index)}
-            disabled={submitted}>
-            <Text style={s`text-xl`}>{option}</Text>
-          </TouchableOpacity>
-        );
-      })}
+      {options.map((option, index) => (
+        <TouchableOpacity
+          key={index}
+          style={[
+            s`p-2 px-3 m-1 items-center justify-center rounded-lg`,
+            getButtonStyle(option),
+          ]}
+          onPress={() => handleButtonPress(option, index)}
+          disabled={submitted}>
+          <Text style={s`text-xl`}>{option}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };

@@ -127,7 +127,6 @@ export class EventController {
       {option: 'Ta insulin', correct: false, answered: false},
       {option: 'Vila', correct: false, answered: false},
     ]; */
-    const eventAnswered = false;
     const symptomOptions = new AnswerOptions([
       {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
       {optionString: 'Svag', optionCorrect: true, optionChosen: false},

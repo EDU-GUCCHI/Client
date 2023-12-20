@@ -10,11 +10,26 @@ function AnswerEventScreen({route}) {
   const controller = useScenarioController();
   const event = route.params?.event;
   const [submitted, setSubmitted] = useState(false);
-  const [selectedTreatmentIndex, setSelectedTreatmentIndex] = useState(null);
-  const [selectedSymptomIndices, setSelectedSymptomIndices] = useState([]);
-  const [selectedCauseIndices, setSelectedCauseIndices] = useState([]);
 
   const initialRender = useRef(true);
+
+  // Determine if the event has already been answered
+  const isEventAnswered = event.eventAnswered;
+
+  const initializeSelectionIndices = options =>
+    options
+      .map((option, index) => (option.correct.optionChosen ? index : null))
+      .filter(index => index !== null);
+
+  const [selectedTreatmentIndex, setSelectedTreatmentIndex] = useState(
+    isEventAnswered ? initializeSelectionIndices(event.treatment)[0] : null,
+  );
+  const [selectedSymptomIndices, setSelectedSymptomIndices] = useState(
+    isEventAnswered ? initializeSelectionIndices(event.symptoms) : [],
+  );
+  const [selectedCauseIndices, setSelectedCauseIndices] = useState(
+    isEventAnswered ? initializeSelectionIndices(event.cause) : [],
+  );
 
   useEffect(() => {
     if (initialRender.current) {
@@ -69,15 +84,31 @@ function AnswerEventScreen({route}) {
   const correctSymptoms = getCorrectAnswers(event.symptoms);
   const correctTreatment = getCorrectAnswers(event.treatment);
   const correctCause = getCorrectAnswers(event.cause);
+  
+  const getChosenAnswers = items =>
+    items
+      .filter(item => item.correct.optionChosen)
+      .map(item => item.correct.optionString);
+  
+  const chosenSymptoms = getChosenAnswers(event.symptoms);
+  const chosenTreatment = getChosenAnswers(event.treatment);
+  const chosenCause = getChosenAnswers(event.cause);
 
   // Function to handle the submission of all answers
   const handleSubmitAll = () => {
-    setSubmitted(true);
+    if (!isEventAnswered) {
+      setSubmitted(true);
+      // Rest of your submit logic
+    }
   };
 
   if (!event) {
     return <Text>No Event Data</Text>;
   }
+
+  // Render only selected options if event is answered, otherwise render all
+  const renderOptions = (options, eventAnswered) =>
+    eventAnswered ? options.filter(o => o.correct) : options;
 
   return (
     <ViewContainer style={s`flex h-full items-center`}>
@@ -91,11 +122,15 @@ function AnswerEventScreen({route}) {
           <Text style={s`text-2xl text-black font-semibold`}>Behandling</Text>
           <Text style={s`text-sm`}>Välj en</Text>
           <SingleSelectionButtons
-            options={event.treatment.map(t => t.correct.optionString)}
+            options={renderOptions(event.treatment, isEventAnswered).map(
+              t => t.correct.optionString,
+            )}
             correctAnswers={correctTreatment}
-            submitted={submitted}
+            chosenAnswers={chosenTreatment}
+            submitted={submitted || isEventAnswered}
+            eventAnswered={isEventAnswered}
             onAnswerEvaluation={() => {}}
-            onSelection={handleTreatmentSelection}
+            onSelection={isEventAnswered ? () => {} : handleTreatmentSelection}
           />
         </View>
 
@@ -104,11 +139,15 @@ function AnswerEventScreen({route}) {
           <Text style={s`text-2xl text-black font-semibold`}>Symptom</Text>
           <Text style={s`text-sm`}>Välj flera</Text>
           <MultiSelectionButtons
-            options={event.symptoms.map(s => s.correct.optionString)}
+            options={renderOptions(event.symptoms, isEventAnswered).map(
+              s => s.correct.optionString,
+            )}
             correctAnswers={correctSymptoms}
-            submitted={submitted}
+            chosenAnswers={chosenSymptoms}
+            submitted={submitted || isEventAnswered}
+            eventAnswered={isEventAnswered}
             onAnswerEvaluation={() => {}}
-            onSelection={handleSymptomSelection}
+            onSelection={isEventAnswered ? () => {} : handleSymptomSelection}
           />
         </View>
 
@@ -117,21 +156,26 @@ function AnswerEventScreen({route}) {
           <Text style={s`text-2xl text-black font-semibold`}>Orsak</Text>
           <Text style={s`text-sm`}>Välj flera</Text>
           <MultiSelectionButtons
-            options={event.cause.map(c => c.correct.optionString)}
+            options={renderOptions(event.cause, isEventAnswered).map(
+              c => c.correct.optionString,
+            )}
             correctAnswers={correctCause}
-            submitted={submitted}
+            chosenAnswers={chosenCause}
+            submitted={submitted || isEventAnswered}
+            eventAnswered={isEventAnswered}
             onAnswerEvaluation={() => {}}
-            onSelection={handleCauseSelection}
+            onSelection={isEventAnswered ? () => {} : handleCauseSelection}
           />
         </View>
 
-        {/* Submit All Button */}
-        <TouchableOpacity
-          style={s`bg-blue-500 p-3 rounded-lg m-2`}
-          onPress={handleSubmitAll}
-          disabled={submitted}>
-          <Text style={s`text-white`}>Submit All</Text>
-        </TouchableOpacity>
+        {/* Hide Submit All Button if event is answered */}
+        {isEventAnswered ? null : (
+          <TouchableOpacity
+            style={s`bg-blue-500 p-3 rounded-lg m-2`}
+            onPress={handleSubmitAll}>
+            <Text style={s`text-white`}>Submit All</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
     </ViewContainer>
   );
