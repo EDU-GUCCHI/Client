@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
-import { s } from 'react-native-wind';
-import { useScenarioController } from '../components/ScenarioControllerContext';
+import React, {useEffect, useState} from 'react';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
+import {s} from 'react-native-wind';
+import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
 import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
+import {useFocusEffect} from '@react-navigation/native';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -28,27 +29,27 @@ const a = [
         time: '08:00',
         title: 'Event 1',
         symptoms: [
-          { option: 'Alternative 1', correct: true, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: true, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
         treatment: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: true, answered: false },
-          { option: 'Alternative 5', correct: false, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: true, answered: false},
+          {option: 'Alternative 5', correct: false, answered: false},
           // ... more alternatives
         ],
         cause: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: false, answered: false },
-          { option: 'Alternative 3', correct: true, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: false, answered: false},
+          {option: 'Alternative 3', correct: true, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
       },
@@ -56,27 +57,27 @@ const a = [
         time: '11:30',
         title: 'Event 2',
         symptoms: [
-          { option: 'Alternative 1', correct: true, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: true, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
         treatment: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: true, answered: false },
-          { option: 'Alternative 5', correct: false, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: true, answered: false},
+          {option: 'Alternative 5', correct: false, answered: false},
           // ... more alternatives
         ],
         cause: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: false, answered: false },
-          { option: 'Alternative 3', correct: true, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: false, answered: false},
+          {option: 'Alternative 3', correct: true, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
       },
@@ -91,27 +92,27 @@ const a = [
         time: '09:25',
         title: 'Event 1',
         symptoms: [
-          { option: 'Alternative 1', correct: true, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: true, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
         treatment: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: true, answered: false },
-          { option: 'Alternative 5', correct: false, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: true, answered: false},
+          {option: 'Alternative 5', correct: false, answered: false},
           // ... more alternatives
         ],
         cause: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: false, answered: false },
-          { option: 'Alternative 3', correct: true, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: false, answered: false},
+          {option: 'Alternative 3', correct: true, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
       },
@@ -119,27 +120,27 @@ const a = [
         time: '13:30',
         title: 'Event 2',
         symptoms: [
-          { option: 'Alternative 1', correct: true, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: true, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
         treatment: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: true, answered: false },
-          { option: 'Alternative 5', correct: false, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: true, answered: false},
+          {option: 'Alternative 5', correct: false, answered: false},
           // ... more alternatives
         ],
         cause: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: false, answered: false },
-          { option: 'Alternative 3', correct: true, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: false, answered: false},
+          {option: 'Alternative 3', correct: true, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
       },
@@ -154,27 +155,27 @@ const a = [
         time: '08:30',
         title: 'Event 1',
         symptoms: [
-          { option: 'Alternative 1', correct: true, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: true, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
         treatment: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: true, answered: false },
-          { option: 'Alternative 5', correct: false, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: true, answered: false},
+          {option: 'Alternative 5', correct: false, answered: false},
           // ... more alternatives
         ],
         cause: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: false, answered: false },
-          { option: 'Alternative 3', correct: true, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: false, answered: false},
+          {option: 'Alternative 3', correct: true, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
       },
@@ -182,27 +183,27 @@ const a = [
         time: '10:30',
         title: 'Event 2',
         symptoms: [
-          { option: 'Alternative 1', correct: true, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: true, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
         treatment: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: true, answered: false },
-          { option: 'Alternative 3', correct: false, answered: false },
-          { option: 'Alternative 4', correct: true, answered: false },
-          { option: 'Alternative 5', correct: false, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: true, answered: false},
+          {option: 'Alternative 3', correct: false, answered: false},
+          {option: 'Alternative 4', correct: true, answered: false},
+          {option: 'Alternative 5', correct: false, answered: false},
           // ... more alternatives
         ],
         cause: [
-          { option: 'Alternative 1', correct: false, answered: false },
-          { option: 'Alternative 2', correct: false, answered: false },
-          { option: 'Alternative 3', correct: true, answered: false },
-          { option: 'Alternative 4', correct: false, answered: false },
-          { option: 'Alternative 5', correct: true, answered: false },
+          {option: 'Alternative 1', correct: false, answered: false},
+          {option: 'Alternative 2', correct: false, answered: false},
+          {option: 'Alternative 3', correct: true, answered: false},
+          {option: 'Alternative 4', correct: false, answered: false},
+          {option: 'Alternative 5', correct: true, answered: false},
           // ... more alternatives
         ],
       },
@@ -212,9 +213,22 @@ const a = [
   // ... other days and events
 ];
 
-function MyDayScreen({ navigation }: Props) {
+function MyDayScreen({navigation}: Props) {
   const controller = useScenarioController();
-  const weeklyEvents = controller.storage.eventsJson || [];
+  const [weeklyEvents, setWeeklyEvents] = useState(
+    controller.storage.eventsJson || [],
+  );
+
+  // useFocusEffect to update weeklyEvents when the screen comes into focus
+  useFocusEffect(() => {
+    const updatedEvents = controller.storage.eventsJson || [];
+
+    // Check if the events have changed before updating the state
+    if (JSON.stringify(updatedEvents) !== JSON.stringify(weeklyEvents)) {
+      setWeeklyEvents(updatedEvents);
+    }
+    console.log(JSON.stringify(updatedEvents));
+  });
   //console.log(weeklyEvents, 'weekly events ---------------'); // Ensure this is always an array
   //const weeklyParsed = JSON.stringify(weeklyEvents);
   //console.log(weeklyParsed, 'weekly parsed ---------------');
@@ -284,7 +298,7 @@ function MyDayScreen({ navigation }: Props) {
                 locations={[0, 0.8]}
                 useAngle={true}
                 angle={25}
-                angleCenter={{ x: 0.5, y: 0.6 }}
+                angleCenter={{x: 0.5, y: 0.6}}
               />
             );
           } else {
@@ -299,7 +313,7 @@ function MyDayScreen({ navigation }: Props) {
                 locations={[0, 0.8]}
                 useAngle={true}
                 angle={25}
-                angleCenter={{ x: 0.5, y: 0.6 }}
+                angleCenter={{x: 0.5, y: 0.6}}
               />
             );
           }
