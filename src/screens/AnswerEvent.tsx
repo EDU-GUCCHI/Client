@@ -44,12 +44,6 @@ function AnswerEventScreen({route}) {
           symptomIndicesArray,
           causeIndicesArray,
         );
-        console.log(
-          date,
-          selectedTreatmentIndex,
-          symptomIndicesArray,
-          causeIndicesArray,
-        );
       }
     }
   }, [selectedTreatmentIndex, selectedSymptomIndices, selectedCauseIndices]);
@@ -68,7 +62,9 @@ function AnswerEventScreen({route}) {
 
   // Function to extract correct answers
   const getCorrectAnswers = items =>
-    items.filter(item => item.correct.correct).map(item => item.correct.option);
+    items
+      .filter(item => item.correct.optionCorrect)
+      .map(item => item.correct.optionString);
 
   const correctSymptoms = getCorrectAnswers(event.symptoms);
   const correctTreatment = getCorrectAnswers(event.treatment);

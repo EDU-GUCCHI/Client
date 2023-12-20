@@ -24,6 +24,18 @@ export class AnswerOptions {
   public setOptionFlag(index: number) {
     this._options[index].optionChosen = true;
   }
+  toString(): string {
+    const optionsString = this._options
+      .map(
+        (option, index) =>
+          `Option ${index + 1}: ${option.optionString} (Correct: ${
+            option.optionCorrect
+          }, Chosen: ${option.optionChosen})`,
+      )
+      .join('\n');
+
+    return `Answer Options:\n${optionsString}\nAnswered: ${this._answered}`;
+  }
 
   private getDefaultOptions(): Option[] {
     return [

@@ -85,7 +85,11 @@ export class UserInteractableEvent extends Event {
     causeIndexes.forEach(num => {
       this._causeOptions.setOptionFlag(num);
     });
+    //TODO: uppdatera
 
-    console.log(this);
+    /* console.log(this);
+    console.log(this._treatmentOptions.toString());
+    console.log(this._symptomOptions.toString());
+    console.log(this._causeOptions.toString()); */
   }
 }
