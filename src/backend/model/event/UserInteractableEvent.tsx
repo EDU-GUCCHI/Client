@@ -16,7 +16,6 @@ export class UserInteractableEvent extends Event {
   private _symptomOptions: AnswerOptions;
   private _causeOptions: AnswerOptions;
   private _treatmentOptions: AnswerOptions;
-  private _answered: boolean;
 
   public constructor(
     autoType: AutoType,
@@ -31,7 +30,6 @@ export class UserInteractableEvent extends Event {
     this._symptomOptions = symptomOptions;
     this._causeOptions = causeOptions;
     this._treatmentOptions = treatmentOptions;
-    this._answered = false;
   }
 
   /**
@@ -61,9 +59,7 @@ export class UserInteractableEvent extends Event {
   get answered(): boolean {
     return this._answered;
   }
-  set answered(answered: boolean) {
-    this._answered = answered;
-  }
+
   updateOptionsVariable(
     treatmentIndex: number,
     symptomIndexes: number[],
@@ -85,11 +81,6 @@ export class UserInteractableEvent extends Event {
     causeIndexes.forEach(num => {
       this._causeOptions.setOptionFlag(num);
     });
-    //TODO: uppdatera
-
-    /* console.log(this);
-    console.log(this._treatmentOptions.toString());
-    console.log(this._symptomOptions.toString());
-    console.log(this._causeOptions.toString()); */
+    this._answered = true;
   }
 }

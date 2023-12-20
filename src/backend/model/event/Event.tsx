@@ -13,6 +13,7 @@ export class Event {
   private readonly _eventType: EventType;
   private readonly _timeStamp: Date;
   private readonly _description: string;
+  _answered: boolean;
 
   /**
    *
@@ -36,6 +37,7 @@ export class Event {
     this._eventType = eventType;
     this._timeStamp = timeStamp;
     this._description = description;
+    this._answered = false;
   }
 
   /**
@@ -53,6 +55,9 @@ export class Event {
   }
   get description() {
     return this._description;
+  }
+  set answered(answered: boolean) {
+    this._answered = answered;
   }
   updateOptionsVariable(
     treatmentIndex: number,

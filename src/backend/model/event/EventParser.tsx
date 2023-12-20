@@ -5,7 +5,6 @@ import {UserInteractableEvent} from './UserInteractableEvent';
 interface ParsedOption {
   option: string;
   correct: boolean;
-  answered: boolean;
 }
 
 interface ParsedEvent {
@@ -16,6 +15,7 @@ interface ParsedEvent {
   treatment: object;
   cause: object;
   dateObject: string;
+  answered: boolean;
 }
 
 interface ParsedDay {
@@ -56,6 +56,7 @@ function parseEventsToFormat(events: Event[]): ParsedDay[] {
       treatment: [],
       cause: [],
       dateObject: dateObject,
+      answered: event.answered,
     };
 
     if (event instanceof UserInteractableEvent) {
