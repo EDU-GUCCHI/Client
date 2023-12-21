@@ -111,7 +111,7 @@ export class EventController {
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
-    const description = 'Low blood sugar';
+    const description = 'Lågt blodsocker';
     /* const symptomOptions = [
       {option: 'Svettig', correct: true, answered: false},
       {option: 'Svag', correct: true, answered: false},

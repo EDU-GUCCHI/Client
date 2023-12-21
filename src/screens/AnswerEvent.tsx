@@ -5,6 +5,7 @@ import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
+import BackButton from '../components/BackButton';
 
 function AnswerEventScreen({route}) {
   const controller = useScenarioController();
@@ -84,12 +85,12 @@ function AnswerEventScreen({route}) {
   const correctSymptoms = getCorrectAnswers(event.symptoms);
   const correctTreatment = getCorrectAnswers(event.treatment);
   const correctCause = getCorrectAnswers(event.cause);
-  
+
   const getChosenAnswers = items =>
     items
       .filter(item => item.correct.optionChosen)
       .map(item => item.correct.optionString);
-  
+
   const chosenSymptoms = getChosenAnswers(event.symptoms);
   const chosenTreatment = getChosenAnswers(event.treatment);
   const chosenCause = getChosenAnswers(event.cause);
@@ -112,13 +113,15 @@ function AnswerEventScreen({route}) {
 
   return (
     <ViewContainer style={s`flex h-full items-center`}>
-      <ScrollView style={s`w-full`}>
-        <Text
-          style={s`text-4xl text-black font-semibold w-80 text-center my-4`}>
-          {event.title}
-        </Text>
-        {/* Treatment */}
+      <BackButton />
+      <ScrollView style={s`w-full mt-16`}>
         <View style={s`items-center`}>
+          <Text
+            style={s`text-4xl text-black font-semibold w-80 text-center my-4`}>
+            {event.title}
+          </Text>
+
+          {/* Treatment */}
           <Text style={s`text-2xl text-black font-semibold`}>Behandling</Text>
           <Text style={s`text-sm`}>Välj en</Text>
           <SingleSelectionButtons
