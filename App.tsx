@@ -13,10 +13,12 @@ import AnswerEventScreen from './src/screens/AnswerEvent';
 import AboutGotchiScreen from './src/screens/AboutGotchi';
 import BeforeWeBeginScreen from './src/screens/BeforeWeBegin';
 import {ScenarioControllerProvider} from './src/components/ScenarioControllerContext';
+import {ScenarioController} from './src/backend/controller/controllers/ScenarioController';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const scenarioController = new ScenarioController();
   return (
     <ScenarioControllerProvider>
       <NavigationContainer>

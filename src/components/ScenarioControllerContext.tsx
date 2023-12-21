@@ -7,6 +7,7 @@ const ScenarioControllerContext = createContext<ScenarioControllerType>(null);
 
 export const ScenarioControllerProvider = ({ children }) => {
   const [scenarioController, setScenarioController] = useState<ScenarioControllerType>(null);
+  
   useEffect(() => {
     const initScenarioController = async () => {
       const controller = new ScenarioController();
@@ -15,6 +16,7 @@ export const ScenarioControllerProvider = ({ children }) => {
     initScenarioController();
   }, []);
   return (
+    
     <ScenarioControllerContext.Provider value={scenarioController}>
       {children}
     </ScenarioControllerContext.Provider>
