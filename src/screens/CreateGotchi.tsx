@@ -49,11 +49,24 @@ function CreateGotchiScreen({navigation}: Props) {
   const [classCode, setClassCode] = useState('');
   const [institutionName, setInstitutionName] = useState('');
 
-  const controller = useScenarioController();
-  const GUIController = controller.GUIController;
+const {scenarioController, isLoading} = useScenarioController();
+
+  const handlePress = () => {
+    if (scenarioController && scenarioController.checkPermissions) {
+      console.log('scenarioController', scenarioController);
+      console.log('checkPermissions', scenarioController?.checkPermissions);
+      scenarioController.checkPermissions();
+      navigation.navigate('Home');
+    } else {
+      console.error(
+        'ScenarioController is not initialized or checkPermissions is not available',
+      );
+    }
+  };
+  const GUIController = scenarioController?.GUIController;
 
   useEffect(() => {
-    if (gotchiName !== '') {
+    if (GUIController) {
       GUIController.gotchisName = gotchiName;
     }
   }, [gotchiName, GUIController]);
@@ -107,10 +120,7 @@ function CreateGotchiScreen({navigation}: Props) {
             useAngle={true}
             angle={25}
             angleCenter={{x: 0.5, y: 0.3}}
-            onPress={() => {
-              navigation.navigate('Home');
-              controller.checkPermissions(); // start controller flow
-            }}
+            onPress={handlePress}
           />
         </View>
       </ViewContainer>

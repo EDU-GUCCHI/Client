@@ -65,13 +65,14 @@ export class ScenarioController {
   onLoadingChange = isLoading => {};
 
   checkPermissions = async () => {
+    this.setLoading(true);
     try {
       const settings = await notifee.getNotificationSettings();
-      this.setLoading(true);
 
       if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) {
         console.log('Loading', this._isLoading);
         this.run(); // run app if permissions are authorized
+        this.setLoading(false);
       } else {
         await notifee.requestPermission();
         Alert.alert('Slå på notifikationer för en bättre upplevelse');
@@ -92,11 +93,11 @@ export class ScenarioController {
     );
     this._eventController.pointOfEntryEvent();
     let isWeekDay = this._intervalHandler.processWeek();
+
     if (isWeekDay) {
       // change this. just a placeholder for logic
       this.reprocessWeek(); // abstract this method to just processWeek
       // on exit stop clock and remove observers
-      this.setLoading(false);
     } else {
       console.log(
         "can't start scenario on weekends! Scenarios are available: MON - FRI",
