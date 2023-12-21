@@ -24,8 +24,8 @@ type Props = {
 };
 
 function HomeScreen({navigation}: Props) {
-  const { isLoading } = useScenarioController();
-  console.log("isLoading in HomeScreen:", isLoading);
+  const {isLoading} = useScenarioController(); // Property 'isLoading' does not exist on type 'ScenarioController'.
+  console.log('isLoading in HomeScreen:', isLoading);
 
   return (
     <ViewContainer style={s`flex-1 justify-center items-center mt-0 mb-0`}>

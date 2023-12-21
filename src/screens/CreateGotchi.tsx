@@ -49,12 +49,12 @@ function CreateGotchiScreen({navigation}: Props) {
   const [classCode, setClassCode] = useState('');
   const [institutionName, setInstitutionName] = useState('');
 
-const {scenarioController, isLoading} = useScenarioController();
+  const {scenarioController, isLoading} = useScenarioController(); // Property 'scenarioController' does not exist on type 'ScenarioController'
 
   const handlePress = () => {
     if (scenarioController && scenarioController.checkPermissions) {
-      console.log('scenarioController', scenarioController);
-      console.log('checkPermissions', scenarioController?.checkPermissions);
+/*       console.log('scenarioController', scenarioController);
+      console.log('checkPermissions', scenarioController?.checkPermissions); */
       scenarioController.checkPermissions();
       navigation.navigate('Home');
     } else {

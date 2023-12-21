@@ -265,8 +265,6 @@ export class IntervallHandler {
     this._updateIncrement = 0;
     this._storage.bloodSugarValues = this._bloodSugarValues;
     console.log('Entire week reprocessed!');
-    this._isLoading = false;
-    console.log('Loading...', this._isLoading);
   }
 
   get bloodValue(): number {
