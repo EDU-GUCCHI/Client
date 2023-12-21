@@ -1,8 +1,9 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {s} from 'react-native-wind';
-import MultiSelectionButtons from '../components/MultiSelectionButtons';
+
 import {useScenarioController} from '../components/ScenarioControllerContext';
+import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
 import BackButton from '../components/BackButton';

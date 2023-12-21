@@ -66,7 +66,7 @@ function MyDayScreen({navigation}: Props) {
           <View style={s`w-full flex-row justify-between`}>
             {currentDayIndex > 0 ? (
               <TouchableOpacity onPress={goToPreviousDay} style={s`px-5 pb-5`}>
-                <Text style={s`text-5xl`}>←</Text>
+                <Text style={s`text-5xl text-black`}>←</Text>
               </TouchableOpacity>
             ) : (
               <View style={s`px-5 pb-5`}>
@@ -74,12 +74,12 @@ function MyDayScreen({navigation}: Props) {
               </View> // Placeholder view with the same padding as the button
             )}
             <Text
-              style={s`text-4xl text-center text-warmGray-600 font-semibold text-vertical-center`}>
+              style={s`text-4xl text-black text-center font-semibold text-vertical-center`}>
               {currentDay.day}
             </Text>
             {currentDayIndex < weeklyEvents.length - 1 ? (
               <TouchableOpacity onPress={goToNextDay} style={s`px-5 pb-5`}>
-                <Text style={s`text-5xl`}>→</Text>
+                <Text style={s`text-5xl text-black`}>→</Text>
               </TouchableOpacity>
             ) : (
               <View style={s`px-5 pb-5`}>
@@ -87,7 +87,8 @@ function MyDayScreen({navigation}: Props) {
               </View> // Placeholder view with the same padding as the button
             )}
           </View>
-          <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
+          <Text
+            style={s`text-2xl text-black text-center font-semibold`}>
             {currentDay.date}
           </Text>
         </View>
