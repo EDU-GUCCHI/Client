@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import {s} from 'react-native-wind';
+
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
 import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
-import {useFocusEffect} from '@react-navigation/native';
+import BackButton from '../components/BackButton';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -33,7 +35,7 @@ function MyDayScreen({navigation}: Props) {
     if (JSON.stringify(updatedEvents) !== JSON.stringify(weeklyEvents)) {
       setWeeklyEvents(updatedEvents);
     }
-    console.log(JSON.stringify(updatedEvents));
+    //console.log(JSON.stringify(updatedEvents));
   });
   //console.log(weeklyEvents, 'weekly events ---------------'); // Ensure this is always an array
 
@@ -57,7 +59,9 @@ function MyDayScreen({navigation}: Props) {
 
   return (
     <ViewContainer style={s`flex-grow`}>
-      <View style={s`py-2`}>
+      <BackButton />
+
+      <View style={s`py-2 mt-16`}>
         <View style={s`mb-5`}>
           <View style={s`w-full flex-row justify-between`}>
             {currentDayIndex > 0 ? (
