@@ -50,7 +50,6 @@ export class GUIController {
         if(this._bsIndex < this._bloodSugarValues.length) {
             this._bsIndex++;
         }
-        this._controller.gotchiBloodValue = newBloodSugar;
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
     }
     public resetIndex() {
@@ -116,6 +115,9 @@ export class GUIController {
     }
     get gotchisName(): string {
         return this._gotchisname;
+    }
+    get currentBloodValue() : number {
+        return this._bloodSugarValues[this._bsIndex];
     }
     get person(): Gotchi {
         return this._controller.storage.person;

@@ -26,7 +26,7 @@ function MyGotchiScreen({ navigation }: Props) {
   const controller = useScenarioController();
   const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(
-    controller.storage.person.bloodValue.toFixed(1).toString(),
+    guiController.currentBloodValue.toFixed(1).toString(),
   );
 
   const updateBloodSugar = (newBloodSugar: string) => {
