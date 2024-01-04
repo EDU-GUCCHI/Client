@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, SafeAreaView, StatusBar, View } from 'react-native';
-import { useNotification } from '../hooks/useNotification';
+import {Button, SafeAreaView, StatusBar, View} from 'react-native';
+import {useNotification} from '../hooks/useNotification';
 import styles from '../styles/style';
-import notifee, { AndroidImportance } from '@notifee/react-native';
+import notifee, {AndroidImportance} from '@notifee/react-native';
 
 function NotifeeScreen() {
   const {
@@ -55,10 +55,7 @@ function NotifeeScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
       <View style={[styles.container]}>
-        <Button
-          title="Display Notification"
-          onPress={onDisplayNotification}
-        />
+        <Button title="Display Notification" onPress={onDisplayNotification} />
         <Button
           title="Create Trigger Notification"
           onPress={handleCreateTriggerNotification}

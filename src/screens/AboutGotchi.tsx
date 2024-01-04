@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { s } from 'react-native-wind';
-import { useScenarioController } from '../components/ScenarioControllerContext';
+import React, {useState, useEffect} from 'react';
+import {Text, View, ScrollView} from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {s} from 'react-native-wind';
+import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 
 type RootStackParamList = {
@@ -15,7 +15,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function AttributeSection({ label, value, description }: any) {
+function AttributeSection({label, value, description}: any) {
   return (
     <View style={s`mb-6 border-b p-4 border-warmGray-300`}>
       <View style={s`flex flex-row items-center pb-2 mb-2`}>
@@ -27,7 +27,7 @@ function AttributeSection({ label, value, description }: any) {
   );
 }
 
-function AboutGotchiScreen({ navigation }: Props) {
+function AboutGotchiScreen({navigation}: Props) {
   const controller = useScenarioController();
   const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(
@@ -46,7 +46,8 @@ function AboutGotchiScreen({ navigation }: Props) {
   }, []);
 
   return (
-    <ViewContainer style={s`items-start justify-start h-full px-5 py-2 bg-coolGray-100`}>
+    <ViewContainer
+      style={s`items-start justify-start h-full px-5 py-2 bg-coolGray-100`}>
       <ScrollView style={s`w-full`}>
         <View style={s`flex`}>
           <AttributeSection
@@ -79,6 +80,3 @@ function AboutGotchiScreen({ navigation }: Props) {
 }
 
 export default AboutGotchiScreen;
-
-
-

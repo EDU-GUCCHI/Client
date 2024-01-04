@@ -1,12 +1,41 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {RouteProp} from '@react-navigation/native';
 import {s} from 'react-native-wind';
 import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
 
-function AnswerEventScreen({route}) {
+type EventOption = {
+  correct: {
+    optionChosen: boolean;
+    optionCorrect: boolean;
+    optionString: string;
+  };
+};
+
+type Event = {
+  title: string;
+  eventAnswered: boolean;
+  dateObject: Date;
+  treatment: EventOption[];
+  symptoms: EventOption[];
+  cause: EventOption[];
+};
+
+// Define a type for the screen's route parameter
+type AnswerEventScreenRouteParamList = {
+  AnswerEventScreen: {
+    event: Event;
+  };
+};
+
+type AnswerEventScreenProps = {
+  route: RouteProp<AnswerEventScreenRouteParamList, 'AnswerEventScreen'>;
+};
+
+function AnswerEventScreen({route}: AnswerEventScreenProps) {
   const controller = useScenarioController();
   const event = route.params?.event;
   const [submitted, setSubmitted] = useState(false);
@@ -16,7 +45,7 @@ function AnswerEventScreen({route}) {
   // Determine if the event has already been answered
   const isEventAnswered = event.eventAnswered;
 
-  const initializeSelectionIndices = options =>
+  const initializeSelectionIndices = (options: EventOption[]) =>
     options
       .map((option, index) => (option.correct.optionChosen ? index : null))
       .filter(index => index !== null);
@@ -63,33 +92,31 @@ function AnswerEventScreen({route}) {
     }
   }, [selectedTreatmentIndex, selectedSymptomIndices, selectedCauseIndices]);
 
-  const handleTreatmentSelection = index => {
+  const handleTreatmentSelection = (index: number) => {
     setSelectedTreatmentIndex(index);
   };
 
-  const handleSymptomSelection = indices => {
-    setSelectedSymptomIndices(indices); // Update state with received array
+  const handleSymptomSelection = (indices: number[]) => {
+    setSelectedSymptomIndices(indices);
   };
 
-  const handleCauseSelection = indices => {
-    setSelectedCauseIndices(indices); // Update state with received array
+  const handleCauseSelection = (indices: number[]) => {
+    setSelectedCauseIndices(indices);
   };
 
-  // Function to extract correct answers
-  const getCorrectAnswers = items =>
+  const getCorrectAnswers = (items: EventOption[]) =>
     items
       .filter(item => item.correct.optionCorrect)
+      .map(item => item.correct.optionString);
+
+  const getChosenAnswers = (items: EventOption[]) =>
+    items
+      .filter(item => item.correct.optionChosen)
       .map(item => item.correct.optionString);
 
   const correctSymptoms = getCorrectAnswers(event.symptoms);
   const correctTreatment = getCorrectAnswers(event.treatment);
   const correctCause = getCorrectAnswers(event.cause);
-  
-  const getChosenAnswers = items =>
-    items
-      .filter(item => item.correct.optionChosen)
-      .map(item => item.correct.optionString);
-  
   const chosenSymptoms = getChosenAnswers(event.symptoms);
   const chosenTreatment = getChosenAnswers(event.treatment);
   const chosenCause = getChosenAnswers(event.cause);
@@ -107,7 +134,7 @@ function AnswerEventScreen({route}) {
   }
 
   // Render only selected options if event is answered, otherwise render all
-  const renderOptions = (options, eventAnswered) =>
+  const renderOptions = (options: EventOption[], eventAnswered: boolean) =>
     eventAnswered ? options.filter(o => o.correct) : options;
 
   return (

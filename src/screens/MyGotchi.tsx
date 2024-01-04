@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { s } from 'react-native-wind';
+import React, {useState, useEffect} from 'react';
+import {Text, View, TouchableOpacity} from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {s} from 'react-native-wind';
 import MyGotchiStatus from '../components/MyGotchiComponents/MyGotchiStatus';
-import { useScenarioController } from '../components/ScenarioControllerContext';
+import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
 import LgButton from '../components/LgButton';
@@ -22,7 +22,7 @@ const water = '2 L';
 const heartRate = '80 bpm';
 const sleep = '8h 24m';
 
-function MyGotchiScreen({ navigation }: Props) {
+function MyGotchiScreen({navigation}: Props) {
   const controller = useScenarioController();
   const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(
@@ -41,7 +41,8 @@ function MyGotchiScreen({ navigation }: Props) {
   }, []);
 
   return (
-    <ViewContainer style={s`flex-1 items-center justify-start px-5 py-2 bg-white`}>
+    <ViewContainer
+      style={s`flex-1 items-center justify-start px-5 py-2 bg-white`}>
       {/* Profile Info */}
       <View style={s`items-center my-5`}>
         <View style={s`bg-cyan-300 p-4 rounded-full`}>
@@ -85,12 +86,12 @@ function MyGotchiScreen({ navigation }: Props) {
       <TouchableOpacity
         style={s`p-2 bg-warmGray-500 rounded-lg`}
         onPress={() => navigation.navigate('AboutGotchi')}>
-        <Text style={s`text-white text-lg`}>Om {controller.storage.person.name}</Text>
+        <Text style={s`text-white text-lg`}>
+          Om {controller.storage.person.name}
+        </Text>
       </TouchableOpacity>
     </ViewContainer>
   );
 }
 
 export default MyGotchiScreen;
-
-

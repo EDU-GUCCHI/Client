@@ -1,12 +1,10 @@
 import React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { s } from 'react-native-wind';
-import { View, StatusBar, Platform, SafeAreaView } from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {s} from 'react-native-wind';
+import {View, StatusBar, Platform, SafeAreaView} from 'react-native';
 import LgButton from '../components/LgButton';
 import Title from '../components/Title';
 import ViewContainer from '../components/ViewContainer';
-
-
 
 type RootStackParamList = {
   Home: undefined;
@@ -22,11 +20,9 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-function HomeScreen({ navigation }: Props) {
+function HomeScreen({navigation}: Props) {
   return (
-
     <ViewContainer style={s`flex-1 justify-center items-center mt-0 mb-0`}>
-    
       <View style={s`flex-1 justify-center mt-20`}>
         <Title text="Välkommen till EDU-GOTCHI" />
       </View>
@@ -38,7 +34,7 @@ function HomeScreen({ navigation }: Props) {
           locations={[0, 0.7]}
           useAngle={true}
           angle={25}
-          angleCenter={{ x: 0.5, y: 1 }}
+          angleCenter={{x: 0.5, y: 1}}
           onPress={() => navigation.navigate('MyDay')}
         />
         <LgButton
@@ -47,7 +43,7 @@ function HomeScreen({ navigation }: Props) {
           locations={[0, 0.8]}
           useAngle={true}
           angle={25}
-          angleCenter={{ x: 0.5, y: 0.6 }}
+          angleCenter={{x: 0.5, y: 0.6}}
           onPress={() => navigation.navigate('MyGotchi')}
         />
         <LgButton
@@ -56,7 +52,7 @@ function HomeScreen({ navigation }: Props) {
           locations={[0, 0.9]}
           useAngle={true}
           angle={25}
-          angleCenter={{ x: 0.5, y: 0.4 }}
+          angleCenter={{x: 0.5, y: 0.4}}
           onPress={() => navigation.navigate('Instructions')}
         />
       </View>
@@ -65,9 +61,3 @@ function HomeScreen({ navigation }: Props) {
 }
 
 export default HomeScreen;
-
-
-
-
-
-

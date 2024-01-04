@@ -1,12 +1,26 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { ScenarioController } from '../backend/controller/controllers/ScenarioController';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from 'react';
+import {ScenarioController} from '../backend/controller/controllers/ScenarioController';
 
 type ScenarioControllerType = ScenarioController | null;
 
 const ScenarioControllerContext = createContext<ScenarioControllerType>(null);
 
-export const ScenarioControllerProvider = ({ children }) => {
-  const [scenarioController, setScenarioController] = useState<ScenarioControllerType>(null);
+// Add the type for children here
+type ScenarioControllerProviderProps = {
+  children: React.ReactNode;
+};
+
+export const ScenarioControllerProvider: React.FC<
+  ScenarioControllerProviderProps
+> = ({children}) => {
+  const [scenarioController, setScenarioController] =
+    useState<ScenarioControllerType>(null);
   useEffect(() => {
     const initScenarioController = async () => {
       const controller = new ScenarioController();
@@ -20,6 +34,7 @@ export const ScenarioControllerProvider = ({ children }) => {
     </ScenarioControllerContext.Provider>
   );
 };
+
 export const useScenarioController = () => {
   const scenarioController = useContext(ScenarioControllerContext);
   if (scenarioController === null) {
