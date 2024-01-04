@@ -196,13 +196,13 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
         </View>
 
         {/* Hide Submit All Button if event is answered */}
-        {isEventAnswered ? null : (
+        {!isEventAnswered && !submitted ? (
           <TouchableOpacity
             style={s`bg-blue-500 p-3 rounded-lg m-2`}
             onPress={handleSubmitAll}>
             <Text style={s`text-white`}>Submit All</Text>
           </TouchableOpacity>
-        )}
+        ) : null}
       </ScrollView>
     </ViewContainer>
   );
