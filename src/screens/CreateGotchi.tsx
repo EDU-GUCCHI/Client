@@ -48,8 +48,7 @@ function CreateGotchiScreen({navigation}: Props) {
   const [classCode, setClassCode] = useState('');
   const [institutionName, setInstitutionName] = useState('');
 
-  const controller = useScenarioController();
-  const GUIController = controller.GUIController;
+  const {GUIController, checkPermissions} = useScenarioController(); // Destructure GUIController here
 
   useEffect(() => {
     if (gotchiName !== '') {
@@ -107,7 +106,7 @@ function CreateGotchiScreen({navigation}: Props) {
             angleCenter={{x: 0.5, y: 0.3}}
             onPress={() => {
               navigation.navigate('Home');
-              controller.checkPermissions(); // start controller flow
+              checkPermissions(); // start controller flow
             }}
           />
         </View>

@@ -9,7 +9,17 @@ import {ScenarioController} from '../backend/controller/controllers/ScenarioCont
 
 type ScenarioControllerType = ScenarioController | null;
 
-const ScenarioControllerContext = createContext<ScenarioControllerType>(null);
+type ScenarioControllerContextType = {
+  scenarioController: ScenarioControllerType;
+  isLoading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ScenarioControllerContext = createContext<ScenarioControllerContextType>({
+  scenarioController: null,
+  isLoading: false,
+  setLoading: () => {},
+});
 
 // Add the type for children here
 type ScenarioControllerProviderProps = {
@@ -20,25 +30,44 @@ export const ScenarioControllerProvider: React.FC<
   ScenarioControllerProviderProps
 > = ({children}) => {
   const [scenarioController, setScenarioController] =
-    useState<ScenarioControllerType>(null);
+    useState<ScenarioController | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    const initScenarioController = async () => {
-      const controller = new ScenarioController();
-      setScenarioController(controller);
-    };
-    initScenarioController();
+    const controller = new ScenarioController();
+    controller.setLoading = setIsLoading; // Allow ScenarioController to update isLoading
+    setScenarioController(controller);
   }, []);
+
+  const contextValue = {
+    scenarioController,
+    isLoading,
+    setLoading: setIsLoading,
+  };
+
   return (
-    <ScenarioControllerContext.Provider value={scenarioController}>
+    <ScenarioControllerContext.Provider value={contextValue}>
       {children}
     </ScenarioControllerContext.Provider>
   );
 };
 
 export const useScenarioController = () => {
-  const scenarioController = useContext(ScenarioControllerContext);
-  if (scenarioController === null) {
+  const context = useContext(ScenarioControllerContext);
+  if (!context || !context.scenarioController) {
     throw new Error('ScenarioController not yet initialized');
   }
-  return scenarioController;
+
+  const {scenarioController, isLoading} = context;
+
+  // Assuming the scenarioController has a property named GUIController
+  const GUIController = scenarioController.GUIController;
+  const storage = scenarioController.storage;
+
+  return {
+    ...scenarioController, // This spreads all methods and properties of scenarioController
+    isLoading,
+    GUIController, // Add GUIController to the returned object
+    storage,
+  };
 };

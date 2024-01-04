@@ -27,6 +27,7 @@ export class ScenarioController {
   private _notificationController: NotificationController;
   private _eventController: EventController;
   private _weekPlanner: WeekPlanner;
+  private _isLoading: boolean = false;
   // flow of program here:
   public constructor() {
     console.log('Controller: Created');
@@ -47,21 +48,32 @@ export class ScenarioController {
       this._storage.person,
       this._notificationController,
       this._eventController,
-      this._weekPlanner
+      this._weekPlanner,
     );
   }
+  // Getter for isLoading
+  get isLoading() {
+    return this._isLoading;
+  }
+
+  // Method to set loading state
+  setLoading(isLoading: boolean) {
+    this._isLoading = isLoading;
+    console.log(isLoading);
+    // Notify observers here if needed
+  }
+
   checkPermissions = async () => {
+    this.setLoading(true);
     try {
       const settings = await notifee.getNotificationSettings();
       if (settings.authorizationStatus == AuthorizationStatus.AUTHORIZED) {
         this.run(); // run app if permissions are authorized
-      }
-      else {
+      } else {
         await notifee.requestPermission();
         Alert.alert('Slå på notifikationer för en bättre upplevelse');
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error checking notification permission:', error);
     }
   };
@@ -77,19 +89,22 @@ export class ScenarioController {
     );
     this._eventController.pointOfEntryEvent();
     let isWeekDay = this._intervalHandler.processWeek();
-    if (isWeekDay) { // change this. just a placeholder for logic 
+    if (isWeekDay) {
+      // change this. just a placeholder for logic
       this.reprocessWeek(); // abstract this method to just processWeek
       // on exit stop clock and remove observers
-    }
-    else {
-      console.log("can't start scenario on weekends! Scenarios are available: MON - FRI");
+    } else {
+      console.log(
+        "can't start scenario on weekends! Scenarios are available: MON - FRI",
+      );
     }
   }
   public reprocessWeek() {
     this._intervalHandler.reprocessWeek();
-      this._GUIController.resetIndex();
-      this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
-      this._GUIController.startUpdateBloodsugar();
+    this._GUIController.resetIndex();
+    this._GUIController.bloodSugarValues = this._storage.bloodSugarValues;
+    this._GUIController.startUpdateBloodsugar();
+    this.setLoading(false);
   }
   public terminate() {
     // end scenario
@@ -108,7 +123,7 @@ export class ScenarioController {
       this._storage.person,
       this._notificationController,
       this._eventController,
-      this._weekPlanner
+      this._weekPlanner,
     );
   }
   public debugRandomizer() {
@@ -116,15 +131,14 @@ export class ScenarioController {
     for (i; i < 100; i++) {
       try {
         let g = newGotchi('subject');
-      }
-      catch (error) {
+      } catch (error) {
         console.log('Gotchi nr: ' + i + ' failed to randomize');
         break;
       }
       console.log('Gotchi nr: ' + i + ' success');
     }
   }
-  
+
   set gotchiBloodValue(value: number) {
     this._storage.person.bloodValue = value;
   }

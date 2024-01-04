@@ -13,33 +13,52 @@ type RootStackParamList = {
   AnswerEvent: undefined;
 };
 
+
+
 type NavigationProp = StackNavigationProp<RootStackParamList, 'CreateGotchi'>;
 
 type Props = {
   navigation: NavigationProp;
 };
 
+type ParsedDay = {
+  day: string;
+  date: string;
+  events: any; // Replace EventType with the actual type of your events
+}
+
+
 function MyDayScreen({navigation}: Props) {
   const controller = useScenarioController();
-  const [weeklyEvents, setWeeklyEvents] = useState(
-    controller.storage.eventsJson || [],
-  );
+  const [weeklyEvents, setWeeklyEvents] = useState<ParsedDay[]>([]);
 
-  // useFocusEffect to update weeklyEvents when the screen comes into focus
-  useFocusEffect(() => {
-    const updatedEvents = controller.storage.eventsJson || [];
-
-    // Check if the events have changed before updating the state
-    if (JSON.stringify(updatedEvents) !== JSON.stringify(weeklyEvents)) {
-      setWeeklyEvents(updatedEvents);
+  // useEffect to set initial weeklyEvents when the component mounts
+  useEffect(() => {
+    if (controller.storage && controller.storage.eventsJson) {
+      setWeeklyEvents(controller.storage.eventsJson);
     }
-    console.log(JSON.stringify(updatedEvents));
-  });
-  //console.log(weeklyEvents, 'weekly events ---------------'); // Ensure this is always an array
+  }, [controller.storage]);
 
-  const [currentDayIndex, setCurrentDayIndex] = useState(
-    weeklyEvents.length > 0 ? weeklyEvents.length - 1 : 0,
+  useFocusEffect(
+    React.useCallback(() => {
+      if (controller.storage && controller.storage.eventsJson) {
+        const updatedEvents = controller.storage.eventsJson;
+
+        if (JSON.stringify(updatedEvents) !== JSON.stringify(weeklyEvents)) {
+          setWeeklyEvents(updatedEvents);
+        }
+        //console.log(JSON.stringify(updatedEvents));
+      }
+    }, [controller.storage, weeklyEvents]),
   );
+
+  const [currentDayIndex, setCurrentDayIndex] = useState(0);
+
+  useEffect(() => {
+    if (weeklyEvents.length > 0) {
+      setCurrentDayIndex(weeklyEvents.length - 1);
+    }
+  }, [weeklyEvents]);
 
   const goToPreviousDay = () => {
     if (currentDayIndex > 0) {
@@ -53,7 +72,11 @@ function MyDayScreen({navigation}: Props) {
     }
   };
 
-  const currentDay = weeklyEvents[currentDayIndex];
+  const currentDay = weeklyEvents[currentDayIndex] || {
+    day: '',
+    date: '',
+    events: [],
+  };
 
   return (
     <ViewContainer style={s`flex-grow`}>
