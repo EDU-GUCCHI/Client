@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { s } from 'react-native-wind';
+import NextIcon from '../../icons/NextIcon';
 
 type UserInteractableEventProps = {
   navigation: any;
@@ -48,7 +49,7 @@ function UserInteractableEvent({
 
         <Text style={s`text-xl text-black font-bold py-4`}>{eventTitle}</Text>
 
-        <Text style={s`text-black text-3xl mb-2`}>{'→'}</Text>
+        <NextIcon />
       </LinearGradient>
     </TouchableOpacity>
   );

@@ -8,6 +8,7 @@ import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
 import BackButton from '../components/BackButton';
+import LgButton from '../components/LgButton';
 
 type EventOption = {
   correct: {
@@ -140,7 +141,7 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
     eventAnswered ? options.filter(o => o.correct) : options;
 
   return (
-    <ViewContainer style={s`flex h-full items-center`}>
+    <ViewContainer style={s`flex-1 justify-center items-center mt-0 mb-0`}>
       <BackButton />
       <ScrollView style={s`w-full mt-16`}>
         <View style={s`items-center`}>
@@ -201,11 +202,17 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
 
         {/* Hide Submit All Button if event is answered */}
         {!isEventAnswered && !submitted ? (
-          <TouchableOpacity
-            style={s`bg-blue-500 p-3 rounded-lg m-2`}
-            onPress={handleSubmitAll}>
-            <Text style={s`text-white`}>Submit All</Text>
-          </TouchableOpacity>
+          <View style={s`flex-1 items-center mb-7`}>
+            <LgButton
+              text="Nästa"
+              colors={['#70e0e1', '#6ca7e8']}
+              locations={[0, 0.7]}
+              useAngle={true}
+              angle={25}
+              angleCenter={{x: 0.5, y: 0.5}}
+              onPress={handleSubmitAll}
+            />
+          </View>
         ) : null}
       </ScrollView>
     </ViewContainer>

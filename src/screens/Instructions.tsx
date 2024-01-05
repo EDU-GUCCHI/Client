@@ -3,6 +3,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {Text, View} from 'react-native';
 import {s} from 'react-native-wind';
 import ViewContainer from '../components/ViewContainer';
+import BackButton from '../components/BackButton';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -18,6 +19,8 @@ function TutorialScreen({navigation}: Props) {
   return (
     <ViewContainer
       style={s`flex h-full items-center justify-center bg-coolGray-100`}>
+      <BackButton />
+
       {/* TutorialScreen */}
       <View style={s`p-3 border border-darkGray-300 rounded-lg w-80`}>
         <Text style={s`text-lg font-bold text-warmGray-800 my-2`}>

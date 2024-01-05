@@ -1,17 +1,11 @@
-import {ActivityIndicator, View, StyleSheet} from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import {s} from 'react-native-wind';
+
 
 const LoadingSpinner = () => (
-  <View style={styles.spinnerContainer}>
-    <ActivityIndicator size="large" color="#0000ff" />
+  <View style={s`flex justify-center items-center`}>
+    <ActivityIndicator size="large" color="#121212" />
   </View>
 );
-
-const styles = StyleSheet.create({
-  spinnerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default LoadingSpinner;

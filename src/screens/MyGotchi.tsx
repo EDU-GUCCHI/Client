@@ -7,6 +7,8 @@ import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
 import LgButton from '../components/LgButton';
+import BackButton from '../components/BackButton';
+
 
 type RootStackParamList = {
   AboutGotchi: undefined;
@@ -43,6 +45,8 @@ function MyGotchiScreen({navigation}: Props) {
   return (
     <ViewContainer
       style={s`flex-1 items-center justify-start px-5 py-2 bg-white`}>
+      <BackButton />
+
       {/* Profile Info */}
       <View style={s`items-center my-5`}>
         <View style={s`bg-cyan-300 p-4 rounded-full`}>
