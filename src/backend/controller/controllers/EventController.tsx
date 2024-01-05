@@ -41,7 +41,7 @@ export class EventController {
       this.storage.person.bloodValue,
       'Lågt blodsocker',
     );*/
-    this.LowBloodSugar();
+    this.lowBloodSugar();
   }
 
   //Create event with param values, answer values are optional
@@ -84,7 +84,10 @@ export class EventController {
   chooseEventSwitch(eventType: number) {
     switch (eventType) {
       case 0:
-        this.EatingEvent();
+        this.eatingEvent();
+        break;
+      case 1:
+        this.insulinEvent();
         break;
       //add more events that can be triggered by treatmentOptions.
       default:
@@ -92,7 +95,7 @@ export class EventController {
     }
   }
 
-  EatingEvent() {
+  eatingEvent() {
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.FOOD_INTAKE;
     const timeStamp = new Date();
@@ -100,7 +103,16 @@ export class EventController {
 
     this.createEvent(autoType, eventType, timeStamp, description);
   }
-  LowBloodSugar() {
+
+  insulinEvent() {
+    const autoType = AutoType.AUTO_EVENT;
+    const eventType = EventType.INSULIN_INJECTION;
+    const timeStamp = new Date();
+    const description = this.storage.person.name + 'Took insulin';
+
+    this.createEvent(autoType, eventType, timeStamp, description);
+  }
+  lowBloodSugar() {
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();

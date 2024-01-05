@@ -297,6 +297,8 @@ export class IntervallHandler {
         this._secLeftOnFactor = 3600; // apply factor for 1h
         console.log('You called me!?');
         break;
+      case EventType.INSULIN_INJECTION:
+        console.log('Insulin injection');
       default:
         //do nothing?
         break;
