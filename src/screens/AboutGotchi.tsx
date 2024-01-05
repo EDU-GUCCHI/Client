@@ -4,6 +4,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {s} from 'react-native-wind';
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
+import BackButton from '../components/BackButton';
 
 type RootStackParamList = {
   MyGotchi: undefined;
@@ -48,6 +49,7 @@ function AboutGotchiScreen({navigation}: Props) {
   return (
     <ViewContainer
       style={s`items-start justify-start h-full px-5 py-2 bg-coolGray-100`}>
+      <BackButton />
       <ScrollView style={s`w-full`}>
         <View style={s`flex`}>
           <AttributeSection

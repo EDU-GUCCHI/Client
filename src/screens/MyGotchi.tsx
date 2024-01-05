@@ -44,7 +44,7 @@ function MyGotchiScreen({navigation}: Props) {
 
   return (
     <ViewContainer
-      style={s`flex-1 items-center justify-start px-5 py-2 bg-white`}>
+      style={s`flex-1 items-center justify-center px-5 py-2 bg-white`}>
       <BackButton />
 
       {/* Profile Info */}
