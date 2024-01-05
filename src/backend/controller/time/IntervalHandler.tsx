@@ -24,6 +24,8 @@ export class IntervallHandler {
   private _storage: Storage;
   private _weekplanner: WeekPlanner;
   private _bloodSugarValues: number[];
+  private _tempFactor: number;
+  private _secLeftOnFactor: number; 
 
   public constructor(
     storage: Storage,
@@ -42,6 +44,8 @@ export class IntervallHandler {
     this._increaseFactor = 0;
     this._decreaseFactor = 0;
     this._updateIncrement = 0;
+    this._tempFactor = 0;
+    this._secLeftOnFactor = 0;
     this._weektime = 432000; // default value of 5 days in seconds
     this._notificationController = notificationController;
     this._eventController = eventController;
@@ -111,10 +115,12 @@ export class IntervallHandler {
     this._person.bloodValue = this._bloodValue;
     //console.log("Bloodsugar: " + this._bloodValue);
   }
+  /*
   public increaseBloodSugar() {
-    this._bloodValue += this._increaseFactor;
+    this._bloodValue += this._tempFactor;
     this._person.bloodValue = this.bloodValue;
   }
+  */
   public negateValue(num: number): number {
     // flip value to be negative / positive
     return num * -1;
@@ -194,9 +200,26 @@ export class IntervallHandler {
     let secondsFromStart = this.negateValue(deltaDate);
     this._sec = secondsFromStart; // set increment to current date
   }
+  public useTempFactor() {
+    this._bloodValue += this._tempFactor;
+    this._person.bloodValue = this.bloodValue;
+    this._secLeftOnFactor--;
+
+    if(this._secLeftOnFactor <= 0) {
+      this._tempFactor = 0;
+      this._secLeftOnFactor = 0;
+    }
+  }
+
   public update(): void {
     // updates done every pulse
-    this.decreaseBloodSugar(); // Update Values
+    if(this._tempFactor == 0) {
+      this.decreaseBloodSugar(); // Update Values
+    }
+    else {
+      this.useTempFactor();
+    }
+    
     this.resetNotificationFlags();
     this.checkUpperTreshold();
     this.checkLowerThreshold();
@@ -270,6 +293,8 @@ export class IntervallHandler {
     switch (eventType) {
       case EventType.FOOD_INTAKE:
         //update factor for some period
+        this._tempFactor = 0.5;
+        this._secLeftOnFactor = 3600; // apply factor for 1h
         console.log('You called me!?');
         break;
       default:
