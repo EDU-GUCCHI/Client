@@ -20,6 +20,8 @@ type Props = {
 function BeforeWeBeginScreen({navigation}: Props) {
   return (
     <ViewContainer style={s`items-center justify-between h-full pt-10`}>
+      <BackButton />
+      
       <View style={s`flex-1 justify-center p-4`}>
         <Title text="Innan vi börjar.." />
         <Text>
@@ -28,9 +30,7 @@ function BeforeWeBeginScreen({navigation}: Props) {
           }
         </Text>
       </View>
-      <View style={s`absolute top-4 left-4 pt-12`}>
-        <BackButton />
-      </View>
+
       <View style={s`items-center mb-8`}>
         <LgButton
           text="Nästa"

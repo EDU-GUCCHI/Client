@@ -129,7 +129,7 @@ const MultiSelectionButtons: React.FC<MultiSelectionButtonsProps> = ({
           ]}
           onPress={() => handleButtonPress(option, index)}
           disabled={submitted}>
-          <Text style={s`text-xl`}>{option}</Text>
+          <Text style={s`text-xl text-black`}>{option}</Text>
         </TouchableOpacity>
       ))}
     </View>

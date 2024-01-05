@@ -2,10 +2,12 @@ import React, {useEffect, useState, useRef} from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {s} from 'react-native-wind';
-import MultiSelectionButtons from '../components/MultiSelectionButtons';
+
 import {useScenarioController} from '../components/ScenarioControllerContext';
+import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
+import BackButton from '../components/BackButton';
 
 type EventOption = {
   correct: {
@@ -139,13 +141,15 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
 
   return (
     <ViewContainer style={s`flex h-full items-center`}>
-      <ScrollView style={s`w-full`}>
-        <Text
-          style={s`text-4xl text-black font-semibold w-80 text-center my-4`}>
-          {event.title}
-        </Text>
-        {/* Treatment */}
+      <BackButton />
+      <ScrollView style={s`w-full mt-16`}>
         <View style={s`items-center`}>
+          <Text
+            style={s`text-4xl text-black font-semibold w-80 text-center my-4`}>
+            {event.title}
+          </Text>
+
+          {/* Treatment */}
           <Text style={s`text-2xl text-black font-semibold`}>Behandling</Text>
           <Text style={s`text-sm`}>Välj en</Text>
           <SingleSelectionButtons

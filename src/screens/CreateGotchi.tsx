@@ -3,11 +3,12 @@ import {s} from 'react-native-wind';
 import {View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
+import {useScenarioController} from '../components/ScenarioControllerContext';
 import Title from '../components/Title';
 import InputField from '../components/InputField';
 import LgButton from '../components/LgButton';
 import ViewContainer from '../components/ViewContainer';
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import BackButton from '../components/BackButton';
 
 type RootStackParamList = {
   Home: undefined;
@@ -59,6 +60,7 @@ function CreateGotchiScreen({navigation}: Props) {
   return (
     <>
       <ViewContainer style={s`items-center justify-between h-full`}>
+        <BackButton />
         <View style={s`flex-1 justify-center items-center`}>
           <Title text="Skapa en ny EDU-GOTCHI" />
 

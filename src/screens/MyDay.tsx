@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
 import {s} from 'react-native-wind';
+
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
 import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
-import {useFocusEffect} from '@react-navigation/native';
+import BackButton from '../components/BackButton';
 
 type RootStackParamList = {
   CreateGotchi: undefined;
@@ -80,12 +82,14 @@ function MyDayScreen({navigation}: Props) {
 
   return (
     <ViewContainer style={s`flex-grow`}>
-      <View style={s`py-2`}>
+      <BackButton />
+
+      <View style={s`py-2 mt-16`}>
         <View style={s`mb-5`}>
           <View style={s`w-full flex-row justify-between`}>
             {currentDayIndex > 0 ? (
               <TouchableOpacity onPress={goToPreviousDay} style={s`px-5 pb-5`}>
-                <Text style={s`text-5xl`}>←</Text>
+                <Text style={s`text-5xl text-black`}>←</Text>
               </TouchableOpacity>
             ) : (
               <View style={s`px-5 pb-5`}>
@@ -93,12 +97,12 @@ function MyDayScreen({navigation}: Props) {
               </View> // Placeholder view with the same padding as the button
             )}
             <Text
-              style={s`text-4xl text-center text-warmGray-600 font-semibold text-vertical-center`}>
+              style={s`text-4xl text-black text-center font-semibold text-vertical-center`}>
               {currentDay.day}
             </Text>
             {currentDayIndex < weeklyEvents.length - 1 ? (
               <TouchableOpacity onPress={goToNextDay} style={s`px-5 pb-5`}>
-                <Text style={s`text-5xl`}>→</Text>
+                <Text style={s`text-5xl text-black`}>→</Text>
               </TouchableOpacity>
             ) : (
               <View style={s`px-5 pb-5`}>
@@ -106,7 +110,8 @@ function MyDayScreen({navigation}: Props) {
               </View> // Placeholder view with the same padding as the button
             )}
           </View>
-          <Text style={s`text-2xl text-center text-warmGray-600 font-semibold`}>
+          <Text
+            style={s`text-2xl text-black text-center font-semibold`}>
             {currentDay.date}
           </Text>
         </View>
