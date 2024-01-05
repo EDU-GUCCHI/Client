@@ -270,8 +270,10 @@ export class IntervallHandler {
     switch (eventType) {
       case EventType.FOOD_INTAKE:
         //update factor for some period
-        console.log('You called me!?');
+        console.log('Food intake');
         break;
+      case EventType.INSULIN_INJECTION:
+        console.log('Insulin injection');
       default:
         //do nothing?
         break;
