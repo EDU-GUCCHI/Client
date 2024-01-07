@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import React, { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { s } from 'react-native-wind';
 import MyGotchiStatus from '../components/MyGotchiComponents/MyGotchiStatus';
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
-import AttributeButton from '../components/MyGotchiComponents/AttributeButton';
-import LgButton from '../components/LgButton';
 import BackButton from '../components/BackButton';
-
+import { useRoute } from '@react-navigation/native';
 
 type RootStackParamList = {
-  AboutGotchi: undefined;
+  AboutGotchi: {
+    gender: string;
+    age: string;
+    eatingHabit: string;
+    exerciseHabit: string;
+  };
 };
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'AboutGotchi'>;
+function AttributeSection({ label, value, emoji, flex }: any) {
+  return (
+    <View style={s`bg-blue-100 p-4 rounded-lg mb-4 mx-2 flex-${flex}`}>
+      <Text style={s`text-lg font-bold text-gray-800 mb-2`}>{label} {emoji}</Text>
+      <Text style={s`text-base text-gray-700`}>{value}</Text>
+    </View>
+  );
+}
 
-type Props = {
-  navigation: NavigationProp;
-};
-
-const water = '2 L';
-const heartRate = '80 bpm';
-const sleep = '8h 24m';
-
-function MyGotchiScreen({navigation}: Props) {
+function MyGotchiScreen({ navigation }: Props) {
   const controller = useScenarioController();
   const guiController = controller.GUIController;
   const [bloodSugar, setBloodSugar] = useState(
@@ -42,14 +43,16 @@ function MyGotchiScreen({navigation}: Props) {
     };
   }, []);
 
+  const route = useRoute();
+  const { params } = route;
+
   return (
-    <ViewContainer
-      style={s`flex-1 items-center justify-center px-5 py-2 bg-white`}>
+    <ViewContainer style={s`flex-1 items-center justify-center px-5 py-4 bg-white pt-20`}>
       <BackButton />
 
       {/* Profile Info */}
-      <View style={s`items-center my-5`}>
-        <View style={s`bg-cyan-300 p-4 rounded-full`}>
+      <View style={s`items-center my-5 mb-4`}>
+        <View style={s`bg-blue-500 p-4 rounded-full mb-3`}>
           <Text style={s`text-4xl text-black`}>😇</Text>
         </View>
         <Text style={s`text-black font-semibold text-2xl`}>
@@ -57,40 +60,51 @@ function MyGotchiScreen({navigation}: Props) {
         </Text>
       </View>
 
-      {/* Stats */}
-      <View style={s`flex-row justify-between w-full`}>
-        <MyGotchiStatus
-          style={s`flex-1 bg-blue-300 p-4 m-2 rounded-lg`}
-          statusText={bloodSugar}
-          statusIcon="🩸"
+      {/* Blood Sugar - Full Width */}
+      <View style={s`bg-blue-100 p-6 rounded-lg w-full mb-4 flex-row justify-between`}>
+        <Text style={s`text-lg font-bold text-gray-800`}>Blodsocker 🩸</Text>
+        <Text style={s`text-lg font-bold text-gray-800`}>{bloodSugar}</Text>
+      </View>
+
+      {/* Attribute Sections */}
+      <View style={s`flex-row w-full`}>
+        <AttributeSection
+          label="Kön"
+          value={controller.storage.person.genderStringRepresentation()}
+          emoji="🚻"
+          flex={1}
         />
-        <MyGotchiStatus
-          style={s`flex-1 bg-emerald-300 p-4 m-2 rounded-lg`}
-          statusText={heartRate}
-          statusIcon="💓"
+        <AttributeSection
+          label="Ålder"
+          value={controller.storage.person.ageStringRepresentation()}
+          emoji="👶"
+          flex={1}
         />
       </View>
-      <View style={s`flex-row justify-between w-full`}>
-        <MyGotchiStatus
-          style={s`flex-1 bg-pink-300 p-4 m-2 rounded-lg`}
-          statusText={water}
-          statusIcon="💧"
+      <View style={s`flex-row w-full`}>
+        <AttributeSection
+          label="Kost"
+          value={controller.storage.person.eatingHabitStringRepresentation()}
+          emoji="🍽️"
+          flex={1}
         />
-        <MyGotchiStatus
-          style={s`flex-1 bg-gray-300 p-4 m-2 rounded-lg`}
-          statusText={sleep}
-          statusIcon="🛌"
+        <AttributeSection
+          label="Träning"
+          value={controller.storage.person.exerciseHabitStringRepresentation()}
+          emoji="🏋️"
+          flex={1}
         />
       </View>
 
       {/* Spacer to adjust the button position */}
-      <View style={s`flex-0.5`} />
+      <View style={s`flex-1`} />
 
-      {/* Footer */}
+      {/* Footer - Full Width Button */}
       <TouchableOpacity
-        style={s`p-2 bg-warmGray-500 rounded-lg`}
-        onPress={() => navigation.navigate('AboutGotchi')}>
-        <Text style={s`text-white text-lg`}>
+        style={s`w-full p-4 bg-blue-500 rounded-lg mt-4`}
+        onPress={() => navigation.navigate('AboutGotchi')}
+      >
+        <Text style={s`text-white text-lg text-center`}>
           Om {controller.storage.person.name}
         </Text>
       </TouchableOpacity>
@@ -99,3 +113,4 @@ function MyGotchiScreen({navigation}: Props) {
 }
 
 export default MyGotchiScreen;
+

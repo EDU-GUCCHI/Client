@@ -48,10 +48,10 @@ function AboutGotchiScreen({navigation}: Props) {
 
   return (
     <ViewContainer
-      style={s`items-start justify-start h-full px-5 py-2 bg-coolGray-100`}>
+      style={s`items-start justify-start h-full px-5 py-2 pt-8 bg-coolGray-100`}>
       <BackButton />
       <ScrollView style={s`w-full`}>
-        <View style={s`flex`}>
+        <View style={s`flex mt-12`}>
           <AttributeSection
             label="Gender"
             value={controller.storage.person.genderStringRepresentation()}
