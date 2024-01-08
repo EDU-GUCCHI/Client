@@ -47,7 +47,7 @@ function MyGotchiScreen({ navigation }: Props) {
   const { params } = route;
 
   return (
-    <ViewContainer style={s`flex-1 items-center justify-center px-5 py-4 bg-white pt-20`}>
+    <ViewContainer style={s`flex-1 items-center justify-center px-5 py-4 bg-white pt-15`}>
       <BackButton />
 
       {/* Profile Info */}
@@ -95,19 +95,6 @@ function MyGotchiScreen({ navigation }: Props) {
           flex={1}
         />
       </View>
-
-      {/* Spacer to adjust the button position */}
-      <View style={s`flex-1`} />
-
-      {/* Footer - Full Width Button */}
-      <TouchableOpacity
-        style={s`w-full p-4 bg-blue-500 rounded-lg mt-4`}
-        onPress={() => navigation.navigate('AboutGotchi')}
-      >
-        <Text style={s`text-white text-lg text-center`}>
-          Om {controller.storage.person.name}
-        </Text>
-      </TouchableOpacity>
     </ViewContainer>
   );
 }
