@@ -1,20 +1,23 @@
-import { Storage } from '../../model/Storage';
-import { EventController } from './EventController';
-import { FormulaGenerator } from '../time/FormulaGenerator';
-import { GUIController } from './GUIController';
-import { IntervallHandler } from '../time/IntervalHandler';
-import { NotificationController } from './NotificationController';
-import { newGotchi } from '../../model/gotchi/GotchiRandomizer';
-import { WeekPlanner } from '../../model/event/WeekPlanner';
-import notifee, { AndroidImportance, AuthorizationStatus } from '@notifee/react-native';
-import { Alert } from 'react-native';
-import { Clock } from '../time/Clock';
+import {Storage} from '../../model/Storage';
+import {EventController} from './EventController';
+import {FormulaGenerator} from '../time/FormulaGenerator';
+import {GUIController} from './GUIController';
+import {IntervallHandler} from '../time/IntervalHandler';
+import {NotificationController} from './NotificationController';
+import {newGotchi} from '../../model/gotchi/GotchiRandomizer';
+import {WeekPlanner} from '../../model/event/WeekPlanner';
+import notifee, {
+  AndroidImportance,
+  AuthorizationStatus,
+} from '@notifee/react-native';
+import {Alert} from 'react-native';
+import {Clock} from '../time/Clock';
 
 /**
  * @type Controller
  * @description
  * This class is responsible for a lot of stuff.
- * 
+ *
  */
 
 export class ScenarioController {
@@ -32,7 +35,7 @@ export class ScenarioController {
   public constructor() {
     console.log('Controller: Created');
     // instantiate classes
-    this._storage = new Storage();
+    this._storage = new Storage(this);
     this._clock = new Clock();
     this._GUIController = new GUIController(this, this._clock);
 
@@ -41,7 +44,7 @@ export class ScenarioController {
     this._storage.decreaseFactor = FormulaGenerator.generateDecreaseFactor();
 
     this._notificationController = new NotificationController();
-    this._eventController = new EventController(this._storage);
+    this._eventController = new EventController(this._storage, this);
     this._weekPlanner = new WeekPlanner(this._storage.person);
     this._intervalHandler = new IntervallHandler(
       this._storage,
@@ -54,6 +57,12 @@ export class ScenarioController {
   // Getter for isLoading
   get isLoading() {
     return this._isLoading;
+  }
+  get intervalHandler(): IntervallHandler {
+    return this._intervalHandler;
+  }
+  get eventController(): EventController{
+    return this._eventController;
   }
 
   // Method to set loading state
@@ -111,11 +120,11 @@ export class ScenarioController {
     console.log('Controller: Terminated');
     this._GUIController.stopUpdateBloodsugar();
     //refresh classes for possible new scenario
-    this._storage = new Storage();
+    this._storage = new Storage(this);
     this._GUIController = new GUIController(this, this._clock);
     this._formulaGenerator = new FormulaGenerator();
     this._notificationController = new NotificationController();
-    this._eventController = new EventController(this._storage);
+    this._eventController = new EventController(this._storage, this);
     this._weekPlanner = new WeekPlanner(this._storage.person);
     this._clock = new Clock();
     this._intervalHandler = new IntervallHandler(
