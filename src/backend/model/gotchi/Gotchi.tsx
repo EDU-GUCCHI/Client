@@ -155,17 +155,9 @@ export class Gotchi {
    * of various fields for the GUI. 
    * @returns string formatted for presentation.
    */
-
-  ageStringRepresentation() {
-    switch (this._age) {
-      case Age.YOUNG_ADULT: return "Ung vuxen";
-      case Age.ADULT: return "Vuxen";
-      case Age.SENIOR: return "Senior";
-    }
-  }
   
   genderStringRepresentation() {
-    if (this._gender) {
+    if (this._gender == true) {
       return "Kvinna"
     } else {
       return "Man";
@@ -176,6 +168,14 @@ export class Gotchi {
     switch (this._eatingHabit) {
       case EatingHabit.VOLATILE: return "Äter inkonsistent";
       case EatingHabit.CONSISTENT: return "Äter konsistent";
+    }
+  }
+
+  ageStringRepresentation() {
+    switch (this._age) {
+      case Age.YOUNG_ADULT: return "Ung vuxen";
+      case Age.ADULT: return "Vuxen";
+      case Age.SENIOR: return "Senior";
     }
   }
 

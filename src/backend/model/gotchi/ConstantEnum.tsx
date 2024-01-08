@@ -14,9 +14,9 @@ export enum DiabetesType {
 }
 
 export enum Age {
-    YOUNG_ADULT = 0.5,
-    ADULT = 1,
-    SENIOR = 1.5
+    YOUNG_ADULT = 5,
+    ADULT = 10,
+    SENIOR = 20
 }
 export enum Weight {
     OVERWEIGHT = -1,
