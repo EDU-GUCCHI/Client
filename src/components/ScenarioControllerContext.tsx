@@ -55,7 +55,16 @@ export const ScenarioControllerProvider: React.FC<
 export const useScenarioController = () => {
   const context = useContext(ScenarioControllerContext);
   if (!context || !context.scenarioController) {
-    throw new Error('ScenarioController not yet initialized');
+    console.log('ScenarioController not yet initialized')
+    context.scenarioController = new ScenarioController()
+    
+    /**
+     * Parse Gotchi from JSON
+     * Parse Events from JSON
+     * Parse
+     */
+    
+    //throw new Error('ScenarioController not yet initialized');
   }
 
   const {scenarioController, isLoading} = context;
