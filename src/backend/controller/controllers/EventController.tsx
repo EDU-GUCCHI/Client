@@ -4,15 +4,18 @@ import {AutoType, EventType} from '../../model/event/EventTypes';
 import {Storage} from '../../model/Storage';
 import {UserInteractableEvent} from '../../model/event/UserInteractableEvent';
 import {AnswerOptions} from '../../model/event/AnswerOptions';
+import {ScenarioController} from './ScenarioController';
 
 export class EventController {
   private _storage: Storage;
   //How do we want to handle ids?
   private _idCounter: number;
+  private _controller: ScenarioController;
 
-  public constructor(storage: Storage) {
+  public constructor(storage: Storage, controller: ScenarioController) {
     this._storage = storage;
     this._idCounter = 0;
+    this._controller = controller;
   }
   get storage() {
     return this._storage;
@@ -38,7 +41,7 @@ export class EventController {
       this.storage.person.bloodValue,
       'Lågt blodsocker',
     );*/
-    this.LowBloodSugar();
+    this.lowBloodSugar();
   }
 
   //Create event with param values, answer values are optional
@@ -70,44 +73,46 @@ export class EventController {
   }
 
   dispatchEvent(event: Event) {
-    //how do we want to dispatch the event?
-
     //add event to storage
     this._storage.addTriggeredEvent(event);
     //Send notifications from notificationDispatcher, this class knows nothing
 
-    //console.log(event);
+    this._controller.intervalHandler.eventBasedFactor(event.eventType);
   }
 
   //Add hardcoded events to use based on int or enum?
-  chooseEventSwitch(eventType: EventType) {
+  chooseEventSwitch(eventType: number) {
     switch (eventType) {
-      case EventType.FOOD_INTAKE:
-        this.EatingEvent();
+      case 0:
+        this.eatingEvent();
         break;
-      case EventType.EXERCISE:
+      case 1:
+        this.insulinEvent();
         break;
-      case EventType.BLOOD_GLUCOSE_WARNING:
-        this.LowBloodSugar();
-        break;
-      case EventType.INSULIN_INJECTION:
-        break;
-      case EventType.SLEEP:
-        break;
+      //add more events that can be triggered by treatmentOptions.
       default:
         console.log('Default case');
     }
   }
 
-  EatingEvent() {
+  eatingEvent() {
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.FOOD_INTAKE;
     const timeStamp = new Date();
-    const description = this.storage.person.name + ' ate a banana';
+    const description = this.storage.person.name + ' Tog något att äta';
 
     this.createEvent(autoType, eventType, timeStamp, description);
   }
-  LowBloodSugar() {
+
+  insulinEvent() {
+    const autoType = AutoType.AUTO_EVENT;
+    const eventType = EventType.INSULIN_INJECTION;
+    const timeStamp = new Date();
+    const description = this.storage.person.name + 'Injicerade insulin';
+
+    this.createEvent(autoType, eventType, timeStamp, description);
+  }
+  lowBloodSugar() {
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
@@ -135,7 +140,7 @@ export class EventController {
     const causeOptions = new AnswerOptions([
       {
         optionString: 'För lite insulin',
-        optionCorrect: true,
+        optionCorrect: false,
         optionChosen: false,
       },
       {
@@ -143,11 +148,11 @@ export class EventController {
         optionCorrect: false,
         optionChosen: false,
       },
-      {optionString: 'För lite mat', optionCorrect: false, optionChosen: false},
+      {optionString: 'För lite mat', optionCorrect: true, optionChosen: false},
     ]);
     const treatmentOptions = new AnswerOptions([
       {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
-      {optionString: 'Ta insulin', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: false, optionChosen: false},
       {optionString: 'Vila', optionCorrect: false, optionChosen: false},
     ]);
 

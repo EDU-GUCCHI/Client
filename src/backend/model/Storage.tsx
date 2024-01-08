@@ -4,6 +4,8 @@ import {parseEventsToFormat} from '../model/event/EventParser';
 import {AlcoholHabit, EatingHabit, Exercise} from './gotchi/FrequencyEnum';
 import {Age, Weight, Illness} from './gotchi/ConstantEnum';
 import {UserInteractableEvent} from './event/UserInteractableEvent';
+import {EventController} from '../controller/controllers/EventController';
+import {ScenarioController} from '../controller/controllers/ScenarioController';
 
 /**
  * @type Repository
@@ -18,6 +20,7 @@ export class Storage {
   private _increaseFactor: number;
   private _decreaseFactor: number;
   private _bloodSugarValues: number[];
+  private _controller: ScenarioController;
 
   /**
    * Constructor needs to initialize an "Emp
@@ -25,7 +28,7 @@ export class Storage {
    * it simply initializes all field-variables to default-values.
    */
 
-  public constructor() {
+  public constructor(controller: ScenarioController) {
     this._person = new Gotchi(
       '',
       5,
@@ -45,6 +48,7 @@ export class Storage {
     this._increaseFactor = 0;
     this._decreaseFactor = 0;
     this._bloodSugarValues = [];
+    this._controller = controller;
   }
 
   /**
@@ -119,5 +123,6 @@ export class Storage {
         }
       }
     }
+    this._controller.eventController.chooseEventSwitch(treatmentIndex);
   }
 }
