@@ -25,7 +25,7 @@ export class IntervallHandler {
   private _weekplanner: WeekPlanner;
   private _bloodSugarValues: number[];
   private _tempFactor: number;
-  private _secLeftOnFactor: number; 
+  private _secLeftOnFactor: number;
 
   public constructor(
     storage: Storage,
@@ -141,20 +141,28 @@ export class IntervallHandler {
     if (this._bloodValue > 8 && !this._warningNotificationSent) {
       //this._notificationDispatcher.SendBloodSugarWarning("Högt blodsocker");
       date = this.secondsToDate(this._sec);
-      //NotificationScheduler.scheduleNotification(date);
+      this._notificationController.scheduleNotification(
+        'Högt blodsocker',
+        EventType.BLOOD_GLUCOSE_WARNING,
+        date,
+      );
       console.log('warning sent for high bloodsugar! at: ' + this._dateString);
       this._warningNotificationSent = true;
     } else if (this._bloodValue > 10 && !this._criticalWarningSent) {
       //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt högt blodsocker");
-      date = this.secondsToDate(this._sec);
-      //NotificationScheduler.scheduleNotification(date);
+      date = this.secondsToDate(this._sec / 25);
+      this._notificationController.scheduleNotification(
+        'Väldigt högt blodsocker',
+        EventType.BLOOD_GLUCOSE_WARNING,
+        date,
+      );
       console.log(
         'critical warning sent for high bloodsugar! at: ' + this._dateString,
       );
       this._warningNotificationSent = true;
     } else if (this._bloodValue > 12 && !this._deathNotificationSent) {
       //this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
-      date = this.secondsToDate(this._sec);
+      date = this.secondsToDate(this._sec / 25);
       //NotificationScheduler.scheduleNotification(date);
       this._deathNotificationSent = true;
       console.log(
@@ -169,24 +177,36 @@ export class IntervallHandler {
     if (this._bloodValue < 4 && !this._warningNotificationSent) {
       // check if to send notificationwarning
       //this._notificationDispatcher.SendBloodSugarWarning("Lågt blodsocker");
-      date = this.secondsToDate(this._sec);
-      //NotificationScheduler.scheduleNotification(date);
+      date = this.secondsToDate(this._sec / 25);
+      this._notificationController.scheduleNotification(
+        'Lågt blodsocker',
+        EventType.BLOOD_GLUCOSE_WARNING,
+        date,
+      );
       //this._eventController.LowBloodSugar();
       this._warningNotificationSent = true;
       //console.log("warning of low bloodsugar sent at: " + this._dateString);
       //console.log("Blood sugar warning sent")
     } else if (this._bloodValue < 2 && !this._criticalWarningSent) {
       //this._notificationDispatcher.SendBloodSugarWarning("Kritiskt lågt blodsocker");
-      date = this.secondsToDate(this._sec);
-      //NotificationScheduler.scheduleNotification(date);
+      date = this.secondsToDate(this._sec / 25);
+      this._notificationController.scheduleNotification(
+        'Väldigt lågt blodsocker',
+        EventType.BLOOD_GLUCOSE_WARNING,
+        date,
+      );
       //this._eventController.LowBloodSugar();
       this._criticalWarningSent = true;
       //console.log("warning of critically low bloodsugar sent at: " + this._dateString);
       //console.log("Critical Blood sugar warning sent")
     } else if (this._bloodValue < 1 && !this._deathNotificationSent) {
       //this._notificationDispatcher.SendBloodSugarWarning("Du lyckades inte ta hand om din Gotchi");
-      date = this.secondsToDate(this._sec);
-      //NotificationScheduler.scheduleNotification(date);
+      date = this.secondsToDate(this._sec / 25);
+      this._notificationController.scheduleNotification(
+        'Åkte in på sjukhus',
+        EventType.BLOOD_GLUCOSE_WARNING,
+        date,
+      );
       this._deathNotificationSent = true;
       //console.log("gotchi sent to hospital because of low bloodsugar at: " + this._dateString);
       // Schemalägg notif om att gotchin åkte till sjukhus
@@ -205,7 +225,7 @@ export class IntervallHandler {
     this._person.bloodValue = this.bloodValue;
     this._secLeftOnFactor--;
 
-    if(this._secLeftOnFactor <= 0) {
+    if (this._secLeftOnFactor <= 0) {
       this._tempFactor = 0;
       this._secLeftOnFactor = 0;
     }
@@ -213,13 +233,12 @@ export class IntervallHandler {
 
   public update(): void {
     // updates done every pulse
-    if(this._tempFactor == 0) {
+    if (this._tempFactor == 0) {
       this.decreaseBloodSugar(); // Update Values
-    }
-    else {
+    } else {
       this.useTempFactor();
     }
-    
+
     this.resetNotificationFlags();
     this.checkUpperTreshold();
     this.checkLowerThreshold();

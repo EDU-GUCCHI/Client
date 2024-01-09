@@ -41,7 +41,7 @@ export class EventController {
       this.storage.person.bloodValue,
       'Lågt blodsocker',
     );*/
-    this.lowBloodSugar();
+    this.demoEvents();
   }
 
   //Create event with param values, answer values are optional
@@ -117,21 +117,7 @@ export class EventController {
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
     const description = 'Lågt blodsocker';
-    /* const symptomOptions = [
-      {option: 'Svettig', correct: true, answered: false},
-      {option: 'Svag', correct: true, answered: false},
-      {option: 'Huvudvärk', correct: false, answered: false},
-    ];
-    const causeOptions = [
-      {option: 'För lite insulin', correct: true, answered: false},
-      {option: 'För mycket insulin', correct: false, answered: false},
-      {option: 'För lite mat', correct: false, answered: false},
-    ];
-    const treatmentOptions = [
-      {option: 'Ät något', correct: true, answered: false},
-      {option: 'Ta insulin', correct: false, answered: false},
-      {option: 'Vila', correct: false, answered: false},
-    ]; */
+
     const symptomOptions = new AnswerOptions([
       {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
       {optionString: 'Svag', optionCorrect: true, optionChosen: false},
@@ -156,7 +142,6 @@ export class EventController {
       {optionString: 'Vila', optionCorrect: false, optionChosen: false},
     ]);
 
-    //console.log('Creating Low blood-sugar event');
     this.createEvent(
       autoType,
       eventType,
@@ -167,26 +152,235 @@ export class EventController {
       treatmentOptions,
     );
   }
-  /* BloodGlucoseWarningEvent() {
+  demoEvents() {
+    let autoType = AutoType.USER_EVENT;
+    let eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    let timeStamp = new Date('2024-01-08T12:15:00');
+    let description = 'Högt blodsocker';
 
-    const id = 1;
-    const autoType = AutoType.USER_EVENT;
-    const eventType = EventType.BLOOD_GLUCOSE_WARNING;
-    const timeStamp = new Date();
-    const bloodGlucoseChange = 10;
-    const description = 'Sample UserInteractableEvent';
+    let symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: false, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: true, optionChosen: false},
+    ]);
+    let causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: true,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: false, optionChosen: false},
+    ]);
+    let treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: false, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: true, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
 
-    const symptomOptions = ['Option 1', 'Option 2', 'Option 3'];
-    const correctSymptoms = [true, false, false];
+    this.createEvent(
+      autoType,
+      eventType,
+      timeStamp,
+      description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
+    );
 
-    const causeOptions = ['Cause Option 1', 'Cause Option 2', 'Cause Option 3'];
-    const correctCauses = [false, true, false];
+    autoType = AutoType.USER_EVENT;
+    eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    timeStamp = new Date('2024-01-08T15:12:00');
+    description = 'Lågt blodsocker';
 
-    const treatmentOptions = ['Treatment Option 1', 'Treatment Option 2', 'Treatment Option 3'];
-    const correctTreatments = [false, false, true];
+    symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
+    ]);
+    causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: true, optionChosen: false},
+    ]);
+    treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: false, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
 
-    const createdEvent = this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description, symptomOptions, correctSymptoms, causeOptions, correctCauses, treatmentOptions,
-        correctTreatments
-    );  
-    } */
+    this.createEvent(
+      autoType,
+      eventType,
+      timeStamp,
+      description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
+    );
+    autoType = AutoType.USER_EVENT;
+    eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    timeStamp = new Date('2024-01-09T09:15:00');
+    description = 'Lågt blodsocker';
+
+    symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
+    ]);
+    causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: true, optionChosen: false},
+    ]);
+    treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: false, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
+
+    this.createEvent(
+      autoType,
+      eventType,
+      timeStamp,
+      description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
+    );
+    autoType = AutoType.USER_EVENT;
+    eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    timeStamp = new Date('2024-01-09T17:35:00');
+    description = 'Högt blodsocker';
+
+    symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: false, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: true, optionChosen: false},
+    ]);
+    causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: true,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: false, optionChosen: false},
+    ]);
+    treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: false, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: true, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
+
+    this.createEvent(
+      autoType,
+      eventType,
+      timeStamp,
+      description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
+    );
+    autoType = AutoType.USER_EVENT;
+    eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    timeStamp = new Date('2024-01-10T12:15:00');
+    description = 'Lågt blodsocker';
+
+    symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
+    ]);
+    causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: true, optionChosen: false},
+    ]);
+    treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: false, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
+
+    this.createEvent(
+      autoType,
+      eventType,
+      timeStamp,
+      description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
+    );
+    autoType = AutoType.USER_EVENT;
+    eventType = EventType.BLOOD_GLUCOSE_WARNING;
+    timeStamp = new Date('2024-01-11T14:05:00');
+    description = 'Lågt blodsocker';
+
+    symptomOptions = new AnswerOptions([
+      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
+      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
+      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
+    ]);
+    causeOptions = new AnswerOptions([
+      {
+        optionString: 'För lite insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {
+        optionString: 'För mycket insulin',
+        optionCorrect: false,
+        optionChosen: false,
+      },
+      {optionString: 'För lite mat', optionCorrect: true, optionChosen: false},
+    ]);
+    treatmentOptions = new AnswerOptions([
+      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
+      {optionString: 'Ta insulin', optionCorrect: false, optionChosen: false},
+      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+    ]);
+
+    this.createEvent(
+      autoType,
+      eventType,
+      timeStamp,
+      description,
+      symptomOptions,
+      causeOptions,
+      treatmentOptions,
+    );
+  }
 }
