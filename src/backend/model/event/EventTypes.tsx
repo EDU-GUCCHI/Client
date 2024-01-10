@@ -24,13 +24,13 @@ export enum AutoType {
  */
 
 export enum EventType{
-    EXERCISE = "Exercise",
-    FOOD_INTAKE = "Eating",
-    ALCOHOL_INTAKE = "Partying",
-    HOSPITAL_VISIT = "At hospital",
-    INSULIN_INJECTION = "Self-help",
-    BLOOD_GLUCOSE_WARNING = "What",
-    SLEEP = "Sleeping",
+    EXERCISE = "Träning",
+    FOOD_INTAKE = "Mat",
+    ALCOHOL_INTAKE = "Fest",
+    HOSPITAL_VISIT = "På sjukhuset",
+    INSULIN_INJECTION = "",
+    BLOOD_GLUCOSE_WARNING = "Lågt blodsocker!",
+    SLEEP = "Sova",
     NOTHING = "Undefined"
     //MORE?
 }

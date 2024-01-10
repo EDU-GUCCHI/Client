@@ -99,7 +99,7 @@ export class EventController {
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.FOOD_INTAKE;
     const timeStamp = new Date();
-    const description = this.storage.person.name + ' Tog något att äta';
+    const description = this.storage.person.name + ' tog något att äta';
 
     this.createEvent(autoType, eventType, timeStamp, description);
   }
@@ -108,7 +108,7 @@ export class EventController {
     const autoType = AutoType.AUTO_EVENT;
     const eventType = EventType.INSULIN_INJECTION;
     const timeStamp = new Date();
-    const description = this.storage.person.name + 'Injicerade insulin';
+    const description = this.storage.person.name + 'injicerade insulin';
 
     this.createEvent(autoType, eventType, timeStamp, description);
   }

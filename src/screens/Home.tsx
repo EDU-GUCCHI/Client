@@ -38,7 +38,6 @@ function HomeScreen({navigation}: Props) {
           <View style={s`flex-1 justify-center mt-20`}>
             <Title text="Välkommen till EDU-GOTCHI" />
           </View>
-
           <View style={s`flex-1 items-center`}>
             <LgButton
               text="Min dag"
