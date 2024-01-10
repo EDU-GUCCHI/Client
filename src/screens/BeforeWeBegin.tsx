@@ -24,7 +24,7 @@ function BeforeWeBeginScreen({navigation}: Props) {
       
       <View style={s`flex-1 justify-center p-4`}>
         <Title text="Innan vi börjar.." />
-        <Text>
+        <Text style={s`text-black`}>
           {
             'Vi ber dig vänligen att ge appen tillåtelse för att skicka notifikationer. Detta för att EDU-Gotchi förlitar sig på dessa för att du som användare ska få en lärorik upplevelse'
           }
