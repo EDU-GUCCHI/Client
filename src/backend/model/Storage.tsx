@@ -1,11 +1,11 @@
-import {Gotchi} from './gotchi/Gotchi';
-import {Event} from './event/Event';
-import {parseEventsToFormat} from '../model/event/EventParser';
-import {AlcoholHabit, EatingHabit, Exercise} from './gotchi/FrequencyEnum';
-import {Age, Weight, Illness} from './gotchi/ConstantEnum';
-import {UserInteractableEvent} from './event/UserInteractableEvent';
-import {EventController} from '../controller/controllers/EventController';
-import {ScenarioController} from '../controller/controllers/ScenarioController';
+import { Gotchi } from './gotchi/Gotchi';
+import { Event } from './event/Event';
+import { parseEventsToFormat } from '../model/event/EventParser';
+import { AlcoholHabit, EatingHabit, Exercise } from './gotchi/FrequencyEnum';
+import { Age, Weight, Illness } from './gotchi/ConstantEnum';
+import { UserInteractableEvent } from './event/UserInteractableEvent';
+import { EventController } from '../controller/controllers/EventController';
+import { ScenarioController } from '../controller/controllers/ScenarioController';
 
 /**
  * @type Repository
