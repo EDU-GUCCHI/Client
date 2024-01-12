@@ -1,6 +1,5 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { View, Text } from 'react-native';
 import { s } from 'react-native-wind';
 
 type MyGotchiStatusProps = {

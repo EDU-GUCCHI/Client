@@ -3,11 +3,9 @@ import { EventType } from '../../model/event/EventTypes';
 
 /**
  * @type Controller
- * @description
- * 
- * 
+ * @description This class is responsible for performing all operations
+ * related to notifications; scheduling, showing and canceling.
  */
-
 export class NotificationController {
 
   public constructor() {
@@ -26,6 +24,10 @@ export class NotificationController {
     }
   };
 
+  /**
+   * Sends a notification to the end-user. Takes
+   * @param text as argument for the title of the notification
+   */
   public async SendBloodSugarWarning(text: string) {
     await notifee.requestPermission();
     const channelId = await notifee.createChannel({
@@ -93,7 +95,6 @@ export class NotificationController {
  * stack. To be called when @class IntervalHandler needs to
  * reschedule notifications.
  */
-
   public cancelAllNotifications() {
     const cancelAllTriggeredNotifications = async () => {
       try {

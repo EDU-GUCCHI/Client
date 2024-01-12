@@ -1,7 +1,15 @@
+<<<<<<< Updated upstream
 import React, {useEffect, useState} from 'react';
 import {s} from 'react-native-wind';
 import {View} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
+=======
+import React, { useEffect, useState } from 'react';
+import { s } from 'react-native-wind';
+import { View } from 'react-native';
+import DropDownPicker from 'react-native-dropdown-picker';
+import { StackNavigationProp } from '@react-navigation/stack';
+>>>>>>> Stashed changes
 
 import {useScenarioController} from '../components/ScenarioControllerContext';
 import Title from '../components/Title';
@@ -29,8 +37,20 @@ type Props = {
 function CreateGotchiScreen({navigation}: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
+<<<<<<< Updated upstream
   const [institution, setInstitution] = useState('');
   const {GUIController, checkPermissions} = useScenarioController(); // Destructure GUIController here
+=======
+
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: 'Göteborgs Universitet', value: 'banana' },
+    { label: 'Malmö Universitet', value: 'apple' }
+  ]);
+
+  const { GUIController, checkPermissions } = useScenarioController();
+>>>>>>> Stashed changes
 
   useEffect(() => {
     if (gotchiName !== '') {

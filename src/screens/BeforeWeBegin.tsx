@@ -1,7 +1,7 @@
 import React from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
-import {Text, View} from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
+import { Text, View } from 'react-native';
 import ViewContainer from '../components/ViewContainer';
 import LgButton from '../components/LgButton';
 import Title from '../components/Title';
@@ -17,11 +17,11 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function BeforeWeBeginScreen({navigation}: Props) {
+function BeforeWeBeginScreen({ navigation }: Props) {
   return (
     <ViewContainer style={s`items-center justify-between h-full pt-10`}>
       <BackButton />
-      
+
       <View style={s`flex-1 justify-center p-4`}>
         <Title text="Innan vi börjar.." />
         <Text>
@@ -38,7 +38,7 @@ function BeforeWeBeginScreen({navigation}: Props) {
           locations={[0, 0.7]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0.5}}
+          angleCenter={{ x: 0.5, y: 0.5 }}
           onPress={() => {
             navigation.navigate('CreateGotchi');
           }}

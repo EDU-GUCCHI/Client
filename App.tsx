@@ -1,7 +1,7 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StatusBar, Platform, View} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { View } from 'react-native';
 
 import HomeScreen from './src/screens/Home';
 import CreateGotchiScreen from './src/screens/CreateGotchi';
@@ -12,7 +12,7 @@ import MyGotchiScreen from './src/screens/MyGotchi';
 import AnswerEventScreen from './src/screens/AnswerEvent';
 import AboutGotchiScreen from './src/screens/AboutGotchi';
 import BeforeWeBeginScreen from './src/screens/BeforeWeBegin';
-import {ScenarioControllerProvider} from './src/components/ScenarioControllerContext';
+import { ScenarioControllerProvider } from './src/components/ScenarioControllerContext';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <ScenarioControllerProvider>
       <NavigationContainer>
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
           <Stack.Navigator
             initialRouteName="TutorialScreen"
             screenOptions={{

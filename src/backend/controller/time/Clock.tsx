@@ -1,4 +1,8 @@
-
+/**
+ * @deprecated
+ * This class was used to tick for time when we developed a real-time
+ * application.
+ */
 export class Clock {
     interval: NodeJS.Timeout | null;
     private _observers: any[] = [];
@@ -9,7 +13,7 @@ export class Clock {
     }
 
     public tickClock(): void {
-        this.notifyObservers(); //push update event to update bloodvalue
+        this.notifyObservers();
     }
     public startClock(): void {
         if (this.interval === null) {

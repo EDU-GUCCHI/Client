@@ -1,7 +1,7 @@
 import React from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {Text, View} from 'react-native';
-import {s} from 'react-native-wind';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Text, View } from 'react-native';
+import { s } from 'react-native-wind';
 import ViewContainer from '../components/ViewContainer';
 import BackButton from '../components/BackButton';
 
@@ -15,7 +15,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function TutorialScreen({navigation}: Props) {
+function TutorialScreen({ navigation }: Props) {
   return (
     <ViewContainer
       style={s`flex h-full items-center justify-center bg-coolGray-100`}>
@@ -27,14 +27,14 @@ function TutorialScreen({navigation}: Props) {
           Så funkar det
         </Text>
         <Text style={s`text-base text-warmGray-600`}>
-          Under loppet av en vecka inom din kurs kommer du ta hand om en Gotchi som har Typ 1 Diabetes.{"\n"} 
+          Under loppet av en vecka inom din kurs kommer du ta hand om en Gotchi som har Typ 1 Diabetes.{"\n"}
         </Text>
         <Text style={s`text-base text-warmGray-600`}>
-          Din Gotchi kommer att leva sitt egna liv men kan hamna i situationer där hen behöver din hjälp med sitt blodsocker!{"\n"} 
+          Din Gotchi kommer att leva sitt egna liv men kan hamna i situationer där hen behöver din hjälp med sitt blodsocker!{"\n"}
         </Text>
         <Text style={s`text-base text-warmGray-600`}>
-          När din Gotchi behöver din hjälp skickar vi ut en push-notifikation. Under "Min Dag" kan du se 
-          ett händelseflöde som visar vad din Gotchi har haft för sig.{"\n"} 
+          När din Gotchi behöver din hjälp skickar vi ut en push-notifikation. Under "Min Dag" kan du se
+          ett händelseflöde som visar vad din Gotchi har haft för sig.{"\n"}
         </Text>
         <Text style={s`text-base text-warmGray-600`}>
           Den senaste raden innehåller ett formulär med handlingar du kan be din Gotchi att utföra. Dessa alternativ

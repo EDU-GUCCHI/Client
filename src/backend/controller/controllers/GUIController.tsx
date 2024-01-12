@@ -44,11 +44,11 @@ export class GUIController {
     // fetch value from array and increment every 5 sec
     setBloodSugar() { // needs storage
         let newBloodSugar = this._bloodSugarValues[this._bsIndex];
-        if(this._bsIndex == this._bloodSugarValues.length - 1) {
+        if (this._bsIndex == this._bloodSugarValues.length - 1) {
             this.stopUpdateBloodsugar();
         }
         //console.log(newBloodSugar);
-        if(this._bsIndex < this._bloodSugarValues.length) {
+        if (this._bsIndex < this._bloodSugarValues.length) {
             this._bsIndex++;
         }
         this.notifySubscribers(newBloodSugar.toFixed(1).toString());
@@ -117,7 +117,7 @@ export class GUIController {
     get gotchisName(): string {
         return this._gotchisname;
     }
-    get currentBloodValue() : number {
+    get currentBloodValue(): number {
         return this._bloodSugarValues[this._bsIndex];
     }
     get person(): Gotchi {

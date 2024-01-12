@@ -1,14 +1,17 @@
-// sends out Events.
-import {Event} from '../../model/event/Event';
-import {AutoType, EventType} from '../../model/event/EventTypes';
-import {Storage} from '../../model/Storage';
-import {UserInteractableEvent} from '../../model/event/UserInteractableEvent';
-import {AnswerOptions} from '../../model/event/AnswerOptions';
-import {ScenarioController} from './ScenarioController';
+import { Event } from '../../model/event/Event';
+import { AutoType, EventType } from '../../model/event/EventTypes';
+import { Storage } from '../../model/Storage';
+import { UserInteractableEvent } from '../../model/event/UserInteractableEvent';
+import { AnswerOptions } from '../../model/event/AnswerOptions';
+import { ScenarioController } from './ScenarioController';
 
+/**
+ * @type Controller
+ * @description This class is responsible for creating and dispatching
+ * event for storage. Events are distinct from notifications.
+ */
 export class EventController {
   private _storage: Storage;
-  //How do we want to handle ids?
   private _idCounter: number;
   private _controller: ScenarioController;
 
@@ -23,29 +26,33 @@ export class EventController {
   get idCounter() {
     return this._idCounter;
   }
-
+  /*
+   * This method creates a base-event acting as visual aids for the end-user
+   * when they start the week. It's simply a visual indicator that events 
+   * are saved in a given position in the GUI.
+   */
   public pointOfEntryEvent() {
-    /*     this.createEvent(
-      this.idCounter,
-      AutoType.AUTO_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
-      new Date(),
-      this.storage.person.bloodValue,
-      'Lågt blodsocker',
-    );
     this.createEvent(
-      this.idCounter,
-      AutoType.USER_EVENT,
-      EventType.BLOOD_GLUCOSE_WARNING,
+      AutoType.AUTO_EVENT,
+      EventType.NOTHING,
       new Date(),
-      this.storage.person.bloodValue,
-      'Lågt blodsocker',
-    );*/
-    this.lowBloodSugar();
+      "Du påbörjade veckan!"
+    );
   }
 
-  //Create event with param values, answer values are optional
-  //Add state if needed, maybe use optional param here instead of constructor in event?
+  /**
+   * This method takes
+   * @param autoType User interactable or not
+   * @param eventType Type of event
+   * @param timeStamp Date and time of the event
+   * @param description Description of the event
+   * @param symptomOptions Optional list of symptoms
+   * @param causeOptions Optional list of causes
+   * @param treatmentOptions Optional list of treatments
+   * @returns @class Event, either UserInteractable or parent class
+   * 
+   * In effect, a general method for creating events. 
+   */
   public createEvent(
     autoType: AutoType,
     eventType: EventType,
@@ -58,29 +65,34 @@ export class EventController {
     const event: Event =
       autoType === AutoType.USER_EVENT
         ? new UserInteractableEvent(
-            autoType,
-            eventType,
-            timeStamp,
-            description,
-            symptomOptions || new AnswerOptions(),
-            causeOptions || new AnswerOptions(),
-            treatmentOptions || new AnswerOptions(),
-          )
+          autoType,
+          eventType,
+          timeStamp,
+          description,
+          symptomOptions || new AnswerOptions(),
+          causeOptions || new AnswerOptions(),
+          treatmentOptions || new AnswerOptions(),
+        )
         : new Event(autoType, eventType, timeStamp, description);
 
     this.dispatchEvent(event);
     return event;
   }
 
+  /**
+   * This method adds the given event to storage for further purposes
+   * @param event to be added
+   */
   dispatchEvent(event: Event) {
-    //add event to storage
     this._storage.addTriggeredEvent(event);
-    //Send notifications from notificationDispatcher, this class knows nothing
-
     this._controller.intervalHandler.eventBasedFactor(event.eventType);
   }
 
-  //Add hardcoded events to use based on int or enum?
+  /**
+   * This method takes an eventType and sends out an event based
+   * on the type.
+   * @param eventType the type of event. 
+   */
   chooseEventSwitch(eventType: number) {
     switch (eventType) {
       case 0:
@@ -89,7 +101,7 @@ export class EventController {
       case 1:
         this.insulinEvent();
         break;
-      //add more events that can be triggered by treatmentOptions.
+      // Possibility to add more event types here
       default:
         console.log('Default case');
     }
@@ -100,7 +112,6 @@ export class EventController {
     const eventType = EventType.FOOD_INTAKE;
     const timeStamp = new Date();
     const description = this.storage.person.name + ' Tog något att äta';
-
     this.createEvent(autoType, eventType, timeStamp, description);
   }
 
@@ -109,33 +120,23 @@ export class EventController {
     const eventType = EventType.INSULIN_INJECTION;
     const timeStamp = new Date();
     const description = this.storage.person.name + 'Injicerade insulin';
-
     this.createEvent(autoType, eventType, timeStamp, description);
   }
+
+  /**
+   * @constant Hard-coded method for sending out low blood-sugar warnings. 
+   * Data-types and structure are clearly visible here.
+   */
   lowBloodSugar() {
     const autoType = AutoType.USER_EVENT;
     const eventType = EventType.BLOOD_GLUCOSE_WARNING;
     const timeStamp = new Date();
     const description = 'Lågt blodsocker';
-    /* const symptomOptions = [
-      {option: 'Svettig', correct: true, answered: false},
-      {option: 'Svag', correct: true, answered: false},
-      {option: 'Huvudvärk', correct: false, answered: false},
-    ];
-    const causeOptions = [
-      {option: 'För lite insulin', correct: true, answered: false},
-      {option: 'För mycket insulin', correct: false, answered: false},
-      {option: 'För lite mat', correct: false, answered: false},
-    ];
-    const treatmentOptions = [
-      {option: 'Ät något', correct: true, answered: false},
-      {option: 'Ta insulin', correct: false, answered: false},
-      {option: 'Vila', correct: false, answered: false},
-    ]; */
+
     const symptomOptions = new AnswerOptions([
-      {optionString: 'Svettig', optionCorrect: true, optionChosen: false},
-      {optionString: 'Svag', optionCorrect: true, optionChosen: false},
-      {optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false},
+      { optionString: 'Svettig', optionCorrect: true, optionChosen: false },
+      { optionString: 'Svag', optionCorrect: true, optionChosen: false },
+      { optionString: 'Huvudvärk', optionCorrect: false, optionChosen: false },
     ]);
     const causeOptions = new AnswerOptions([
       {
@@ -148,15 +149,14 @@ export class EventController {
         optionCorrect: false,
         optionChosen: false,
       },
-      {optionString: 'För lite mat', optionCorrect: true, optionChosen: false},
+      { optionString: 'För lite mat', optionCorrect: true, optionChosen: false },
     ]);
     const treatmentOptions = new AnswerOptions([
-      {optionString: 'Ät något', optionCorrect: true, optionChosen: false},
-      {optionString: 'Ta insulin', optionCorrect: false, optionChosen: false},
-      {optionString: 'Vila', optionCorrect: false, optionChosen: false},
+      { optionString: 'Ät något', optionCorrect: true, optionChosen: false },
+      { optionString: 'Ta insulin', optionCorrect: false, optionChosen: false },
+      { optionString: 'Vila', optionCorrect: false, optionChosen: false },
     ]);
 
-    //console.log('Creating Low blood-sugar event');
     this.createEvent(
       autoType,
       eventType,
@@ -167,26 +167,4 @@ export class EventController {
       treatmentOptions,
     );
   }
-  /* BloodGlucoseWarningEvent() {
-
-    const id = 1;
-    const autoType = AutoType.USER_EVENT;
-    const eventType = EventType.BLOOD_GLUCOSE_WARNING;
-    const timeStamp = new Date();
-    const bloodGlucoseChange = 10;
-    const description = 'Sample UserInteractableEvent';
-
-    const symptomOptions = ['Option 1', 'Option 2', 'Option 3'];
-    const correctSymptoms = [true, false, false];
-
-    const causeOptions = ['Cause Option 1', 'Cause Option 2', 'Cause Option 3'];
-    const correctCauses = [false, true, false];
-
-    const treatmentOptions = ['Treatment Option 1', 'Treatment Option 2', 'Treatment Option 3'];
-    const correctTreatments = [false, false, true];
-
-    const createdEvent = this.createEvent(id, autoType, eventType, timeStamp, bloodGlucoseChange, description, symptomOptions, correctSymptoms, causeOptions, correctCauses, treatmentOptions,
-        correctTreatments
-    );  
-    } */
 }

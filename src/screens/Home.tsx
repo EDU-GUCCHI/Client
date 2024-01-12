@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
-import {View, StatusBar, Platform, SafeAreaView} from 'react-native';
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import React, { } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
+import { View } from 'react-native';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 
 import LgButton from '../components/LgButton';
 import Title from '../components/Title';
@@ -23,8 +23,8 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-function HomeScreen({navigation}: Props) {
-  const {isLoading} = useScenarioController();
+function HomeScreen({ navigation }: Props) {
+  const { isLoading } = useScenarioController();
 
   // Add a console log to check the value of isLoading
   console.log('isLoading in HomeScreen:', isLoading);
@@ -46,7 +46,7 @@ function HomeScreen({navigation}: Props) {
               locations={[0, 0.7]}
               useAngle={true}
               angle={25}
-              angleCenter={{x: 0.5, y: 1}}
+              angleCenter={{ x: 0.5, y: 1 }}
               onPress={() => navigation.navigate('MyDay')}
             />
             <LgButton
@@ -55,7 +55,7 @@ function HomeScreen({navigation}: Props) {
               locations={[0, 0.8]}
               useAngle={true}
               angle={25}
-              angleCenter={{x: 0.5, y: 0.6}}
+              angleCenter={{ x: 0.5, y: 0.6 }}
               onPress={() => navigation.navigate('MyGotchi')}
             />
             <LgButton
@@ -64,7 +64,7 @@ function HomeScreen({navigation}: Props) {
               locations={[0, 0.9]}
               useAngle={true}
               angle={25}
-              angleCenter={{x: 0.5, y: 0.4}}
+              angleCenter={{ x: 0.5, y: 0.4 }}
               onPress={() => navigation.navigate('Instructions')}
             />
           </View>

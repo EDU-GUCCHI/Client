@@ -1,9 +1,7 @@
 import React from 'react';
-import {TouchableOpacity, Text, View, Platform} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {s} from 'react-native-wind';
-
-import Svg, {Path, SvgXml} from 'react-native-svg';
+import { TouchableOpacity, Text, View, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { s } from 'react-native-wind';
 
 import BackIcon from '../icons/BackIcon';
 
@@ -15,7 +13,7 @@ const BackButton = () => {
   };
 
   return (
-    <View style={[s`absolute top-0 left-0 pl-4 p-6`, Platform.OS === 'ios' && {marginTop: 20}]}>
+    <View style={[s`absolute top-0 left-0 pl-4 p-6`, Platform.OS === 'ios' && { marginTop: 20 }]}>
       <TouchableOpacity onPress={handlePress}>
         <BackIcon />
       </TouchableOpacity>

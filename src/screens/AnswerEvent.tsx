@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {RouteProp} from '@react-navigation/native';
-import {s} from 'react-native-wind';
+import React, { useEffect, useState, useRef } from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { s } from 'react-native-wind';
 
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import MultiSelectionButtons from '../components/MultiSelectionButtons';
 import SingleSelectionButtons from '../components/SingleSelectionButtons';
 import ViewContainer from '../components/ViewContainer';
@@ -38,7 +38,7 @@ type AnswerEventScreenProps = {
   route: RouteProp<AnswerEventScreenRouteParamList, 'AnswerEventScreen'>;
 };
 
-function AnswerEventScreen({route}: AnswerEventScreenProps) {
+function AnswerEventScreen({ route }: AnswerEventScreenProps) {
   const controller = useScenarioController();
   const event = route.params?.event;
   const [submitted, setSubmitted] = useState(false);
@@ -161,8 +161,8 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
             chosenAnswers={chosenTreatment}
             submitted={submitted || isEventAnswered}
             eventAnswered={isEventAnswered}
-            onAnswerEvaluation={() => {}}
-            onSelection={isEventAnswered ? () => {} : handleTreatmentSelection}
+            onAnswerEvaluation={() => { }}
+            onSelection={isEventAnswered ? () => { } : handleTreatmentSelection}
           />
         </View>
 
@@ -178,8 +178,8 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
             chosenAnswers={chosenSymptoms}
             submitted={submitted || isEventAnswered}
             eventAnswered={isEventAnswered}
-            onAnswerEvaluation={() => {}}
-            onSelection={isEventAnswered ? () => {} : handleSymptomSelection}
+            onAnswerEvaluation={() => { }}
+            onSelection={isEventAnswered ? () => { } : handleSymptomSelection}
           />
         </View>
 
@@ -195,8 +195,8 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
             chosenAnswers={chosenCause}
             submitted={submitted || isEventAnswered}
             eventAnswered={isEventAnswered}
-            onAnswerEvaluation={() => {}}
-            onSelection={isEventAnswered ? () => {} : handleCauseSelection}
+            onAnswerEvaluation={() => { }}
+            onSelection={isEventAnswered ? () => { } : handleCauseSelection}
           />
         </View>
 
@@ -209,7 +209,7 @@ function AnswerEventScreen({route}: AnswerEventScreenProps) {
               locations={[0, 0.7]}
               useAngle={true}
               angle={25}
-              angleCenter={{x: 0.5, y: 0.5}}
+              angleCenter={{ x: 0.5, y: 0.5 }}
               onPress={handleSubmitAll}
             />
           </View>

@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {Text, View, TouchableOpacity, ScrollView, ViewBase} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-import {s} from 'react-native-wind';
+import React, { useEffect, useState } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Text, View, TouchableOpacity, ScrollView, ViewBase } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { s } from 'react-native-wind';
 
-import {useScenarioController} from '../components/ScenarioControllerContext';
+import { useScenarioController } from '../components/ScenarioControllerContext';
 import ViewContainer from '../components/ViewContainer';
 import NonUserInteractableEvent from '../components/MyDayComponents/NonUserInteractableEvent';
 import UserInteractableEvent from '../components/MyDayComponents/UserInteractableEvent';
@@ -30,7 +30,7 @@ type ParsedDay = {
 }
 
 
-function MyDayScreen({navigation}: Props) {
+function MyDayScreen({ navigation }: Props) {
   const controller = useScenarioController();
   const [weeklyEvents, setWeeklyEvents] = useState<ParsedDay[]>([]);
 
@@ -127,7 +127,7 @@ function MyDayScreen({navigation}: Props) {
                 locations={[0, 0.8]}
                 useAngle={true}
                 angle={25}
-                angleCenter={{x: 0.5, y: 0.6}}
+                angleCenter={{ x: 0.5, y: 0.6 }}
               />
             );
           } else {
@@ -142,7 +142,7 @@ function MyDayScreen({navigation}: Props) {
                 locations={[0, 0.8]}
                 useAngle={true}
                 angle={25}
-                angleCenter={{x: 0.5, y: 0.6}}
+                angleCenter={{ x: 0.5, y: 0.6 }}
               />
             );
           }

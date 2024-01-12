@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
-import { s } from 'react-native-wind';
 import { ViewStyle } from 'react-native';
 import { LinearGradient } from 'react-native-linear-gradient';
-import { StatusBar, Platform } from 'react-native';
 
 
 type ViewContainerProps = {

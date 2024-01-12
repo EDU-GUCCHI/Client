@@ -1,13 +1,13 @@
-import {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {s} from 'react-native-wind';
+import { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { s } from 'react-native-wind';
 
 const SingleSelectionButtons = ({
   options,
   correctAnswers,
   chosenAnswers,
   eventAnswered,
-  onAnswerEvaluation = () => {},
+  onAnswerEvaluation = () => { },
   submitted,
   onSelection, // Receive the onSelection prop
 }) => {

@@ -22,23 +22,35 @@ export class FormulaGenerator {
     this._baseline = 1;
   }
 
-  public generateFormula(person: Gotchi): number {
-    this._baseline = 0.1;
-    for (let enumAttribute of person.constantValues()) {
-      this._baseline *= enumAttribute.value;
-    }
+  /**
+   * 
+   * @param gotchi generated Gotchi to generate formula of
+   * @returns number which denotes the static value of decrease for a
+   * @param gotchi blood-glucose level.
+   * 
+   * TODO: This method 
+   */
+  public generateFormula(gotchi: Gotchi): number {
     /**
-     * Baseline är den totala sammansättningen av 1 * konstanta enum-värden
-     * som vi i sin tur multiplicerar vidare på
-     *
-     * Så exempelvis baseline * Age.YOUNG_ADULT * Weight.OVERWEIGHT * Illness.FEVER
-     * Bör returnera någonting i stil med 0.85 - 0.95 (?)
-     * För eating-event verkar det som att decimal-spannet vi ska multiplicera med är
-     * något i stil med 0.00026
+     * Baseline is the total value of 1 multiplied by constant enum values
+     * which we in turn multiply the change value with.
+     * 
+     * As an example, baseline * Age.YOUNG_Adult * Weight.OVERWEIGHT
+     * should return something akin to 0.85 - 0.95 (?)
+     * 
+     * Based on the data we received, the static value of chance for a 
+     * persons blood-glucose level should be something in the fourth decimal place. In
+     * other words, each second blood-glucose decreases with a value in the fourth
+     * decimal place, for example 0.00029
      *
      */
     /*
         let sum = 0;
+
+        this._baseline = 0.1;
+        for (let enumAttribute of gotchi.constantValues()) {
+          this._baseline *= enumAttribute.value;
+        }
         sum += person.alcoholHabit;
         sum += person.eatHabit;
         sum += person.exercise;
@@ -60,6 +72,16 @@ export class FormulaGenerator {
     this._baseline = baseline;
   }
 
+  /**
+   * This method recalculates the factor of change for blood-glucose levels.
+   * 
+   * @param age age field of the Gotchi
+   * @param weight weight field of the Gotchi
+   * @param illnesses illnesses field of the Gotchi
+   * @param eventType The type of event which occurred (exercise, eating e.g)
+   * @returns the factor which blood-glucose is supposed to increase or decrease by
+   */
+
   public calculateFactor(age: Age, weight: Weight, illnesses?: Illness[], eventType?: EventType): number {
     let factor = this._baseline * age * weight;
     if (illnesses && illnesses.length > 0) {
@@ -72,6 +94,7 @@ export class FormulaGenerator {
     }
     return factor;
   }
+
   public static generateIncreaseFactor(): number {
     return 0.001;
   }

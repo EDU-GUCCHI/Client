@@ -1,11 +1,14 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  ReactNode,
-} from 'react';
-import {ScenarioController} from '../backend/controller/controllers/ScenarioController';
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { ScenarioController } from '../backend/controller/controllers/ScenarioController';
+
+/**
+ * This class is critical. For React-purposes it wraps the entire scope of the App()
+ * within a ScenarioController, allowing this immutable object to be referenced when
+ * calling useScenarioController(). 
+ * 
+ * Critically, this class would also need to contain the logic which reinitializes
+ * the controller state based on previous information. 
+ */
 
 type ScenarioControllerType = ScenarioController | null;
 
@@ -18,7 +21,7 @@ type ScenarioControllerContextType = {
 const ScenarioControllerContext = createContext<ScenarioControllerContextType>({
   scenarioController: null,
   isLoading: false,
-  setLoading: () => {},
+  setLoading: () => { },
 });
 
 // Add the type for children here
@@ -28,7 +31,7 @@ type ScenarioControllerProviderProps = {
 
 export const ScenarioControllerProvider: React.FC<
   ScenarioControllerProviderProps
-> = ({children}) => {
+> = ({ children }) => {
   const [scenarioController, setScenarioController] =
     useState<ScenarioController | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,13 +55,28 @@ export const ScenarioControllerProvider: React.FC<
   );
 };
 
+
+/**
+ * This method is responsible for returning the @class 
+ * ScenarioController which wraps the logic of the app. 
+ * 
+ * @returns an immutable object of ScenarioController
+ * to be used within the context of the application
+ * 
+ * TODO: Reinitialize the ScenarioController based on 
+ * previous data.
+ */
 export const useScenarioController = () => {
   const context = useContext(ScenarioControllerContext);
   if (!context || !context.scenarioController) {
+
+    /**
+     * 
+     */
     throw new Error('ScenarioController not yet initialized');
   }
 
-  const {scenarioController, isLoading} = context;
+  const { scenarioController, isLoading } = context;
 
   // Assuming the scenarioController has a property named GUIController
   const GUIController = scenarioController.GUIController;

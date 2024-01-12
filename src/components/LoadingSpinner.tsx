@@ -1,5 +1,5 @@
 import { ActivityIndicator, View } from 'react-native';
-import {s} from 'react-native-wind';
+import { s } from 'react-native-wind';
 
 
 const LoadingSpinner = () => (

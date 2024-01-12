@@ -1,11 +1,19 @@
+/**
+ * @type interface, model
+ * 
+ * This type and class holds options for the user to answer
+ * when receiving forms.
+ */
+
 export type Option = {
   optionString: string;
   optionCorrect: boolean;
   optionChosen: boolean;
 };
+
 export class AnswerOptions {
+  
   private _options: Option[];
-  //om vi behöver spara att en del av eventet har besvarats
   private _answered: boolean;
 
   constructor(options?: Option[]) {

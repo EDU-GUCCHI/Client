@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {s} from 'react-native-wind';
+import { View } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { s } from 'react-native-wind';
 import ViewContainer from '../components/ViewContainer';
 import LgButton from '../components/LgButton';
 import Title from '../components/Title';
@@ -16,7 +16,7 @@ type Props = {
   navigation: NavigationProp;
 };
 
-function TutorialScreen({navigation}: Props) {
+function TutorialScreen({ navigation }: Props) {
   return (
     <ViewContainer style={s`items-center justify-between h-full`}>
       <View style={s`flex-1 justify-center`}>
@@ -31,7 +31,7 @@ function TutorialScreen({navigation}: Props) {
           locations={[0, 0.7]}
           useAngle={true}
           angle={25}
-          angleCenter={{x: 0.5, y: 0.5}}
+          angleCenter={{ x: 0.5, y: 0.5 }}
           onPress={() => {
             navigation.navigate('BeforeWeBegin');
           }}

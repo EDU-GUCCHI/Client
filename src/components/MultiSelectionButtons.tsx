@@ -1,6 +1,6 @@
-import {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import {s} from 'react-native-wind';
+import { useState, useEffect } from 'react';
+import { Text, View, TouchableOpacity } from 'react-native';
+import { s } from 'react-native-wind';
 
 interface MultiSelectionButtonsProps {
   options: string[];
@@ -26,7 +26,7 @@ const MultiSelectionButtons: React.FC<MultiSelectionButtonsProps> = ({
   chosenAnswers,
   submitted,
   eventAnswered,
-  onAnswerEvaluation = () => {},
+  onAnswerEvaluation = () => { },
   onSelection,
 }) => {
   const [answersEvaluation, setAnswersEvaluation] = useState<AnswerEvaluation>(
@@ -51,7 +51,7 @@ const MultiSelectionButtons: React.FC<MultiSelectionButtonsProps> = ({
 
   useEffect(() => {
     if (submitted) {
-      const evaluation = {...answersEvaluation};
+      const evaluation = { ...answersEvaluation };
       options.forEach((option, index) => {
         evaluation[option] = {
           selected: selectedButtons.has(option),
