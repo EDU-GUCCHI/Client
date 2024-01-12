@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { s } from 'react-native-wind';
-import { View } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { StackNavigationProp } from '@react-navigation/stack';
+import React, {useEffect, useState} from 'react';
+import {s} from 'react-native-wind';
+import {View} from 'react-native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
-import { useScenarioController } from '../components/ScenarioControllerContext';
+import {useScenarioController} from '../components/ScenarioControllerContext';
 import Title from '../components/Title';
 import InputField from '../components/InputField';
 import LgButton from '../components/LgButton';
 import ViewContainer from '../components/ViewContainer';
 import BackButton from '../components/BackButton';
+import DropdownField from '../components/DropdownField';
 
 type RootStackParamList = {
   Home: undefined;
@@ -27,21 +26,11 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
-
-
-function CreateGotchiScreen({ navigation }: Props) {
-
+function CreateGotchiScreen({navigation}: Props) {
   const [gotchiName, setGotchiName] = useState('');
   const [classCode, setClassCode] = useState('');
-
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-      {label: 'Göteborgs Universitet', value: 'banana'},
-      {label: 'Malmö Universitet', value: 'apple'}
-  ]);
-
-  const { GUIController, checkPermissions } = useScenarioController(); // Destructure GUIController here
+  const [institution, setInstitution] = useState('');
+  const {GUIController, checkPermissions} = useScenarioController(); // Destructure GUIController here
 
   useEffect(() => {
     if (gotchiName !== '') {
@@ -50,7 +39,7 @@ function CreateGotchiScreen({ navigation }: Props) {
   }, [gotchiName, GUIController]);
 
   /**
-   * Example API-call which we couldn't get working due to use-states being what they are. 
+   * Example API-call which we couldn't get working due to use-states being what they are.
    */
   /*
   useEffect(() => {
@@ -85,16 +74,15 @@ function CreateGotchiScreen({ navigation }: Props) {
             locations={[0, 1]}
             useAngle={true}
             angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
+            angleCenter={{x: 0.5, y: 0}}
           />
-          <DropDownPicker
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            placeholder={'Välj Institution'}
+          <DropdownField
+            placeholder={'Välj institution'}
+            colors={['#E9F1F7', '#E0DDD5']}
+            locations={[0, 1]}
+            useAngle={true}
+            angle={25}
+            angleCenter={{x: 0.5, y: 0}}
           />
           <InputField
             placeholder="Klasskod..."
@@ -104,7 +92,7 @@ function CreateGotchiScreen({ navigation }: Props) {
             locations={[0, 1]}
             useAngle={true}
             angle={25}
-            angleCenter={{ x: 0.5, y: 0 }}
+            angleCenter={{x: 0.5, y: 0}}
           />
         </View>
 
@@ -115,7 +103,7 @@ function CreateGotchiScreen({ navigation }: Props) {
             locations={[0, 0.7]}
             useAngle={true}
             angle={25}
-            angleCenter={{ x: 0.5, y: 0.3 }}
+            angleCenter={{x: 0.5, y: 0.3}}
             onPress={() => {
               navigation.navigate('Home');
               checkPermissions(); // start controller flow

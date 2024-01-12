@@ -7,7 +7,7 @@ type TitleProps = {
 };
 
 const Title = ({ text }: TitleProps) => (
-  <Text style={s`text-5xl font-extrabold text-blue-900`}>{text}</Text>
+  <Text style={s`text-5xl font-extrabold text-blue-900 pb-5`}>{text}</Text>
 );
 
 export default Title;
